@@ -86,7 +86,7 @@ Y_d = \begin{bmatrix}
         diag(\delta_1\sigma_1,\dots,\delta_n\sigma_n)/\lambda\\
         0_{n(p-1)\,\text{x}\,n}\\[0.5em]\hline\\[-0.8em]
         diag(\sigma_1,\dots,\sigma_n)\\[0.5em]\hline\\[-0.8em]
-        0_{1\text{x}}\\[0.5em]\hline\\[-0.8em]
+        0_{1\text{x}n}\\[0.5em]\hline\\[-0.8em]
         diag(\mu_1\delta_1,\dots,\mu_n\delta_n)/\tau\\[0.5em]\hline\\[-0.8em]
         diag(\mu_1,\dots,\mu_n)/\gamma
 \end{bmatrix}
