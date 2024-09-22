@@ -18,4 +18,4 @@ main:
     weight: 40
   - name: Code
     url: projects/
-    weight: 30
+    weight: 50
