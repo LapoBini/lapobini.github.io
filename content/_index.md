@@ -55,7 +55,7 @@ sections:
   #    columns: 2
   - block: collection
     content:
-      title: Papers
+      title: Working Papers
       text: ""
       filters:
         folders:
