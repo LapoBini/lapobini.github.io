@@ -1,5 +1,5 @@
 ---
-title: Working Papers
+title:
 cms_exclude: true
 
 # View.
