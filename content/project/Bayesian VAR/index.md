@@ -3,7 +3,7 @@ date: "2024-09-01"
 #image:
 #  caption: Embed rich media such as videos and LaTeX math
 math: false
-summary: Estimation and Structural Analysis
+summary: BVAR Estimation and Structural Analysis
 title: BayesianVAR.jl
 type: docs
 ---
