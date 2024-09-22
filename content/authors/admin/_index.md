@@ -47,9 +47,10 @@ profiles:
 #   url: https://orcid.org/
 
 interests:
-  - Artificial Intelligence
-  - Computational Linguistics
-  - Information Retrieval
+- Time-Series Econometrics
+- Applied Macroeconomics
+- Econometrics of Network
+- Forecasting
 
 education:
   - area: PhD Artificial Intelligence
@@ -181,6 +182,6 @@ awards:
       Object-oriented programming (OOP) lets you specify relationships between functions and the objects that they can act on, helping you manage complexity in your code. This is an intermediate level course, providing an introduction to OOP, using the S3 and R6 systems. S3 is a great day-to-day R programming tool that simplifies some of the functions that you write. R6 is especially useful for industry-specific analyses, working with web APIs, and building GUIs.
 ---
 
-## About Me
+## Bio
 
-Lapo Bini is a professor of artificial intelligence at the Stanford AI Lab. Her research interests include distributed robotics, mobile computing and programmable matter. She leads the Robotic Neurobiology group, which develops self-reconfiguring robots, systems of self-organizing robots, and mobile sensor networks.
+I am a PhD Student in Economics at UC San Diego. My research interests include non-stationary time-series models, macroeconomic shocks & causal inference, networks in time dimension and forecasting. I bring three years of experience as an Economist at Now-Casting Economics Ltd, a professional forecasting company. In 2023, I developed and implemented a real-time nowcasting model for the German Federal Ministry of Economic Affairs and Climate Action to predict Inflation and real GDP growth using high-frequency and alternative data.
