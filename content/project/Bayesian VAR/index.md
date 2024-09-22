@@ -8,7 +8,7 @@ title: BayesianVAR.jl
 type: docs
 ---
 ## Introduction
-The repository [BayesianVAR.jl](https://github.com/LapoBini/BayesianVAR.jl) contains the code to estimate a Bayesian VAR with minnesota, sum-of-coefficients and dummy-initial-observations priors. The model could be structurally identified via sign reristriction or external instrument. 
+The repository [BayesianVAR.jl](https://github.com/LapoBini/BayesianVAR.jl) contains the code to estimate a Bayesian VAR with minnesota, sum-of-coefficients and dummy-initial-observations priors, and to perform structural analysis using sign reristrictions or external instruments. 
 
 The repository has an excel file (__Data__ > __FinalData__ > __test.xlsx__) to run the model using __main_executer.jl__. The settings for the VAR (sample dates, directory of the data file, name of the result folder, required packages etc.) can be changed in __Code__ > __SetUp__ > __SetupBVAR.jl__. Every function contains a brief description of the econometric framework with equations and references. 
 
