@@ -18,6 +18,7 @@ doi: ""
 # Accepts a single type but formatted as a YAML list (for Hugo requirements).
 # Enter a publication type from the CSL standard.
 publication_types: ["working-paper"]
+publication: "*Political Research Quarterly*"
 
 featured: true
 # url_code: https://github.com/HugoBlox/hugo-blox-builder
