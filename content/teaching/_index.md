@@ -12,7 +12,7 @@ cascade:
 sections:
   - block: collection
     content:
-      title: Teaching
+      title: 
       filters:
         folders:
           - teaching
