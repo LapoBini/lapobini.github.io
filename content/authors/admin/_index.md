@@ -102,7 +102,7 @@ work:
     date_start: "2022-02-01"
     date_end: "2023-09-01"
     summary: |
-      - Worked with Prof Lucrezia Reichlin and Prof Giovanni Ricco on the stability of the Phillips Curve over time. 
+      - Worked with Prof Lucrezia Reichlin and Prof Giovanni Ricco on the stability of the Phillips Curve in the US. 
       - Studied the impact of oil supply shocks on prices and real activities for the US and the Euro Area. Work presented by Prof Reichlin at the 25th Annual DNB Research Conference (November 2022), Inflation strikes back: drivers and policy reactions, title of the presentation: “Inflation Puzzles”.
   - position: Research Assistant 
     company_name: Centre for Economic Policy Research

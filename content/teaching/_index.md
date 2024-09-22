@@ -11,7 +11,6 @@ cascade:
 
 sections:
   - block: collection
-    id: teaching
     content:
       title: Teaching
       filters:
@@ -19,5 +18,5 @@ sections:
           - teaching
     design:
       view: article-grid
-      columns: 2
+      columns: 1
 ---
