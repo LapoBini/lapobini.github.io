@@ -63,7 +63,6 @@ education:
     summary: |-
       - Advisor: Prof James D. Hamilton.
       - Teaching Assistant ECON120A, Prof Graham Elliott.
-     
   - area: MSc Economics & Finance
     date_end: "2021-07-01"
     date_start: "2020-09-01"
@@ -71,7 +70,6 @@ education:
     summary: |-
       - GPA: 9.37/10
       - Advisor: Prof Christian Brownlees.
-    
   - area: MSc Economics
     date_end: "2020-07-01"
     date_start: "2018-09-01"
@@ -79,14 +77,13 @@ education:
     summary: |-
       - GPA: 110/110 cum Laude and Academic Commendation
       - Advisor: Prof Giuseppe Ragusa
-    
-   - area: BSc Economics
-     date_end: "2018-03-31"
-     date_start: "2015-09-01"
-     institution: University of Pisa
-     summary: |-
-       - GPA: 110/110 cum Laude and Academic Commendation
-       - Advisor: Prof Lorenzo Corsini
+  - area: BSc Economics
+    date_end: "2018-03-31"
+    date_start: "2015-09-01"
+    institution: University of Pisa
+    summary: |-
+      - GPA: 110/110 cum Laude and Academic Commendation
+      - Advisor: Prof Lorenzo Corsini
 work:
   - position: Director of Cloud Infrastructure
     company_name: GenCoin
