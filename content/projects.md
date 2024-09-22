@@ -11,7 +11,7 @@ design:
 sections:
   - block: collection
     content:
-      title: Github Repositories
+      title: GitHub Repositories
       text: 
       filters:
         folders:

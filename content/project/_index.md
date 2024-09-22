@@ -10,7 +10,7 @@ sections:
       filters:
         folders:
           - project
-    title: Github Repositories
+    title: GitHub Repositories
     design:
       columns: 1
       view: article-grid
