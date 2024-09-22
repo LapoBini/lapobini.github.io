@@ -37,7 +37,7 @@ sections:
       text: |-
         I am currently studying the impact of global supply chain shocks on prices, real economic activities, and trade. The key challenge is performing causal inference using large-scale macroeconomic models.
         
-        Additionaly, I have a strong interest in trend-cycle models and econometrics of network.
+        Additionaly, I have a strong interest in trend-cycle models and economic networks.
         
         If you're interested in collaborating, please feel free to reach out.
     design:

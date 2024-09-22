@@ -62,7 +62,7 @@ education:
     institution: UC San Diego
     summary: |-
       - Advisor: Prof James D. Hamilton.
-      - Teaching Assistant ECON120A, Prof Graham Elliott.
+      - Head Teaching Assistant ECON120A, Prof Graham Elliott.
   - area: MSc Economics & Finance
     date_end: "2021-07-01"
     date_start: "2020-09-01"
@@ -85,9 +85,9 @@ education:
       - GPA: 110/110 cum Laude and Academic Commendation
       - Advisor: Prof Lorenzo Corsini
 work:
-  - position: Director of Cloud Infrastructure
-    company_name: GenCoin
-    company_url: ''
+  - position: Economist
+    company_name: NowCasting-Economics Ltd
+    company_url: https://www.now-casting.com/home
     company_logo: ''
     date_start: 2021-01-01
     date_end: ''
