@@ -53,37 +53,40 @@ interests:
 - Forecasting
 
 education:
-  - area: PhD Artificial Intelligence
-    institution: Stanford University
-    date_start: 2016-01-01
-    date_end: 2020-12-31
-    summary: |
-      Thesis on _Why LLMs are awesome_. Supervised by [Prof Joe Smith](https://example.com). Presented papers at 5 IEEE conferences with the contributions being published in 2 Springer journals.
-    button:
-      text: 'Read Thesis'
-      url: 'https://example.com'
-  - area: MEng Artificial Intelligence
-    institution: Massachusetts Institute of Technology
-    date_start: 2016-01-01
-    date_end: 2020-12-31
-    summary: |
-      GPA: 3.8/4.0
-
-      Courses included:
-      - lorem ipsum dolor sit amet, consectetur adipiscing elit
-      - lorem ipsum dolor sit amet, consectetur adipiscing elit
-      - lorem ipsum dolor sit amet, consectetur adipiscing elit
-  - area: BSc Artificial Intelligence
-    institution: Massachusetts Institute of Technology
-    date_start: 2016-01-01
-    date_end: 2020-12-31
-    summary: |
-      GPA: 3.4/4.0
-      
-      Courses included:
-      - lorem ipsum dolor sit amet, consectetur adipiscing elit
-      - lorem ipsum dolor sit amet, consectetur adipiscing elit
-      - lorem ipsum dolor sit amet, consectetur adipiscing elit
+  - area: PhD Economics
+    # button:
+    #  text: Read Thesis
+    #  url: https://example.com
+    date_end: ""
+    date_start: "2023-09-01"
+    institution: UC San Diego
+    summary: |-
+      - Advisor: Prof James D. Hamilton.
+      - Teaching Assistant ECON120A, Prof Graham Elliott.
+     
+  - area: MSc Economics & Finance
+    date_end: "2021-07-01"
+    date_start: "2020-09-01"
+    institution: Barcelona School of Economics
+    summary: |-
+      - GPA: 9.37/10
+      - Advisor: Prof Christian Brownlees.
+    
+  - area: MSc Economics
+    date_end: "2020-07-01"
+    date_start: "2018-09-01"
+    institution: Sant'Anna School of Advanced Studies
+    summary: |-
+      - GPA: 110/110 cum Laude and Academic Commendation
+      - Advisor: Prof Giuseppe Ragusa
+    
+   - area: BSc Economics
+     date_end: "2018-03-31"
+     date_start: "2015-09-01"
+     institution: University of Pisa
+     summary: |-
+       - GPA: 110/110 cum Laude and Academic Commendation
+       - Advisor: Prof Lorenzo Corsini
 work:
   - position: Director of Cloud Infrastructure
     company_name: GenCoin
