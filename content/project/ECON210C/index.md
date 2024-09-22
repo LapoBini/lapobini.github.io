@@ -10,11 +10,11 @@ type: docs
 
 The repository [ECON210C](https://github.com/LapoBini/210C) contains the codes for assignments and final exam for ECON210C of Prof Johannes Wieland (Spring 2024).
 
-### HW1 - RBC and Sequence Space
+### HW1 - Sequence Space
 
 ### HW2 - Structural VAR
 
-### HW4 - Solving a New-Keynesian DSGE Model 
+### HW4 - Undetermine Coefficient 
 
-### Exam - Solving and Simulating RANK Model
+### Exam - RANK Model
 
