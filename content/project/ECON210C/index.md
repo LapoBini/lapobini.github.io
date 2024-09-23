@@ -118,9 +118,9 @@ u_t \\
 0
 \end{bmatrix}\,.
 $$
-The vectors $\xi_t$, $\xi_{t-1}$ and $U_t$ have dimension ($kp$ x $1$) with $k$ that is the number of endogenous variables of the VAR and $p$ the number of lags, while the companion matrix $\mathbb{A}$ has dimension ($kp$ x $kp$). The estimation of $\mathbb{A}$ is performed by OLS:
+The vectors $\xi_t$, $\xi_{t-1}$ and $U_t$ have dimension ($kp$ x $1$), while the companion matrix $\mathbb{A}$ has dimension ($kp$ x $kp$). The estimation of $\mathbb{A}$ is performed by OLS:
 $$
-\mathbb{A}=(\xi_t \xi_{t-1}^{'})(\xi_{t-1} \xi_{t-1}^{'})^{-1}\;.
+\mathbb{A}=(\xi_t \xi_{t-1}^{'})(\xi_{t-1} \xi_{t-1}^{'})^{-1} \; .
 $$
 Since our stochastic process $\{\xi_t\}_{t\geq0}$ is weakly stationary by construction, we can express the companion form VAR as an infinite moving average:
 $$
@@ -133,7 +133,7 @@ $$
 $$
 Y_t=\sum_{h=0}^{\infty}\Phi_hu_{t-h}\quad\textit{with:}\quad\Phi_h=J\mathbb{A}^hJ \; .
 $$
-Thus, we isolate $\Phi_h$ (composed by the first $(k\;\text{x}\;kp)$ elements of the companion matrix $\mathbb{A}$) using the indicator matrix $J$.
+Thus, we isolate $\Phi_h$ (composed by the first $(k\; \text{x} \; kp)$ elements of the companion matrix $\mathbb{A}$) using the indicator matrix $J$.
 
 
 ### Undetermine Coefficients
