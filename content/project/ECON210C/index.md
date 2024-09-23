@@ -26,7 +26,7 @@ The set of equilibrium conditions for the model are:
 $$
 \begin{gather*}
 \begin{split}
-    &Y_t&=A_t N_{t}& \\
+    &Y_t&=A_t N_{t} \\
 	&\frac{W_t}{P_t}&= A_t  \\
 	&\frac{W_t}{P_t}&=\frac{\chi N_t^\varphi}{C_t^{-\gamma}} \\
 	&Y_t&=C_t \\
