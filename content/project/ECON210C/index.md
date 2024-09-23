@@ -30,6 +30,7 @@ $$
 	&\frac{W_t}{P_t}&=\frac{\chi N_t^\varphi}{C_t^{-\gamma}} \\
 	&Y_t&=C_t \\
 	&1&=\beta E_t\big\{R_{t+1} \frac{C_{t+1}^{-\gamma}}{C_{t}^{-\gamma}}\big\} 
+    \end{split}
 \end{gather*}
 $$
 
