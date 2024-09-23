@@ -43,6 +43,17 @@ $$
 \end{gather*}
 $$
 {{< /math >}}
+
+Let's now denote $\mathrm{X} = \{X_1,\dots,X_t\}$ is the time path of unknown aggregate sequences of endogenous macroeconomic outcomes, and $\mathrm{Z} = \{Z_1,\dots,Z_t\}$ is the time path of known exogenous shock. A perfect-foresight equilibrium given shock path $\mathrm{Z}$ is the a set of paths $\mathrm{X}$ such that:
+$$ F(\mathrm{X}, \mathrm{Z}) = 0 $$
+where $F(\cdot)$ embeds the model's equilibrium relationship highlighted before. Then, we can define a mapping from $\mathrm{Z}$ to $\mathrm{X}$ by taking total differentiation:
+$$ \text{d}F(\mathrm{X}, \mathrm{Z}) = \text{d}0 $$
+$$ F_x \mathrm{\hat{x}} + F_z \mathrm{Z} = 0 $$
+However, we can we often times can arrive at a lower-dimensional representation of equilibria that does not involve all variables: given $\mathrm{Z}$, may be able to characterize equilibria via
+$$ H(\mathrm{U}, \mathrm{Z}) = 0 $$
+where $\mathrm{U} = \{U_1,\dots,U_t\}$ is the time path of some endogenous macroeconomic outcomes where $ n_u < n_x$ with $\mathrm{X}$ derermined residually via $ \mathrm{X}= M(\mathrm{U}, \mathrm{Z})$.
+
+
 Let's now log-linearized the equilibrium conditions around the steady state, with $\hat x \approx \ln X_t - \ln X^{ss}$
 Let $Y_t = (y_{1t},\dots,y_{nt})'$ be a potentially large vector of random variables. We estimate the following VAR(p) model:
 {{< math >}}
