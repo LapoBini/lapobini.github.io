@@ -21,7 +21,7 @@ If we consider the basic RBC model, an equilibrium is an allocation $\{C_{t+s},N
 3. The government satisfies its budget constraint.
 4. Markets clear.
 
-The set of equilibrium conditions for the model are:
+The set of log-linearized equilibrium conditions, with  $\hat x \approx \ln X_t - \ln X^{ss}$, are:
 {{< math >}}
 $$
 \begin{gather*}
@@ -31,6 +31,14 @@ $$
 	\frac{W_t}{P_t}&=\frac{\chi N_t^\varphi}{C_t^{-\gamma}} \\
 	Y_t&=C_t \\
 	C_{t}^{-\gamma}&=\beta E_t\big\{R_{t+1} C_{t+1}^{-\gamma} \big\} 
+    \end{split}
+    \xrightarrow{}
+    \begin{split}
+    \hat{y}_t&=\hat{a}_t + \hat{n}_{t}  \\
+	\hat{w}_t - \hat{p}_t &= \hat{a}_t  \\
+	\hat{w}_t - \hat{p}_t &=\varphi \hat{n}_t + \gamma \hat{c}_t \\
+	\hat{y}_t& =\hat{c}_t \\
+	-\hat{c}_{t}&= E_t\left\{\hat{r}_{t+1} - \gamma \hat{c}_{t+1} \right\} 
     \end{split}
 \end{gather*}
 $$
