@@ -168,7 +168,7 @@ The procedure is implemented in __Code__ > __BVAR__ > __bvar_sign_gibbs.jl__.
 
 The identification strategy consists of using external instruments which are able to capture a fraction of the true structural shock. This methodology was introduced by $\textcolor{orange}{Stock}$ $\textcolor{orange}{and}$ $\textcolor{orange}{Watson}$ $\textcolor{orange}{(2012)}$ and it has become increasingly popular in the literature seeking to estimate the effects of the monetary policy shock. We apply the same procedure outlined in $\textcolor{orange}{Stock}$ $\textcolor{orange}{and}$ $\textcolor{orange}{Watson}$  $\textcolor{orange}{(2018)}$.
 
-We assume that we are interested in the shock order first ($\varepsilon_{1t}$, without lost of generality. The instrument must satisfy the so called "SVAR-IV" conditions:
+We assume that we are interested in the shock order first ($\varepsilon_{1t}$), without lost of generality. The instrument must satisfy the so called "SVAR-IV" conditions:
 1. $E[Z_t\varepsilon_{1t}]=\alpha\neq 0 \quad\quad\quad\quad(relevance)$
 2. $E[Z_t\varepsilon_{jt}]=0\quad \forall j\neq 1 \quad\quad\,(exogeneity)$
 
