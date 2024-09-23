@@ -59,8 +59,8 @@ We thus recover the solution of the model as:
 $$ \text{d}\mathrm{X} = M_u\text{d}\mathrm{U} + M_z \text{d}\mathrm{Z} $$
 $$ \text{d}\mathrm{X} = M_u \big( - H_u^{-1} H_z \text{d}\mathrm{Z} \big) + M_z \text{d}\mathrm{Z}\,.$$
 Remember that $H_u$ and $H_z$ are sequence-space Jacobians. The solution of the model gives us immediately the structural IRF to the $j^{th}$ shock of interest:
-$$ \Theta_{\dot,j,\dot} = M_u \big( - H_u^{-1} H_{z_j} e_1 \big) + M_{z_j} e_1\,.$$
-where the indicatior vector $e_1 = (1, 0, \dots, 0)' specifies a transitory shock happening at $t=0$ and then the system converges back to steady state (stability). For $t=1,2,\dots$ the linearized optimality conditions hold in expectation.
+$$ \Theta_{\cdot,j,\cdot} = M_u \big( - H_u^{-1} H_{z_j} e_1 \big) + M_{z_j} e_1\,.$$
+where the indicatior vector $e_1 = (1, 0, \dots, 0)'$ specifies a transitory shock happening at $t=0$ and then the system converges back to steady state (stability). For $t=1,2,\dots$ the linearized optimality conditions hold in expectation.
 
 
 ### Structural VAR
