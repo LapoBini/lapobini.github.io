@@ -26,18 +26,3 @@ $$Y_t = c + A_1 Y_{t-1}+\dots+A_p Y_{t-p} + u_t$$
 
 ### New-Keynesian Model
 
-
-## Setting the Priors
-
-Let $Y_t = (y_{1t},\dots,y_{nt})'$ be a potentially large vector of random variables. We estimate the following VAR(p) model:
-{{< math >}}
-$$Y_t = c + A_1 Y_{t-1}+\dots+A_p Y_{t-p} + u_t$$
-{{< /math >}}
-using the Bayesian approach to overcome the curse of dimensionality via the imposition of prior beliefs on the parameters. In setting the prior distributions, we follow standard practice and use the procedure developed in $\textcolor{orange}{Litterman \; (1986)}$ with modifications proposed by $\textcolor{orange}{Kadiyala\; and\; Karlsson\; (1997)}$ and $\textcolor{orange}{Sims\; and\; Zha\; (1998)}$. The priors are implemented using dummy observations, and the choice of the informativeness of the prior distribution is determined by the marginal likelihood of the observed data; in that sense, we follow strictly the exposition and the procedure of $\textcolor{orange}{Banbura,}$ $\textcolor{orange}{Giannone,}$ $\textcolor{orange}{and}$ $\textcolor{orange}{Reichlin}$ $\textcolor{orange}{(2007)}$ and $\textcolor{orange}{Giannone,}$ $\textcolor{orange}{Lenza,}$ $\textcolor{orange}{Primicieri\, (2012)}$.
-
-
-
-### Minnesota Prior
-$\textcolor{orange}{Litterman \; (1986)}$ introduced the well known Minnesota prior: the basic principle behind it is that all the equations are centered around the random walk with drift:
-$$ Y_t = c + Y_{t-1} + u_t\,.$$
-This amounts to shrinking the diagonal elements of $A_1$ toward one and the remaining coefficients in $A_1,\dots,A_p$ toward zero. In addition, the prior specification incorporates the belief that the more recent lags should provide more reliable information than the more distant ones and that own lags should explain more of the variation of a given variable than the lags of other variables in the equation.
