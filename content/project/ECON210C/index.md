@@ -72,14 +72,14 @@ $$ \mathrm{X}_t=\sum_{h=0}^{\infty}\Theta_h\varepsilon_{t-h} \, . $$
 ### Structural VAR
 The second assignment asked to perform a structural analysis to study the assumption of money neutrality. The students were asked to use Structural Vector Autoregressive (SVAR) models identified via choleski decomposition or by using the approach of $\textcolor{orange}{Romer}$ $\textcolor{orange}{and}$ $\textcolor{orange}{Romer}$ $\textcolor{orange}{(2004)}$.
 
-Let $Y_t = (y_{1t},\dots,y_{nt})'$ be a vector of macroeconomic variables, the structural VAR of order p is given by:
+Let $Y_t = (y_{1t},\dots,y_{kt})'$ be a vector of macroeconomic variables, the structural VAR of order p is given by:
 $$
 B_0Y_t=B_1Y_{t-1}+\dots+B_pY_{t-p}+\varepsilon_t.
 $$
-where $\varepsilon_t$ is the $n$-dimensional vector of structural shocks and $B_0$ is the $(n\text{x}n)$ matrix governing the contemporaneous relations among endogenous variables. If we multiply both sides of the SVAR by $B_0^{-1}$ we obtain the reduced form VAR representation: 
+where $\varepsilon_t$ is the $k$-dimensional vector of structural shocks and $B_0$ is the $(k\text{x}k)$ matrix governing the contemporaneous relations among endogenous variables. If we multiply both sides of the SVAR by $B_0^{-1}$ we obtain the reduced form VAR representation: 
 $$ Y_t=B_0^{-1}B_1Y_{t-1}+\dots+B_0^{-1}B_pY_{t-p}+B_0^{-1}\varepsilon_t $$
 $$ Y_t=A_1Y_{t-1}+\dots+A_pY_{t-p}+u_t \;.$$
-The key implication is that the vector of structural shocks $\varepsilon_t$ can be seen as the linear combination of the reduced form residuals $u_t$: $$\varepsilon_t=B_0u_t \quad\quad \text{with} \quad\quad \varepsilon_t \sim N(0, I_n) \,.$$
+The key implication is that the vector of structural shocks $\varepsilon_t$ can be seen as the linear combination of the reduced form residuals $u_t$: $$\varepsilon_t=B_0u_t \quad\quad \text{with} \quad\quad \varepsilon_t \sim N(0, I_k) \,.$$
 We now rewrite the VAR of order p in its companion form representation: 
 $$
 \mathbb{\xi}_t= \mathbb{A \xi}_{t-1} + U_t
@@ -118,7 +118,7 @@ u_t \\
 0
 \end{bmatrix}\,.
 $$
-The vectors $\xi_t$, $\xi_{t-1}$ and $U_t$ have dimension ($kp$ x $1$) with $k$ that is the number of endogenous variables of the VAR and $p$ the number of lags, while the companion matrix $\mathbb{A}$ has dimension ($kp$ x $kp$). The estimation of $\mathbb{A}$ is straightforward:
+The vectors $\xi_t$, $\xi_{t-1}$ and $U_t$ have dimension ($kp$ x $1$) with $k$ that is the number of endogenous variables of the VAR and $p$ the number of lags, while the companion matrix $\mathbb{A}$ has dimension ($kp$ x $kp$). The estimation of $\mathbb{A}$ is performed by OLS:
 $$
 \mathbb{A}=(\xi_t \xi_{t-1}^{'})(\xi_{t-1} \xi_{t-1}^{'})^{-1}\;.
 $$
@@ -126,7 +126,14 @@ Since our stochastic process $\{\xi_t\}_{t\geq0}$ is weakly stationary by constr
 $$
 \mathbb{Y}_t=\sum_{h=0}^{\infty}\mathbb{A}^h U_{t-h}
 $$
-
+Lastly, we can recover the infinite-order representation of our VAR of order $p$ by pre-multiplying both sides by $J=[I_k \quad 0_{k \text{x} k(p-1)}]$:
+$$
+J\mathbb{Y}_t=\sum_{h=0}^{\infty}J\mathbb{A}^h J J^{'} U_{t-h}
+$$
+$$
+Y_t=\sum_{h=0}^{\infty}\Phi_hu_{t-h}\quad\textit{with:}\quad\Phi_h=J\mathbb{A}^hJ \; .
+$$
+Thus, we isolate $\Phi_h$ (composed by the first $(k\;\text{x}\;kp)$ elements of the companion matrix $\mathbb{A}$) using the indicator matrix $J$.
 
 
 ### Undetermine Coefficients
