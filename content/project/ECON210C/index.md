@@ -74,12 +74,58 @@ The second assignment asked to perform a structural analysis to study the assump
 
 Let $Y_t = (y_{1t},\dots,y_{nt})'$ be a vector of macroeconomic variables, the structural VAR of order p is given by:
 $$
-B_0Y_t=B_1Y_{t-1}+\hdots+B_pY_{t-p}+\varepsilon_t.
+B_0Y_t=B_1Y_{t-1}+\dots+B_pY_{t-p}+\varepsilon_t.
 $$
 where $\varepsilon_t$ is the $n$-dimensional vector of structural shocks and $B_0$ is the $(n\text{x}n)$ matrix governing the contemporaneous relations among endogenous variables. If we multiply both sides of the SVAR by $B_0^{-1}$ we obtain the reduced form VAR representation: 
 $$ Y_t=B_0^{-1}B_1Y_{t-1}+\dots+B_0^{-1}B_pY_{t-p}+B_0^{-1}\varepsilon_t $$
 $$ Y_t=A_1Y_{t-1}+\dots+A_pY_{t-p}+u_t \;.$$
-The key implication is that the vector of structural shocks $\varepsilon_t$ can be seen as the linear combination of the reduced form residuals $u_t$: $$\varepsilon_t=B_0u_t \quad\quad \text{with} \quad\quad \varepsilon_t \sim N(0, I_n)$$.
+The key implication is that the vector of structural shocks $\varepsilon_t$ can be seen as the linear combination of the reduced form residuals $u_t$: $$\varepsilon_t=B_0u_t \quad\quad \text{with} \quad\quad \varepsilon_t \sim N(0, I_n) \,.$$
+We now rewrite the VAR of order p in its companion form representation: 
+$$
+\mathbb{\xi}_t= \mathbb{A \xi}_{t-1} + U_t
+$$
+$$
+\xi_t=
+\begin{bmatrix}
+Y_t \\
+Y_{t-1} \\
+Y_{t-2} \\
+\vdots \\
+Y_{t-p+1}
+\end{bmatrix}\,
+\mathbb{A}=
+\begin{bmatrix}
+A_1 & A_2 & \dots & A_{p-1} & A_p\\
+I_k& 0_k &  \dots & 0 &0\\
+0 & I_k &  \dots & 0 & 0\\
+\vdots&  &  & & \vdots\\
+0 & 0 & \dots & I_k & 0
+\end{bmatrix}\,
+\xi_{t-1}=
+\begin{bmatrix}
+Y_{t-1} \\
+Y_{t-2} \\
+Y_{t-3} \\
+\vdots \\
+Y_{t-p}
+\end{bmatrix}\,
+U_t=
+\begin{bmatrix}
+u_t \\
+0 \\
+0 \\
+\vdots \\
+0
+\end{bmatrix}\,.
+$$
+The vectors $\xi_t$, $\xi_{t-1}$ and $U_t$ have dimension ($kp$ x $1$) with $k$ that is the number of endogenous variables of the VAR and $p$ the number of lags, while the companion matrix $\mathbb{A}$ has dimension ($kp$ x $kp$). The estimation of $\mathbb{A}$ is straightforward:
+$$
+\mathbb{A}=(\xi_t \xi_{t-1}^{'})(\xi_{t-1} \xi_{t-1}^{'})^{-1}\;.
+$$
+Since our stochastic process $\{\xi_t\}_{t\geq0}$ is weakly stationary by construction, we can express the companion form VAR as an infinite moving average:
+$$
+\mathbb{Y}_t=\sum_{h=0}^{\infty}\mathbb{A}^h U_{t-h}
+$$
 
 
 
