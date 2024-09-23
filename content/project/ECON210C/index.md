@@ -51,7 +51,7 @@ $$ \text{d}F(\mathrm{X}, \mathrm{Z}) = \text{d}0 $$
 $$ F_x \, \text{d}\mathrm{X} + F_z \, \text{d}\mathrm{Z} = 0 $$
 However, we can we often times can arrive at a lower-dimensional representation of equilibria that does not involve all variables: given $\mathrm{Z}$, may be able to characterize equilibria via
 $$ H(\mathrm{U}, \mathrm{Z}) = 0 $$
-where $\mathrm{U} = \{U_1,\dots,U_t\}$ is the time path of some unknown macroeconomic outcomes where $ n_u < n_x$ with $\mathrm{X}$ determined residually via $ \mathrm{X}= M(\mathrm{U}, \mathrm{Z})$. The number of unknown endogenous variables must be the same as the number of equilibrium condition in $H(\cdot)$. To first order we can write
+where $\mathrm{U} = \{U_1,\dots,U_t\}$ is the time path of some unknown macroeconomic outcomes where $ n_u < n_x$ with $\mathrm{X}$ determined residually via $ \mathrm{X}= M(\mathrm{U}, \mathrm{Z})$. The number of unknown endogenous variables must be the same as the number of equilibrium condition in $H(\cdot)$ (in the code __ECON210C__ > __HW1__ > ). To first order we can write
 $$ \text{d}H(\mathrm{U}, \mathrm{Z}) = \text{d}0 $$
 $$ \text{d}H(\mathrm{U}, \mathrm{Z}) = H_u \, \text{d}\mathrm{U} + H_z \, \text{d}\mathrm{Z} = 0 $$
 $$ \text{d}\mathrm{U} = - H_u^{-1} H_z \, \text{d}\mathrm{Z} $$
@@ -65,9 +65,7 @@ Remember that $H_u$ and $H_z$ are sequence-space Jacobians, which are computed a
 The solution of the model gives us immediately the structural IRF to the $j^{th}$ shock of interest:
 $$ \Theta_{\cdot,j,\cdot} = M_u \big( - H_u^{-1} H_{z_j} e_1 \, \big) + M_{z_j} \, e_1 \, .$$
 where the indicatior vector $e_1 = (1, 0, \dots, 0)'$ specifies a transitory shock happening at $t=0$ and then the system converges back to steady state (stability). For $t=1,2,\dots$ the linearized optimality conditions hold in expectation. The sequence space procedure has given us the $SVMA(\infty)$ representation:
-$$
-Y_t=\sum_{h=0}^{\infty}\Theta_h\varepsilon_{t-h}\, .
-$$
+$$ Y_t=\sum_{h=0}^{\infty}\Theta_h\varepsilon_{t-h} \, . $$
 
 
 ### Structural VAR
