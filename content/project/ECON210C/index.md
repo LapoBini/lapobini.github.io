@@ -72,6 +72,15 @@ $$ \mathrm{X}_t=\sum_{h=0}^{\infty}\Theta_h\varepsilon_{t-h} \, . $$
 ### Structural VAR
 The second assignment asked to perform a structural analysis to study the assumption of money neutrality. The students were asked to use Structural Vector Autoregressive (SVAR) models identified via choleski decomposition or by using the approach of $\textcolor{orange}{Romer}$ $\textcolor{orange}{and}$ $\textcolor{orange}{Romer}$ $\textcolor{orange}{(2004)}$.
 
+Let $Y_t = (y_{1t},\dots,y_{nt})'$ be a vector of macroeconomic variables, the structural VAR of order p is given by:
+$$
+B_0Y_t=B_1Y_{t-1}+\hdots+B_pY_{t-p}+\varepsilon_t.
+$$
+where $\varepsilon_t$ is the $n$-dimensional vector of structural shocks and $B_0$ is the $(n\text{x}n)$ matrix governing the contemporaneous relations among endogenous variables. If we multiply both sides of the SVAR by $B_0^{-1}$ we obtain the reduced form VAR representation: 
+$$ Y_t=B_0^{-1}B_1Y_{t-1}+\dots+B_0^{-1}B_pY_{t-p}+B_0^{-1}\varepsilon_t $$
+$$ Y_t=A_1Y_{t-1}+\dots+A_pY_{t-p}+u_t \;.$$
+The key implication is that the vector of structural shocks $\varepsilon_t$ can be seen as the linear combination of the reduced form residuals $u_t$: $$\varepsilon_t=B_0u_t \quad\quad \text{with} \quad\quad \varepsilon_t \sim N(0, I_n)$$.
+
 
 
 ### Undetermine Coefficients
