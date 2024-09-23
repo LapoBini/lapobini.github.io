@@ -35,7 +35,7 @@ $$
 \end{gather*}
 $$
 {{< /math >}}
-Let's now log-linearized the equilibrium conditions around the steady state, with $\hat x \approx \ln X_t - \ln X^{ss}}$
+Let's now log-linearized the equilibrium conditions around the steady state, with $\hat x \approx \ln X_t - \ln X^{ss}$
 Let $Y_t = (y_{1t},\dots,y_{nt})'$ be a potentially large vector of random variables. We estimate the following VAR(p) model:
 {{< math >}}
 $$Y_t = c + A_1 Y_{t-1}+\dots+A_p Y_{t-p} + u_t$$
