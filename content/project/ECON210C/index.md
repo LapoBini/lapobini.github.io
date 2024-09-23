@@ -44,26 +44,24 @@ $$
 $$
 {{< /math >}}
 
-Let's now denote $\mathrm{X} = \{X_1,\dots,X_t\}$ is the time path of unknown aggregate sequences of endogenous macroeconomic outcomes, and $\mathrm{Z} = \{Z_1,\dots,Z_t\}$ is the time path of known exogenous shock. A perfect-foresight equilibrium given shock path $\mathrm{Z}$ is the a set of paths $\mathrm{X}$ such that:
+Let's now denote $\mathrm{X} = \{X_1,\dots,X_t\}$ as the perfect-foresight time path of aggregate sequences of endogenous macroeconomic outcomes to the exogenous shock path $\mathrm{Z} = \{Z_1,\dots,Z_t\}$. A perfect-foresight equilibrium given shock path $\mathrm{Z}$ is the a set of paths $\mathrm{X}$ such that:
 $$ F(\mathrm{X}, \mathrm{Z}) = 0 $$
 where $F(\cdot)$ embeds the model's equilibrium relationship highlighted before. Then, we can define a mapping from $\mathrm{Z}$ to $\mathrm{X}$ by taking total differentiation:
 $$ \text{d}F(\mathrm{X}, \mathrm{Z}) = \text{d}0 $$
-$$ F_x \mathrm{\hat{x}} + F_z \mathrm{Z} = 0 $$
+$$ F_x \text{d}\mathrm{X} + F_z \text{d}\mathrm{Z} = 0 $$
 However, we can we often times can arrive at a lower-dimensional representation of equilibria that does not involve all variables: given $\mathrm{Z}$, may be able to characterize equilibria via
 $$ H(\mathrm{U}, \mathrm{Z}) = 0 $$
-where $\mathrm{U} = \{U_1,\dots,U_t\}$ is the time path of some endogenous macroeconomic outcomes where $ n_u < n_x$ with $\mathrm{X}$ derermined residually via $ \mathrm{X}= M(\mathrm{U}, \mathrm{Z})$.
+where $\mathrm{U} = \{U_1,\dots,U_t\}$ is the time path of some unknown macroeconomic outcomes where $ n_u < n_x$ with $\mathrm{X}$ determined residually via $ \mathrm{X}= M(\mathrm{U}, \mathrm{Z})$. The number of unknown endogenous variables must be the same as the number of equilibrium condition in $H(\cdot)$. To first order we can write
+$$ \text{d}H(\mathrm{U}, \mathrm{Z}) = \text{d}0 $$
+$$ \text{d}H(\mathrm{U}, \mathrm{Z}) = H_u\text{d}\mathrm{U} + H_z \text{d}\mathrm{Z} = 0 $$
+$$ \text{d}\mathrm{U} = - H_u^{-1} H_z \text{d}\mathrm{Z} $$
+We thus recover the solution of the model as:
+$$ \text{d}\mathrm{X} = M_u\text{d}\mathrm{U} + M_z \text{d}\mathrm{Z} $$
+$$ \text{d}\mathrm{X} = M_u \big( - H_u^{-1} H_z \text{d}\mathrm{Z} \big) + M_z \text{d}\mathrm{Z}\,.$$
+Remember that $H_u$ and $H_z$ are sequence-space Jacobians. The solution of the model gives us immediately the structural IRF to the $j^{th}$ shock of interest:
+$$ \Theta_{\dot,j,\dot} = M_u \big( - H_u^{-1} H_{z_j} e_1 \big) + M_{z_j} e_1\,.$$
+where the indicatior vector $e_1 = (1, 0, \dots, 0)' specifies a transitory shock happening at $t=0$ and then the system converges back to steady state (stability). For $t=1,2,\dots$ the linearized optimality conditions hold in expectation.
 
-
-Let's now log-linearized the equilibrium conditions around the steady state, with $\hat x \approx \ln X_t - \ln X^{ss}$
-Let $Y_t = (y_{1t},\dots,y_{nt})'$ be a potentially large vector of random variables. We estimate the following VAR(p) model:
-{{< math >}}
-$$Y_t = c + A_1 Y_{t-1}+\dots+A_p Y_{t-p} + u_t$$
-{{< /math >}}
-The first assignment (__ECON210C__ > __HW1__) require to solve a RBC DSGE model using the Sequence Space methodology ($\textcolor{orange}{Auclert}$ $\textcolor{orange}{et}$ $\textcolor{orange}{al.,}$ $\textcolor{orange}{(2021)}$). 
-
-The basic idea is to organize the model into blocks that represents different behaviors of possible heterogeneous agents and interact in GE via a small set of aggregates. Let's now denote $\mathrm{U} = \{U_1,\dots,U_t\}$
-
-$$Y_t = c + A_1 Y_{t-1}+\dots+A_p Y_{t-p} + u_t$$
 
 ### Structural VAR
 
