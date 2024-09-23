@@ -32,7 +32,7 @@ $$
 	Y_t&=C_t \\
 	C_{t}^{-\gamma}&=\beta E_t\big\{R_{t+1} C_{t+1}^{-\gamma} \big\} 
     \end{split}
-    \quad \xrightarrow{} \quad
+    \quad\quad \xrightarrow{} \quad\quad
     \begin{split}
     \hat{y}_t&=\hat{a}_t + \hat{n}_{t}  \\
 	\hat{w}_t - \hat{p}_t &= \hat{a}_t  \\
