@@ -13,9 +13,9 @@ type: docs
 The repository [ECON210C](https://github.com/LapoBini/210C) contains the solutions to assignments and final exam for ECON210C of Prof Johannes Wieland (Spring 2024). The course covered different solution methods for RBC and NK DSGE models, and identification strategies for structural VAR. 
 
 ## Sequence Space
-The first assignment (__ECON210C__ > __HW1__) required to solve a RBC DSGE using the Sequence Space methodology ($\textcolor{orange}{Auclert}$ $\textcolor{orange}{et}$ $\textcolor{orange}{al.,}$ $\textcolor{orange}{2021}$). The code in __ECON210C__ > __HW1__ > __RBC.jl__ solves a specific RBC model with a composite basket made of consumption good and money. In this paragraph we provide a general overview of how the sequence space procedure works.  
+The first assignment (__ECON210C__ > __HW1__) required to solve a RBC DSGE using the Sequence Space methodology ($\textcolor{orange}{Auclert}$ $\textcolor{orange}{et}$ $\textcolor{orange}{al.,}$ $\textcolor{orange}{2021}$). The code in __ECON210C__ > __HW1__ > __RBC.jl__ solves a specific RBC model with a composite basket made of consumption good and money. In this paragraph we provide a general overview of how the sequence space procedure works. The basic idea is to organize the GE model into blocks that represents different behaviors of possible heterogeneous agents and interact in GE via a small set of aggregates. 
 
-The basic idea is to organize the GE model into blocks that represents different behaviors of possible heterogeneous agents and interact in GE via a small set of aggregates. If we consider a basic RBC model, an equilibrium is an allocation $\{C_{t+s},N_{t+s},Y_{t+s},B_{t+s}\}_{s=0}^{\infty}$, a set of prices $\{W_{t+s},P_{t+s},Q_{t+s}\}_{s=0}^{\infty}$, an exogenous processes $\{A_{t+s},Tr_{t+s},M_{t+s}\}_{s=0}^{\infty}$ and initial conditions for bonds and capital $B_{t-1}$ such that:
+Let's start by considering the definition of equilibrium for a basic RBC model. The equilibium is defined as an allocation $\{C_{t+s},N_{t+s},Y_{t+s},B_{t+s}\}_{s=0}^{\infty}$, a set of prices $\{W_{t+s},P_{t+s},Q_{t+s}\}_{s=0}^{\infty}$, an exogenous processes $\{A_{t+s},Tr_{t+s},M_{t+s}\}_{s=0}^{\infty}$ and initial conditions for bonds and capital $B_{t-1}$ such that:
 1. Households maximize utility subject to budget constraints.
 2. Firms maximize profits given their technology.
 3. The government satisfies its budget constraint.
@@ -70,7 +70,7 @@ where the indicatior vector $e_1 = (1, 0, \dots, 0)'$ specifies a transitory sho
 $$ \mathrm{X}_t=\sum_{h=0}^{\infty}\Theta_h\varepsilon_{t-h} \, . $$
 
 ## Structural VAR
-The second assignment (__ECON210C__ > __HW2__) asked to perform a structural analysis to study the assumption of money neutrality. The students were asked to use Structural Vector Autoregressive (SVAR) models to study the response of real activities and inflation to an exogenous monetary policy shock. The identification strategies used are the Cholesky decomposition and the approach of $\textcolor{orange}{Romer}$ $\textcolor{orange}{and}$ $\textcolor{orange}{Romer}$ $\textcolor{orange}{(2004)}$.
+The second assignment (__ECON210C__ > __HW2__) asked to perform an empirical analysis to study the assumption of money neutrality. The students were asked to use Structural Vector Autoregressive (SVAR) models to study the response of real activities and inflation to an exogenous monetary policy shock. The identification strategies used are the Cholesky decomposition of $\textcolor{orange}{Sims}$ $\textcolor{orange}{(1980)}$ and the approach of $\textcolor{orange}{Romer}$ $\textcolor{orange}{and}$ $\textcolor{orange}{Romer}$ $\textcolor{orange}{(2004)}$.
 
 ### Cholesky Decomposition 
 Let $Y_t = (y_{1t},\dots,y_{kt})'$ be a vector of macroeconomic variables, the structural VAR of order p is given by:
@@ -80,8 +80,8 @@ $$
 where $\varepsilon_t$ is the $k$-dimensional vector of structural shocks and $B_0$ is the $(k\text{x}k)$ matrix governing the contemporaneous relations among endogenous variables. If we multiply both sides of the SVAR by $B_0^{-1}$ we obtain the reduced form VAR representation: 
 $$ Y_t=B_0^{-1}B_1Y_{t-1}+\dots+B_0^{-1}B_pY_{t-p}+B_0^{-1}\varepsilon_t $$
 $$ Y_t=A_1Y_{t-1}+\dots+A_pY_{t-p}+u_t \;.$$
-The key implication is that the vector of structural shocks $\varepsilon_t$ can be seen as the linear combination of the reduced form residuals $u_t$: $$\varepsilon_t=B_0u_t \quad\quad \text{with} \quad\quad \varepsilon_t \sim N(0, I_k) \,.$$
-To derive the formulation of the structural impulse response functions, we are going to cast the VAR in its infinite-order structural moving average representation. First, let's rewrite the VAR(p) in companion form: 
+Theerefore, the vector of structural shocks $\varepsilon_t$ can be seen as the linear combination of the reduced form residuals $u_t$: $$\varepsilon_t=B_0u_t \quad\quad \text{with} \quad\quad \varepsilon_t \sim N(0, I_k) \,.$$
+To derive the formulation of the structural impulse response functions $\partial Y_{t+h}/\partial \varepsilon_t = \Theta_j$, we are going to cast the VAR in its infinite-order structural vector moving average ($SVMA(\infty)$) representation. First, let's rewrite the VAR(p) in companion form: 
 $$
 \mathbb{\xi}_t= \mathbb{A \xi}_{t-1} + U_t
 $$
@@ -119,15 +119,15 @@ u_t \\
 0
 \end{bmatrix}\,.
 $$
-As usual, the estimation of $\mathbb{A}$ is performed by OLS:
+The matrix $\mathbb{A}$ is estimated by OLS:
 $$
 \mathbb{A}=(\xi_t \xi_{t-1}^{'})(\xi_{t-1} \xi_{t-1}^{'})^{-1} \; .
 $$
-Since our stochastic process $\{\xi_t\}_{t\geq0}$ is weakly stationary by construction, by Wold Decomposition Theorem we can express the companion form VAR as an infinite moving average:
+Since our stochastic process $\{\xi_t\}_{t\geq0}$ is weakly stationary by construction, we apply the Wold Decomposition Theorem to express the companion form VAR as an infinite-order moving average:
 $$
 \mathbb{Y}_t=\sum_{h=0}^{\infty}\mathbb{A}^h U_{t-h} \, .
 $$
-If we pre-multiply both sides by $J=[I_k \quad 0_{k \text{x} k(p-1)}]$ and we multiply and divide the left-hand side by $B_0$ we get:
+If we pre-multiply both sides by $J=[I_k \quad 0_{k \text{x} k(p-1)}]$ and we multiply and divide the left-hand side by $B_0$ we get the $SVMA(\infty)$ representation:
 $$
 J\mathbb{Y}_t=\sum_{h=0}^{\infty}J\mathbb{A}^h J J^{'} U_{t-h}
 $$
@@ -135,13 +135,16 @@ $$
 Y_t=\sum_{h=0}^{\infty}\Phi_h u_{t-h}
 $$
 $$
-Y_t=\sum_{h=0}^{\infty}\Phi_h B_0^{-1} B_0 u_{t-h}=\sum_{h=0}^{\infty} \Theta_h \varepsilon_{t-h}
+Y_t=\sum_{h=0}^{\infty}\Phi_h B_0^{-1} B_0 u_{t-h}
+$$
+$$
+Y_t==\sum_{h=0}^{\infty} \Theta_h \varepsilon_{t-h} \,.
 $$
 Thus, the sequence of structural IRFs is defined as:
 $$
 \{ \; \Theta_0=\mathrm{I} B_0^{-1}, \Theta_1=\Phi_1 B_0^{-1},\, \dots, \, \Theta_h = \Phi_h B_0^{-1} \; \} \, .
 $$
-The identification of $B_0^{-1}$ is performed using the Cholesky Decocomposition, the most commonly used identification method in macroeconomics. It was introduced by $\textcolor{orange}{Sims}$ $\textcolor{orange}{(1980)}$, and it imposes alternative sets of recursive zero restrictions on the contemporaneous coefficients. The recursive structure that we impose is the same as in $\textcolor{orange}{Christiano}$ $\textcolor{orange}{et}$ $\textcolor{orange}{al.}$ $\textcolor{orange}{(1999)}$. In particular, we order the variable in $Y_t$ as follows:
+As mentioned before, the estimation of $B_0^{-1}$ is performed using the most commonly used identification method in macroeconomics, the Cholesky Decocomposition. It was introduced by $\textcolor{orange}{Sims}$ $\textcolor{orange}{(1980)}$, and it imposes alternative sets of recursive zero restrictions on the contemporaneous coefficients. The recursive structure that we impose follows the spirit of $\textcolor{orange}{Christiano}$ $\textcolor{orange}{et}$ $\textcolor{orange}{al.}$ $\textcolor{orange}{(1999)}$. In particular, the variables in $Y_t$ are ordered as follows:
 $$
 \mathrm{Y_t}=\begin{bmatrix}slow\;moving\\[0.5em]\hline\\[-0.8em]
 policy\;instrument\\[0.5em]\hline\\[-0.8em]
@@ -152,12 +155,21 @@ ffr_t \\[0.5em]\hline\\[-0.8em]
 \ln CPI_t
 \end{bmatrix}\, .
 $$
-The assumption is that slow moving variable (the log of real GDP) do not react to a monetary policy shock within the period, while the fast moving one does (log of CPI). More precisely, the identification strategy enforces a lower triangular structure on the matrix $B_0$ (then also $B_0^{-1}$ will be lower triangular) by performing the Cholesky Decomposition of the variance covariance matrix of the residuals:
+The recursive structure implies that the slow moving variable, log of real GDP, does not react to a monetary policy shock within the period (it only reacts to a shock to GDP itself), while the fast moving one does react to all the different shocks hitting the system. This identification strategy enforces a lower triangular structure on the matrix $B_0$ (then also $B_0^{-1}$ will be lower triangular):
+$$
+    B_0^{-1} = \begin{bmatrix}
+    b_{11} & \textcolor{orange}{0} & 0 \\
+    b_{21} & \textcolor{orange}{b_{22}} & 0 \\
+    b_{31} & \textcolor{orange}{b_{32}} & b_{33} \\
+    \end{bmatrix} \; .
+$$
+Thus, the Cholesky Decomposition of the variance covariance matrix of the residuals gives us the matrix $B_0^{-1}$:
 $$ \mathrm{E}[\varepsilon_t \varepsilon_t'] = \mathrm{E}[B_0 u_t u_t' B_0'] $$
 $$\mathrm{I}_{k} = B_0 \Sigma_u B_0' $$
 $$ \Sigma_u = B_0^{-1} B_0^{-1} $$
 
 The function __ECON210C__ > __HW2__ > __SVAR.jl__ > __IRF_CH__ performs the identification via Cholesky Decomposition, while __ECON210C__ > __HW2__ > __SVAR.jl__ > __WILD_CH__ implements the wild bootstrap routine to compute the confidence intervals. 
+
 
 ### Romer \& Romer Shock
 The function __ECON210C__ > __HW2__ > __SVAR.jl__ > __IRF_RR__ estimates the structural IRFs using the monetary policy shock and the procedure of $\textcolor{orange}{Romer}$ $\textcolor{orange}{and}$ $\textcolor{orange}{Romer}$ $\textcolor{orange}{(2004)}$. 
@@ -169,7 +181,6 @@ The procedure for the estimation of the structural IRF is the following:
 $$ \Delta Y_t = C + \sum_{i=1}^p A_i \Delta Y_{t-i} + \sum_{j=1}^s \gamma_j Z_{t-j} + e_t \, ;$$
 2. Assuming that the system was at steady state at time $t$, we compute: $$ \theta_{t+h} = \gamma_h + A_1 \Delta Y_{t+h-1} + \dots + A_p \Delta Y_{t+h-p} \, .$$
 3. Lastly, the structural IRFs of the log of the variables are obtained as the sequence of $\Theta_h = \sum_{j=1}^h \theta_{t+j}$.
-
 
 
 ## Undetermine Coefficients
