@@ -152,7 +152,7 @@ $$
 and we impose that slow moving variables do not react to a monetary policy shock within the period, i.e. we impose a lower triangular structure on the matrix $B_0$ (then also $B_0^{-1}$ will be lower triangular). Lastly, we perform the cholesky decomposition of the variance covariance matrix of the residuals:
 $$ \mathrm{E}[\varepsilon_t \varepsilon_t'] = \mathrm{E}[B_0 u_t u_t' B_0'] $$
 $$\mathrm{I}_{k} = B_0 \Sigma_u B_0' $$
-$$ B_0^{-1} B_0^{-1} ' = \Sigma_u$$
+$$ B_0^{-1} B_0^{-1} = \Sigma_u$$
 
 bo
 
