@@ -13,7 +13,7 @@ type: docs
 The repository [ECON210C](https://github.com/LapoBini/210C) contains the solutions to assignments and final exam for ECON210C of Prof Johannes Wieland (Spring 2024). The course covered different solution methods for RBC and NK DSGE models, and identification strategies for structural VAR. 
 
 ## Sequence Space
-The first assignment (__ECON210C__ > __HW1__) required to solve a RBC DSGE using the Sequence Space methodology ($\textcolor{orange}{Auclert}$ $\textcolor{orange}{et}$ $\textcolor{orange}{al.,}$ $\textcolor{orange}{2021}$). The code in __ECON210C__ > __HW1__ > __RBC.jl__ solves a specific RBC model with a composite basket made of consumption good and money. In this paragraph we provide a general overview of how the sequence space procedure works. The basic idea is to organize the GE model into blocks that represents different behaviors of possible heterogeneous agents and interact in GE via a small set of aggregates. 
+The first assignment (__ECON210C__ > __HW1__) required to solve a RBC DSGE model using the Sequence Space methodology ($\textcolor{orange}{Auclert}$ $\textcolor{orange}{et}$ $\textcolor{orange}{al.,}$ $\textcolor{orange}{2021}$). The code in __ECON210C__ > __HW1__ > __RBC.jl__ solves a specific RBC model with a composite basket made of consumption good and money. In this paragraph we provide a general overview of how the sequence space procedure works. The basic idea is to organize the GE model into blocks that represents different behaviors of possible heterogeneous agents and interact in GE via a small set of aggregates. 
 
 Let's start by considering the definition of equilibrium for a basic RBC model. The equilibium is defined as an allocation $\{C_{t+s},N_{t+s},Y_{t+s},B_{t+s}\}_{s=0}^{\infty}$, a set of prices $\{W_{t+s},P_{t+s},Q_{t+s}\}_{s=0}^{\infty}$, an exogenous processes $\{A_{t+s},Tr_{t+s},M_{t+s}\}_{s=0}^{\infty}$ and initial conditions for bonds and capital $B_{t-1}$ such that:
 1. Households maximize utility subject to budget constraints.
@@ -255,7 +255,7 @@ $$
 \end{bmatrix} \, \big(\, \rho_a^t \, \varepsilon_0^a \,\big) 
 $$
 
-The function __ECON210C__ > __HW4__ > __RANK_undetermined.jl__ solve the New-Keynesian model as a function of TFP and monetary policy shock. 
+The function __ECON210C__ > __HW4__ > __RANK_undetermined.jl__ solves the New-Keynesian model as a function of TFP and monetary policy shocks. 
 The same procedure is applied in __ECON210C__ > __Exam__ > __RANK_finalexam.jl__ by the function __IID_shock__ with respect to an iid monetary policy shock. 
 
 
