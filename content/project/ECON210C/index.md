@@ -213,8 +213,8 @@ $$
 $$
 \begin{gather*}
 \begin{split}
-(AD) \quad \psi_{ya} \hat a_t &=  \psi_{ya} \, \rho_a \, \hat a_t - \sigma \big(\, \textcolor{orange}{\phi_{\pi} \psi_{\pi a} \hat a_t} - \psi_{\pi a} \, \rho_a \, \hat a_t \, \big) \\
-(AS) \quad \psi_{\pi a} \hat a_t &= \kappa \psi_{ya} \big(\, 1 - \textcolor{red}{\Omega} \,\big) \hat a_t + \beta \psi_{\pi a} \, \rho_a \, \hat a_t
+(AD) \quad \psi_{ya} \hat a_t &=  \psi_{ya} \, \rho_a \, \hat a_t - \sigma \big(\, \textcolor{orange}{$\phi_{\pi} \psi_{\pi a} \hat a_t$} - \psi_{\pi a} \, \rho_a \, \hat a_t \, \big) \\
+(AS) \quad \psi_{\pi a} \hat a_t &= \kappa \psi_{ya} \big(\, 1 - \textcolor{red}{$\Omega$} \,\big) \hat a_t + \beta \psi_{\pi a} \, \rho_a \, \hat a_t
 \end{split}
 \end{gather*}
 
