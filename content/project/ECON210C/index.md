@@ -156,6 +156,7 @@ $$
     &\mathrm{E}[\varepsilon_t\varepsilon_t'] = \mathrm{E}[B_0u_tu_t'B_0']\\
     &\mathrm{I}_{k} = B_0 \Sigma_u B_0'\\
     & B_0^{-1}B_0^{-1}' = \Sigma_u
+\end{split}
 \end{gather*}
 $$
 
