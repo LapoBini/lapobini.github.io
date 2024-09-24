@@ -218,14 +218,14 @@ $$
 \end{split}
 \end{gather*}
 $$
-3. __Solve__. Solve the system relative to a unit shock to TFP:
+3. __Solve__. Solve the system relative to a unit shock to TFP ($\hat a_t = \varepsilon^a_t = 1$): 
 $$
 \begin{cases}
 \psi_{ya} = \Lambda_a \, \Omega \, \sigma \, \kappa \big(\,\phi_{\pi} - \rho_a  \,\big)\\
 \psi_{\pi a} = \frac{\kappa^2}{1- \beta \rho_a}\, \Omega \, \Lambda_a \, \sigma \,\big(\, \phi_{\pi} - \rho_a \big) - \frac{\kappa}{1- \beta \rho_a}\,\Omega
 \end{cases}
 $$
-with $\Lambda_a = \big[ (\,1 - \rho_a \, ) (1 - \beta \rho_a) + \sigma \, \kappa \, (\phi_{\pi} - \rho_a) \big]^{-1}$
+with $\Lambda_a = \big[ (\,1 - \rho_a \, ) (1 - \beta \rho_a) + \sigma \, \kappa \, (\phi_{\pi} - \rho_a) \big]^{-1}$ 
 
 ## New-Keynesian Model
 
