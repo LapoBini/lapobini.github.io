@@ -15,7 +15,7 @@ The repository [ECON210C](https://github.com/LapoBini/210C) contains the solutio
 ## Sequence Space
 The first assignment (__ECON210C__ > __HW1__) required to solve a RBC DSGE model using the Sequence Space methodology ($\textcolor{orange}{Auclert}$ $\textcolor{orange}{et}$ $\textcolor{orange}{al.,}$ $\textcolor{orange}{2021}$). The code in __ECON210C__ > __HW1__ > __RBC.jl__ solves a specific RBC model with a composite basket made of consumption good and money. In this paragraph we provide a general overview of how the sequence space procedure works. The basic idea is to organize the GE model into blocks that represents different behaviors of possible heterogeneous agents and interact in GE via a small set of aggregates. 
 
-Let's start by considering the definition of equilibrium for a basic RBC model. The equilibium is defined as an allocation $\{C_{t+s},N_{t+s},Y_{t+s},B_{t+s}\}_{s=0}^{\infty}$, a set of prices $\{W_{t+s},P_{t+s},Q_{t+s}\}_{s=0}^{\infty}$, an exogenous processes $\{A_{t+s},Tr_{t+s},M_{t+s}\}_{s=0}^{\infty}$ and initial conditions for bonds and capital $B_{t-1}$ such that:
+Let's start by considering the definition of equilibrium for a basic RBC model. The equilibium is defined as an allocation $\{C_{t+s},N_{t+s},Y_{t+s},B_{t+s}\}_{s=0}^{\infty}$, a set of prices $\{W_{t+s},P_{t+s},Q_{t+s}\}_{s=0}^{\infty}$, an exogenous processes $\{A_{t+s},Tr_{t+s},M_{t+s}\}_{s=0}^{\infty}$ and initial conditions for bonds and capital such that:
 1. Households maximize utility subject to budget constraints.
 2. Firms maximize profits given their technology.
 3. The government satisfies its budget constraint.
@@ -46,10 +46,10 @@ $$
 
 Let's now denote with $\mathrm{X} = \{X_1,\dots,X_t\}$ the perfect-foresight time sequence of aggregate macroeconomic outcomes, and with $\mathrm{Z} = \{Z_1,\dots,Z_t\}$ the sequence of exogenous shocks. A perfect-foresight equilibrium given shock sequence $\mathrm{Z}$ is the set of paths $\mathrm{X}$ such that:
 $$ F(\mathrm{X}, \mathrm{Z}) = 0 $$
-where $F(\cdot)$ embeds the model's equilibrium relationship (the ones highlighted before). Then, we can define a mapping from $\mathrm{Z}$ to $\mathrm{X}$ by taking total differentiation:
+where $F(\cdot)$ embeds the model's equilibrium relationships highlighted before. Then, we can define a mapping from $\mathrm{Z}$ to $\mathrm{X}$ by taking total derivative:
 $$ \text{d}F(\mathrm{X}, \mathrm{Z}) = \text{d}0 $$
 $$ F_x \, \text{d}\mathrm{X} + F_z \, \text{d}\mathrm{Z} = 0 $$
-However, we often times can arrive at a lower-dimensional representation of equilibria that does not involve all variables: given $\mathrm{Z}$, may be able to characterize equilibria via
+However, we often times can arrive at a lower-dimensional representation of equilibria that does not involve all variables: given $\mathrm{Z}$, we may be able to characterize equilibria via
 $$ H(\mathrm{U}, \mathrm{Z}) = 0 $$
 where $\mathrm{U} = \{U_1,\dots,U_t\}$ is the time path of some unknown macroeconomic outcomes with $ n_u < n_x$. Thus, $\mathrm{X}$ is determined residually via 
 $$ \mathrm{X}= M(\mathrm{U}, \mathrm{Z}) \; .$$
@@ -64,7 +64,7 @@ Remember that $H_u$ and $H_z$ are sequence-space Jacobians, which are computed a
 1. $ H_u = \frac{\partial H}{\partial \mathrm{U}} = \frac{\partial H}{\partial X} \frac{\partial X}{\partial \mathrm{U}}$
 2. $ H_z = \frac{\partial H}{\partial \mathrm{Z}} = \frac{\partial H}{\partial X} \frac{\partial X}{\partial \mathrm{Z}}$
 
-The solution of the model gives us immediately the structural IRF to the $j^{th}$ shock of interest:
+The solution of the model gives us immediately the structural IRFs to the $j^{th}$ shock of interest:
 $$ \Theta_{\cdot,j,\cdot} = M_u \big( - H_u^{-1} H_{z_j} e_1 \, \big) + M_{z_j} \, e_1 \, .$$
 where the indicatior vector $e_1 = (1, 0, \dots, 0)'$ specifies a transitory shock happening at $t=0$ and then the system converges back to steady state (stability). For $t=1,2,\dots$ the linearized optimality conditions hold in expectation. The sequence space procedure has given us the $SVMA(\infty)$ representation:
 $$ \mathrm{X}_t=\sum_{h=0}^{\infty}\Theta_h\varepsilon_{t-h} \, . $$
@@ -119,7 +119,7 @@ Since our stochastic process $\{\xi_t\}_{t\geq0}$ is weakly stationary by constr
 $$
 \mathbb{Y}_t=\sum_{h=0}^{\infty}\mathbb{A}^h U_{t-h} \, .
 $$
-If we pre-multiply both sides by $J=[I_k \quad 0_{k \text{x} k(p-1)}]$ and we multiply and divide the left-hand side by $B_0$ we get the $SVMA(\infty)$ representation:
+If we pre-multiply both sides by $J=[I_k \quad 0_{k \text{x} k(p-1)}]$ and we multiply and divide the right-hand side by $B_0$ we get the $SVMA(\infty)$ representation:
 $$
 \begin{gather*}
 \begin{split}
@@ -153,7 +153,7 @@ b_{21} & \textcolor{orange}{b_{22}} & 0 \\
 b_{31} & \textcolor{orange}{b_{32}} & b_{33} \\
 \end{bmatrix} \; .
 $$
-The matrix is derived by applying the Cholesky Decomposition of the variance/covariance matrix of the residuals:
+The matrix is derived by applying the Cholesky Decomposition to the variance/covariance matrix of the residuals:
 $$ \mathrm{E}[\varepsilon_t \varepsilon_t'] = \mathrm{E}[B_0 u_t u_t' B_0'] $$
 $$\mathrm{I}_{k} = B_0 \Sigma_u B_0' $$
 $$ \Sigma_u = B_0^{-1} B_0^{-1} $$
