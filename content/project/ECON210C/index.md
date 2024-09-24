@@ -70,7 +70,7 @@ where the indicatior vector $e_1 = (1, 0, \dots, 0)'$ specifies a transitory sho
 $$ \mathrm{X}_t=\sum_{h=0}^{\infty}\Theta_h\varepsilon_{t-h} \, . $$
 
 ### Structural VAR
-The second assignment asked to perform a structural analysis to study the assumption of money neutrality. The students were asked to use Structural Vector Autoregressive (SVAR) models identified via cholesky decomposition or by using the approach of $\textcolor{orange}{Romer}$ $\textcolor{orange}{and}$ $\textcolor{orange}{Romer}$ $\textcolor{orange}{(2004)}$.
+The second assignment asked to perform a structural analysis to study the assumption of money neutrality. The students were asked to use Structural Vector Autoregressive (SVAR) models identified via cholesky decomposition or by using the approach of $\textcolor{orange}{Romer}$ $\textcolor{orange}{and}$ $\textcolor{orange}{Romer}$ $\textcolor{orange}{(2004)}$ to study the response of real activities and inflation to an exogenous monetary policy shock. 
 
 #### Cholesky Decomposition 
 Let $Y_t = (y_{1t},\dots,y_{kt})'$ be a vector of macroeconomic variables, the structural VAR of order p is given by:
@@ -81,7 +81,7 @@ where $\varepsilon_t$ is the $k$-dimensional vector of structural shocks and $B_
 $$ Y_t=B_0^{-1}B_1Y_{t-1}+\dots+B_0^{-1}B_pY_{t-p}+B_0^{-1}\varepsilon_t $$
 $$ Y_t=A_1Y_{t-1}+\dots+A_pY_{t-p}+u_t \;.$$
 The key implication is that the vector of structural shocks $\varepsilon_t$ can be seen as the linear combination of the reduced form residuals $u_t$: $$\varepsilon_t=B_0u_t \quad\quad \text{with} \quad\quad \varepsilon_t \sim N(0, I_k) \,.$$
-We now rewrite the VAR of order p in its companion form representation: 
+To derive the formulation of the structural impulse response functions, we are going to cast the VAR in infinte order moving average representation. Let's now rewrite the VAR(p) in companion form: 
 $$
 \mathbb{\xi}_t= \mathbb{A \xi}_{t-1} + U_t
 $$
@@ -119,7 +119,7 @@ u_t \\
 0
 \end{bmatrix}\,.
 $$
-The vectors $\xi_t$, $\xi_{t-1}$ and $U_t$ have dimension ($kp$ x $1$), while the companion matrix $\mathbb{A}$ has dimension ($kp$ x $kp$). The estimation of $\mathbb{A}$ is performed by OLS:
+The estimation of $\mathbb{A}$ is performed by OLS:
 $$
 \mathbb{A}=(\xi_t \xi_{t-1}^{'})(\xi_{t-1} \xi_{t-1}^{'})^{-1} \; .
 $$
@@ -136,9 +136,9 @@ Y_t=\sum_{h=0}^{\infty}\Phi_h u_{t-h}=\sum_{h=0}^{\infty}\Phi_h B_0^{-1} B_0 u_{
 $$
 Thus, the sequence of structural IRF is defined as:
 $$
-\{ \; \Theta_0=\mathrm{I} B_0^{-1}, \Theta_1=\Phi_1 B_0^{-1},\, \dots, \, \Theta_h = \Phi_h B_0^{-1} \; \}
+\{ \; \Theta_0=\mathrm{I} B_0^{-1}, \Theta_1=\Phi_1 B_0^{-1},\, \dots, \, \Theta_h = \Phi_h B_0^{-1} \; \} \, .
 $$
-and the identification of $B_0^{-1}$ is performed by imposing a recursive structure as in $\textcolor{orange}{Christiano}$ $\textcolor{orange}{et}$ $\textcolor{orange}{al.}$ $\textcolor{orange}{(1999)}$. In particular, we order the variable in $Y_t$ as follows:
+The identification of $B_0^{-1}$ is performed by imposing a recursive structure as in $\textcolor{orange}{Christiano}$ $\textcolor{orange}{et}$ $\textcolor{orange}{al.}$ $\textcolor{orange}{(1999)}$. In particular, we order the variable in $Y_t$ as follows:
 $$
 \mathrm{Y_t}=\begin{bmatrix}slow\;moving\\[0.5em]\hline\\[-0.8em]
 policy\;instrument\\[0.5em]\hline\\[-0.8em]
@@ -149,8 +149,17 @@ ffr_t \\[0.5em]\hline\\[-0.8em]
 \ln CPI_t
 \end{bmatrix}
 $$
-and we impose that slow moving variables do not react to a monetary policy shock within the period, i.e. we impose a lower triangular structure on the matrix $B_0$ (then also $B_0^{-1}$ will be lower triangular).
+and we impose that slow moving variables do not react to a monetary policy shock within the period, i.e. we impose a lower triangular structure on the matrix $B_0$ (then also $B_0^{-1}$ will be lower triangular). Lastly, we perform the cholesky decomposition of the variance covariance matrix of the residuals:
+$$
+\begin{gather*}
+\begin{split}
+    &\mathrm{E}[\varepsilon_t\varepsilon_t'] = \mathrm{E}[B_0u_tu_t'B_0']\\
+    &\mathrm{I}_{k} = B_0 \Sigma_u B_0'\\
+    & B_0^{-1}B_0^{-1}' = \Sigma_u
+\end{gather*}
+$$
 
+#### Romer \& Romer Shock
 
 ### Undetermine Coefficients
 
