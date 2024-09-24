@@ -217,7 +217,7 @@ $$
 (AS) \quad \psi_{\pi a} \hat a_t &= \kappa \psi_{ya} \big(\, 1 - \textcolor{red}{$\Omega$} \,\big) \hat a_t + \beta \psi_{\pi a} \, \rho_a \, \hat a_t
 \end{split}
 \end{gather*}
-
+$$
 
 ## New-Keynesian Model
 
