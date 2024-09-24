@@ -180,9 +180,9 @@ The benchmark three-equation New-Keynesian model is:
 $$
 \begin{gather*}
 \begin{split}
-\hat y_t &=  E_t[\hat y_{t+1}] - \sigma \big( \hat i_t - E_t[\hat \pi_{t+1}] \big) \\
-\hat \pi_t &= \kappa \big( \hat y_t - \hat y_t^f \big) + \beta E_t[\hat \pi_{t+1}] \\
-\hat i_t & = \phi\_{\pi} \hat \pi_t + \nu
+\hat y_t &=  E_t[\,\hat y_{t+1}\,] - \sigma \big(\, \hat i_t - E_t[\,\hat \pi_{t+1}\,]\, \big) \\
+\hat \pi_t &= \kappa \big(\, \hat y_t - \hat y_t^f \,\big) + \beta E_t[\,\hat \pi_{t+1}\,] \\
+\hat i_t & = \phi_{\pi} \hat \pi_t + \nu
 \end{split}
 \end{gather*}
 $$
