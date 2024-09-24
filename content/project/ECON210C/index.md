@@ -225,12 +225,11 @@ $$
 \psi_{\pi a} = \frac{\kappa^2}{1- \beta \rho_a}\, \Omega \, \Lambda_a \, \sigma \,\big(\, \phi_{\pi} - \rho_a \big) - \frac{\kappa}{1- \beta \rho_a}\,\Omega
 \end{cases}
 $$
-with 
 $$\Lambda_a = [ (\, 1 - \rho_a \,) (1 - \beta \rho_a) + \sigma \, \kappa \, (\phi_{\pi} - \rho_a) ]^{-1}$$
 4. __Calibration__. We assign numerical values to the model’s structural parameters
 $$ \{\beta,\kappa,\rho_a, \varphi, \sigma, \gamma, \phi_{\pi}\} $$
 based on external information or matching moments of the data.
-5. __Impulse response functions__. Given the log-linear approximation around the steady state, we can express the responses of the endogenous variables as linear functions of the exogenous TFP shock:
+5. __Impulse responses__. Given the log-linear approximation around the steady state, we can express the responses of the endogenous variables as linear functions of the exogenous TFP shock:
 $$
 \begin{bmatrix}
 \hat y_t \\
