@@ -12,7 +12,7 @@ type: docs
 
 The repository [ECON210C](https://github.com/LapoBini/210C) contains the solutions to assignments and final exam for ECON210C of Prof Johannes Wieland (Spring 2024). The course covered different solution methods for RBC and NK DSGE models, and identification strategies for structural VAR. 
 
-### Sequence Space
+## Sequence Space
 The first assignment (__ECON210C__ > __HW1__) required to solve a RBC DSGE using the Sequence Space methodology ($\textcolor{orange}{Auclert}$ $\textcolor{orange}{et}$ $\textcolor{orange}{al.,}$ $\textcolor{orange}{2021}$). The code in __ECON210C__ > __HW1__ > __RBC.jl__ solves a specific RBC model with a composite basket made of consumption good and money. In this paragraph we provide a general overview of how the sequence space procedure works.  
 
 The basic idea is to organize the GE model into blocks that represents different behaviors of possible heterogeneous agents and interact in GE via a small set of aggregates. If we consider a basic RBC model, an equilibrium is an allocation $\{C_{t+s},N_{t+s},Y_{t+s},B_{t+s}\}_{s=0}^{\infty}$, a set of prices $\{W_{t+s},P_{t+s},Q_{t+s}\}_{s=0}^{\infty}$, an exogenous processes $\{A_{t+s},Tr_{t+s},M_{t+s}\}_{s=0}^{\infty}$ and initial conditions for bonds and capital $B_{t-1}$ such that:
@@ -69,10 +69,10 @@ $$ \Theta_{\cdot,j,\cdot} = M_u \big( - H_u^{-1} H_{z_j} e_1 \, \big) + M_{z_j} 
 where the indicatior vector $e_1 = (1, 0, \dots, 0)'$ specifies a transitory shock happening at $t=0$ and then the system converges back to steady state (stability). For $t=1,2,\dots$ the linearized optimality conditions hold in expectation. The sequence space procedure has given us the $SVMA(\infty)$ representation:
 $$ \mathrm{X}_t=\sum_{h=0}^{\infty}\Theta_h\varepsilon_{t-h} \, . $$
 
-### Structural VAR
+## Structural VAR
 The second assignment asked to perform a structural analysis to study the assumption of money neutrality. The students were asked to use Structural Vector Autoregressive (SVAR) models identified via cholesky decomposition or by using the approach of $\textcolor{orange}{Romer}$ $\textcolor{orange}{and}$ $\textcolor{orange}{Romer}$ $\textcolor{orange}{(2004)}$ to study the response of real activities and inflation to an exogenous monetary policy shock. 
 
-#### Cholesky Decomposition 
+### Cholesky Decomposition 
 Let $Y_t = (y_{1t},\dots,y_{kt})'$ be a vector of macroeconomic variables, the structural VAR of order p is given by:
 $$
 B_0Y_t=B_1Y_{t-1}+\dots+B_pY_{t-p}+\varepsilon_t.
@@ -152,13 +152,13 @@ $$
 and we impose that slow moving variables do not react to a monetary policy shock within the period, i.e. we impose a lower triangular structure on the matrix $B_0$ (then also $B_0^{-1}$ will be lower triangular). Lastly, we perform the cholesky decomposition of the variance covariance matrix of the residuals:
 $$ \mathrm{E}[\varepsilon_t \varepsilon_t'] = \mathrm{E}[B_0 u_t u_t' B_0'] $$
 $$\mathrm{I}_{k} = B_0 \Sigma_u B_0' $$
-$$ B_0^{-1} B_0^{-1}' = \Sigma_u$$
+$$ B_0^{-1} B_0^{-1} ' = \Sigma_u$$
 
 bo
- 
-#### Romer \& Romer Shock
 
-### Undetermine Coefficients
+### Romer \& Romer Shock
 
-### New-Keynesian Model
+## Undetermine Coefficients
+
+## New-Keynesian Model
 
