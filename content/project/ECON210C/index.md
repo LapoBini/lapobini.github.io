@@ -81,7 +81,7 @@ where $\varepsilon_t$ is the $k$-dimensional vector of structural shocks and $B_
 $$ Y_t=B_0^{-1}B_1Y_{t-1}+\dots+B_0^{-1}B_pY_{t-p}+B_0^{-1}\varepsilon_t $$
 $$ Y_t=A_1Y_{t-1}+\dots+A_pY_{t-p}+u_t \;.$$
 The key implication is that the vector of structural shocks $\varepsilon_t$ can be seen as the linear combination of the reduced form residuals $u_t$: $$\varepsilon_t=B_0u_t \quad\quad \text{with} \quad\quad \varepsilon_t \sim N(0, I_k) \,.$$
-To derive the formulation of the structural impulse response functions, we are going to cast the VAR in its infinite order moving average representation. Let's now rewrite the VAR(p) in companion form: 
+To derive the formulation of the structural impulse response functions, we are going to cast the VAR in its infinite-order structural moving average representation. First, let's rewrite the VAR(p) in companion form: 
 $$
 \mathbb{\xi}_t= \mathbb{A \xi}_{t-1} + U_t
 $$
@@ -119,7 +119,7 @@ u_t \\
 0
 \end{bmatrix}\,.
 $$
-The estimation of $\mathbb{A}$ is performed by OLS:
+As usual, the estimation of $\mathbb{A}$ is performed by OLS:
 $$
 \mathbb{A}=(\xi_t \xi_{t-1}^{'})(\xi_{t-1} \xi_{t-1}^{'})^{-1} \; .
 $$
@@ -127,12 +127,15 @@ Since our stochastic process $\{\xi_t\}_{t\geq0}$ is weakly stationary by constr
 $$
 \mathbb{Y}_t=\sum_{h=0}^{\infty}\mathbb{A}^h U_{t-h} \, .
 $$
-If we pre-multiply both sides by $J=[I_k \quad 0_{k \text{x} k(p-1)}]$ we get:
+If we pre-multiply both sides by $J=[I_k \quad 0_{k \text{x} k(p-1)}]$ and we multiply and divide the left-hand side by $B_0$ we get:
 $$
 J\mathbb{Y}_t=\sum_{h=0}^{\infty}J\mathbb{A}^h J J^{'} U_{t-h}
 $$
 $$
-Y_t=\sum_{h=0}^{\infty}\Phi_h u_{t-h}=\sum_{h=0}^{\infty}\Phi_h B_0^{-1} B_0 u_{t-h}=\sum_{h=0}^{\infty} \Theta_h \varepsilon_{t-h}
+Y_t=\sum_{h=0}^{\infty}\Phi_h u_{t-h}
+$$
+$$
+Y_t=\sum_{h=0}^{\infty}\Phi_h B_0^{-1} B_0 u_{t-h}=\sum_{h=0}^{\infty} \Theta_h \varepsilon_{t-h}
 $$
 Thus, the sequence of structural IRFs is defined as:
 $$
@@ -149,7 +152,7 @@ ffr_t \\[0.5em]\hline\\[-0.8em]
 \ln CPI_t
 \end{bmatrix}
 $$
-and we impose that slow moving variable (the log of real GDP) do not react to a monetary policy shock within the period, i.e. we impose a lower triangular structure on the matrix $B_0$ (then also $B_0^{-1}$ will be lower triangular). Lastly, $B_0^{-1}$ is estimated by performing the cholesky decomposition of the variance covariance matrix of the residuals:
+and we impose that slow moving variable (the log of real GDP) do not react to a monetary policy shock within the period while the fast moving ones do (log of CPI), i.e. we impose a lower triangular structure on the matrix $B_0$ (then also $B_0^{-1}$ will be lower triangular). Therefore, $B_0^{-1}$ is estimated by performing the Cholesky Decomposition of the variance covariance matrix of the residuals:
 $$ \mathrm{E}[\varepsilon_t \varepsilon_t'] = \mathrm{E}[B_0 u_t u_t' B_0'] $$
 $$\mathrm{I}_{k} = B_0 \Sigma_u B_0' $$
 $$ \Sigma_u = B_0^{-1} B_0^{-1} $$
