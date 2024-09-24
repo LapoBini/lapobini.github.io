@@ -160,11 +160,17 @@ $$ \Sigma_u = B_0^{-1} B_0^{-1} $$
 The function __ECON210C__ > __HW2__ > __SVAR.jl__ > __IRF_CH__ performs the identification via Cholesky Decomposition, while __ECON210C__ > __HW2__ > __SVAR.jl__ > __WILD_CH__ implements the wild bootstrap routine to compute the confidence intervals. 
 
 ### Romer \& Romer Shock
-The function __ECON210C__ > __HW2__ > __SVAR.jl__ > __IRF_RR__ estimates the structural IRFs using external instruments constructed by $\textcolor{orange}{Romer}$ $\textcolor{orange}{and}$ $\textcolor{orange}{Romer}$ $\textcolor{orange}{(2004)}$. The procedure is the following:
-1. Given the external monetary policy instrument $Z_t$, we express the model as $$Y_t = A_1 Y_{t-1} + \dots + A_p Y_{t-p} + \gamma_0 Z_t + \dots + \gamma_h Z_{t-h} \, ;$$
-2. We estimate $$U_t = Y_t - A_1 Y_{t-1} - \dots - A_p Y_{t-p} \, ;$$
-3. We estimate the regression model $$U_t = \gamma_0 Z_t + \dots + \gamma_h Z_{t-h} \, ;$$
-4. Lastly, the structural IRFs are computed by recursion: $$Y_{t+h} = \gamma_h + A_1 Y_{t+h-1} + \dots + A_p Y_{t+h-p} \, . $$
+The function __ECON210C__ > __HW2__ > __SVAR.jl__ > __IRF_RR__ estimates the structural IRFs using the monetary policy shock and the procedure of $\textcolor{orange}{Romer}$ $\textcolor{orange}{and}$ $\textcolor{orange}{Romer}$ $\textcolor{orange}{(2004)}$. 
+
+Romer and Romer use narrative evidence to derive a series of intended changes in the federal funds rate (using the FOMC announcments from the 1990s, before that, the two had to trawl through meeting minutes to figure it out). They then regress the change in the intended FFR on the Greenbook forecast of RGDP growth, inflation and unemployment and take the residual from this regression, which "shows changes in the intended funds rate not taken in response to information about future economic developments. The resulting series for monetary policy shocks should be relatively free of both endogenous and anticipatory actions."
+
+The procedure for the estimation of the structural IRF is the following:
+1. Given the external monetary policy instrument $Z_t$, we estimate the model in log difference ($\Delta Y_t$):
+$$ \Delta Y_t = C + \sum_{i=1}^p A_i \Delta Y_{t-i} + \sum_{j=1}^s \gamma_j Z_{t-j} + e_t \, ;$$
+2. Assuming that the system was at steady state at time $t$, we compute: $$ \theta_{t+h} = \gamma_h + A_1 \Delta Y_{t+h-1} + \dots + A_p \Delta Y_{t+h-p} \, .$$
+3. Lastly, the structural IRFs of the log of the variables are obtained as the sequence of $\Theta_h = \sum_{j=1}^h \theta_{t+j}$.
+
+
 
 ## Undetermine Coefficients
 
