@@ -186,20 +186,20 @@ $$
 \end{split}
 \end{gather*}
 $$
-where the flexible level of output is $$\hat y^f_t = \frac{1+\varphi}{\varphi + \gamma}\hat a_t$$, the TFP shock follows an AR(1) process $$\hat a_t = \rho_a \hat a_{t-1} + \varepsilon_t$$ and the monetary policy shock is assumed to be zero $\nu = 0$. The other equations we are interested in are: 
+where the flexible level of output is $$\hat y^f_t = \frac{1+\varphi}{\varphi + \gamma}\hat a_t \, ,$$ the TFP shock follows an AR(1) process $$\hat a_t = \rho_a \hat a_{t-1} + \varepsilon_t$$ and the monetary policy shock is assumed to be zero $\nu = 0$. The other equations we are interested in are: 
 $$
 \begin{gather*}
 \begin{split}
-(LD)& \hat n_t =  \hat y_t - \hat a_t\\
-(OG)& \tilde y_t =  \hat y_t - \hat y_t^f\\
-(RR)& \har r_t = \hat i_t - E_t[\,\hat \pi_{t+1}\,]\\
-(NR)& \hat r_t = \sigma \frac{1+\varphi}{\varphi + \gamma} \big(\, \beta E_t[\,\hat \a_{t+1}\,] - \hat a_t \,\big) \, .
+(LD)& \quad \hat n_t =  \hat y_t - \hat a_t\\
+(OG)& \quad \tilde y_t =  \hat y_t - \hat y_t^f\\
+(RR)& \quad \hat r_t = \hat i_t - E_t[\,\hat \pi_{t+1}\,]\\
+(NR)& \quad \hat r_t = \sigma \frac{1+\varphi}{\varphi + \gamma} \big(\, \beta E_t[\,\hat a_{t+1}\,] - \hat a_t \,\big) \, .
 \end{split}
 \end{gather*}
 $$
 The undetermined coefficient procedure can be described in five steps:
 1. __Guess__: we conjecture about the stationary solution of the dynamical system. In our case, we guess the policy function being linear in the TFP shock:
-  
+
 
 
 
