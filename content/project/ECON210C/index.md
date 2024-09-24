@@ -180,13 +180,13 @@ The core of the benchmark three-equation New-Keynesian model is:
 $$
 \begin{gather*}
 \begin{split}
-\hat y_t &=  E_t[\,\hat y_{t+1}\,] - \sigma \big(\, \hat i_t - E_t[\,\hat \pi_{t+1}\,]\, \big) \\
-\hat \pi_t &= \kappa \big(\, \hat y_t - \hat y_t^f \,\big) + \beta E_t[\,\hat \pi_{t+1}\,] \\
-\hat i_t & = \phi_{\pi} \hat \pi_t + \nu
+(AD) \quad \hat y_t &=  E_t[\,\hat y_{t+1}\,] - \sigma \big(\, \hat i_t - E_t[\,\hat \pi_{t+1}\,]\, \big) \\
+(AS) \quad \hat \pi_t &= \kappa \big(\, \hat y_t - \hat y_t^f \,\big) + \beta E_t[\,\hat \pi_{t+1}\,] \\
+(MP) \quad \hat i_t & = \phi_{\pi} \hat \pi_t + \nu
 \end{split}
 \end{gather*}
 $$
-where the flexible level of output is $$\hat y^f_t = \frac{1+\varphi}{\varphi + \gamma}\hat a_t \, ,$$ the TFP shock follows an AR(1) process $$\hat a_t = \rho_a \hat a_{t-1} + \varepsilon_t$$ and the monetary policy shock is assumed to be zero $\nu = 0$. The other equations we are interested in are: 
+where the flexible level of output is $$\hat y^f_t = \frac{1+\varphi}{\varphi + \gamma}\hat a_t = \Omega \hat a_t \, ,$$ the TFP shock follows an AR(1) process $$\hat a_t = \rho_a \hat a_{t-1} + \varepsilon_t$$ and the monetary policy shock is assumed to be zero $\nu = 0$. The other equations we are interested in are: 
 $$
 \begin{gather*}
 \begin{split}
@@ -198,19 +198,23 @@ $$
 \end{gather*}
 $$
 The undetermined coefficient procedure can be described in five steps:
-1. __Guess__: we conjecture about the stationary solution of the dynamical system. In our case, we guess the policy function being linear in the TFP shock:
+1. __Guess__. We conjecture about the stationary solution of the dynamical system. In our case, we guess the policy function being linear in the TFP shock:
 $$
 \begin{gather*}
 \begin{split}
 \hat y_t &=  \psi_{ya} \hat a_t \\
 \hat \pi_t &=  \psi_{\pi a} \hat a_t \\
-E_t[\,\hat \pi_{t+1}\,] &= \psi_{ya} E_t[\,\hat a_{t+1}\,] = \psi_{ya} \rho_a \hat a_t \\
-E_t[\,\hat \pi_{t+1}\,] &= \psi_{\pi a} E_t[\,\hat a_{t+1}\,] = \psi_{\pi a} \rho_a \hat a_t
+E_t[\,\hat y_{t+1}\,] &= \psi_{ya} E_t[\,\hat a_{t+1}\,] = \psi_{ya} \, \rho_a \, \hat a_t \\
+E_t[\,\hat \pi_{t+1}\,] &= \psi_{\pi a} E_t[\,\hat a_{t+1}\,] = \psi_{\pi a} \, \rho_a \, \hat a_t
 \end{split}
 \end{gather*}
 $$
-2. __Plug into the system__ 
-
+2. __Plug into the system__: We replace the variables in the aggregate demand and aggregate supply equation with the linear policy functions. Make sure to plug the monetary policy rule in the aggregate demand to get rid of the interest rate $\textcolor{orange}{\hat i_t}$, and the flexible levelel of output $\textcolor{red}{\hat y^f_t}$. We get a system of two equations in two unknowns ($ \psi_{ya}$ and $ \psi_{ \pi a}$):
+$$
+(AD) \quad \psi_{ya} \hat a_t &=  \psi_{ya} \, \rho_a \, \hat a_t - \sigma \big(\, \textcolor{orange}{\phi_{\pi} \psi_{\pi a} \hat a_t} - \psi_{\pi a} \, \rho_a \, \hat a_t \, \big) \\
+(AS) \quad \psi_{\pi a} \hat a_t &= \kappa \psi_{ya} \big(\, 1 - \Omega \,\big) \hat a_t + \beta E_t[\,\hat \pi_{t+1}\,] \\
+\end{split}
+\end{gather*}
 
 
 ## New-Keynesian Model
