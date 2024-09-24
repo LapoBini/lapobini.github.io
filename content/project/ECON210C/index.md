@@ -134,7 +134,7 @@ $$
 $$
 Y_t=\sum_{h=0}^{\infty}\Phi_h u_{t-h}=\sum_{h=0}^{\infty}\Phi_h B_0^{-1} B_0 u_{t-h}=\sum_{h=0}^{\infty} \Theta_h \varepsilon_{t-h}
 $$
-Thus, the sequence of structural IRF is defined as:
+Thus, the sequence of structural IRFs is defined as:
 $$
 \{ \; \Theta_0=\mathrm{I} B_0^{-1}, \Theta_1=\Phi_1 B_0^{-1},\, \dots, \, \Theta_h = \Phi_h B_0^{-1} \; \} \, .
 $$
@@ -153,9 +153,9 @@ and we impose that slow moving variables do not react to a monetary policy shock
 $$
 \begin{gather*}
 \begin{split}
-    &\mathrm{E}[\varepsilon_t\varepsilon_t'] = \mathrm{E}[B_0u_tu_t'B_0']\\
+    &\mathrm{E}[\varepsilon_t \varepsilon_t'] = \mathrm{E}[B_0 u_t u_t' B_0']\\
     &\mathrm{I}_{k} = B_0 \Sigma_u B_0'\\
-    & B_0^{-1}B_0^{-1}' = \Sigma_u
+    & B_0^{-1} B_0^{-1}' = \Sigma_u
 \end{split}
 \end{gather*}
 $$
