@@ -255,7 +255,7 @@ $$
 \end{bmatrix} \, \big(\, \rho_a^t \, \varepsilon_0^a \,\big) 
 $$
 
+The function __ECON210C__ > __HW4__ > __RANK_undetermined.jl__ solve the New-Keynesian model as a function of TFP and monetary policy shock. 
+The same procedure is applied in __ECON210C__ > __Exam__ > __RANK_finalexam.jl__ by the function __IID_shock__ with respect to an iid monetary policy shock. 
 
-
-## New-Keynesian Model
 
