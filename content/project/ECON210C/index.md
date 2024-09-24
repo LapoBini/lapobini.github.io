@@ -225,7 +225,7 @@ $$
 \psi_{\pi a} = \frac{\kappa^2}{1- \beta \rho_a}\, \Omega \, \Lambda_a \, \sigma \,\big(\, \phi_{\pi} - \rho_a \big) - \frac{\kappa}{1- \beta \rho_a}\,\Omega
 \end{cases}
 $$
-with $\Lambda_a = \big[ (\, 1 - \rho_a \,) (1 - \beta \rho_a) + \sigma \, \kappa \, (\phi_{\pi} - \rho_a) \big]^{-1}$ 
+with $\Lambda_a = [ (\, 1 - \rho_a \,) (1 - \beta \rho_a) + \sigma \, \kappa \, (\phi_{\pi} - \rho_a) ]^{-1}$ 
 
 ## New-Keynesian Model
 
