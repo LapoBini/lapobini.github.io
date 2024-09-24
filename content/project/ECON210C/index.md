@@ -157,11 +157,11 @@ ffr_t \\[0.5em]\hline\\[-0.8em]
 $$
 The recursive structure implies that the slow moving variable, log of real GDP, does not react to a monetary policy shock within the period (it only reacts to a shock to GDP itself), while the fast moving one does react to all the different shocks hitting the system. This identification strategy enforces a lower triangular structure on the matrix $B_0$ (then also $B_0^{-1}$ will be lower triangular):
 $$
-    B_0^{-1} = \begin{bmatrix}
-    b_{11} & \textcolor{orange}{0} & 0 \\
-    b_{21} & \textcolor{orange}{b_{22}} & 0 \\
-    b_{31} & \textcolor{orange}{b_{32}} & b_{33} \\
-    \end{bmatrix} \; .
+B_0^{-1} = \begin{bmatrix}
+b_{11} & \textcolor{orange}{0} & 0 \\
+b_{21} & \textcolor{orange}{b_{22}} & 0 \\
+b_{31} & \textcolor{orange}{b_{32}} & b_{33} \\
+\end{bmatrix} \; .
 $$
 Thus, the Cholesky Decomposition of the variance covariance matrix of the residuals gives us the matrix $B_0^{-1}$:
 $$ \mathrm{E}[\varepsilon_t \varepsilon_t'] = \mathrm{E}[B_0 u_t u_t' B_0'] $$
