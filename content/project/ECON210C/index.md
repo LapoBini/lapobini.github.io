@@ -70,8 +70,9 @@ where the indicatior vector $e_1 = (1, 0, \dots, 0)'$ specifies a transitory sho
 $$ \mathrm{X}_t=\sum_{h=0}^{\infty}\Theta_h\varepsilon_{t-h} \, . $$
 
 ### Structural VAR
-The second assignment asked to perform a structural analysis to study the assumption of money neutrality. The students were asked to use Structural Vector Autoregressive (SVAR) models identified via choleski decomposition or by using the approach of $\textcolor{orange}{Romer}$ $\textcolor{orange}{and}$ $\textcolor{orange}{Romer}$ $\textcolor{orange}{(2004)}$.
+The second assignment asked to perform a structural analysis to study the assumption of money neutrality. The students were asked to use Structural Vector Autoregressive (SVAR) models identified via cholesky decomposition or by using the approach of $\textcolor{orange}{Romer}$ $\textcolor{orange}{and}$ $\textcolor{orange}{Romer}$ $\textcolor{orange}{(2004)}$.
 
+#### Cholesky Decomposition 
 Let $Y_t = (y_{1t},\dots,y_{kt})'$ be a vector of macroeconomic variables, the structural VAR of order p is given by:
 $$
 B_0Y_t=B_1Y_{t-1}+\dots+B_pY_{t-p}+\varepsilon_t.
@@ -124,7 +125,7 @@ $$
 $$
 Since our stochastic process $\{\xi_t\}_{t\geq0}$ is weakly stationary by construction, by Wold Theorem we can express the companion form VAR as an infinite moving average:
 $$
-\mathbb{Y}_t=\sum_{h=0}^{\infty}\mathbb{A}^h U_{t-h}
+\mathbb{Y}_t=\sum_{h=0}^{\infty}\mathbb{A}^h U_{t-h} \, .
 $$
 If we pre-multiply both sides by $J=[I_k \quad 0_{k \text{x} k(p-1)}]$ we get:
 $$
@@ -137,7 +138,19 @@ Thus, the sequence of structural IRF is defined as:
 $$
 \{ \; \Theta_0=\mathrm{I} B_0^{-1}, \Theta_1=\Phi_1 B_0^{-1},\, \dots, \, \Theta_h = \Phi_h B_0^{-1} \; \}
 $$
-Then
+and the identification of $B_0^{-1}$ is performed by imposing a recursive structure as in $\textcolor{orange}{Christiano}$ $\textcolor{orange}{et}$ $\textcolor{orange}{al.}$ $\textcolor{orange}{(1999)}$. In particular, we order the variable in $Y_t$ as follows:
+$$
+\mathrm{Y_t}=\begin{bmatrix}slow\;moving\\[0.5em]\hline\\[-0.8em]
+policy\;instrument\\[0.5em]\hline\\[-0.8em]
+fast\;moving
+\end{bmatrix}
+=\begin{bmatrix} \ln GDP_t\\[0.5em]\hline\\[-0.8em]
+ffr_t \\[0.5em]\hline\\[-0.8em]
+\ln CPI_t
+\end{bmatrix}
+$$
+and we impose that slow moving variables do not react to a monetary policy shock within the period, i.e. we impose a lower triangular structure on the matrix $B_0$ (then also $B_0^{-1}$ will be lower triangular).
+
 
 ### Undetermine Coefficients
 
