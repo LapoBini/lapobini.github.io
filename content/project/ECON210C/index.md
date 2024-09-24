@@ -150,14 +150,14 @@ fast\;moving
 =\begin{bmatrix} \ln GDP_t\\[0.5em]\hline\\[-0.8em]
 ffr_t \\[0.5em]\hline\\[-0.8em]
 \ln CPI_t
-\end{bmatrix}
+\end{bmatrix}\, .
 $$
-and we impose that slow moving variable (the log of real GDP) do not react to a monetary policy shock within the period while the fast moving ones do (log of CPI), i.e. we impose a lower triangular structure on the matrix $B_0$ (then also $B_0^{-1}$ will be lower triangular). Therefore, $B_0^{-1}$ is estimated by performing the Cholesky Decomposition of the variance covariance matrix of the residuals:
+The assumption is that slow moving variable (the log of real GDP) do not react to a monetary policy shock within the period, while the fast moving one does (log of CPI). More precisely, the identification strategy enforces a lower triangular structure on the matrix $B_0$ (then also $B_0^{-1}$ will be lower triangular) by performing the Cholesky Decomposition of the variance covariance matrix of the residuals:
 $$ \mathrm{E}[\varepsilon_t \varepsilon_t'] = \mathrm{E}[B_0 u_t u_t' B_0'] $$
 $$\mathrm{I}_{k} = B_0 \Sigma_u B_0' $$
 $$ \Sigma_u = B_0^{-1} B_0^{-1} $$
 
-The function __ECON210C__ > __HW2__ > __SVAR.jl__ > __IRF_CH__ performs the identification via Cholesky decomposition, while __ECON210C__ > __HW2__ > __SVAR.jl__ > __WILD_CH__ implements the wild bootstrap routine to compute the confidence intervals. 
+The function __ECON210C__ > __HW2__ > __SVAR.jl__ > __IRF_CH__ performs the identification via Cholesky Decomposition, while __ECON210C__ > __HW2__ > __SVAR.jl__ > __WILD_CH__ implements the wild bootstrap routine to compute the confidence intervals. 
 
 ### Romer \& Romer Shock
 The function __ECON210C__ > __HW2__ > __SVAR.jl__ > __IRF_RR__ estimates the structural IRFs using external instruments constructed by $\textcolor{orange}{Romer}$ $\textcolor{orange}{and}$ $\textcolor{orange}{Romer}$ $\textcolor{orange}{(2004)}$. The procedure is the following:
