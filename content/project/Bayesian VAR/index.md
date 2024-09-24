@@ -48,12 +48,12 @@ $$Var((A_k)_{ij}) =  \begin{cases}
 {{< /math >}}
 As for the covariance matrix of the residuals, in the original formulation of the minnesota prior it was originally assumed to be diagonal and known: $\Psi = \Sigma$ where $\Sigma = diag(\sigma_1^2,\;\dots, \sigma_n^2)$. However, in the context of the structural analysis we need to take into account possible correlation among the residual of different variables. To overcome this problem we follow $\textcolor{orange}{Kadiyala}$ $\textcolor{orange}{and}$ $\textcolor{orange}{Karlsson\; (1997)}$ and impose a Normal inverted Wishart prior which retains the principles of the Minnesota prior. This is possible under the condition that $\vartheta = 1$, which will be assumed in what follows. Finally, the prior on the intercept $c$ is diffuse. 
 
-The minnesota prior is implemented in __Code__ > __BVAR__ > __bvar_minnesota_prior.jl__. First, the function shrinks each variable towards the random walk or the white noise as specified in the __worksheet "Legend" - column F__; then, it calculates $\{\sigma^n_1,\dots,\sigma^2_n\}$.
+The minnesota prior is implemented in __Code__ > __BVAR__ > __bvar_minnesota_prior.jl__. First, the function shrinks each variable toward the random walk or the white noise as specified in the __worksheet "Legend" - column F__; then, it calculates $\{\sigma^n_1,\dots,\sigma^2_n\}$.
 
 ### Sum-of-Coefficients Prior
 The literature has suggested that improvement in forecasting performance can be obtained by imposing additional priors that constrain the sum of coefficients (see e.g. $\textcolor{orange}{Sims,\;1992}$; $\textcolor{orange}{Sims\; and\; Zha,\; 1998}$; $\textcolor{orange}{Robertson\; and\; Tallman,\; 1999}$). This is the same as imposing “inexact differencing” and it is a simple modification of the Minnesota prior involving linear combinations of the VAR coefficients.
  
-We now manipulation the VAR to rewrite it in the error-correction form: $$Y_t = c + A_1 Y_{t-1}+\dots+A_p Y_{t-p} + u_t$$  $$\Delta Y_t = c - (I_n - A_1 - A_2- \dots- A_p) Y_{t-1} + C_1 \Delta Y_{t-1} + \dots + C_p \Delta Y_{t-p} + \Delta u_t$$ with $C_k = - \sum_{j=k+1}^p A_j$. The second term $- (I_n - A_1 - A_2- \dots- A_p) Y_{t-1} $ is the error correction term, which guaranties stationarity of the model by correcting the current-period change in $Y_t$ with part of the preceding period deviation from the long-run value of the model. The second part, $C_1 \Delta Y_{t-1} + \dots + C_p \Delta Y_{t-p} + \Delta u_t$, is made of stationary terms and hence does not impact the stationarity of the model. 
+We now manipulate the VAR to rewrite it in the error-correction form: $$Y_t = c + A_1 Y_{t-1}+\dots+A_p Y_{t-p} + u_t$$  $$\Delta Y_t = c - (I_n - A_1 - A_2- \dots- A_p) Y_{t-1} + C_1 \Delta Y_{t-1} + \dots + C_p \Delta Y_{t-p} + \Delta u_t$$ with $C_k = - \sum_{j=k+1}^p A_j$. The second term $- (I_n - A_1 - A_2- \dots- A_p) Y_{t-1} $ is the error correction term, which guarantees stationarity of the model by correcting the current-period change in $Y_t$ with part of the preceding period deviation from the long-run value of the model. The second part, $C_1 \Delta Y_{t-1} + \dots + C_p \Delta Y_{t-p} + \Delta u_t$, is made of stationary terms and hence does not impact the stationarity of the model. 
 
 We know that $\Pi = I_n - A_1 - A_2- \dots- A_p = 0$ is implied by a VAR in first difference. By inexact differencing, and thus imposing the sum-of-coefficients prior, we shrink $\Pi$ toward zero in order to guarantee that the draws obtained from the posterior are characterized by a unit root rather than by explosive behavior. In this case, $Y_t$ is equal to its previous value, plus the sum of stationary terms not affecting stationarity. It follows that in the limit ($\Pi \xrightarrow{} 0$), each variable in $Y_t$ contains a unit root and the model rules out cointegration.
 
@@ -102,7 +102,7 @@ $$
 where the the first block of dummies imposes prior beliefs on the autoregressive coefficients, the second block implements the prior for the covariance matrix, the third block reflects the uninformative prior for the intercept ($\varepsilon$), the fourth block implements the sum-of-coefficients prior, the fifth one the dummy initial observation prior. The function that constructs the dummy observations could be found in __Code__ > __BVAR__ > __bvar_dummies.jl__.
 
 Notice that the prior are parametrized using additional hyperparameters, also known as hyperpriors:
-1. $\delta_i$, which assumes value 1 or 0, reflecting the belief that the $i^{th}$ series is characterized by high persistence (random-walk) or substantial mean reversion (white noise) respectively.
+1. $\delta_i$, which assumes value 1 or 0, reflecting the belief that the $i^{th}$ series is characterized by high persistence (random-walk) or substantial mean reversion (white noise).
 2. $\sigma_i$, which is the standard deviation of the residual of the random walk or the white noise. 
 3. $\lambda$ controls the overall tightness of the prior distribution around the random walk or white noise and governs the relative importance of the prior beliefs with respect to the information contained in the data. $\lambda = 0$ the posterior is equal to the prior, while $\lambda = \infty$ the posterior is the OLS.
 4. $\tau$ controls for the degree of shrinkage for the sum-of-coefficient prior: as $\tau$ goes to zero we approach
@@ -129,7 +129,7 @@ The posterior distribution has the form:
 $$ 
 vec(\beta)|\Psi,Y \sim N(vec(\tilde \beta), \Psi \otimes (X_*' X_*)^{-1} ) \quad \text{and}\quad \Psi|Y \sim iW(\tilde \Sigma, T_d + T + 2 - n)\,.
 $$
-It can be noticed that the posterior expectations of the coefficients corresponds to the OLS estimates on the regression model based on the appended data, with:
+It can be noticed that the posterior expectations of the coefficients corresponds to the OLS estimates of the regression model based on the appended data, with:
 * $\tilde \beta = (X_*'X_*)^{−1}(X_*'Y_*)$;
 * $\tilde \Sigma = (Y_* − X_* \tilde \beta)'(Y_* − X_* \tilde \beta)$;
 
@@ -159,14 +159,14 @@ The Gibbs sampling algorithm to estimate the parameters of the VAR model cycles 
 4. Calculate the candidate $B_0$ matrix as $B_0 = Q \tilde B_0$. Note that because $Q'Q = I_n$ this implies that $B_0'B_0$
 will still equal $\Psi$. By calculating the product $B_0 = Q \tilde B_0$ we alter the elements of $\tilde B_0$ but not the property that $\Psi = \tilde B_0' \tilde B_0$.
 5. Check the sign restrictions related to the $j^{th}$ column of $B_0$. If they are not satisfied, go to step 1 and try with a new $K$ matrix.
-6. For a valid candidate $B_0$, compute the Structural IRF recursively assuming that the system was at the steady state at time $t$ when the shock hitted the system; then, the structural IRFs for each retained Gibbs draw are saved.
+6. For a valid candidate $B_0$, compute the Structural IRFs recursively assuming that the system was at the steady state at time $t$ when the shock hitted the system; then, the structural IRFs for each retained Gibbs draw are saved.
 
 The procedure is implemented in __Code__ > __BVAR__ > __bvar_sign_gibbs.jl__.
 
 
 ### IV Identification 
 
-The identification strategy consists of using external instruments which are able to capture a fraction of the true structural shock. This methodology was introduced by $\textcolor{orange}{Stock}$ $\textcolor{orange}{and}$ $\textcolor{orange}{Watson}$ $\textcolor{orange}{(2012)}$ and it has become increasingly popular in the literature seeking to estimate the effects of the monetary policy shock. We apply the same procedure outlined in $\textcolor{orange}{Stock}$ $\textcolor{orange}{and}$ $\textcolor{orange}{Watson}$  $\textcolor{orange}{(2018)}$.
+The identification strategy consists of using external instruments which are able to capture a fraction of the true structural shock. This methodology was introduced by $\textcolor{orange}{Stock}$ $\textcolor{orange}{and}$ $\textcolor{orange}{Watson}$ $\textcolor{orange}{(2012)}$ and it has become increasingly popular in the literature seeking to estimate the effects of monetary policy shock. We apply the same procedure outlined in $\textcolor{orange}{Stock}$ $\textcolor{orange}{and}$ $\textcolor{orange}{Watson}$  $\textcolor{orange}{(2018)}$.
 
 We assume that we are interested in the shock order first $\varepsilon_{1t}$, without lost of generality. The instrument must satisfy the so called "SVAR-IV" conditions:
 1. $E[Z_t\varepsilon_{1t}]=\alpha\neq 0 \quad\quad\quad\quad(relevance)$
@@ -191,7 +191,7 @@ $$
     \end{split}{}
 \end{gather*}
 $$
-Therefore, if we exploit the relation between structural shock and reduced form residual, $B_0^{-1}\varepsilon_t=u_t$, and the SVAR-IV conditions, we obtain: 
+Therefore, if we exploit the relation between structural shocks and reduced form residuals, $B_0^{-1}\varepsilon_t=u_t$, and the SVAR-IV conditions, we obtain: 
 $$
 \begin{gather*}
 \begin{split}
