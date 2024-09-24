@@ -131,11 +131,11 @@ $$
 J\mathbb{Y}_t=\sum_{h=0}^{\infty}J\mathbb{A}^h J J^{'} U_{t-h}
 $$
 $$
-Y_t=\sum_{h=0}^{\infty}\Phi_h u_{t-h}=\sum_{h=0}^{\infty}\Phi_hB_0^{-1}B_0u_{t-h}=\sum_{h=0}^{\infty}\Theta_h\varepsilon_{t-h}
+Y_t=\sum_{h=0}^{\infty}\Phi_h u_{t-h}=\sum_{h=0}^{\infty}\Phi_h B_0^{-1} B_0 u_{t-h}=\sum_{h=0}^{\infty} \Theta_h \varepsilon_{t-h}
 $$
 Thus, the sequence of structural IRF is defined as:
 $$
-\{ \; \Theta_0=\mathrm{I}B_0^{-1}, \Theta_1=\Phi_1 B_0^{-1},\,\dots,\,\Theta_h = \Phi_h B_0^{-1} \; \}
+\{ \; \Theta_0=\mathrm{I} B_0^{-1}, \Theta_1=\Phi_1 B_0^{-1},\, \dots, \, \Theta_h = \Phi_h B_0^{-1} \; \}
 $$
 
 
