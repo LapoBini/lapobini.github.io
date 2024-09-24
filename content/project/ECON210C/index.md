@@ -209,7 +209,7 @@ E_t[\,\hat \pi_{t+1}\,] &= \psi_{\pi a} E_t[\,\hat a_{t+1}\,] = \psi_{\pi a} \, 
 \end{split}
 \end{gather*}
 $$
-2. __Plug into the system__: We replace the variables in the aggregate demand and aggregate supply equation with the linear policy functions. Make sure to plug the monetary policy rule in the aggregate demand to get rid of the $\textcolor{orange}{\textit{interest rate}}$ $\textcolor{orange}{\hat i_t}$, and the $\textcolor{red}{flexible}$ $\textcolor{red}{level}$ $\textcolor{red}{of}$ $\textcolor{red}{output}$ $\textcolor{red}{\hat y^f_t}$ in the aggregate supply. We get a system of two equations in two unknowns ($ \psi_{ya}$ and $ \psi_{ \pi a}$):
+2. __Plug into the system__: We replace the variables in the aggregate demand and aggregate supply equation with the linear policy functions. Make sure to plug the monetary policy rule in the aggregate demand to get rid of the interest rate $\textcolor{orange}{\hat i_t}$, and the flexible level of output $\textcolor{red}{\hat y^f_t}$ in the aggregate supply. We get a system of two equations in two unknowns ($ \psi_{ya}$ and $ \psi_{ \pi a}$):
 $$
 \begin{gather*}
 \begin{split}
