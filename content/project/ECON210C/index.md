@@ -186,16 +186,18 @@ $$
 \end{split}
 \end{gather*}
 $$
-where the flexible level of output is $\hat y^f_t = \frac{1+\varphi}{\varphi + \gamma}\hat a_t$, the TFP shock follows an AR(1) $\hat a_t = \rho_a \hat a_{t-1} + \varepsilon_t$ and the monetary policy shock is assumed to be zero $\nu = 0$. The other equations we are interested in are: 
+where the flexible level of output is $$\hat y^f_t = \frac{1+\varphi}{\varphi + \gamma}\hat a_t$$, the TFP shock follows an AR(1) process $$\hat a_t = \rho_a \hat a_{t-1} + \varepsilon_t$$ and the monetary policy shock is assumed to be zero $\nu = 0$. The other equations we are interested in are: 
 $$
 \begin{gather*}
 \begin{split}
 (LD)& \hat n_t =  \hat y_t - \hat a_t\\
-
-\hat \pi_t &= \kappa \big(\, \hat y_t - \hat y_t^f \,\big) + \beta E_t[\,\hat \pi_{t+1}\,] \\
-\hat i_t & = \phi_{\pi} \hat \pi_t + \nu
+(OG)& \tilde y_t =  \hat y_t - \hat y_t^f\\
+(RR)& \har r_t = \hat i_t - E_t[\,\hat \pi_{t+1}\,] \, .
 \end{split}
 \end{gather*}
 $$
+
+
+
 ## New-Keynesian Model
 
