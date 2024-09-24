@@ -157,7 +157,11 @@ ffr_t \\[0.5em]\hline\\[-0.8em]
 $$
 The recursive structure implies that the slow moving variable, log of real GDP, does not react to a monetary policy shock within the period (it only reacts to a shock to GDP itself), while the fast moving one does react to all the different shocks hitting the system. This identification strategy enforces a lower triangular structure on the matrix $B_0$ (then also $B_0^{-1}$ will be lower triangular):
 $$
-B_0^{-1} 
+B_0^{-1} = \begin{bmatrix}
+b_{11} & \textcolor{orange}{$0$} & 0 \\
+b_{21} & \textcolor{orange}{$b_{22}$} & 0 \\
+b_{31} & \textcolor{orange}{$b_{32}$} & b_{33} \\
+\end{bmatrix} \; .
 $$
 Thus, the Cholesky Decomposition of the variance covariance matrix of the residuals gives us the matrix $B_0^{-1}$:
 $$ \mathrm{E}[\varepsilon_t \varepsilon_t'] = \mathrm{E}[B_0 u_t u_t' B_0'] $$
@@ -174,9 +178,9 @@ Romer and Romer use narrative evidence to derive a series of intended changes in
 
 The procedure for the estimation of the structural IRF is the following:
 1. Given the external monetary policy instrument $Z_t$, we estimate the model in log difference ($\Delta Y_t$):
-$$ \Delta Y_t = C + \sum_{i=1}^p A_i \Delta Y_{t-i} + \sum_{j=1}^s \gamma_j Z_{t-j} + e_t \, ;$$
+$$ \Delta Y_t = C + \sum_{i=1}^{p} A_i \Delta Y_{t-i} + \sum_{j=1}^{s} \gamma_j Z_{t-j} + e_t \, ;$$
 2. Assuming that the system was at steady state at time $t$, we compute: $$ \theta_{t+h} = \gamma_h + A_1 \Delta Y_{t+h-1} + \dots + A_p \Delta Y_{t+h-p} \, .$$
-3. Lastly, the structural IRFs of the log of the variables are obtained as the sequence of $\Theta_h = \sum_{j=1}^h \theta_{t+j}$.
+3. Lastly, the structural IRFs of the log of the variables are obtained as the sequence of $\Theta_h = \sum_{j=1}^{h} \theta_{t+j}$.
 
 
 ## Undetermine Coefficients
