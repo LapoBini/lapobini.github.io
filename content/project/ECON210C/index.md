@@ -56,8 +56,8 @@ $$ \mathrm{X}= M(\mathrm{U}, \mathrm{Z}) \; .$$
 The number of unknown endogenous variables ($n_u$) in $\mathrm{U}$ must be the same as the number of equilibrium condition in $H(\cdot)$ (in the code __ECON210C__ > __HW1__ > __RBC.jl__ only one equilibrium condition, bond demand equation, and one endogenous variable, labor supply). To first order we can write:
 $$ \text{d}H(\mathrm{U}, \mathrm{Z}) = \text{d}0 $$
 $$ \text{d}H(\mathrm{U}, \mathrm{Z}) = H_u \, \text{d}\mathrm{U} + H_z \, \text{d}\mathrm{Z} = 0 $$
-$$ \text{d}\mathrm{U} = - H_u^{-1} H_z \, \text{d}\mathrm{Z} $$
-We thus recover the solution of the model as:
+$$ \text{d}\mathrm{U} = - H_u^{-1} H_z \, \text{d}\mathrm{Z} \, .$$
+Thus, we derive the solution of the model as follows:
 $$ \text{d}\mathrm{X} = M_u \, \text{d}\mathrm{U} + M_z \, \text{d}\mathrm{Z} $$
 $$ \text{d}\mathrm{X} = M_u \big( - H_u^{-1} H_z \, \text{d}\mathrm{Z} \, \big) + M_z \, \text{d}\mathrm{Z} \, .$$
 Remember that $H_u$ and $H_z$ are sequence-space Jacobians, which are computed as:
@@ -193,7 +193,7 @@ $$
 (LD)& \quad \hat n_t =  \hat y_t - \hat a_t\\
 (OG)& \quad \tilde y_t =  \hat y_t - \hat y_t^f\\
 (RR)& \quad \hat r_t = \hat i_t - E_t[\,\hat \pi_{t+1}\,]\\
-(NR)& \quad \hat r_t = \sigma \frac{1+\varphi}{\varphi + \gamma} \big(\, \beta E_t[\,\hat a_{t+1}\,] - \hat a_t \,\big) \, .
+(NR)& \quad \hat r^n_t = \sigma \frac{1+\varphi}{\varphi + \gamma} \big(\, \beta E_t[\,\hat a_{t+1}\,] - \hat a_t \,\big) \, .
 \end{split}
 \end{gather*}
 $$
@@ -225,7 +225,25 @@ $$
 \psi_{\pi a} = \frac{\kappa^2}{1- \beta \rho_a}\, \Omega \, \Lambda_a \, \sigma \,\big(\, \phi_{\pi} - \rho_a \big) - \frac{\kappa}{1- \beta \rho_a}\,\Omega
 \end{cases}
 $$
-with $\Lambda_a = [ (\, 1 - \rho_a \,) (1 - \beta \rho_a) + \sigma \, \kappa \, (\phi_{\pi} - \rho_a) ]^{-1}$ 
+with 
+$$\Lambda_a = [ (\, 1 - \rho_a \,) (1 - \beta \rho_a) + \sigma \, \kappa \, (\phi_{\pi} - \rho_a) ]^{-1}$$
+4. __Calibration__. We assign numerical values to the model’s structural parameters
+$$ \{\beta,\kappa,\rho_a, \varphi, \sigma, \gamma, \phi_{\pi}\} $$
+based on external information or matching moments of the data.
+5. __Impulse response functions__. Given the log-linear approximation around the steady state, we can express the responses of the endogenous variables as linear functions of the exogenous TFP shock:
+$$
+\begin{bmatrix}
+\hat y_t \\
+\hat y^f_t \\
+\tilde y_t \\
+\hat \pi_t \\
+\hat i_t \\
+\hat r_t \\
+\hat r^n_t \\
+\hat n_t \\
+\hat a_t
+\end{bmatrix}
+$$
 
 ## New-Keynesian Model
 
