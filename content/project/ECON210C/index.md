@@ -229,7 +229,7 @@ $$\Lambda_a = [ (\, 1 - \rho_a \,) (1 - \beta \rho_a) + \sigma \, \kappa \, (\ph
 4. __Calibration__. We assign numerical values to the model’s structural parameters
 $$ \{\beta,\kappa,\rho_a, \varphi, \sigma, \gamma, \phi_{\pi}\} $$
 based on external information or matching moments of the data.
-5. __Impulse responses__. Given the log-linear approximation around the steady state, we can express the responses of the endogenous variables as linear functions of the exogenous TFP shock:
+5. __Impulse responses__. Given the log-linear approximation around the steady state, we can express the responses of the endogenous variables as linear functions of the exogenous TFP shock $\varepsilon_0^a = 1$:
 $$
 \begin{bmatrix}
 \hat y_t \\
@@ -241,7 +241,18 @@ $$
 \hat r^n_t \\
 \hat n_t \\
 \hat a_t
-\end{bmatrix}
+\end{bmatrix} = 
+\begin{bmatrix}
+\psi_{ya} \\
+(1 + \varphi)(\varphi + \gamma)^{-1}\\
+\psi_{ya} - (1 + \varphi)(\varphi + \gamma)^{-1}\\
+\psi_{\pi a}\\
+\psi_{\pi a} \phi_{\pi} \\
+\psi_{\pi a} \phi_{\pi} - \psi_{\pi a} \rho_{a} \\
+\sigma (1 + \varphi)(\varphi + \gamma)^{-1} (\beta \rho_a - 1) \\
+\psi_{ya} - 1 \\
+1
+\end{bmatrix} \, \big( \rho_a^t \varepsilon_0^a) 
 $$
 
 ## New-Keynesian Model
