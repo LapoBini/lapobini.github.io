@@ -138,7 +138,7 @@ Thus, the sequence of structural IRFs is defined as:
 $$
 \{ \; \Theta_0=\mathrm{I} B_0^{-1}, \Theta_1=\Phi_1 B_0^{-1},\, \dots, \, \Theta_h = \Phi_h B_0^{-1} \; \} \, .
 $$
-The identification of $B_0^{-1}$ is performed by imposing a recursive structure as in $\textcolor{orange}{Christiano}$ $\textcolor{orange}{et}$ $\textcolor{orange}{al.}$ $\textcolor{orange}{(1999)}$. In particular, we order the variable in $Y_t$ as follows:
+The identification of $B_0^{-1}$ is performed using the Cholesky Decocomposition, the most commonly used identification method in macroeconomics. It was introduced by $\textcolor{orange}{Sims}$ $\textcolor{orange}{(1980)}$, and it imposes alternative sets of recursive zero restrictions on the contemporaneous coefficients. The recursive structure that we impose is the same as in $\textcolor{orange}{Christiano}$ $\textcolor{orange}{et}$ $\textcolor{orange}{al.}$ $\textcolor{orange}{(1999)}$. In particular, we order the variable in $Y_t$ as follows:
 $$
 \mathrm{Y_t}=\begin{bmatrix}slow\;moving\\[0.5em]\hline\\[-0.8em]
 policy\;instrument\\[0.5em]\hline\\[-0.8em]
@@ -149,7 +149,7 @@ ffr_t \\[0.5em]\hline\\[-0.8em]
 \ln CPI_t
 \end{bmatrix}
 $$
-and we impose that slow moving variables do not react to a monetary policy shock within the period, i.e. we impose a lower triangular structure on the matrix $B_0$ (then also $B_0^{-1}$ will be lower triangular). Lastly, we perform the cholesky decomposition of the variance covariance matrix of the residuals:
+and we impose that slow moving variable (the log of real GDP) do not react to a monetary policy shock within the period, i.e. we impose a lower triangular structure on the matrix $B_0$ (then also $B_0^{-1}$ will be lower triangular). Lastly, $B_0^{-1}$ is estimated by performing the cholesky decomposition of the variance covariance matrix of the residuals:
 $$ \mathrm{E}[\varepsilon_t \varepsilon_t'] = \mathrm{E}[B_0 u_t u_t' B_0'] $$
 $$\mathrm{I}_{k} = B_0 \Sigma_u B_0' $$
 $$ \Sigma_u = B_0^{-1} B_0^{-1} $$
@@ -158,10 +158,10 @@ The function __ECON210C__ > __HW2__ > __SVAR.jl__ > __IRF_CH__ performs the iden
 
 ### Romer \& Romer Shock
 The function __ECON210C__ > __HW2__ > __SVAR.jl__ > __IRF_RR__ estimates the structural IRFs using external instruments constructed by $\textcolor{orange}{Romer}$ $\textcolor{orange}{and}$ $\textcolor{orange}{Romer}$ $\textcolor{orange}{(2004)}$. The procedure is the following:
-1. Given the external monetary policy instrument $Z_t$, we express the model as $Y_t = A_1 Y_{t-1} + \dots + A_p Y_{t-p} + \gamma_0 Z_t + \dots + \gamma_h Z_{t-h}$;
-2. We estimate $U_t = Y_t - A_1 Y_{t-1} - \dots - A_p Y_{t-p}$;
-3. We estimate the regression model $U_t = \gamma_0 Z_t + \dots + \gamma_h Z_{t-h}$;
-4. Lastly, the structural IRFs are computed by recursion: $Y_{t+h} = \gamma_h + A_1 Y_{t+h-1} + \dots + A_p Y_{t+h-p}$.
+1. Given the external monetary policy instrument $Z_t$, we express the model as $$Y_t = A_1 Y_{t-1} + \dots + A_p Y_{t-p} + \gamma_0 Z_t + \dots + \gamma_h Z_{t-h} \, ;$$
+2. We estimate $$U_t = Y_t - A_1 Y_{t-1} - \dots - A_p Y_{t-p} \, ;$$
+3. We estimate the regression model $$U_t = \gamma_0 Z_t + \dots + \gamma_h Z_{t-h} \, ;$$
+4. Lastly, the structural IRFs are computed by recursion: $$Y_{t+h} = \gamma_h + A_1 Y_{t+h-1} + \dots + A_p Y_{t+h-p} \, . $$
 
 ## Undetermine Coefficients
 
