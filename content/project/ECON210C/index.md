@@ -186,7 +186,7 @@ $$
 \end{split}
 \end{gather*}
 $$
-where the flexible level of output is $$\hat y^f_t = \frac{1+\varphi}{\varphi + \gamma}\hat a_t = \Omega \hat a_t \, ,$$ the TFP shock follows an AR(1) process $$\hat a_t = \rho_a \hat a_{t-1} + \varepsilon^a_t$$ and the monetary policy shock is assumed to be zero $\nu = 0$. The other equations we are interested in are: 
+where the output level of flexible prices is $$\hat y^f_t = \frac{1+\varphi}{\varphi + \gamma}\hat a_t = \Omega \hat a_t \, ,$$ the TFP shock follows an AR(1) process $$\hat a_t = \rho_a \hat a_{t-1} + \varepsilon^a_t$$ and the monetary policy shock is assumed to be zero $\nu = 0$. The other equations we are interested in are: 
 $$
 \begin{gather*}
 \begin{split}
@@ -209,7 +209,7 @@ E_t[\,\hat \pi_{t+1}\,] &= \psi_{\pi a} E_t[\,\hat a_{t+1}\,] = \psi_{\pi a} \, 
 \end{split}
 \end{gather*}
 $$
-2. __Plug into the system__: We replace the variables in the aggregate demand and aggregate supply equation with the linear policy functions. Make sure to plug the monetary policy rule in the aggregate demand to get rid of the interest rate $\textcolor{orange}{\hat i_t}$, and the flexible level of output $\textcolor{red}{\hat y^f_t}$ in the aggregate supply. We get a system of two equations in two unknowns ($ \psi_{ya}$ and $ \psi_{ \pi a}$):
+2. __Plug into the system__: We replace the variables in the aggregate demand and aggregate supply equation with the linear policy functions. Make sure to plug the monetary policy rule in the aggregate demand to get rid of the interest rate $\textcolor{orange}{\hat i_t}$, and the output level of flexible prices $\textcolor{red}{\hat y^f_t}$ in the aggregate supply. We get a system of two equations in two unknowns ($ \psi_{ya}$ and $ \psi_{ \pi a}$):
 $$
 \begin{gather*}
 \begin{split}
@@ -252,8 +252,10 @@ $$
 \sigma (1 + \varphi)(\varphi + \gamma)^{-1} (\beta \rho_a - 1) \\
 \psi_{ya} - 1 \\
 1
-\end{bmatrix} \, \big( \rho_a^t \varepsilon_0^a) 
+\end{bmatrix} \, \big(\, \rho_a^t \, \varepsilon_0^a \,\big) 
 $$
+
+
 
 ## New-Keynesian Model
 
