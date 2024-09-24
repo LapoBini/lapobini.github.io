@@ -122,18 +122,21 @@ The vectors $\xi_t$, $\xi_{t-1}$ and $U_t$ have dimension ($kp$ x $1$), while th
 $$
 \mathbb{A}=(\xi_t \xi_{t-1}^{'})(\xi_{t-1} \xi_{t-1}^{'})^{-1} \; .
 $$
-Since our stochastic process $\{\xi_t\}_{t\geq0}$ is weakly stationary by construction, we can express the companion form VAR as an infinite moving average:
+Since our stochastic process $\{\xi_t\}_{t\geq0}$ is weakly stationary by construction, by Wold Theorem we can express the companion form VAR as an infinite moving average:
 $$
 \mathbb{Y}_t=\sum_{h=0}^{\infty}\mathbb{A}^h U_{t-h}
 $$
-Lastly, we can recover the infinite-order representation of our VAR of order $p$ by pre-multiplying both sides by $J=[I_k \quad 0_{k \text{x} k(p-1)}]$:
+If we pre-multiply both sides by $J=[I_k \quad 0_{k \text{x} k(p-1)}]$ we get:
 $$
 J\mathbb{Y}_t=\sum_{h=0}^{\infty}J\mathbb{A}^h J J^{'} U_{t-h}
 $$
 $$
-Y_t=\sum_{h=0}^{\infty}\Phi_hu_{t-h}\quad\textit{with:}\quad\Phi_h=J\mathbb{A}^hJ \; .
+Y_t=\sum_{h=0}^{\infty}\Phi_h u_{t-h}=\sum_{h=0}^{\infty}\Phi_hB_0^{-1}B_0u_{t-h}=\sum_{h=0}^{\infty}\Theta_h\varepsilon_{t-h}
 $$
-Thus, we isolate $\Phi_h$ (composed by the first $(k\; \text{x} \; kp)$ elements of the companion matrix $\mathbb{A}$) using the indicator matrix $J$.
+Thus, the sequence of structural IRF is defined as:
+$$
+\{ \; \Theta_0=\mathrm{I}B_0^{-1}, \Theta_1=\Phi_1 B_0^{-1},\,\dots,\,\Theta_h = \Phi_h B_0^{-1} \; \}
+$$
 
 
 ### Undetermine Coefficients
