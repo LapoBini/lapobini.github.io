@@ -102,14 +102,6 @@ I_k& 0_k &  \dots & 0 &0\\
 \vdots&  &  & & \vdots\\
 0 & 0 & \dots & I_k & 0
 \end{bmatrix}\,
-\xi_{t-1}=
-\begin{bmatrix}
-Y_{t-1} \\
-Y_{t-2} \\
-Y_{t-3} \\
-\vdots \\
-Y_{t-p}
-\end{bmatrix}\,
 U_t=
 \begin{bmatrix}
 u_t \\
