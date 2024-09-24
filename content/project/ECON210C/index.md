@@ -137,7 +137,7 @@ Thus, the sequence of structural IRF is defined as:
 $$
 \{ \; \Theta_0=\mathrm{I} B_0^{-1}, \Theta_1=\Phi_1 B_0^{-1},\, \dots, \, \Theta_h = \Phi_h B_0^{-1} \; \}
 $$
-
+Then
 
 ### Undetermine Coefficients
 
