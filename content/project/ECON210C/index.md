@@ -174,7 +174,7 @@ $$ \Delta Y_t = C + \sum_{i=1}^{p} A_i \Delta Y_{t-i} + \sum_{j=1}^{s} \gamma_j 
 
 
 ## Undetermined Coefficients
-The third assignment (__ECON210C__ > __HW3__) asked to solve the canonical log-linearized New-Keynesian DSGE model as a function of a TFP shock. In this In this section, we will walk through the entire solution process.
+The third assignment (__ECON210C__ > __HW3__) asked to solve the canonical log-linearized New-Keynesian DSGE model as a function of a TFP shock using the undetermined coefficient method. In this In this section, we will walk through the entire solution process.
 
 The core of the benchmark three-equation New-Keynesian model is:
 $$
@@ -192,10 +192,14 @@ $$
 \begin{split}
 (LD)& \hat n_t =  \hat y_t - \hat a_t\\
 (OG)& \tilde y_t =  \hat y_t - \hat y_t^f\\
-(RR)& \har r_t = \hat i_t - E_t[\,\hat \pi_{t+1}\,] \, .
+(RR)& \har r_t = \hat i_t - E_t[\,\hat \pi_{t+1}\,]\\
+(NR)& \hat r_t = \sigma \frac{1+\varphi}{\varphi + \gamma} \big(\, \beta E_t[\,\hat \a_{t+1}\,] - \hat a_t \,\big) \, .
 \end{split}
 \end{gather*}
 $$
+The undetermined coefficient procedure can be described in five steps:
+1. __Guess__: we conjecture about the stationary solution of the dynamical system. In our case, we guess the policy function being linear in the TFP shock:
+  
 
 
 
