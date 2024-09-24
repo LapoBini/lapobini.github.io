@@ -169,7 +169,7 @@ Romer and Romer use narrative evidence to derive a series of intended changes in
 The procedure for the estimation of the structural IRF is the following:
 1. Given the external monetary policy instrument $Z_t$, we estimate the model in log difference ($\Delta Y_t$):
 $$ \Delta Y_t = C + \sum_{i=1}^{p} A_i \Delta Y_{t-i} + \sum_{j=1}^{s} \gamma_j Z_{t-j} + e_t \, ;$$
-2. Assuming that the system was at steady state at time $t$, we compute: $$ \theta_{t+h} = \gamma_h + A_1 \Delta \theta_{t+h-1} + \dots + A_p \Delta \theta_{t+h-p} \, .$$
+2. Assuming that the system was at steady state at time $t$, we compute: $$ \theta_{t+h} = \gamma_h + A_1 \theta_{t+h-1} + \dots + A_p \theta_{t+h-p} \, .$$
 3. Lastly, the structural IRFs of the log of the variables are obtained as $$\Theta_h = \sum_{j=1}^{h} \theta_{t+j} \; .$$
 
 
@@ -199,7 +199,17 @@ $$
 $$
 The undetermined coefficient procedure can be described in five steps:
 1. __Guess__: we conjecture about the stationary solution of the dynamical system. In our case, we guess the policy function being linear in the TFP shock:
-
+$$
+\begin{gather*}
+\begin{split}
+\hat y_t &=  \psi_{ya} \hat a_t \\
+\hat \pi_t &=  \psi_{\pi a} \hat a_t \\
+E_t[\,\hat \pi_{t+1}\,] &= \psi_{ya} E_t[\,\hat a_{t+1}\,] = \psi_{ya} \rho_a \hat a_t \\
+E_t[\,\hat \pi_{t+1}\,] &= \psi_{\pi a} E_t[\,\hat a_{t+1}\,] = \psi_{\pi a} \rho_a \hat a_t
+\end{split}
+\end{gather*}
+$$
+2. __Plug into the system__ 
 
 
 
