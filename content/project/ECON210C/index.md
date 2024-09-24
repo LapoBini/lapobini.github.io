@@ -186,7 +186,7 @@ $$
 \end{split}
 \end{gather*}
 $$
-where the flexible level of output is $$\hat y^f_t = \frac{1+\varphi}{\varphi + \gamma}\hat a_t = \Omega \hat a_t \, ,$$ the TFP shock follows an AR(1) process $$\hat a_t = \rho_a \hat a_{t-1} + \varepsilon_t$$ and the monetary policy shock is assumed to be zero $\nu = 0$. The other equations we are interested in are: 
+where the flexible level of output is $$\hat y^f_t = \frac{1+\varphi}{\varphi + \gamma}\hat a_t = \Omega \hat a_t \, ,$$ the TFP shock follows an AR(1) process $$\hat a_t = \rho_a \hat a_{t-1} + \varepsilon^a_t$$ and the monetary policy shock is assumed to be zero $\nu = 0$. The other equations we are interested in are: 
 $$
 \begin{gather*}
 \begin{split}
@@ -218,7 +218,13 @@ $$
 \end{split}
 \end{gather*}
 $$
-3. __Solve__. t
+3. __Solve__. Solve the system relative to a unit shock to TFP, i.e. $\hat a_{t-1} = 0$ and $\hat a_t = \varepsilon_t^a = 1$. The solution is
+$$
+\begin{cases}
+\psi_{ya} = \Lambda_a \, \Omega \, \sigma \, \kappa \big(\,\phi_{\pi} - \rho_a  \,\big)\\
+\psi_{\pi a} = \frac{\kappa^2}{1- \beta \rho_a}\, \Omega \, \Lambda_a \, \sigma \,\big(\, \phi_{\pi} - \rho_a \big) - \frac{\kappa}{1- \beta \rho_a}\,\Omega
+\end{cases}
+$$
 
 ## New-Keynesian Model
 
