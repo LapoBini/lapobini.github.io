@@ -129,16 +129,14 @@ $$
 $$
 If we pre-multiply both sides by $J=[I_k \quad 0_{k \text{x} k(p-1)}]$ and we multiply and divide the left-hand side by $B_0$ we get the $SVMA(\infty)$ representation:
 $$
-J\mathbb{Y}_t=\sum_{h=0}^{\infty}J\mathbb{A}^h J J^{'} U_{t-h}
-$$
-$$
-Y_t=\sum_{h=0}^{\infty}\Phi_h u_{t-h}
-$$
-$$
-Y_t=\sum_{h=0}^{\infty}\Phi_h B_0^{-1} B_0 u_{t-h}
-$$
-$$
-Y_t==\sum_{h=0}^{\infty} \Theta_h \varepsilon_{t-h} \,.
+\begin{gather*}
+\begin{split}
+J\mathbb{Y}_t &=\sum_{h=0}^{\infty}J\mathbb{A}^h J J^{'} U_{t-h}\\
+Y_t &=\sum_{h=0}^{\infty}\Phi_h u_{t-h}\\
+Y_t &=\sum_{h=0}^{\infty}\Phi_h B_0^{-1} B_0 u_{t-h}\\
+Y_t $=\sum_{h=0}^{\infty} \Theta_h \varepsilon_{t-h} \, .
+\end{split}
+\end{gather*}
 $$
 Thus, the sequence of structural IRFs is defined as:
 $$
@@ -155,7 +153,7 @@ ffr_t \\[0.5em]\hline\\[-0.8em]
 \ln CPI_t
 \end{bmatrix}\, .
 $$
-The recursive structure implies that the slow moving variable, log of real GDP, does not react to a monetary policy shock within the period (it only reacts to a shock to GDP itself), while the fast moving one does react to all the different shocks hitting the system. This identification strategy enforces a lower triangular structure on the matrix $B_0$ (then also $B_0^{-1}$ will be lower triangular):
+The recursive structure implies that the slow moving variable, log of real GDP, does not react to a monetary policy shock within the period (it only reacts to a shock to GDP itself), while the fast moving one does react to all the different shocks hitting the system. This identification strategy enforces a lower triangular structure on the matrix $B_0$, and, consequently, $B_0^{-1}$ will also be lower triangular:
 $$
 B_0^{-1} = \begin{bmatrix}
 b_{11} & \textcolor{orange}{0} & 0 \\
@@ -163,7 +161,7 @@ b_{21} & \textcolor{orange}{b_{22}} & 0 \\
 b_{31} & \textcolor{orange}{b_{32}} & b_{33} \\
 \end{bmatrix} \; .
 $$
-Thus, the Cholesky Decomposition of the variance covariance matrix of the residuals gives us the matrix $B_0^{-1}$:
+The matrix is derived by applying the Cholesky Decomposition of the variance/covariance matrix of the residuals:
 $$ \mathrm{E}[\varepsilon_t \varepsilon_t'] = \mathrm{E}[B_0 u_t u_t' B_0'] $$
 $$\mathrm{I}_{k} = B_0 \Sigma_u B_0' $$
 $$ \Sigma_u = B_0^{-1} B_0^{-1} $$
