@@ -70,7 +70,7 @@ where the indicatior vector $e_1 = (1, 0, \dots, 0)'$ specifies a transitory sho
 $$ \mathrm{X}_t=\sum_{h=0}^{\infty}\Theta_h\varepsilon_{t-h} \, . $$
 
 ## Structural VAR
-The second assignment asked to perform a structural analysis to study the assumption of money neutrality. The students were asked to use Structural Vector Autoregressive (SVAR) models identified via cholesky decomposition or by using the approach of $\textcolor{orange}{Romer}$ $\textcolor{orange}{and}$ $\textcolor{orange}{Romer}$ $\textcolor{orange}{(2004)}$ to study the response of real activities and inflation to an exogenous monetary policy shock. 
+The second assignment (__ECON210C__ > __HW2__) asked to perform a structural analysis to study the assumption of money neutrality. The students were asked to use Structural Vector Autoregressive (SVAR) models to study the response of real activities and inflation to an exogenous monetary policy shock. The identification strategies used are the Cholesky decomposition and the approach of $\textcolor{orange}{Romer}$ $\textcolor{orange}{and}$ $\textcolor{orange}{Romer}$ $\textcolor{orange}{(2004)}$.
 
 ### Cholesky Decomposition 
 Let $Y_t = (y_{1t},\dots,y_{kt})'$ be a vector of macroeconomic variables, the structural VAR of order p is given by:
@@ -81,7 +81,7 @@ where $\varepsilon_t$ is the $k$-dimensional vector of structural shocks and $B_
 $$ Y_t=B_0^{-1}B_1Y_{t-1}+\dots+B_0^{-1}B_pY_{t-p}+B_0^{-1}\varepsilon_t $$
 $$ Y_t=A_1Y_{t-1}+\dots+A_pY_{t-p}+u_t \;.$$
 The key implication is that the vector of structural shocks $\varepsilon_t$ can be seen as the linear combination of the reduced form residuals $u_t$: $$\varepsilon_t=B_0u_t \quad\quad \text{with} \quad\quad \varepsilon_t \sim N(0, I_k) \,.$$
-To derive the formulation of the structural impulse response functions, we are going to cast the VAR in infinte order moving average representation. Let's now rewrite the VAR(p) in companion form: 
+To derive the formulation of the structural impulse response functions, we are going to cast the VAR in its infinite order moving average representation. Let's now rewrite the VAR(p) in companion form: 
 $$
 \mathbb{\xi}_t= \mathbb{A \xi}_{t-1} + U_t
 $$
@@ -123,7 +123,7 @@ The estimation of $\mathbb{A}$ is performed by OLS:
 $$
 \mathbb{A}=(\xi_t \xi_{t-1}^{'})(\xi_{t-1} \xi_{t-1}^{'})^{-1} \; .
 $$
-Since our stochastic process $\{\xi_t\}_{t\geq0}$ is weakly stationary by construction, by Wold Theorem we can express the companion form VAR as an infinite moving average:
+Since our stochastic process $\{\xi_t\}_{t\geq0}$ is weakly stationary by construction, by Wold Decomposition Theorem we can express the companion form VAR as an infinite moving average:
 $$
 \mathbb{Y}_t=\sum_{h=0}^{\infty}\mathbb{A}^h U_{t-h} \, .
 $$
@@ -157,7 +157,11 @@ $$ \Sigma_u = B_0^{-1} B_0^{-1} $$
 The function __ECON210C__ > __HW2__ > __SVAR.jl__ > __IRF_CH__ performs the identification via Cholesky decomposition, while __ECON210C__ > __HW2__ > __SVAR.jl__ > __WILD_CH__ implements the wild bootstrap routine to compute the confidence intervals. 
 
 ### Romer \& Romer Shock
-
+The function __ECON210C__ > __HW2__ > __SVAR.jl__ > __IRF_RR__ estimates the structural IRFs using external instruments constructed by $\textcolor{orange}{Romer}$ $\textcolor{orange}{and}$ $\textcolor{orange}{Romer}$ $\textcolor{orange}{(2004)}$. The procedure is the following:
+1. Given the external monetary policy instrument $Z_t$, we express the model as $Y_t = A_1 Y_{t-1} + \dots + A_p Y_{t-p} + \gamma_0 Z_t + \dots + \gamma_h Z_{t-h}$;
+2. We estimate $U_t = Y_t - A_1 Y_{t-1} - \dots - A_p Y_{t-p}$;
+3. We estimate the regression model $U_t = \gamma_0 Z_t + \dots + \gamma_h Z_{t-h}$;
+4. Lastly, the structural IRFs are computed by recursion: $Y_{t+h} = \gamma_h + A_1 Y_{t+h-1} + \dots + A_p Y_{t+h-p}$.
 
 ## Undetermine Coefficients
 
