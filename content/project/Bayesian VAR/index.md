@@ -133,7 +133,7 @@ It can be noticed that the posterior expectations of the coefficients correspond
 * $\tilde \beta = (X_*'X_*)^{−1}(X_*'Y_*)$;
 * $\tilde \Sigma = (Y_* − X_* \tilde \beta)'(Y_* − X_* \tilde \beta)$;
 
-The functions that draw from the posterior distributions giben the optimal informativeness of the prior distribution could be found in __Code__ > __BVAR__ > __bvar_gibbs_helper.jl__ > __bvar_IWRD__ (Inverted Wishart) and __bvar_MNRD__ (Multivariate Normal).
+The functions that draw from the posterior distributions given the optimal informativeness of the prior distribution can be found in __Code__ > __BVAR__ > __bvar_gibbs_helper.jl__ > __bvar_IWRD__ (Inverted Wishart) and __bvar_MNRD__ (Multivariate Normal).
 
 ## Structural Identification 
 The structural VAR(p) is specified as

@@ -112,7 +112,7 @@ work:
     date_end: "2023-08-31"
     summary: |
       - Research assistant for Prof Lucrezia Reichlin (London Business School), Prof Silvana Tenreyro (London School of Economics), Prof Veronica Guerrieri (Chicago Booth) and Michala Marcussen (Societe Generale).
-      - Contributed to the 26th Geneva Report (2023) "The Art and Science of Patience: Relative prices and inflation", analyzing the effects of the Covid-19 pandemic and Ukraine war on global inflation. Work presented at the 25th ICMB Geneva Conference on the World Economy.
+      - Contributed to the 26th Geneva Report (2023) "The Art and Science of Patience: Relative Prices and Inflation", analyzing the effects of the Covid-19 pandemic and Ukraine war on global inflation. Work presented at the 25th ICMB Geneva Conference on the World Economy.
 
 # Skills
 # Add your own SVG icons to `assets/media/icons/`
