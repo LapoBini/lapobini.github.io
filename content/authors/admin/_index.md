@@ -103,7 +103,7 @@ work:
     date_end: "2023-09-01"
     summary: |
       - Worked with Prof Lucrezia Reichlin and Prof Giovanni Ricco on the stability of the Phillips Curve in the US. 
-      - Studied the impact of oil supply shocks on prices and real activities for the US and the Euro Area. Work presented by Prof Reichlin at the 25th Annual DNB Research Conference (November 2022), Inflation strikes back: drivers and policy reactions, title of the presentation: “Inflation Puzzles”.
+      - Studied the impact of oil supply shocks on prices and real activities for the US and the Euro Area. Work presented by Prof Reichlin at the 25th Annual DNB Research Conference (Amsterdam, November 2022) "Inflation strikes back: drivers and policy reactions". Title of the presentation: “Inflation Puzzles”.
   - position: Research Assistant 
     company_name: Centre for Economic Policy Research
     company_url: ''
@@ -111,8 +111,8 @@ work:
     date_start: "2023-01-01"
     date_end: "2023-08-31"
     summary: |
-      - Worked with Prof Lucrezia Reichlin and Prof Giovanni Ricco on the stability of the Phillips Curve over time. 
-      - Studied the impact of oil supply shocks on prices and real activities for the US and the Euro Area. Work presented by Prof Reichlin at the 25th Annual DNB Research Conference (November 2022), Inflation strikes back: drivers and policy reactions, title of the presentation: “Inflation Puzzles”.
+      - Research assistant for Prof Lucrezia Reichlin (London Business School), Prof Silvana Tenreyro (London School of Economics), Prof Veronica Guerrieri (Chicago Booth) and Michala Marcussen (Societe Generale).
+      - Contributed to the 26th Geneva Report (2023) "The Art and Science of Patience: Relative prices and inflation", analyzing the effects of the Covid-19 pandemic and Ukraine war on global inflation. Work presented at the 25th ICMB Geneva Conference on the World Economy.
 
 # Skills
 # Add your own SVG icons to `assets/media/icons/`
@@ -191,4 +191,4 @@ awards:
 
 ## Bio
 
-I am a PhD Student in Economics at UC San Diego. My research interests include non-stationary time-series models, estimating causal effects in macroeconomics and the evolution of economic network over time. I bring three years of experience as an Economist at Now-Casting Economics Ltd, a professional forecasting company. In 2023, I developed and implemented a real-time nowcasting model for the German Federal Ministry of Economic Affairs and Climate Action to predict Inflation and real GDP growth using high-frequency and alternative data.
+I am a PhD Student in Economics at UC San Diego. My research interests include non-stationary time-series models, causal inference in macroeconomics and the evolution of economic network over time. I bring over three years of experience as an Economist at Now-Casting Economics Ltd, a leading professional forecasting firm. In 2023, I developed and implemented a real-time nowcasting model for the German Federal Ministry of Economic Affairs and Climate Action to predict Inflation and real GDP growth, using high-frequency and alternative data.
