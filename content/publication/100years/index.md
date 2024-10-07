@@ -35,6 +35,6 @@ links:
 - name: Online Appendix
   url: OnlineAppendix-100years.pdf
 
-abstract: This study explores the business cycle regularities of the US economy since 1900, in the spirit of Burns and Mitchell (1946). Using a multivariate unobserved components model, we estimate trends and cyclical components identified via restrictions grounded in economic theory and exploiting information in survey data. The stylised facts that we uncover are open to different structural interpretations but they rule out the hypothesis that the Phillips curve was ever dead.
+abstract: This study investigates the business cycle dynamics of the U.S. economy since 1900 through a multivariate framework that imposes minimal economic restrictions. A key finding is the presence of a significant negative correlation between inflation and economic slack, at business cycle frequencies. This relationship remains robust across over a century of data, with stable coefficients in subsample periods.
 
 ---
