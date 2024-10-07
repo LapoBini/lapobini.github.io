@@ -3,7 +3,7 @@ date: "2023-10-24"
 image:
   caption: Embed rich media such as videos and LaTeX math
 math: false
-summary: Slides and other material
+summary: Slides
 #tags:
 #- ECON120A (TA Fall 24)
 title: Undergraduate Econometrics (ECON120A Fall 24)
