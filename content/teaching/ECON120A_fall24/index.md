@@ -13,4 +13,5 @@ type: docs
 Office hour: Monday 12:30-1:30 pm SDSC E185. Prof Graham Elliott's [notes](https://econweb.ucsd.edu/~gelliott/StatNotes.html). 
 1. [Discussion Section 1](https://lapobini.github.io/discussion/ECON120A_fall24/120TA_1.pdf)
 2. [Discussion Section 3](https://lapobini.github.io/discussion/ECON120A_fall24/120TA_3.pdf)
+3. [Discussion Section 5](https://lapobini.github.io/discussion/ECON120A_fall24/120TA_5.pdf)
 
