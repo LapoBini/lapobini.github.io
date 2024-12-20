@@ -6,7 +6,7 @@ math: false
 summary: Slides
 #tags:
 #- ECON120A (TA Fall 24)
-title: Undergraduate Econometrics (ECON120A Fall 24)
+title: Undergraduate Econometrics (ECON120A)
 type: docs
 ---
 
