@@ -123,7 +123,7 @@ If we pre-multiply both sides by $J=[I_k \quad 0_{k \text{x} k(p-1)}]$ and we mu
 $$
 \begin{gather*}
 \begin{split}
-J\mathbb{Y}_t &=\sum_{h=0}^{\infty}J\mathbb{A}^h J J^{'} U_{t-h} \\
+J\mathbb{Y}_t &=\sum_{h=0}^{\infty}J\mathbb{A}^h J^{'} J U_{t-h} \\
 Y_t &=\sum_{h=0}^{\infty}\Phi_h u_{t-h} \\
 Y_t &=\sum_{h=0}^{\infty}\Phi_h B_0^{-1} B_0 u_{t-h} \\
 Y_t &=\sum_{h=0}^{\infty} \Theta_h \varepsilon_{t-h} \, .
