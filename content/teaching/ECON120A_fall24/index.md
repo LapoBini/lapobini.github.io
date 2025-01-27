@@ -16,4 +16,5 @@ Office hour: Monday 12:30-1:30 pm SDSC E185. Prof Graham Elliott's [notes](https
 3. [Discussion Section 5](https://lapobini.github.io/discussion/ECON120A_fall24/120TA_5.pdf)
 4. [Discussion Section 7](https://lapobini.github.io/discussion/ECON120A_fall24/120TA_7.pdf)
 5. [Discussion Section 9](https://lapobini.github.io/discussion/ECON120A_fall24/120TA_9.pdf)
+Instructional Assistant Student Evaluation of Teaching [available here](https://lapobini.github.io/discussion/ECON120A_fall24/120A_evaluation_2024.pdf).
 
