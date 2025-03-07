@@ -3,7 +3,7 @@ date: "2024-12-16"
 image:
   caption: Embed rich media such as videos and LaTeX math
 math: false
-summary: Slide
+summary: ECON120A
 #tags:
 #- ECON120A (TA Fall 24)
 title: Undergraduate Statistics

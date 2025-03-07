@@ -3,7 +3,7 @@ date: "2025-01-31"
 image:
   caption: Embed rich media such as videos and LaTeX math
 math: false
-summary: Slide
+summary: ECON220B
 #tags:
 #- ECON120A (TA Fall 24)
 title: Graduate Cross Section Econometrics
