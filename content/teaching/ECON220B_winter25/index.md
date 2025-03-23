@@ -18,3 +18,4 @@ Discussion Section: Thursday from 5:00 to 6:30 pm, SSB 107. Office hour: Thursda
 5. [Discussion Section 5](https://lapobini.github.io/discussion/ECON220B_winter25/ds5.pdf)
 6. [Practice Final](https://lapobini.github.io/discussion/ECON220B_winter25/MockExam.pdf)
 7. [Discussion Section 7 & 8](https://lapobini.github.io/discussion/ECON220B_winter25/ds7_8.pdf)
+8. [Discussion Section 9](https://lapobini.github.io/discussion/ECON220B_winter25/ds9.pdf)
