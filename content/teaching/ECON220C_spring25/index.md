@@ -3,7 +3,7 @@ date: "2025-04-01"
 image:
   caption: Embed rich media such as videos and LaTeX math
 math: false
-summary: ECON220B
+summary: ECON220C
 #tags:
 #- ECON120A (TA Fall 24)
 title: Graduate Panel Data Econometrics
