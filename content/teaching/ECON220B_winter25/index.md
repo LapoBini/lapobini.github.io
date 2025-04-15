@@ -15,7 +15,7 @@ Discussion Section: Thursday from 5:00 to 6:30 pm, SSB 107. Office hour: Thursda
 2. Introduction to potential outcomes and some linear regression arithmetic: orthogonal projection, coefficient of determination and Frisch–Waugh–Lovell Theorem. ([Slides](https://lapobini.github.io/discussion/ECON220B_winter25/ds2.pdf))
 3. Where is OLS estimator converging to? Exogeneity vs uncorrelatedness vs linear projection. Bayesian inference and ridge regression. ([Slides](https://lapobini.github.io/discussion/ECON220B_winter25/ds3.pdf))
 4. Midterm review: Q1 algebraic properties of OLS; Q2 properties of empirical CDF estimator. ([Slides](https://lapobini.github.io/discussion/ECON220B_winter25/ds4_annotated.pdf))
-5. Selection on observables: inverse probability weighting, regression adjustment estimator and an exercise on propensity score and fat-tailed distributions. ([Slides](https://lapobini.github.io/discussion/ECON220B_winter25/ds5.pdf))
+5. Selection on observables. Inverse probability weighting, regression adjustment estimator and an exercise on propensity score and fat-tailed distributions. ([Slides](https://lapobini.github.io/discussion/ECON220B_winter25/ds5.pdf))
 6. Practice final: asymptotics of moving average of order one. ([Test](https://lapobini.github.io/discussion/ECON220B_winter25/MockExam.pdf))
 7. Instrumental variables and Local Average Treatment Effect. ([Slides](https://lapobini.github.io/discussion/ECON220B_winter25/ds7_8.pdf))
 8. M-Estimation: general consistency theorem and uniform law of large numbers. Exercise on the estimation of a right-censored Poisson Survival model. ([Slides](https://lapobini.github.io/discussion/ECON220B_winter25/ds9.pdf))
