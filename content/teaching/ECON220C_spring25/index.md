@@ -11,4 +11,5 @@ type: docs
 ---
 
 Discussion Section: Tuesday from 5:00 to 6:30 pm, SSB 107. Office hour: Tuesday from 6:30 to 7:00 pm, SSB 107. Material:
-1. Review of causal inference and average partial effects. ([Slides](https://lapobini.github.io/discussion/ECON220C_spring25/ds1.pdf))
+1. Review of $\textcolor{orange}{causal\; inference}$ and average partial effects. ([Slides](https://lapobini.github.io/discussion/ECON220C_spring25/ds1.pdf))
+2. $\textcolor{orange}{From\; Pooled\; OLS\; to \; FE\; Model}$: consistency, efficiency, random effect vs fized effect, IV and FE model. ([Slide](https://lapobini.github.io/discussion/ECON220C_spring25/ds2.pdf))
