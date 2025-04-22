@@ -13,7 +13,7 @@ type: docs
 Discussion Section: Thursday from 5:00 to 6:30 pm, SSB 107. Office hour: Thursday from 6:30 to 7:00 pm, SSB 107. 
 
 ## Material 
-1. $\textcolor{orange}{Basics\; of\; asymptotics}$ Basics of asymptotics: convergence theorems, asymptotic linear representation and delta method. Evercises on ratio of two estimators and deceiving asymptotics. ([Slides](https://lapobini.github.io/discussion/ECON220B_winter25/ds1.pdf))
+1. $\textcolor{orange}{Basics\; of\; asymptotics}$: convergence theorems, asymptotic linear representation and delta method. Evercises on ratio of two estimators and deceiving asymptotics. ([Slides](https://lapobini.github.io/discussion/ECON220B_winter25/ds1.pdf))
 2. Introduction to $\textcolor{orange}{potential\; outcomes}$ and some linear regression arithmetic: orthogonal projection, coefficient of determination and Frisch–Waugh–Lovell Theorem. ([Slides](https://lapobini.github.io/discussion/ECON220B_winter25/ds2.pdf))
 3. $\textcolor{orange}{Where\; is\; \hat{\beta}_{OLS}\; estimator\; converging\; to\;}$? Exogeneity vs uncorrelatedness vs linear projection. Bayesian inference and ridge regression. ([Slides](https://lapobini.github.io/discussion/ECON220B_winter25/ds3.pdf))
 4. $\textcolor{orange}{Midterm\; review}$: Q1 algebraic properties of OLS; Q2 properties of empirical CDF estimator. ([Slides](https://lapobini.github.io/discussion/ECON220B_winter25/ds4_annotated.pdf))
@@ -22,4 +22,6 @@ Discussion Section: Thursday from 5:00 to 6:30 pm, SSB 107. Office hour: Thursda
 7. $\textcolor{orange}{Instrumental\; variables \; and \; LATE}$. Comparison MoM, Wald, TSLS and control function approach, LATE in Threshold Crossing Model. ([Slides](https://lapobini.github.io/discussion/ECON220B_winter25/ds7_8.pdf))
 8. $\textcolor{orange}{M-Estimation}$: general consistency theorem and uniform law of large numbers. Exercise on the estimation of a right-censored Poisson Survival model. ([Slides](https://lapobini.github.io/discussion/ECON220B_winter25/ds9.pdf))
 
+
+## Evaluation 
 Instructional Assistant Student Evaluation of Teaching [available here](https://lapobini.github.io/discussion/ECON220B_winter25/220B_evaluation_2025.pdf).
