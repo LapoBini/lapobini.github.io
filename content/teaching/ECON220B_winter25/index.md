@@ -18,7 +18,7 @@ Discussion Section: Thursday from 5:00 to 6:30 pm, SSB 107. Office hour: Thursda
 3. $\textcolor{orange}{Where\; is\; \hat{\beta}_{OLS}\; estimator\; converging\; to\;}$? Exogeneity vs uncorrelatedness vs linear projection. Bayesian inference and ridge regression. ([Slides](https://lapobini.github.io/discussion/ECON220B_winter25/ds3.pdf))
 4. $\textcolor{orange}{Midterm\; review}$: Q1 algebraic properties of OLS; Q2 properties of empirical CDF estimator. ([Slides](https://lapobini.github.io/discussion/ECON220B_winter25/ds4_annotated.pdf))
 5. $\textcolor{orange}{Selection\; on\; observables}$. Inverse probability weighting, regression adjustment estimator and an exercise on propensity score and fat-tailed distributions. ([Slides](https://lapobini.github.io/discussion/ECON220B_winter25/ds5.pdf))
-6. $\textcolor{orange}{Practice \; final}$: asymptotics of moving average of order one. ([Test](https://lapobini.github.io/discussion/ECON220B_winter25/MockExam.pdf))
+6. $\textcolor{orange}{Practice \; final}$: asymptotics of moving average of order one, $$ Y_t = c + \theta_1 u_{t-1} + u_t$$, CLT for dependent data. ([Test](https://lapobini.github.io/discussion/ECON220B_winter25/MockExam.pdf))
 7. $\textcolor{orange}{Instrumental\; variables \; and \; LATE}$. Comparison MoM, Wald, TSLS and control function approach, LATE in Threshold Crossing Model. ([Slides](https://lapobini.github.io/discussion/ECON220B_winter25/ds7_8.pdf))
 8. $\textcolor{orange}{M-Estimation}$: general consistency theorem and uniform law of large numbers. Exercise on the estimation of a right-censored Poisson Survival model. ([Slides](https://lapobini.github.io/discussion/ECON220B_winter25/ds9.pdf))
 
