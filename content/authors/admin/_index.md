@@ -48,8 +48,8 @@ profiles:
 
 interests:
 - Time-Series Econometrics
-- Applied Macroeconomics
-- Econometrics of Network
+- Macroeconomics
+- Causal Inference 
 - Forecasting
 
 education:
@@ -62,7 +62,7 @@ education:
     institution: UC San Diego
     summary: |-
       - Advisor: Prof James D. Hamilton.
-      - Head Teaching Assistant ECON120A, Prof Graham Elliott.
+      - Head Teaching Assistant ECON120A, Prof Graham Elliott. Teaching assistant gratuate econometric sequence (ECON220B, ECON220C)
   - area: MSc Economics & Finance
     date_end: "2021-07-01"
     date_start: "2020-09-01"
@@ -83,7 +83,6 @@ education:
     institution: University of Pisa
     summary: |-
       - GPA: 110/110 cum Laude and Academic Commendation
-      - Advisor: Prof Lorenzo Corsini
 work:
   - position: Economist
     company_name: NowCasting-Economics Ltd
