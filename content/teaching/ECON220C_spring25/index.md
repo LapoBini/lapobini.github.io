@@ -15,3 +15,4 @@ __Discussion section__: Tuesday from 5:00 to 6:30 pm, SSB 107. __Office hour__: 
 ### Material 
 1. Review of <span style="color: orange;"> causal inference </span>and average partial effects. ([Slides](https://lapobini.github.io/discussion/ECON220C_spring25/ds1.pdf))
 2. <span style="color: orange;"> From Pooled OLS to FE model </span>: unbiasedness, consistency, efficiency, random effect vs fixed effect, IV and FE model. ([Slides](https://lapobini.github.io/discussion/ECON220C_spring25/ds2.pdf))
+3. Two exercises on <span style="color: orange;">Two-way Fixed Effect </span>regression. ([Slides](https://lapobini.github.io/discussion/ECON220C_spring25/ds3.pdf))
