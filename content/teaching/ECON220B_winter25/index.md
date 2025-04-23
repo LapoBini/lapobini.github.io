@@ -13,7 +13,7 @@ type: docs
 __Discussion Section__: Thursday from 5:00 to 6:30 pm, SSB 107. __Office hour__: Thursday from 6:30 to 7:00 pm, SSB 107. 
 
 ### Material 
-1. <span style="color: orange;"> Basics of asymptotic theory</span>: convergence theorems, asymptotic linear representation and delta method. Exercise on ratio of two estimators and Hodge's estimator. ([Slides](https://lapobini.github.io/discussion/ECON220B_winter25/ds1.pdf))
+1. <span style="color: orange;"> Basics of asymptotic theory</span>: convergence theorems, asymptotic linear representation and delta method. Exercises on asymptotic of ratio of two estimators and Hodge's estimator. ([Slides](https://lapobini.github.io/discussion/ECON220B_winter25/ds1.pdf))
 2. Introduction to <span style="color: orange;"> potential outcomes</span> and some linear regression arithmetic: orthogonal projection, coefficient of determination and Frisch–Waugh–Lovell Theorem. ([Slides](https://lapobini.github.io/discussion/ECON220B_winter25/ds2.pdf))
 3. <span style="color: orange;"> Where is the OLS estimator converging to</span>? Exogeneity vs uncorrelatedness vs linear projection. Introduction to bayesian inference and exercise on ridge regression. ([Slides](https://lapobini.github.io/discussion/ECON220B_winter25/ds3.pdf))
 4. <span style="color: orange;"> Midterm review</span>: Q1 algebraic properties of OLS; Q2 asymptotic properties of empirical CDF estimator. ([Slides](https://lapobini.github.io/discussion/ECON220B_winter25/ds4_annotated.pdf))
