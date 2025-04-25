@@ -35,7 +35,7 @@ sections:
       title: 'Current Research'
       subtitle: ''
       text: |-
-        I am currently studying the impact of global supply chain disruptions on prices, real economic activities, and trade. The key challenge is performing causal inference using large-scale macrotrade models.
+        I am currently studying the impact of global supply chain disruptions on prices, real economic activities, and trade. The key challenge is performing causal inference using large-scale trade models.
         
         Additionaly, I have a strong interest in trend-cycle models and networks.
         
