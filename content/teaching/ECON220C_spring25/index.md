@@ -17,3 +17,4 @@ __Discussion section__: Tuesday from 5:00 to 6:30 pm, SSB 107. __Office hour__: 
 2. <span style="color: orange;"> From Pooled OLS to FE model </span>: unbiasedness, consistency, efficiency, random effect vs fixed effect, IV and FE model. ([Slides](https://lapobini.github.io/discussion/ECON220C_spring25/ds2.pdf))
 3. Two exercises on <span style="color: orange;">Two-way Fixed Effect </span>regression. ([Slides](https://lapobini.github.io/discussion/ECON220C_spring25/ds3.pdf))
 4. From the basic <span style="color: orange;"> Difference-in-differences </span>estimator to Staggered DID in potential outcomes and Callaway and Sant'Anna (2021) approach. ([Slides](https://lapobini.github.io/discussion/ECON220C_spring25/ds4.pdf))
+5. <span style="color: orange;"> Practice midterm</span>: static and dynamic panel data model. ([Slides](https://lapobini.github.io/discussion/ECON220C_spring25/ds5.pdf))
