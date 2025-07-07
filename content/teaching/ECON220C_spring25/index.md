@@ -21,5 +21,6 @@ __Discussion section__: Tuesday from 5:00 to 6:30 pm, SSB 107. __Office hour__: 
 6. <span style="color: orange;"> M-Estimation </span>: general consistency theorem, uniform law of large numbers, application to a binary probability model. ([Slides](https://lapobini.github.io/discussion/ECON220C_spring25/ds6.pdf))
 7. <span style="color: orange;"> Probit model </span>: probit model vs. linear projection, MLE estimation and structural identification with external instrument. ([Slides](https://lapobini.github.io/discussion/ECON220C_spring25/ds7.pdf))
 8. <span style="color: orange;"> Practice final </span>: binary outcomes, average partial effect, multinomial logir and independence from irrelavent alternatives. ([Slides](https://lapobini.github.io/discussion/ECON220C_spring25/ds8.pdf))
+
 ### Evaluation 
 Instructional Assistant Student Evaluation of Teaching [available here](https://lapobini.github.io/discussion/ECON220C_spring25/220C_evaluation_2025.pdf).
