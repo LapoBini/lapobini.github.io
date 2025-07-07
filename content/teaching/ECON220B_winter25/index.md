@@ -22,4 +22,4 @@ __Discussion Section__: Thursday from 5:00 to 6:30 pm, SSB 107. __Office hour__:
 8. <span style="color: orange;"> M-Estimation</span>: general consistency theorem and uniform law of large numbers. Exercise on the estimation of a right-censored Poisson Survival model. ([Slides](https://lapobini.github.io/discussion/ECON220B_winter25/ds9.pdf))
 
 ### Evaluation 
-Instructional Assistant Student Evaluation of Teaching [available here](https://lapobini.github.io/discussion/ECON220B_winter25/220B_evaluation_2025.pdf).
+Instructional Assistant Student Evaluation of Teaching [available here](https://lapobini.github.io/discussion/ECON220B_winter25/220B_evaluation_2025.pdf). 
