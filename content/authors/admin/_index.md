@@ -62,7 +62,7 @@ education:
     institution: UC San Diego
     summary: |-
       - Advisor: Prof James D. Hamilton.
-      - Head Teaching Assistant ECON120A, Prof Graham Elliott. Teaching assistant gratuate econometrics (ECON220B, ECON220C)
+      - Teaching Assistant: undergraduate econometrics (ECON120A) and gratuate econometrics (ECON220B, ECON220C)
   - area: MSc Economics & Finance
     date_end: "2021-07-01"
     date_start: "2020-09-01"
