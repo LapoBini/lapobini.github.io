@@ -19,7 +19,7 @@ publication:
 featured: true
 # url_code: https://lapobini.github.io/publication/SupplyChain/
 # url_dataset: https://github.com/HugoBlox/
-url_pdf: "publication/SupplyChain/Bini2025.pdf"
+url_pdf: "Bini2025.pdf"
 url_poster: ""
 url_project: ""
 url_slides: ""
