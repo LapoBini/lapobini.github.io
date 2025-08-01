@@ -17,15 +17,6 @@ publication_types: ["working-paper"]
 publication:
 
 featured: true
-# url_code: https://lapobini.github.io/publication/SupplyChain/
-# url_dataset: https://github.com/HugoBlox/
-# url_pdf: "Bini2025.pdf"
-# url_poster: ""
-# url_project: ""
-# url_slides: ""
-# url_appendix: "OnlineAppendix-100years.pdf"
-# url_source: https://github.com/HugoBlox/
-# url_video: https://youtube.com
 
 links:
 - name: Working Paper
