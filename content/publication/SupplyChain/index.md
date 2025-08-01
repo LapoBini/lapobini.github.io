@@ -28,6 +28,8 @@ url_slides: ""
 # url_video: https://youtube.com
 
 links:
+- name: Working Paper
+  url: Bini2025.pdf
 - name: Online Appendix
   url: appendixBini2025.pdf
 
