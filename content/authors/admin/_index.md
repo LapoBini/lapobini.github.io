@@ -61,7 +61,8 @@ education:
     institution: UC San Diego
     summary: |-
       - Advisor: Prof James D. Hamilton.
-      - Teaching Assistant: undergraduate econometrics (ECON120A) and gratuate econometrics (ECON220B, ECON220C)
+      - Teaching Assistant: undergraduate econometrics (ECON120A), gratuate econometrics (ECON220B, ECON220C)
+      - Graduate Student Research Fellowship summer 2024, 2025.
   - area: MSc Economics & Finance
     date_end: "2021-07-01"
     date_start: "2020-09-01"
