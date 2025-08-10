@@ -50,7 +50,6 @@ interests:
 - Time-Series Econometrics
 - Macroeconomics
 - Causal Inference 
-- Forecasting
 
 education:
   - area: PhD Economics
@@ -191,4 +190,4 @@ awards:
 
 ## Bio
 
-I am a PhD Student in Economics at UC San Diego. My research interests include non-stationary time-series models, causal inference in macroeconomics and the evolution of economic networks over time. I bring over three years of experience as an Economist at Now-Casting Economics Ltd, a leading professional forecasting firm. In 2023, I developed and implemented a real-time nowcasting model for the German Federal Ministry of Economic Affairs and Climate Action to predict Inflation and real GDP growth, using high-frequency and alternative data.
+I am a second year PhD Student in Economics at UC San Diego. My research interests are time-series econometrics and causal inference in macroeconomics. I am currently studying the impact of global supply chain disruptions on prices, real economic activities, and trade. I bring over three years of experience as an Economist at Now-Casting Economics Ltd, a leading professional forecasting firm. In 2023, I developed and implemented a real-time nowcasting model for the German Federal Ministry of Economic Affairs and Climate Action to predict Inflation and real GDP growth, using high-frequency and alternative data.
