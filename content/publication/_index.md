@@ -11,7 +11,7 @@ sections:
       #subtitle: "Recent working paper drafts and ongoing studies under peer review"
       filters:
         folders: ["publication"]
-        tags: ["working-paper"]
+        publication_types: ["working-paper"]
     design:
       view: citation
       columns: '1'
@@ -23,7 +23,7 @@ sections:
       #subtitle: "Research in progress or at the idea stage"
       filters:
         folders: ["publication"]
-        tags: ["ongoing-project"]
+        publication_types: ["ongoing-project"]
     design:
       view: citation
       columns: '1'
