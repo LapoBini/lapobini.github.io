@@ -55,11 +55,13 @@ sections:
 #    columns: 2
   - block: collection
     content:
-      title: Research
+      title: Latest Research
       text: ""
+      # count: 4 # limits the number of items shown
       filters:
         folders:
           - publication
+          - ongoing
         exclude_featured: false
     design:
       view: citation
