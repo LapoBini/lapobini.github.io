@@ -17,8 +17,7 @@ links:
 
 publication: ""
 publication_short: ""
-publication_types:
-- Draft
+publication_types: ["ongoing-project"]
 
 #url_code: https://github.com/HugoBlox/hugo-blox-builder
 #url_dataset: '#'
