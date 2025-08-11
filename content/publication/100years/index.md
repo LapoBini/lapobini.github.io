@@ -23,8 +23,6 @@ publication:
 featured: true
 
 
-tags: ["working-paper"]
-
 # url_code: https://github.com/HugoBlox/hugo-blox-builder
 # url_dataset: https://github.com/HugoBlox/
 url_pdf: "100years.pdf"

@@ -11,9 +11,6 @@ date: "2024-09-01T00:00:00Z"
 doi: ""
 featured: true
 
-
-tags: ["ongoing-project"]
-
 links:
 - name: Early Draft
   url: Main_NowcastingInflation.pdf
