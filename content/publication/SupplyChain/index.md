@@ -18,6 +18,8 @@ publication:
 
 featured: true
 
+tags: ["working-paper"]
+
 links:
 - name: Working Paper
   url: Bini2025.pdf

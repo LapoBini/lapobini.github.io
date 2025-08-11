@@ -1,12 +1,30 @@
 ---
-title: Research
+title: "Research"
+type: landing
 cms_exclude: true
 
-# View.
-view: citation
+sections:
+  - block: collection
+    id: working-papers
+    content:
+      title: "Working Papers"
+      #subtitle: "Recent working paper drafts and ongoing studies under peer review"
+      filters:
+        folders: ["publication"]
+        tags: ["working-paper"]
+    design:
+      view: citation
+      columns: '1'
 
-# Optional header image (relative to `static/media/` folder).
-banner:
-  caption: ''
-  image: ''
+  - block: collection
+    id: ongoing-projects
+    content:
+      title: "Ongoing Projects"
+      #subtitle: "Research in progress or at the idea stage"
+      filters:
+        folders: ["publication"]
+        tags: ["ongoing-project"]
+    design:
+      view: citation
+      columns: '1'
 ---
