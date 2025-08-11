@@ -22,7 +22,7 @@ sections:
       title: "Ongoing Projects"
       #subtitle: "Research in progress or at the idea stage"
       filters:
-        folders: ["publication"]
+        folders: ["publication/ongoing"]
         publication_types: ["ongoing-project"]
     design:
       view: citation
