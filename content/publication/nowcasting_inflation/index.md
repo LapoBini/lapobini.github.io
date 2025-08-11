@@ -27,6 +27,6 @@ publication_types: ["ongoing-project"]
 #url_slides: ""
 #url_source: '#'
 #url_video: '#'
-
+ 
 abstract: This paper proposes a model for now-casting inflation for a selection of advanced economies and emerging markets which exploits weekly energy prices and, where available, other high-frequency indicators. 
 ---
