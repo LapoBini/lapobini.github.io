@@ -57,7 +57,7 @@ sections:
     content:
       title: Latest Research
       text: ""
-      # count: 4 # limits the number of items shown
+      # count: 4 # limits the number of items shown 
       filters:
         folders:
           - publication
