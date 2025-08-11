@@ -17,7 +17,7 @@ links:
 
 publication: ""
 publication_short: ""
-publication_types: ["Ongoing project"]
+publication_types: ["ongoing-project"]
 
 #url_code: https://github.com/HugoBlox/hugo-blox-builder
 #url_dataset: '#'
@@ -27,6 +27,6 @@ publication_types: ["Ongoing project"]
 #url_slides: ""
 #url_source: '#'
 #url_video: '#'
- 
+
 abstract: This paper proposes a model for now-casting inflation for a selection of advanced economies and emerging markets which exploits weekly energy prices and, where available, other high-frequency indicators. 
 ---
