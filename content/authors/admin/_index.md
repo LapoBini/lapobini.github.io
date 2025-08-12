@@ -41,10 +41,10 @@ profiles:
     url: https://github.com/LapoBini
   - icon: brands/linkedin
     url: https://www.linkedin.com/in/lapobini/
-# - icon: academicons/google-scholar
-#   url: https://scholar.google.com/
-# - icon: academicons/orcid
-#   url: https://orcid.org/
+  - icon: academicons/google-scholar
+    url: https://scholar.google.com/citations?hl=en&user=NV213joAAAAJ
+  - icon: academicons/orcid
+    url: https://orcid.org/0009-0003-2939-5915
 
 interests:
 - Time-Series Econometrics
