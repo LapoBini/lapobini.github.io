@@ -24,6 +24,6 @@ links:
 - name: Online Appendix
   url: appendixBini2025.pdf
 
-abstract: This paper examines the economic impacts of global supply chain disruptions. Using price surcharge announcements from the three largest containerized shipping companies, I construct a novel measure of global supply chain shocks. Negative shocks trigger a persistent rise in consumer prices and a decline in economic activity. The response is broad-based. Sectoral impacts vary with exposure to global supply chains, measured by the share of inputs sourced from abroad. Spillovers extend to non-tradable sectors. These shocks accounted for up to 51 percent of the post-pandemic inflation. Without monetary or fiscal stimulus, recovery would have been delayed by 18 months. 
+abstract: This paper studies the macroeconomic effects of global supply chain shocks, introducing a novel identification strategy based on narrative analysis of price surcharges from the three largest container shipping companies. Negative shocks trigger a persistent rise in consumer prices and a decline in economic activity. The response is broad-based. Sectoral impacts vary with exposure to global supply chains, measured by the share of inputs sourced from abroad. Spillovers extend to non-tradable sectors. These shocks accounted for up to 51 percent of the post-pandemic inflation. Without monetary or fiscal stimulus, recovery would have been delayed by 18 months. 
 
 ---
