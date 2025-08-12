@@ -47,7 +47,7 @@ profiles:
     url: https://orcid.org/0009-0003-2939-5915
 
 interests:
-- Time-Series Econometrics
+- Time-Series Econometrics 
 - Macroeconomics
 - Causal Inference 
 
