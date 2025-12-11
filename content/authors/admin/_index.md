@@ -162,6 +162,11 @@ work:
 #   Begin multi-line `summary` with YAML's `|` or `|2-` multi-line prefix and indent 2 spaces below.
 awards:
   - awarder: UC San Diego
+    date: "2025-09-01"
+    icon: 
+    summary:
+    title: 24-25 TA Excellence Award 
+  - awarder: UC San Diego
     date: "2023-02-21"
     icon: 
     summary: |
@@ -191,4 +196,4 @@ awards:
 
 ## Bio
 
-I am a second-year PhD Student in Economics at UC San Diego. My research interests are time-series econometrics and causal inference in macroeconomics. I am currently studying the impact of global supply chain disruptions on prices, real economic activities, and trade. I bring over three years of experience as an Economist at Now-Casting Economics Ltd, a leading professional forecasting firm. In 2023, I developed and implemented a real-time nowcasting model for the German Federal Ministry of Economic Affairs and Climate Action to predict Inflation and real GDP growth, using high-frequency and alternative data.
+I am a third-year PhD Student in Economics at UC San Diego. My research interests are time-series econometrics and causal inference in macroeconomics. I am currently studying the impact of global supply chain disruptions on prices, real economic activities, and trade. I bring over three years of experience as an Economist at Now-Casting Economics Ltd, a leading professional forecasting firm. In 2023, I developed and implemented a real-time nowcasting model for the German Federal Ministry of Economic Affairs and Climate Action to predict Inflation and real GDP growth, using high-frequency and alternative data.
