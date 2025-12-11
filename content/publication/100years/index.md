@@ -31,7 +31,7 @@ url_project: ""
 url_slides: ""
 # url_appendix: "OnlineAppendix-100years.pdf"
 # url_source: https://github.com/HugoBlox/
-# url_video: https://youtube.com
+# url_video: https://youtube.com 
 
 links:
 - name: Online Appendix
