@@ -165,7 +165,7 @@ awards:
     date: "2025-09-01"
     icon: 
     summary:
-    title: 24-25 TA Excellence Award 
+    title: 24-25 TA Excellence Award  
   - awarder: UC San Diego
     date: "2023-02-21"
     icon: 
