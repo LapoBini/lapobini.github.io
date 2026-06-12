@@ -1,0 +1,42 @@
+{{/* Custom fonts (Oswald headings + Open Sans body, à la sites.google.com/view/juanherreno)
+     and research-page section-title tweaks. Injected at the end of <head>. */}}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&family=Oswald:wght@300;400;500;600;700&display=swap">
+
+<style>
+  :root {
+    --hb-font-body: 'Open Sans', ui-sans-serif, system-ui, -apple-system, sans-serif;
+    --hb-font-head: 'Oswald', 'Open Sans', sans-serif;
+  }
+
+  /* Body text */
+  html, body, .page-wrapper { font-family: var(--hb-font-body); }
+
+  /* Headings, nav, and section titles use the condensed Oswald face */
+  h1, h2, h3, h4, h5, h6,
+  .navbar-brand, .nav-link,
+  .blox-collection .text-3xl { font-family: var(--hb-font-head); }
+
+  /* ---- Research page: section titles UPPERCASE, left-aligned, tighter ---- */
+  #working-papers .max-w-prose,
+  #ongoing-projects .max-w-prose {
+    align-items: flex-start;   /* left-align within the flex column            */
+    max-width: 48rem;          /* = max-w-3xl, so title lines up with the list  */
+    width: 100%;
+    text-align: left;
+  }
+  #working-papers .text-3xl,
+  #ongoing-projects .text-3xl {
+    text-transform: uppercase;
+    text-align: left;
+    width: 100%;
+    letter-spacing: 0.03em;
+    margin-bottom: 0.5rem;     /* was mb-6 (1.5rem) */
+  }
+  /* Pull each publication list up close to its title */
+  #working-papers .container.max-w-3xl,
+  #ongoing-projects .container.max-w-3xl {
+    margin-top: 1rem !important;   /* overrides mt-16 / sm:mt-20 */
+  }
+</style>

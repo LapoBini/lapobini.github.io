@@ -3,6 +3,10 @@ title: "Research"
 type: landing
 cms_exclude: true
 
+design:
+  # Tighten the vertical gap between sections (default is ~6rem)
+  spacing: "2rem"
+
 sections:
   - block: collection
     id: working-papers
