@@ -26,6 +26,11 @@ featured: true
 # url_code: https://github.com/HugoBlox/hugo-blox-builder
 # url_dataset: https://github.com/HugoBlox/
 url_pdf: "100years.pdf"
+# Title links to the published page (CEPR)
+title_url: "https://cepr.org/publications/dp19552"
+_build:
+  render: never
+  list: always
 url_poster: ""
 url_project: ""
 url_slides: ""

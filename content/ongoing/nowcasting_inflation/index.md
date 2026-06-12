@@ -11,6 +11,12 @@ date: "2024-09-01T00:00:00Z"
 doi: ""
 featured: true
 
+# Not published yet — the title opens the draft PDF
+title_url: Main_NowcastingInflation.pdf
+# No individual paper page — keep the bundle's PDF published
+_build:
+  render: never
+  list: always
 links:
 - name: Early Draft
   url: Main_NowcastingInflation.pdf
