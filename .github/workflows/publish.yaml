@@ -2,6 +2,8 @@ name: Deploy website to GitHub Pages
 
 env:
   WC_HUGO_VERSION: '0.126.3'
+  # Opt all JavaScript actions into Node.js 24 (Node 20 is deprecated on GitHub runners).
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
 on:
   # Trigger the workflow every time you push to the `main` branch
