@@ -96,6 +96,9 @@
   #section-resume-biography-3 .flex-auto.max-w-prose .prose { padding-top: 0; }  /* drop pt-2 */
   #section-resume-biography-3 #bio { margin-top: 0; }  /* sit "Bio" flush at the column top */
   #section-resume-biography-3 #profile { padding-top: 0; }  /* remove the 30px that pushed the avatar below Bio */
+  /* Move the bio text closer to the "Bio" heading */
+  #section-resume-biography-3 .bio-text #bio { margin-bottom: 0; }
+  #section-resume-biography-3 .bio-text #bio + p { margin-top: 0.4rem; }
 
   /* ---- Homepage "Latest Research": style like the "Bio" heading, and align
      the title + list under the Bio column (large screens) ---- */
@@ -104,11 +107,14 @@
     line-height: 32px;
     margin-bottom: 0.5rem;    /* was mb-6 */
   }
+  /* Tighten the spacing between papers in Latest Research only (Research page unchanged).
+     !important overrides the inline style="margin-bottom:1rem" on each citation item. */
+  #latest-research .pub-list-item { margin-bottom: 0.4rem !important; }
   @media (min-width: 1024px) {
     /* Pull the whole section up into the empty space to the right of the (taller)
        profile column, so it sits just below Bio and everything fits on one screen.
        Bio is untouched (it stays aligned with the avatar). */
-    #latest-research { margin-top: -110px; }
+    #latest-research { margin-top: -95px; }   /* a little more gap below the Bio text */
     /* The hero centres an 854px group; Bio sits 259px in (avatar width + gap).
        Reproduce that offset so the heading and list line up under Bio. */
     #latest-research .max-w-prose {
@@ -119,7 +125,7 @@
     #latest-research .container.max-w-3xl {
       max-width: 854px;
       padding-left: 259px;
-      margin-top: 1rem !important;   /* pull list up to its title (was mt-16 / sm:mt-20) */
+      margin-top: 0.25rem !important;   /* papers closer to the "Latest Research" title */
     }
   }
 
