@@ -144,6 +144,30 @@
     }
   }
 
+  /* ---- Mobile / narrow screens (< lg): left-align every collection title and add
+     the same 12px side padding as the Bio, so titles, lists and abstracts aren't
+     flush against the screen edges and "Latest Research" lines up like the rest. ---- */
+  @media (max-width: 1023px) {
+    #latest-research .max-w-prose,
+    #working-papers .max-w-prose,
+    #ongoing-projects .max-w-prose,
+    #teaching-material .max-w-prose,
+    #code .max-w-prose {
+      align-items: flex-start;
+      text-align: left;
+      padding-left: 0.75rem;
+      padding-right: 0.75rem;
+    }
+    #latest-research .container.max-w-3xl,
+    #working-papers .container.max-w-3xl,
+    #ongoing-projects .container.max-w-3xl,
+    #teaching-material .container.max-w-screen-lg,
+    #code .container.max-w-screen-lg {
+      padding-left: 0.75rem;
+      padding-right: 0.75rem;
+    }
+  }
+
   /* ---- Light theme: make all body copy solid black (incl. the Bio) ---- */
   .prose-slate {
     --tw-prose-body: #000;
