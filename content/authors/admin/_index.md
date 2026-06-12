@@ -198,4 +198,4 @@ awards:
 
 I am a third-year PhD Candidate in Economics at UC San Diego. My research interests are macroeconomics and econometrics. In my first two years, I studied the economic effects of global supply chain disruptions, and showed how they are key drivers of business cycle fluctuations. Now I am working on the econometric theory behind cross-sectional identification in macroeconomics.
 
-Before my PhD, I worked for three years as an Economist at Now-Casting Economics Ltd, a leading professional forecasting firm. In 2023, I developed and implemented a real-time nowcasting model for the German Federal Ministry of Economic Affairs and Climate Action to predict inflation and real GDP growth, using high-frequency and alternative data.
+Before my PhD, I worked for three years as an economist at Now-Casting Economics Ltd, a leading professional forecasting firm. In 2023, I developed and implemented a real-time nowcasting model for the German Federal Ministry of Economic Affairs and Climate Action to predict inflation and real GDP growth, using high-frequency and alternative data.
