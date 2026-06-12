@@ -53,9 +53,30 @@
        `:checked ~ .abstract-panel` sibling selector can reach it). */}}
   {{ if $abstract }}<input type="checkbox" id="{{ $absid }}" class="abstract-toggle" hidden>{{ end }}
 
-  {{ if or $has_attachments $abstract }}
+  {{/* Attachment buttons, in a fixed order: PDF · APPENDIX (links) · CITE · ABSTRACT */}}
+  {{ $pdf := "" }}
+  {{ with $item.Resources.GetMatch (printf "%s.pdf" $item.File.ContentBaseName) }}{{ $pdf = .RelPermalink }}{{ end }}
+  {{ if not $pdf }}{{ with $item.Params.url_pdf }}{{ $r := $item.Resources.GetMatch . }}{{ if $r }}{{ $pdf = $r.RelPermalink }}{{ else }}{{ $pdf = . | relURL }}{{ end }}{{ end }}{{ end }}
+  {{ $cite := $item.Resources.GetMatch "cite.bib" }}
+  {{ if or $pdf $item.Params.links $cite $abstract }}
   <div class="flex space-x-3">
-    {{ if $has_attachments }}{{ partial "page_links" (dict "page" $item "is_list" 1) }}{{ end }}
+    {{/* 1. PDF */}}
+    {{ with $pdf }}
+    <a class="hb-attachment-link hb-attachment-small" href="{{ . }}" target="_blank" rel="noopener">{{ partial "functions/get_icon" (dict "name" "document-text" "attributes" "style=\"height: 1em\" class='inline-block'") }} {{ i18n "btn_pdf" }}</a>
+    {{ end }}
+    {{/* 2. Custom links — APPENDIX (working papers) / EARLY DRAFT (ongoing) */}}
+    {{ range $item.Params.links }}
+      {{ $l := .url | default "" }}
+      {{ $scheme := (urls.Parse $l).Scheme }}
+      {{ $tgt := "" }}
+      {{ if not $scheme }}{{ $r := $item.Resources.GetMatch $l }}{{ if $r }}{{ $l = $r.RelPermalink }}{{ else }}{{ $l = $l | relURL }}{{ end }}{{ else }}{{ $tgt = "target=\"_blank\" rel=\"noopener\"" }}{{ end }}
+    <a class="hb-attachment-link hb-attachment-small" href="{{ $l | safeURL }}" {{ $tgt | safeHTMLAttr }}>{{ partial "functions/get_icon" (dict "name" "link" "attributes" "style=\"height: 1em\" class='inline-block'") }} {{ .name | safeHTML }}</a>
+    {{ end }}
+    {{/* 3. CITE */}}
+    {{ with $cite }}
+    <a class="hb-attachment-link hb-attachment-small" href="{{ .RelPermalink }}" target="_blank" data-filename="{{ .RelPermalink }}">{{ partial "functions/get_icon" (dict "name" "document-duplicate" "attributes" "style=\"height: 1em\" class='inline-block'") }} {{ i18n "btn_cite" }}</a>
+    {{ end }}
+    {{/* 4. ABSTRACT toggle */}}
     {{ if $abstract }}
     <label for="{{ $absid }}" class="hb-attachment-link hb-attachment-small abstract-btn">
       <svg style="height:1em" class="inline-block" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M4 12h16M4 18h10"/></svg> Abstract</label>

@@ -1,5 +1,6 @@
 ---
 title: Teaching
+linkTitle: Teaching Material
 summary: Teaching material and code
 type: landing
 

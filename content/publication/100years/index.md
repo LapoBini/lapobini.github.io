@@ -34,7 +34,7 @@ url_slides: ""
 # url_video: https://youtube.com 
 
 links:
-- name: Online Appendix
+- name: Appendix
   url: OnlineAppendix-100years.pdf
 
 abstract: This study investigates the business cycle dynamics of the U.S. economy since 1900 through a multivariate framework that imposes minimal economic restrictions. A key finding is the presence of a significant negative correlation between inflation and economic slack, at business cycle frequencies. This relationship remains robust across over a century of data, with stable coefficients in subsample periods.

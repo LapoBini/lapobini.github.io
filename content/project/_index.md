@@ -17,5 +17,6 @@ sections:
 #  id: teaching
 # summary: My courses
 title: Github Repositories
+linkTitle: Teaching Material
 type: landing
 ---
