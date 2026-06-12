@@ -31,7 +31,8 @@
     text-transform: uppercase;
     text-align: left;
     width: 100%;
-    letter-spacing: 0.03em;
+    font-weight: 500;          /* lighter than the theme's bold (700) */
+    letter-spacing: 0.05em;
     margin-bottom: 0.5rem;     /* was mb-6 (1.5rem) */
   }
   /* Pull each publication list up close to its title */
@@ -39,4 +40,13 @@
   #ongoing-projects .container.max-w-3xl {
     margin-top: 1rem !important;   /* overrides mt-16 / sm:mt-20 */
   }
+
+  /* ---- Keep a publication's TITLE from breaking mid-line (desktop) ---- */
+  @media (min-width: 768px) {
+    .view-citation a.underline { white-space: nowrap; }
+  }
+
+  /* ---- Homepage hero: tighten so Education fits above the fold ---- */
+  #section-resume-biography-3 .avatar-wrapper { margin-top: 1rem; }   /* was mt-10 (2.5rem) */
+  #section-resume-biography-3 .grid.grid-cols-2 { margin-top: 0.75rem; } /* was mt-6 (1.5rem) */
 </style>

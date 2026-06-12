@@ -20,6 +20,9 @@ sections:
         url: resume.pdf
     design:
       css_class: dark
+      # Trim top/bottom padding (default 6rem) so the Education column fits above the fold
+      spacing:
+        padding: ["2rem", "0", "2rem", "0"]
       background:
         color: black
         image:
