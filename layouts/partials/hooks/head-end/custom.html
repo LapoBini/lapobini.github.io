@@ -153,6 +153,12 @@
     text-decoration-color: #1d4ed8;
   }
   .prose.lg\:prose-xl a:hover { color: #1e40af; }
+  /* …but the previous/next pager (next-in-series, inside .no-prose) should be green,
+     matching the paper pages — not blue/underlined. */
+  .prose.lg\:prose-xl .no-prose a {
+    color: rgb(var(--color-primary-600));
+    text-decoration: none;
+  }
 
   /* ---- Abstract toggle: green "ABSTRACT" button reveals/hides the abstract ---- */
   .view-citation .abstract-btn { cursor: pointer; }
@@ -166,4 +172,12 @@
     text-align: justify;
   }
   .view-citation .abstract-toggle:checked ~ .abstract-panel { display: block; }
+
+  /* ---- Navbar: nudge the name in from the left, keeping it symmetric with the
+     search icon on the right (both 2rem from the edge). ---- */
+  nav.navbar { padding-left: 2rem; padding-right: 2rem; }
+
+  /* ---- Nav links: bold only for the section you're currently on ---- */
+  .nav-link { font-weight: 400; }
+  .nav-link.active { font-weight: 700; }
 </style>
