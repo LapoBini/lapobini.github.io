@@ -88,7 +88,19 @@
   #code .grid { gap: 1.75rem; }
 
   /* ---- Homepage hero ---- */
-  #section-resume-biography-3 .avatar-wrapper { margin-top: 1rem; }   /* was mt-10 (2.5rem) */
+  /* Resize the wrapper (theme fixes it at 150x150) to the rectangle so the photo
+     doesn't overflow onto the social icons. */
+  #section-resume-biography-3 .avatar-wrapper { margin-top: 1rem; width: 190px; height: 225px; }
+  /* Profile photo as a rectangle (override the theme's circular .avatar). */
+  #section-resume-biography-3 .avatar-rect {
+    border-radius: 0.5rem;
+    width: 100%;
+    height: 100%;
+    max-width: none;
+    max-height: none;
+    object-fit: cover;
+    padding: 0;
+  }
   /* More breathing room between the avatar and the social icons (overrides the
      theme's .network-icon margin-top:.5rem). */
   #section-resume-biography-3 #profile .network-icon { margin-top: 2.25rem; }
@@ -117,7 +129,7 @@
     /* Pull the whole section up into the empty space to the right of the (taller)
        profile column, so it sits just below Bio and everything fits on one screen.
        Bio is untouched (it stays aligned with the avatar). */
-    #latest-research { margin-top: -68px; }   /* sits below the Bio, ~1.5x the previous gap */
+    #latest-research { margin-top: -143px; }   /* sits below the Bio (recalibrated for the taller rectangular photo) */
     /* The hero centres an 854px group; Bio sits 259px in (avatar width + gap).
        Reproduce that offset so the heading and list line up under Bio. */
     #latest-research .max-w-prose {
