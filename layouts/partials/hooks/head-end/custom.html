@@ -16,7 +16,7 @@
   :root {
     --hb-font-body: 'Open Sans', ui-sans-serif, system-ui, -apple-system, sans-serif;
     --hb-font-head: 'Lato', 'Open Sans', sans-serif;
-    --page-bg: #e9f2f1;   /* very light petroleum / teal-gray */
+    --page-bg: #dce8e6;   /* light petroleum / teal-gray (a touch darker) */
   }
 
   /* Body text */
@@ -258,6 +258,13 @@
     text-align: justify;
   }
   .view-citation .abstract-toggle:checked ~ .abstract-panel { display: block; }
+
+  /* Research page (Working Papers + Ongoing Projects): show the abstract inline and
+     drop the ABSTRACT toggle button. Latest Research (homepage) keeps the toggle. */
+  #working-papers .view-citation .abstract-panel,
+  #ongoing-projects .view-citation .abstract-panel { display: block; }
+  #working-papers .view-citation .abstract-btn,
+  #ongoing-projects .view-citation .abstract-btn { display: none; }
 
   /* ---- Navbar: nudge the name in from the left, keeping it symmetric with the
      search icon on the right (both 2rem from the edge). ---- */
