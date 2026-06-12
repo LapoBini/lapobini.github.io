@@ -172,13 +172,19 @@
 
   /* ---- Abstract toggle: green "ABSTRACT" button reveals/hides the abstract ---- */
   .view-citation .abstract-btn { cursor: pointer; }
+  /* Abstract text (toggle panel + paper detail page) uses the same font as the Bio:
+     Lato, 14.67px, line-height 1.667. */
+  .view-citation .abstract-panel,
+  .abstract-body {
+    font-family: 'Lato', ui-sans-serif, system-ui, sans-serif;
+    font-size: 14.6667px;
+    line-height: 1.667;
+    color: #000;
+  }
   .view-citation .abstract-panel {
     display: none;                     /* hidden until the toggle is checked */
     margin-top: 0.5rem;
     max-width: 48rem;
-    color: #000;
-    font-size: 0.95rem;
-    line-height: 1.5;
     text-align: justify;
   }
   .view-citation .abstract-toggle:checked ~ .abstract-panel { display: block; }

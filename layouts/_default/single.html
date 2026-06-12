@@ -108,7 +108,7 @@
 
         {{ if .Params.abstract }}
           <div class="font-bold text-2xl">{{ i18n "abstract" }}</div>
-          <div>{{ .Params.abstract | markdownify }}</div>
+          <div class="abstract-body">{{ .Params.abstract | markdownify }}</div>
         {{ end }}
 
         {{/* Hide the publication "Type" row on publication pages */}}
