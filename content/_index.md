@@ -19,20 +19,10 @@ sections:
         text: Download CV
         url: resume.pdf
     design:
-      css_class: dark
-      # Trim top/bottom padding (default 6rem) so the Education column fits above the fold
+      # No background image / dark block, so the bio flows into the
+      # Latest Research section directly below it. Tight bottom padding.
       spacing:
-        padding: ["2rem", "0", "2rem", "0"]
-      background:
-        color: black
-        image:
-          # Add your image background to `assets/media/`.
-          filename: stacked-peaks.svg
-          filters:
-            brightness: 1.0
-          size: cover
-          position: center
-          parallax: false
+        padding: ["3rem", "0", "1rem", "0"]
 #  - block: markdown
 #    content:
 #      title: 'Current Research'
@@ -57,6 +47,7 @@ sections:
 #    view: article-grid
 #    columns: 2
   - block: collection
+    id: latest-research
     content:
       title: Latest Research
       text: ""
@@ -68,6 +59,8 @@ sections:
         exclude_featured: false
     design:
       view: citation
+      spacing:
+        padding: ["0", "0", "2rem", "0"]
   #- block: collection
   #  id: talks
   #  content:

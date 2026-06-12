@@ -58,21 +58,44 @@
   /* Teaching/Code cards: show only title + subtitle — hide the date footer */
   #teaching-material .group .flex-none:has(time),
   #code .group .flex-none:has(time) { display: none; }
+  /* Match the Research title→buttons gap (~2px): tighten card title→subtitle */
+  #teaching-material .group .grow p,
+  #code .group .grow p { margin-top: 2px; }
 
   /* ---- Keep a publication's TITLE from breaking mid-line (desktop) ---- */
   @media (min-width: 768px) {
     .view-citation a.underline { white-space: nowrap; }
   }
 
-  /* ---- Homepage hero: tighten so Education fits above the fold ---- */
+  /* ---- Homepage hero ---- */
   #section-resume-biography-3 .avatar-wrapper { margin-top: 1rem; }   /* was mt-10 (2.5rem) */
-  #section-resume-biography-3 .grid.grid-cols-2 { margin-top: 0.75rem; } /* was mt-6 (1.5rem) */
 
-  /* Align the top of "Bio" with the top of the avatar circle, and shift the whole
-     right column (bio, interests, education) up. The column was md:mt-12 (3rem),
-     and the "Bio" heading carried the prose h2 top-margin + a pt-2. */
+  /* Align the top of "Bio" with the top of the avatar circle.
+     (The column was md:mt-12 = 3rem; the "Bio" h2 carried a prose top-margin + pt-2.) */
   #section-resume-biography-3 .flex-auto.max-w-prose { margin-top: 1rem; }  /* = avatar-wrapper margin-top */
   #section-resume-biography-3 .flex-auto.max-w-prose .prose { padding-top: 0; }  /* drop pt-2 */
   #section-resume-biography-3 #bio { margin-top: 0; }  /* sit "Bio" flush at the column top */
   #section-resume-biography-3 #profile { padding-top: 0; }  /* remove the 30px that pushed the avatar below Bio */
+
+  /* ---- Homepage "Latest Research": style like the "Bio" heading, and align
+     the title + list under the Bio column (large screens) ---- */
+  #latest-research .text-3xl {
+    font-size: 24px;          /* match Bio's h2 (was text-3xl / 30px) */
+    line-height: 32px;
+    margin-bottom: 0.5rem;    /* was mb-6 */
+  }
+  @media (min-width: 1024px) {
+    /* The hero centres an 854px group; Bio sits 259px in (avatar width + gap).
+       Reproduce that offset so the heading and list line up under Bio. */
+    #latest-research .max-w-prose {
+      align-items: flex-start;
+      max-width: 854px;
+      padding-left: 259px;
+    }
+    #latest-research .container.max-w-3xl {
+      max-width: 854px;
+      padding-left: 259px;
+      margin-top: 1rem !important;   /* pull list up to its title (was mt-16 / sm:mt-20) */
+    }
+  }
 </style>
