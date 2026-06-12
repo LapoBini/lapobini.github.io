@@ -1,0 +1,453 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Github Repositories | Lapo Bini</title><link>https://lapobini.github.io/project/</link><atom:link href="https://lapobini.github.io/project/index.xml" rel="self" type="application/rss+xml"/><description>Github Repositories</description><generator>Hugo Blox Builder (https://hugoblox.com)</generator><language>en-us</language><lastBuildDate>Sun, 01 Sep 2024 00:00:00 +0000</lastBuildDate><image><url>https://lapobini.github.io/media/icon_hu13255600560899297663.png</url><title>Github Repositories</title><link>https://lapobini.github.io/project/</link></image><item><title>BayesianVAR.jl</title><link>https://lapobini.github.io/project/bayesian-var/</link><pubDate>Sun, 01 Sep 2024 00:00:00 +0000</pubDate><guid>https://lapobini.github.io/project/bayesian-var/</guid><description>&lt;h2 id="introduction">Introduction&lt;/h2>
+&lt;p>The repository
+contains the code to estimate a Bayesian VAR with minnesota, sum-of-coefficients and dummy-initial-observations priors, and to perform structural analysis using sign reristrictions or external instruments.&lt;/p>
+&lt;p>The repository has an excel file (&lt;strong>Data&lt;/strong> &amp;gt; &lt;strong>FinalData&lt;/strong> &amp;gt; &lt;strong>test.xlsx&lt;/strong>) that can be used for testing and running the model using &lt;strong>main_executer.jl&lt;/strong>. The settings for the VAR (sample dates, directory of the data file, name of the result folder, required packages etc.) can be changed in &lt;strong>Code&lt;/strong> &amp;gt; &lt;strong>SetUp&lt;/strong> &amp;gt; &lt;strong>SetupBVAR.jl&lt;/strong>. Every function contains a brief description of the econometric framework with equations and references.&lt;/p>
+&lt;h3 id="brief-comment-on-the-excel-file">Brief Comment on the Excel File&lt;/h3>
+&lt;p>The model can aggregate series at different frequencies by applying interpolation via splines (&lt;strong>Code&lt;/strong> &amp;gt; &lt;strong>DataSection&lt;/strong> &amp;gt; &lt;strong>readdata_haver.jl&lt;/strong>). Every worksheet with data must be created following the &amp;ldquo;Haver Convention&amp;rdquo; (have a look at the excel file, first column and first 18 rows of &lt;strong>Data_m&lt;/strong>). All the worksheets with data must be named following the convention &amp;ldquo;Data_&amp;rdquo; + frequency (&amp;ldquo;d&amp;rdquo;, &amp;ldquo;w&amp;rdquo;, &amp;ldquo;m&amp;rdquo;, &amp;ldquo;q&amp;rdquo;). Moreover, the function &lt;strong>Code&lt;/strong> &amp;gt; &lt;strong>Toolbox&lt;/strong> &amp;gt; &lt;strong>transformation.jl&lt;/strong>, called inside &lt;strong>readdata_haver.jl&lt;/strong>, applies standard transformations to the data following the instructions provided in &lt;strong>worksheet &amp;ldquo;Legend&amp;rdquo; - columns C-E&lt;/strong> (&amp;ldquo;LOG&amp;rdquo;=1 takes log, &amp;ldquo;DIFF&amp;rdquo;=1 applies difference with respect to previous realization, &amp;ldquo;FILT&amp;rdquo; is used to transform data in YoY growth if the other two cells are set to one). The &lt;strong>worksheet &amp;ldquo;Legend&amp;rdquo; - column F&lt;/strong> specifies the minnesota prior, &lt;strong>worksheet &amp;ldquo;Legend&amp;rdquo; - column G&lt;/strong> specifies which series we want to include.&lt;/p>
+&lt;p>Other instructions about the structure of the excel file are provided in &lt;strong>Code&lt;/strong> &amp;gt; &lt;strong>DataSection&lt;/strong> &amp;gt; &lt;strong>readdata_haver.jl&lt;/strong>, and below in the paragraph that explains how to perform structural analysis.&lt;/p>
+&lt;h2 id="setting-the-priors">Setting the Priors&lt;/h2>
+&lt;p>Let $Y_t = (y_{1t},\dots,y_{nt})'$ be a potentially large vector of random variables. We estimate the following VAR(p) model:
+$$Y_t = c + A_1 Y_{t-1}+\dots+A_p Y_{t-p} + u_t$$
+using the Bayesian approach to overcome the curse of dimensionality via the imposition of prior beliefs on the parameters. In setting the prior distributions, we follow standard practice and use the procedure developed in $\textcolor{orange}{Litterman \; (1986)}$ with modifications proposed by $\textcolor{orange}{Kadiyala\; and\; Karlsson\; (1997)}$ and $\textcolor{orange}{Sims\; and\; Zha\; (1998)}$. The priors are implemented using dummy observations, and the choice of the informativeness of the prior distribution is determined by the marginal likelihood of the observed data; in that sense, we follow strictly the exposition and the procedure of $\textcolor{orange}{Banbura,}$ $\textcolor{orange}{Giannone,}$ $\textcolor{orange}{and}$ $\textcolor{orange}{Reichlin}$ $\textcolor{orange}{(2007)}$ and $\textcolor{orange}{Giannone,}$ $\textcolor{orange}{Lenza,}$ $\textcolor{orange}{Primicieri\, (2012)}$.&lt;/p>
+&lt;h3 id="minnesota-prior">Minnesota Prior&lt;/h3>
+&lt;p>$\textcolor{orange}{Litterman \; (1986)}$ introduced the well known Minnesota prior: the basic principle behind it is that all the equations are centered around the random walk with drift:
+&lt;/p>
+$$ Y_t = c + Y_{t-1} + u_t\,.$$&lt;p>
+This amounts to shrinking the diagonal elements of $A_1$ toward one and the remaining coefficients in $A_1,\dots,A_p$ toward zero. In addition, the prior specification incorporates the belief that the more recent lags should provide more reliable information than the more distant ones and that own lags should explain more of the variation of a given variable than the lags of other variables in the equation.&lt;/p>
+&lt;p>Assuming $\beta = [A_1 \;A_2 \;\dots A_p]$ to be a priori independent and normally distributed, the prior beliefs are imposed by setting the following moments for the prior distribution of the coefficients:
+$$E[(A_k)_{ij}] = \begin{cases}
+\gamma_i \quad \text{if} \;\; j=i \;\; k=1 \\
+0 \quad\; \text{otherwise}
+\end{cases}\;.$$
+Originally, $\textcolor{orange}{Litterman \; (1986)}$ sets $\gamma_i = 1$ for all $i$, reflecting the belief that all the variables are characterized by high persistence. However, this prior is not appropriate for variables displaying substantial mean reversion. For those we impose the prior belief of white noise by setting $\gamma_i = 0$. The variance of the parameters is:
+$$Var((A_k)_{ij}) = \begin{cases}
+\frac{\lambda^2}{\kappa^2} \quad\quad\quad \text{if}\; i=j \\ \vartheta\frac{\lambda^2}{\kappa^2}\frac{\sigma_i^2}{\sigma_j^2} \quad\text{ otherwise}
+\end{cases}\;.$$
+As for the covariance matrix of the residuals, in the original formulation of the minnesota prior it was originally assumed to be diagonal and known: $\Psi = \Sigma$ where $\Sigma = diag(\sigma_1^2,\;\dots, \sigma_n^2)$. However, in the context of the structural analysis we need to take into account possible correlation among the residual of different variables. To overcome this problem we follow $\textcolor{orange}{Kadiyala}$ $\textcolor{orange}{and}$ $\textcolor{orange}{Karlsson\; (1997)}$ and impose a Normal inverted Wishart prior which retains the principles of the Minnesota prior. This is possible under the condition that $\vartheta = 1$, which will be assumed in what follows. Finally, the prior on the intercept $c$ is diffuse.&lt;/p>
+&lt;p>The minnesota prior is implemented in &lt;strong>Code&lt;/strong> &amp;gt; &lt;strong>BVAR&lt;/strong> &amp;gt; &lt;strong>bvar_minnesota_prior.jl&lt;/strong>. First, the function shrinks each variable toward the random walk or the white noise as specified in the &lt;strong>worksheet &amp;ldquo;Legend&amp;rdquo; - column F&lt;/strong>; then, it calculates $\{\sigma^n_1,\dots,\sigma^2_n\}$.&lt;/p>
+&lt;h3 id="sum-of-coefficients-prior">Sum-of-Coefficients Prior&lt;/h3>
+&lt;p>The literature has suggested that improvement in forecasting performance can be obtained by imposing additional priors that constrain the sum of coefficients (see e.g. $\textcolor{orange}{Sims,\;1992}$; $\textcolor{orange}{Sims\; and\; Zha,\; 1998}$; $\textcolor{orange}{Robertson\; and\; Tallman,\; 1999}$). This is the same as imposing “inexact differencing” and it is a simple modification of the Minnesota prior involving linear combinations of the VAR coefficients.&lt;/p>
+&lt;p>We now manipulate the VAR to rewrite it in the error-correction form: &lt;/p>
+$$Y_t = c + A_1 Y_{t-1}+\dots+A_p Y_{t-p} + u_t$$&lt;p> &lt;/p>
+$$\Delta Y_t = c - (I_n - A_1 - A_2- \dots- A_p) Y_{t-1} + C_1 \Delta Y_{t-1} + \dots + C_p \Delta Y_{t-p} + \Delta u_t$$&lt;p> with $C_k = - \sum_{j=k+1}^p A_j$. The second term $- (I_n - A_1 - A_2- \dots- A_p) Y_{t-1} $ is the error correction term, which guarantees stationarity of the model by correcting the current-period change in $Y_t$ with part of the preceding period deviation from the long-run value of the model. The second part, $C_1 \Delta Y_{t-1} + \dots + C_p \Delta Y_{t-p} + \Delta u_t$, is made of stationary terms and hence does not impact the stationarity of the model.&lt;/p>
+&lt;p>We know that $\Pi = I_n - A_1 - A_2- \dots- A_p = 0$ is implied by a VAR in first difference. By inexact differencing, and thus imposing the sum-of-coefficients prior, we shrink $\Pi$ toward zero in order to guarantee that the draws obtained from the posterior are characterized by a unit root rather than by explosive behavior. In this case, $Y_t$ is equal to its previous value, plus the sum of stationary terms not affecting stationarity. It follows that in the limit ($\Pi \xrightarrow{} 0$), each variable in $Y_t$ contains a unit root and the model rules out cointegration.&lt;/p>
+&lt;h3 id="dummy-initial-observation-prior">Dummy-Initial-Observation Prior&lt;/h3>
+&lt;p>As we mentioned before, the sum-of-coefficients prior rules out cointegration in the limit, which may be undesirable. Given &lt;/p>
+$$\Delta Y_t = c - (I_n - A_1 - A_2- \dots- A_p) Y_{t-1} + C_1 \Delta Y_{t-1} + \dots + C_p \Delta Y_{t-p} + \Delta u_t$$&lt;p> by applying the sum-of-coefficients prior, in the limit $\Pi \xrightarrow{} 0$ and we get: &lt;/p>
+$$\Delta Y_t= c + C_1 \Delta Y_{t-1} + \dots + C_p \Delta Y_{t-p} + \Delta u_t$$&lt;p> which is equivalent to &lt;/p>
+$$Y_t= c + Y_{t-1} + C_1 \Delta Y_{t-1} + \dots + C_p \Delta Y_{t-p} + \Delta u_t\;.$$&lt;p>
+Note that the absence of error correction term rules out the possibility of cointegration relations. Thus $\textcolor{orange}{Sims\;(1993)}$ proposed the use of an additional prior known as &amp;ldquo;dummy-initial-observations&amp;rdquo;.&lt;/p>
+&lt;p>The prior states that a no-change forecast for all variables is a good forecast at the beginning of the sample. Then, either all the variables are at their unconditional mean, which implies that the model is stationary despite the unit roots in the variables (implying cointegration), or the dynamic of the system is characterized by an unspecified number of unit roots, and the variables share a common stochastic trend.&lt;/p>
+&lt;h2 id="implementation-of-the-priors">Implementation of the Priors&lt;/h2>
+&lt;h3 id="prior-distribution">Prior Distribution&lt;/h3>
+&lt;p>Following $\textcolor{orange}{Kadiyala\; and\; Karlsson\; (1997)}$ and $\textcolor{orange}{Robertson\; and\; Tallman\; (1999)}$, we impose a Normal Inverted Wishart prior distribution in the form:
+&lt;/p>
+$$
+vec(\beta)|\Psi \sim N(vec(\beta_0), \Psi \otimes \Omega_0 ) \quad \text{and}\quad \Psi \sim iW(S_0, \alpha_0)
+$$&lt;p>
+where the prior parameters $\beta_0$, $\Omega_0$, $S_0$ and $\alpha_0$ are chosen so that prior expectations and
+variances of $\beta$ coincide with those implied by the minnesota prior, and the expectation of $\Psi$ is
+equal to the fixed residual covariance matrix $\Sigma$. We implement the prior by adding dummy observations: it can be shown that adding $T_d$ dummy observations $Y_d$ and $X_d$ to the VAR(p) is equivalent to imposing the Normal inverted Wishart prior with:&lt;/p>
+&lt;ul>
+&lt;li>$\beta_0 = (X_d'X_d)^{−1}(X_d'Y_d)$;&lt;/li>
+&lt;li>$\Omega_0 = (X_d'X_d)^{-1}$;&lt;/li>
+&lt;li>$S_0 = (Y_d − X_d \beta_0)'(Y_d − X_d\beta_0)$;&lt;/li>
+&lt;li>$α_0 = T_d − k$.&lt;/li>
+&lt;/ul>
+&lt;p>where $S_0$ is a $(k\text{x}k)$ scale matrix and $\alpha_0$ are the degrees of freedom of the Inverted Wishart distribution.&lt;/p>
+&lt;h3 id="dummy-observations">Dummy Observations&lt;/h3>
+&lt;p>We follow $\textcolor{orange}{Banbura,\; Giannone,\; and\; Reichlin\; (2007)}$ and implement the prior distribution using dummy observations. The dummy observations $Y_d$ and $X_d$ are constructed as follows:
+&lt;/p>
+$$
+Y_d = \begin{bmatrix}
+diag(\delta_1\sigma_1,\dots,\delta_n\sigma_n)/\lambda\\
+0_{n(p-1)\,\text{x}\,n}\\[0.5em]\hline\\[-0.8em]
+diag(\sigma_1,\dots,\sigma_n)\\[0.5em]\hline\\[-0.8em]
+0_{1\text{x}n}\\[0.5em]\hline\\[-0.8em]
+diag(\mu_1\delta_1,\dots,\mu_n\delta_n)/\tau\\[0.5em]\hline\\[-0.8em]
+diag(\mu_1,\dots,\mu_n)/\gamma
+\end{bmatrix}
+\quad
+X_d = \begin{bmatrix}
+J_p \otimes diag(\sigma_1,\dots,\sigma_n)/\lambda &amp; 0_{np \text{x} 1}\\[0.5em]\hline\\[-0.8em]
+0_{n \text{x} np} &amp; 0_{n \text{x} 1} \\[0.5em]\hline\\[-0.8em]
+0_{1 \text{x} np} &amp; \varepsilon\\[0.5em]\hline\\[-0.8em]
+\mathbf{1}_p\otimes diag(\mu_1\delta_1,\dots,\mu_n\delta_n)/\tau &amp; 0_{n \text{x} 1} \\[0.5em]\hline\\[-0.8em]
+\mathbf{1}_p\otimes diag(\mu_1,\dots,\mu_n)/\gamma &amp; 1/\gamma
+\end{bmatrix}
+$$&lt;p>
+where the the first block of dummies imposes prior beliefs on the autoregressive coefficients, the second block implements the prior for the covariance matrix, the third block reflects the uninformative prior for the intercept ($\varepsilon$), the fourth block implements the sum-of-coefficients prior, the fifth one the dummy initial observation prior. The function that constructs the dummy observations could be found in &lt;strong>Code&lt;/strong> &amp;gt; &lt;strong>BVAR&lt;/strong> &amp;gt; &lt;strong>bvar_dummies.jl&lt;/strong>.&lt;/p>
+&lt;p>Notice that the prior are parametrized using additional hyperparameters, also known as hyperpriors:&lt;/p>
+&lt;ol>
+&lt;li>$\delta_i$, which assumes value 1 or 0, reflecting the belief that the $i^{th}$ series is characterized by high persistence (random-walk) or substantial mean reversion (white noise).&lt;/li>
+&lt;li>$\sigma_i$, which is the standard deviation of the residual of the random walk or the white noise.&lt;/li>
+&lt;li>$\lambda$ controls the overall tightness of the prior distribution around the random walk or white noise and governs the relative importance of the prior beliefs with respect to the information contained in the data. $\lambda = 0$ the posterior is equal to the prior, while $\lambda = \infty$ the posterior is the OLS.&lt;/li>
+&lt;li>$\tau$ controls for the degree of shrinkage for the sum-of-coefficient prior: as $\tau$ goes to zero we approach
+the case of exact differences and, as $\tau$ goes to infinity, we approach the case of no shrinkage.&lt;/li>
+&lt;li>$\mu_i$ aims at capturing the unconditional mean of variable $y_{it}$.&lt;/li>
+&lt;li>$\gamma$ controls the tightness of the dummy initial observation prior, when it approaches infinity we have no shrinkage.&lt;/li>
+&lt;/ol>
+&lt;p>How should the hyperpriors be specified? What is the optimal lag number? What are the best shrinkage values for the prior distribution? The goal is to ensure that the model&amp;rsquo;s prior assumptions align well with the observed data, improving the model&amp;rsquo;s overall performance without overfitting. However, the priors are influenced by the hyperpriors that control how strong or loose our prior beliefs are. The procedure to optimize their values is illustrated in the next paragraph.&lt;/p>
+&lt;h3 id="informativeness-of-the-prior-distribution">Informativeness of the Prior Distribution&lt;/h3>
+&lt;p>From a Bayesian perspective, the choice of the informativeness of the prior distribution is conceptually identical to the inference on any other unknown parameter of the model. Suppose, for instance, that a model is described by a likelihood function $p(y|\theta)$ and a prior distribution $p_\gamma(\theta)$ where $\theta$ is the vector of the VAR(p) parameters and $\gamma$ collects the hyperparameters (hyperpriors), i.e. those coefficients that parameterize the prior distribution, but do not directly affect the likelihood. It is then natural to choose these hyperparameters by interpreting the model as a hierarchical model, i.e. replacing $p_\gamma(\theta)$ with $p(\theta|\gamma)$ and evaluating their posterior ($\textcolor{orange}{Berger,\, 1985}$; $\textcolor{orange}{Koop,\, 2003}$).&lt;/p>
+&lt;p>Following $\textcolor{orange}{Giannone,\, Lenza,\, Primicieri\, (2012)}$, we pick the hyperpriors that maximize the marginal likelihood of the data, i.e. the optimal hyperpriors is the set of hyperparameters that makes the data most likely after integrating out the uncertainty in the model parameters. The procedure is implemented in &lt;strong>Code&lt;/strong> &amp;gt; &lt;strong>BVAR&lt;/strong> &amp;gt; &lt;strong>bvar_opt_prior.jl&lt;/strong>&lt;/p>
+&lt;h2 id="posterior-distribution">Posterior Distribution&lt;/h2>
+&lt;p>We now augment the data with the dummy observations:&lt;/p>
+&lt;ul>
+&lt;li>$Y_* = (Y', Y_d')'$;&lt;/li>
+&lt;li>$X_* = (X', X_d')'$;&lt;/li>
+&lt;li>$U_* = (U', U_d')'$;&lt;/li>
+&lt;/ul>
+&lt;p>and we rewrite the VAR(p) as a general regression model:
+&lt;/p>
+$$Y_* = X_* \,\beta + U_*\,.$$&lt;p>
+The posterior distribution has the form:
+&lt;/p>
+$$
+vec(\beta)|\Psi,Y \sim N(vec(\tilde \beta), \Psi \otimes (X_*' X_*)^{-1} ) \quad \text{and}\quad \Psi|Y \sim iW(\tilde \Sigma, T_d + T + 2 - n)\,.
+$$&lt;p>
+It can be noticed that the posterior expectations of the coefficients corresponds to the OLS estimates of the regression model based on the appended data, with:&lt;/p>
+&lt;ul>
+&lt;li>$\tilde \beta = (X_*'X_*)^{−1}(X_*'Y_*)$;&lt;/li>
+&lt;li>$\tilde \Sigma = (Y_* − X_* \tilde \beta)'(Y_* − X_* \tilde \beta)$;&lt;/li>
+&lt;/ul>
+&lt;p>The functions that draw from the posterior distributions given the optimal informativeness of the prior distribution can be found in &lt;strong>Code&lt;/strong> &amp;gt; &lt;strong>BVAR&lt;/strong> &amp;gt; &lt;strong>bvar_gibbs_helper.jl&lt;/strong> &amp;gt; &lt;strong>bvar_IWRD&lt;/strong> (Inverted Wishart) and &lt;strong>bvar_MNRD&lt;/strong> (Multivariate Normal).&lt;/p>
+&lt;h2 id="structural-identification">Structural Identification&lt;/h2>
+&lt;p>The structural VAR(p) is specified as
+&lt;/p>
+$$ B_0Y_t=B_1Y_{t-1}+\dots+B_pY_{t-p}+\varepsilon_t$$&lt;p>
+If we multiply both sides of the structural form of the VAR by $B_0^{-1}$, the matrix governing the contemporaneous relations among endogenous variables, also known as structural impact multiplier matrix, we obtain the reduced form representation:
+&lt;/p>
+$$ Y_t=B_0^{-1}B_1Y_{t-1}+\dots+B_0^{-1}B_pY_{t-p}+B_0^{-1}\varepsilon_t $$$$ Y_t=A_1Y_{t-1}+\dots+A_pY_{t-p}+u_t \;.$$&lt;p>
+The key implication is that the vector of structural shocks $\varepsilon_t$ can be seen as the linear combination of the reduced form residuals $u_t$, i.e. $\varepsilon_t=B_0u_t$. Thus, given that our stochastic process $\{Y_t\}_{t\geq0}$ is weakly stationary by construction, the Wold Representation theorem allows us to express $Y_t$ as the infinite sum of the reduced form residuals $u_t$ with weights the dynamic multiplier $\Phi_h$:
+&lt;/p>
+$$Y_t=\sum_{h=0}^{\infty}\Phi_hu_{t-h}\;.$$&lt;p>
+At this point we derive the structural moving average representation of our vector autoregressive process by multiplying and dividing each element of the summation by the matrix $B_0$:
+&lt;/p>
+$$ Y_t=\sum_{h=0}^{\infty}\Phi_hB_0^{-1}B_0u_{t-h}=\sum_{h=0}^{\infty}\Theta_h\varepsilon_{t-h}\;.$$&lt;p>
+Our goal is to estimate the structural impulse response functions of our endogenous variables to the desired exogenous shocks. We define the impulse responses at time $t$ as:
+&lt;/p>
+$$ \frac{\partial Y_{t+h}}{\partial \varepsilon_t}=\Theta_h= \Phi_h B_0^{-1}
+$$&lt;p>
+where $\Phi_h$ is estimated by OLS. The main goal is to estimate $B_0^{-1}$ or one of its column associated with the desired structural shock $\varepsilon_{jt}$. The repository implements two different identification strategies, using sign restrictions or via external instrument.&lt;/p>
+&lt;h3 id="sign-restrictions">Sign Restrictions&lt;/h3>
+&lt;p>The Gibbs sampling algorithm to estimate the parameters of the VAR model cycles through two steps, sampling successively from $p(\beta|\Psi,Y)$ and $p(\Psi|\beta,Y)$. Once past the burn-in stage the following steps are used to calculate the structural impact multiplier matrix $B_0$ via sign restrictions à la $\textcolor{orange}{Ramirez}$ $\textcolor{orange}{et}$ $\textcolor{orange}{al.}$ $\textcolor{orange}{(2010)}$:&lt;/p>
+&lt;ol>
+&lt;li>Draw a $(n\text{x}n)$ matrix $K$ from the standard normal distribution.&lt;/li>
+&lt;li>Calculate the matrix $Q$ from the $QR$ decomposition of $K$, note that $Q$ is orthonormal i.e. $Q'Q = I_n$.&lt;/li>
+&lt;li>Calculate the choleski decomposition of the current draw $\Psi = \tilde B_0' \tilde B_0$.&lt;/li>
+&lt;li>Calculate the candidate $B_0$ matrix as $B_0 = Q \tilde B_0$. Note that because $Q'Q = I_n$ this implies that $B_0'B_0$
+will still equal $\Psi$. By calculating the product $B_0 = Q \tilde B_0$ we alter the elements of $\tilde B_0$ but not the property that $\Psi = \tilde B_0' \tilde B_0$.&lt;/li>
+&lt;li>Check the sign restrictions related to the $j^{th}$ column of $B_0$. If they are not satisfied, go to step 1 and try with a new $K$ matrix.&lt;/li>
+&lt;li>For a valid candidate $B_0$, compute the Structural IRFs recursively assuming that the system was at the steady state at time $t$ when the shock hitted the system; then, the structural IRFs for each retained Gibbs draw are saved.&lt;/li>
+&lt;/ol>
+&lt;p>The procedure is implemented in &lt;strong>Code&lt;/strong> &amp;gt; &lt;strong>BVAR&lt;/strong> &amp;gt; &lt;strong>bvar_sign_gibbs.jl&lt;/strong>.&lt;/p>
+&lt;h3 id="iv-identification">IV Identification&lt;/h3>
+&lt;p>The identification strategy consists of using external instruments which are able to capture a fraction of the true structural shock. This methodology was introduced by $\textcolor{orange}{Stock}$ $\textcolor{orange}{and}$ $\textcolor{orange}{Watson}$ $\textcolor{orange}{(2012)}$ and it has become increasingly popular in the literature seeking to estimate the effects of monetary policy shock. We apply the same procedure outlined in $\textcolor{orange}{Stock}$ $\textcolor{orange}{and}$ $\textcolor{orange}{Watson}$ $\textcolor{orange}{(2018)}$.&lt;/p>
+&lt;p>We assume that we are interested in the shock order first $\varepsilon_{1t}$, without lost of generality. The instrument must satisfy the so called &amp;ldquo;SVAR-IV&amp;rdquo; conditions:&lt;/p>
+&lt;ol>
+&lt;li>$E[Z_t\varepsilon_{1t}]=\alpha\neq 0 \quad\quad\quad\quad(relevance)$&lt;/li>
+&lt;li>$E[Z_t\varepsilon_{jt}]=0\quad \forall j\neq 1 \quad\quad\,(exogeneity)$&lt;/li>
+&lt;/ol>
+&lt;p>Given the construction of $\Theta_h$, the goal is to identify only the first column of $B_0^{-1}$:
+&lt;/p>
+$$
+\begin{gather*}
+\begin{split}
+&amp;\Theta_0=\mathrm{I}B_0^{-1}\quad\\
+&amp;\Theta_1=\Phi_1B_0^{-1}\\
+&amp;\;\vdots\\
+&amp;\Theta_h=\Phi_hB_0^{-1}
+\end{split}\quad\quad
+\begin{split}
+B_0^{-1}=\begin{bmatrix}
+b_{1,1}&amp;*&amp;*&amp;\dots\\
+b_{2,1}&amp;*&amp;*&amp;\dots\\
+\vdots&amp;\vdots&amp;\vdots&amp;\vdots\\
+b_{n,1}&amp;*&amp;*&amp;\dots
+\end{bmatrix}{}
+\end{split}{}
+\end{gather*}
+$$&lt;p>
+Therefore, if we exploit the relation between structural shocks and reduced form residuals, $B_0^{-1}\varepsilon_t=u_t$, and the SVAR-IV conditions, we obtain:
+&lt;/p>
+$$
+\begin{gather*}
+\begin{split}
+&amp;\mathrm{E}[Z_tu_t]=B_0^{-1}\mathrm{E}[Z_t\varepsilon_t]\\[0.3em]
+&amp;\mathrm{E}[Z_tu_t]=B_0^{-1}\begin{bmatrix}
+\alpha\\
+0
+\end{bmatrix}\\[0.3em]
+&amp; \mathrm{E}[Z_tu_t]=\begin{bmatrix}
+b_{1,1}\,\alpha\\
+b_{2:n,1}\,\alpha
+\end{bmatrix}
+\end{split}
+\end{gather*}
+$$&lt;p>
+If we normalize the coefficient of the instrumented variable $b_{1,1}$ to be equal to one, the coefficients of the first column of $B_0^{-1}$ relative to the exogenous shock can be expressed as:
+&lt;/p>
+$$
+b_{j,1}=\big(\mathrm{E}[Z_tu_{1,t}])^{-1}(\mathrm{E}[Z_tu_{j,t}]\big)\quad\textit{with}\quad j=2,...,n\;.
+$$&lt;p>The Gibbs sampling algorithm to estimate the parameters of the VAR model cycles through two steps, sampling successively from $p(\beta|\Psi,Y)$ and $p(\Psi|B,Y)$. Once past the burn-in stage, For each draw of $\beta$ and $\Psi$, we compute the corresponding sequence of residual $u_t = Y_t - X_t \beta$ without using the appended data. Thus, we compute $\hat b_{j,1}$ for $j=2,\dots,n$ by GMM. The function performing these steps is &lt;strong>Code&lt;/strong> &amp;gt; &lt;strong>BVAR&lt;/strong> &amp;gt; &lt;strong>bvar_iv_gibbs.jl&lt;/strong>.&lt;/p>
+&lt;h3 id="what-to-do-in-the-excel-file">What to do in the Excel File&lt;/h3>
+&lt;ul>
+&lt;li>
+&lt;p>Create &lt;strong>worksheet &amp;ldquo;Sign&amp;rdquo;&lt;/strong> if you want to perform structural identification via sign restrictions. The first column, &lt;strong>&amp;ldquo;policy variable&amp;rdquo;&lt;/strong>, assigns to each shock the corresponding column of $B_0^{-1}$. In the excel file, the first shock (1), column &lt;strong>&amp;ldquo;Global Supply Chain Shock&amp;rdquo;&lt;/strong>, corresponds to the column of $B_0^{-1}$ relative to the variable &lt;em>GSCPI&lt;/em>. The second shock (2), column &lt;strong>&amp;ldquo;Other Shock&amp;rdquo;&lt;/strong>, corresponds to the column of $B_0^{-1}$ relative the variable &lt;em>United States_GDP&lt;/em>. The signs of the response of each variable are created using $\textcolor{red}{(+1)}$ and $\textcolor{blue}{(-1)}$, leave the cell blank if you do not want to impose any restriction.&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Create &lt;strong>worksheet &amp;ldquo;IV&amp;rdquo;&lt;/strong> if you want to compute Structural IRFs using an external instrument. The first column of the worksheet must contain the dates, the second one the shock (only one shock for each run (sigh), going to implement different IVs and multiple IVs for a single shock soon). The column name for the shock MUST BE the ticker of the instrumented variable (we are going to identify only the column of $B_0^{-1}$ corresponding to the instrumented variable).&lt;/p>
+&lt;/li>
+&lt;/ul></description></item><item><title>Monetary Economics</title><link>https://lapobini.github.io/project/econ210c/</link><pubDate>Mon, 24 Jun 2024 00:00:00 +0000</pubDate><guid>https://lapobini.github.io/project/econ210c/</guid><description>&lt;h2 id="introduction">Introduction&lt;/h2>
+&lt;p>The repository
+contains the solutions to assignments and final exam for ECON210C of Prof Johannes Wieland (Spring 2024). The course covered different solution methods for RBC and NK DSGE models, and identification strategies for structural VAR.&lt;/p>
+&lt;h2 id="sequence-space">Sequence Space&lt;/h2>
+&lt;p>The first assignment (&lt;strong>ECON210C&lt;/strong> &amp;gt; &lt;strong>HW1&lt;/strong>) required to solve a RBC DSGE model using the Sequence Space methodology ($\textcolor{orange}{Auclert}$ $\textcolor{orange}{et}$ $\textcolor{orange}{al.,}$ $\textcolor{orange}{2021}$). The code in &lt;strong>ECON210C&lt;/strong> &amp;gt; &lt;strong>HW1&lt;/strong> &amp;gt; &lt;strong>RBC.jl&lt;/strong> solves a specific RBC model with a composite basket made of consumption good and money. In this paragraph we provide a general overview of how the sequence space procedure works. The basic idea is to organize the GE model into blocks that represents different behaviors of possible heterogeneous agents and interact in GE via a small set of aggregates.&lt;/p>
+&lt;p>Let&amp;rsquo;s start by considering the definition of equilibrium for a basic RBC model. The equilibium is defined as an allocation $\{C_{t+s},N_{t+s},Y_{t+s},B_{t+s}\}_{s=0}^{\infty}$, a set of prices $\{W_{t+s},P_{t+s},Q_{t+s}\}_{s=0}^{\infty}$, an exogenous processes $\{A_{t+s},Tr_{t+s},M_{t+s}\}_{s=0}^{\infty}$ and initial conditions for bonds and capital such that:&lt;/p>
+&lt;ol>
+&lt;li>Households maximize utility subject to budget constraints.&lt;/li>
+&lt;li>Firms maximize profits given their technology.&lt;/li>
+&lt;li>The government satisfies its budget constraint.&lt;/li>
+&lt;li>Markets clear.&lt;/li>
+&lt;/ol>
+&lt;p>The set of log-linearized equilibrium conditions, with $\hat x \approx \ln X_t - \ln X^{ss}$, is given by:
+$$
+\begin{gather*}
+\begin{split}
+Y_t&amp;=A_t N_{t} \\
+\frac{W_t}{P_t}&amp;= A_t \\
+\frac{W_t}{P_t}&amp;=\frac{\chi N_t^\varphi}{C_t^{-\gamma}} \\
+Y_t&amp;=C_t \\
+C_{t}^{-\gamma}&amp;=\beta E_t\big\{R_{t+1} C_{t+1}^{-\gamma} \big\}
+\end{split}
+\quad\quad \xrightarrow{} \quad\quad
+\begin{split}
+\hat{y}_t&amp;=\hat{a}_t + \hat{n}_{t} \\
+\hat{w}_t - \hat{p}_t &amp;= \hat{a}_t \\
+\hat{w}_t - \hat{p}_t &amp;=\varphi \hat{n}_t + \gamma \hat{c}_t \\
+\hat{y}_t&amp; =\hat{c}_t \\
+-\hat{c}_{t}&amp;= E_t\left\{\hat{r}_{t+1} - \gamma \hat{c}_{t+1} \right\}
+\end{split}
+\end{gather*}
+$$
+&lt;/p>
+&lt;p>Let&amp;rsquo;s now denote with $\mathrm{X} = \{X_1,\dots,X_t\}$ the perfect-foresight time sequence of aggregate macroeconomic outcomes, and with $\mathrm{Z} = \{Z_1,\dots,Z_t\}$ the sequence of exogenous shocks. A perfect-foresight equilibrium given shock sequence $\mathrm{Z}$ is the set of paths $\mathrm{X}$ such that:
+&lt;/p>
+$$ F(\mathrm{X}, \mathrm{Z}) = 0 $$&lt;p>
+where $F(\cdot)$ embeds the model&amp;rsquo;s equilibrium relationships highlighted before. Then, we can define a mapping from $\mathrm{Z}$ to $\mathrm{X}$ by taking total derivative:
+&lt;/p>
+$$ \text{d}F(\mathrm{X}, \mathrm{Z}) = \text{d}0 $$$$ F_x \, \text{d}\mathrm{X} + F_z \, \text{d}\mathrm{Z} = 0 $$&lt;p>
+However, we often times can arrive at a lower-dimensional representation of equilibria that does not involve all variables: given $\mathrm{Z}$, we may be able to characterize equilibria via
+&lt;/p>
+$$ H(\mathrm{U}, \mathrm{Z}) = 0 $$&lt;p>
+where $\mathrm{U} = \{U_1,\dots,U_t\}$ is the time path of some unknown macroeconomic outcomes with $ n_u &lt; n_x$. Thus, $\mathrm{X}$ is determined residually via
+&lt;/p>
+$$ \mathrm{X}= M(\mathrm{U}, \mathrm{Z}) \; .$$&lt;p>
+The number of unknown endogenous variables ($n_u$) in $\mathrm{U}$ must be the same as the number of equilibrium condition in $H(\cdot)$ (in the code &lt;strong>ECON210C&lt;/strong> &amp;gt; &lt;strong>HW1&lt;/strong> &amp;gt; &lt;strong>RBC.jl&lt;/strong> only one equilibrium condition, bond demand equation, and one endogenous variable, labor supply). To first order we can write:
+&lt;/p>
+$$ \text{d}H(\mathrm{U}, \mathrm{Z}) = \text{d}0 $$$$ \text{d}H(\mathrm{U}, \mathrm{Z}) = H_u \, \text{d}\mathrm{U} + H_z \, \text{d}\mathrm{Z} = 0 $$$$ \text{d}\mathrm{U} = - H_u^{-1} H_z \, \text{d}\mathrm{Z} \, .$$&lt;p>
+Thus, we derive the solution of the model as follows:
+&lt;/p>
+$$ \text{d}\mathrm{X} = M_u \, \text{d}\mathrm{U} + M_z \, \text{d}\mathrm{Z} $$$$ \text{d}\mathrm{X} = M_u \big( - H_u^{-1} H_z \, \text{d}\mathrm{Z} \, \big) + M_z \, \text{d}\mathrm{Z} \, .$$&lt;p>
+Remember that $H_u$ and $H_z$ are sequence-space Jacobians, which are computed as:&lt;/p>
+&lt;ol>
+&lt;li>$ H_u = \frac{\partial H}{\partial \mathrm{U}} = \frac{\partial H}{\partial X} \frac{\partial X}{\partial \mathrm{U}}$&lt;/li>
+&lt;li>$ H_z = \frac{\partial H}{\partial \mathrm{Z}} = \frac{\partial H}{\partial X} \frac{\partial X}{\partial \mathrm{Z}}$&lt;/li>
+&lt;/ol>
+&lt;p>The solution of the model gives us immediately the structural IRFs to the $j^{th}$ shock of interest:
+&lt;/p>
+$$ \Theta_{\cdot,j,\cdot} = M_u \big( - H_u^{-1} H_{z_j} e_1 \, \big) + M_{z_j} \, e_1 \, .$$&lt;p>
+where the indicatior vector $e_1 = (1, 0, \dots, 0)'$ specifies a transitory shock happening at $t=0$ and then the system converges back to steady state (stability). For $t=1,2,\dots$ the linearized optimality conditions hold in expectation. The sequence space procedure has given us the $SVMA(\infty)$ representation:
+&lt;/p>
+$$ \mathrm{X}_t=\sum_{h=0}^{\infty}\Theta_h\varepsilon_{t-h} \, . $$&lt;h2 id="structural-var">Structural VAR&lt;/h2>
+&lt;p>The second assignment (&lt;strong>ECON210C&lt;/strong> &amp;gt; &lt;strong>HW2&lt;/strong>) asked to perform an empirical analysis to study the assumption of money neutrality. The students were asked to use Structural Vector Autoregressive (SVAR) models to study the response of real activities and inflation to an exogenous monetary policy shock. The identification strategies used are the Cholesky decomposition of $\textcolor{orange}{Sims}$ $\textcolor{orange}{(1980)}$ and the approach of $\textcolor{orange}{Romer}$ $\textcolor{orange}{and}$ $\textcolor{orange}{Romer}$ $\textcolor{orange}{(2004)}$.&lt;/p>
+&lt;h3 id="cholesky-decomposition">Cholesky Decomposition&lt;/h3>
+&lt;p>Let $Y_t = (y_{1t},\dots,y_{kt})'$ be a vector of macroeconomic variables, the structural VAR of order p is given by:
+&lt;/p>
+$$
+B_0Y_t=B_1Y_{t-1}+\dots+B_pY_{t-p}+\varepsilon_t.
+$$&lt;p>
+where $\varepsilon_t$ is the $k$-dimensional vector of structural shocks and $B_0$ is the $(k\text{x}k)$ matrix governing the contemporaneous relations among endogenous variables. If we multiply both sides of the SVAR by $B_0^{-1}$ we obtain the reduced form VAR representation:
+&lt;/p>
+$$ Y_t=B_0^{-1}B_1Y_{t-1}+\dots+B_0^{-1}B_pY_{t-p}+B_0^{-1}\varepsilon_t $$$$ Y_t=A_1Y_{t-1}+\dots+A_pY_{t-p}+u_t \;.$$&lt;p>
+Theerefore, the vector of structural shocks $\varepsilon_t$ can be seen as the linear combination of the reduced form residuals $u_t$: &lt;/p>
+$$\varepsilon_t=B_0u_t \quad\quad \text{with} \quad\quad \varepsilon_t \sim N(0, I_k) \,.$$&lt;p>
+To derive the formulation of the structural impulse response functions $\partial Y_{t+h}/\partial \varepsilon_t = \Theta_j$, we are going to cast the VAR in its infinite-order structural vector moving average (SVMA) representation. First, let&amp;rsquo;s rewrite the VAR(p) in companion form:
+&lt;/p>
+$$
+\mathbb{\xi}_t= \mathbb{A \xi}_{t-1} + U_t
+$$$$
+\xi_t=
+\begin{bmatrix}
+Y_t \\
+Y_{t-1} \\
+Y_{t-2} \\
+\vdots \\
+Y_{t-p+1}
+\end{bmatrix}\,
+\mathbb{A}=
+\begin{bmatrix}
+A_1 &amp; A_2 &amp; \dots &amp; A_{p-1} &amp; A_p\\
+I_k&amp; 0_k &amp; \dots &amp; 0 &amp;0\\
+0 &amp; I_k &amp; \dots &amp; 0 &amp; 0\\
+\vdots&amp; &amp; &amp; &amp; \vdots\\
+0 &amp; 0 &amp; \dots &amp; I_k &amp; 0
+\end{bmatrix}\,
+U_t=
+\begin{bmatrix}
+u_t \\
+0 \\
+0 \\
+\vdots \\
+0
+\end{bmatrix}\,.
+$$&lt;p>
+The matrix $\mathbb{A}$ is estimated by OLS:
+&lt;/p>
+$$
+\mathbb{A}=(\xi_t \xi_{t-1}^{'})(\xi_{t-1} \xi_{t-1}^{'})^{-1} \; .
+$$&lt;p>
+Since our stochastic process $\{\xi_t\}_{t\geq0}$ is weakly stationary by construction, we apply the Wold Decomposition Theorem to express the companion form VAR as an infinite-order moving average:
+&lt;/p>
+$$
+\mathbb{Y}_t=\sum_{h=0}^{\infty}\mathbb{A}^h U_{t-h} \, .
+$$&lt;p>
+If we pre-multiply both sides by $J=[I_k \quad 0_{k \text{x} k(p-1)}]$ and we multiply and divide the right-hand side by $B_0$ we get the $SVMA(\infty)$ representation:
+&lt;/p>
+$$
+\begin{gather*}
+\begin{split}
+J\mathbb{Y}_t &amp;=\sum_{h=0}^{\infty}J\mathbb{A}^h J^{'} J U_{t-h} \\
+Y_t &amp;=\sum_{h=0}^{\infty}\Phi_h u_{t-h} \\
+Y_t &amp;=\sum_{h=0}^{\infty}\Phi_h B_0^{-1} B_0 u_{t-h} \\
+Y_t &amp;=\sum_{h=0}^{\infty} \Theta_h \varepsilon_{t-h} \, .
+\end{split}
+\end{gather*}
+$$&lt;p>
+Thus, the sequence of structural IRFs is defined as:
+&lt;/p>
+$$
+\{ \; \Theta_0=\mathrm{I} B_0^{-1}, \Theta_1=\Phi_1 B_0^{-1},\, \dots, \, \Theta_h = \Phi_h B_0^{-1} \; \} \, .
+$$&lt;p>
+As mentioned before, the estimation of $B_0^{-1}$ is performed using the most commonly used identification method in macroeconomics, the Cholesky Decocomposition. It was introduced by $\textcolor{orange}{Sims}$ $\textcolor{orange}{(1980)}$, and it imposes alternative sets of recursive zero restrictions on the contemporaneous coefficients. The recursive structure that we impose follows the spirit of $\textcolor{orange}{Christiano}$ $\textcolor{orange}{et}$ $\textcolor{orange}{al.}$ $\textcolor{orange}{(1999)}$. In particular, the variables in $Y_t$ are ordered as follows:
+&lt;/p>
+$$
+\mathrm{Y_t}=\begin{bmatrix}slow\;moving\\[0.5em]\hline\\[-0.8em]
+policy\;instrument\\[0.5em]\hline\\[-0.8em]
+fast\;moving
+\end{bmatrix}
+=\begin{bmatrix} \ln GDP_t\\[0.5em]\hline\\[-0.8em]
+ffr_t \\[0.5em]\hline\\[-0.8em]
+\ln CPI_t
+\end{bmatrix}\, .
+$$&lt;p>
+The recursive structure implies that the slow moving variable, log of real GDP, does not react to a monetary policy shock within the period (it only reacts to a shock to GDP itself), while the fast moving one does react to all the different shocks hitting the system. This identification strategy enforces a lower triangular structure on the matrix $B_0$, and, consequently, $B_0^{-1}$ will also be lower triangular:
+&lt;/p>
+$$
+B_0^{-1} = \begin{bmatrix}
+b_{11} &amp; \textcolor{orange}{0} &amp; 0 \\
+b_{21} &amp; \textcolor{orange}{b_{22}} &amp; 0 \\
+b_{31} &amp; \textcolor{orange}{b_{32}} &amp; b_{33} \\
+\end{bmatrix} \; .
+$$&lt;p>
+The matrix is derived by applying the Cholesky Decomposition to the variance/covariance matrix of the residuals:
+&lt;/p>
+$$ \mathrm{E}[\varepsilon_t \varepsilon_t'] = \mathrm{E}[B_0 u_t u_t' B_0'] $$$$\mathrm{I}_{k} = B_0 \Sigma_u B_0' $$$$ \Sigma_u = B_0^{-1} B_0^{-1} $$&lt;p>The function &lt;strong>ECON210C&lt;/strong> &amp;gt; &lt;strong>HW2&lt;/strong> &amp;gt; &lt;strong>SVAR.jl&lt;/strong> &amp;gt; &lt;strong>IRF_CH&lt;/strong> performs the identification via Cholesky Decomposition, while &lt;strong>ECON210C&lt;/strong> &amp;gt; &lt;strong>HW2&lt;/strong> &amp;gt; &lt;strong>SVAR.jl&lt;/strong> &amp;gt; &lt;strong>WILD_CH&lt;/strong> implements the wild bootstrap routine to compute the confidence intervals.&lt;/p>
+&lt;h3 id="romer--romer-shock">Romer &amp;amp; Romer Shock&lt;/h3>
+&lt;p>The function &lt;strong>ECON210C&lt;/strong> &amp;gt; &lt;strong>HW2&lt;/strong> &amp;gt; &lt;strong>SVAR.jl&lt;/strong> &amp;gt; &lt;strong>IRF_RR&lt;/strong> estimates the structural IRFs using the monetary policy shock and the procedure of $\textcolor{orange}{Romer}$ $\textcolor{orange}{and}$ $\textcolor{orange}{Romer}$ $\textcolor{orange}{(2004)}$.&lt;/p>
+&lt;p>Romer and Romer use narrative evidence to derive a series of intended changes in the federal funds rate (using the FOMC announcments from the 1990s, before that, the two had to trawl through meeting minutes to figure it out). They then regress the change in the intended FFR on the Greenbook forecast of RGDP growth, inflation and unemployment and take the residual from this regression, which &amp;ldquo;shows changes in the intended funds rate not taken in response to information about future economic developments. The resulting series for monetary policy shocks should be relatively free of both endogenous and anticipatory actions.&amp;rdquo;&lt;/p>
+&lt;p>The procedure for the estimation of the structural IRF is the following:&lt;/p>
+&lt;ol>
+&lt;li>Given the external monetary policy instrument $Z_t$, we estimate the model in log difference ($\Delta Y_t$):
+$$ \Delta Y_t = C + \sum_{i=1}^{p} A_i \Delta Y_{t-i} + \sum_{j=1}^{s} \gamma_j Z_{t-j} + e_t \, ;$$&lt;/li>
+&lt;li>Assuming that the system was at steady state at time $t$, we compute: $$ \theta_{t+h} = \gamma_h + A_1 \theta_{t+h-1} + \dots + A_p \theta_{t+h-p} \, .$$&lt;/li>
+&lt;li>Lastly, the structural IRFs of the log of the variables are obtained as $$\Theta_h = \sum_{j=1}^{h} \theta_{t+j} \; .$$&lt;/li>
+&lt;/ol>
+&lt;h2 id="undetermined-coefficients">Undetermined Coefficients&lt;/h2>
+&lt;p>The third assignment (&lt;strong>ECON210C&lt;/strong> &amp;gt; &lt;strong>HW3&lt;/strong>) asked to solve the canonical log-linearized New-Keynesian DSGE model as a function of a TFP shock using the undetermined coefficient method. In this In this section, we will walk through the entire solution process.&lt;/p>
+&lt;p>The core of the benchmark three-equation New-Keynesian model is:
+&lt;/p>
+$$
+\begin{gather*}
+\begin{split}
+(AD) \quad \hat y_t &amp;= E_t[\,\hat y_{t+1}\,] - \sigma \big(\, \hat i_t - E_t[\,\hat \pi_{t+1}\,]\, \big) \\
+(AS) \quad \hat \pi_t &amp;= \kappa \big(\, \hat y_t - \hat y_t^f \,\big) + \beta E_t[\,\hat \pi_{t+1}\,] \\
+(MP) \quad \hat i_t &amp; = \phi_{\pi} \hat \pi_t + \nu
+\end{split}
+\end{gather*}
+$$&lt;p>
+where the output level of flexible prices is &lt;/p>
+$$\hat y^f_t = \frac{1+\varphi}{\varphi + \gamma}\hat a_t = \Omega \hat a_t \, ,$$&lt;p> the TFP shock follows an AR(1) process &lt;/p>
+$$\hat a_t = \rho_a \hat a_{t-1} + \varepsilon^a_t$$&lt;p> and the monetary policy shock is assumed to be zero $\nu = 0$. The other equations we are interested in are:
+&lt;/p>
+$$
+\begin{gather*}
+\begin{split}
+(LD)&amp; \quad \hat n_t = \hat y_t - \hat a_t\\
+(OG)&amp; \quad \tilde y_t = \hat y_t - \hat y_t^f\\
+(RR)&amp; \quad \hat r_t = \hat i_t - E_t[\,\hat \pi_{t+1}\,]\\
+(NR)&amp; \quad \hat r^n_t = \sigma \frac{1+\varphi}{\varphi + \gamma} \big(\, \beta E_t[\,\hat a_{t+1}\,] - \hat a_t \,\big) \, .
+\end{split}
+\end{gather*}
+$$&lt;p>
+The undetermined coefficient procedure can be described in five steps:&lt;/p>
+&lt;ol>
+&lt;li>&lt;strong>Guess&lt;/strong>. We conjecture about the stationary solution of the dynamical system. In our case, we guess the policy function being linear in the TFP shock:
+$$
+\begin{gather*}
+\begin{split}
+\hat y_t &amp;= \psi_{ya} \hat a_t \\
+\hat \pi_t &amp;= \psi_{\pi a} \hat a_t \\
+E_t[\,\hat y_{t+1}\,] &amp;= \psi_{ya} E_t[\,\hat a_{t+1}\,] = \psi_{ya} \, \rho_a \, \hat a_t \\
+E_t[\,\hat \pi_{t+1}\,] &amp;= \psi_{\pi a} E_t[\,\hat a_{t+1}\,] = \psi_{\pi a} \, \rho_a \, \hat a_t
+\end{split}
+\end{gather*}
+$$&lt;/li>
+&lt;li>&lt;strong>Plug into the system&lt;/strong>: We replace the variables in the aggregate demand and aggregate supply equation with the linear policy functions. Make sure to plug the monetary policy rule in the aggregate demand to get rid of the interest rate $\textcolor{orange}{\hat i_t}$, and the output level of flexible prices $\textcolor{red}{\hat y^f_t}$ in the aggregate supply. We get a system of two equations in two unknowns ($ \psi_{ya}$ and $ \psi_{ \pi a}$):
+$$
+\begin{gather*}
+\begin{split}
+(AD) \quad \psi_{ya} \hat a_t &amp;= \psi_{ya} \, \rho_a \, \hat a_t - \sigma \big(\, \textcolor{orange}{\phi_{\pi} \psi_{\pi a} \hat a_t} - \psi_{\pi a} \, \rho_a \, \hat a_t \, \big) \\
+(AS) \quad \psi_{\pi a} \hat a_t &amp;= \kappa \big(\, \psi_{ya} \hat a_t - \textcolor{red}{\Omega \hat a_t } \,\big) + \beta \psi_{\pi a} \, \rho_a \, \hat a_t
+\end{split}
+\end{gather*}
+$$&lt;/li>
+&lt;li>&lt;strong>Solve&lt;/strong>. Solve the system relative to a unit shock to TFP ($\hat a_t = \varepsilon^a_t = 1$):
+$$
+\begin{cases}
+\psi_{ya} = \Lambda_a \, \Omega \, \sigma \, \kappa \big(\,\phi_{\pi} - \rho_a \,\big)\\
+\psi_{\pi a} = \frac{\kappa^2}{1- \beta \rho_a}\, \Omega \, \Lambda_a \, \sigma \,\big(\, \phi_{\pi} - \rho_a \big) - \frac{\kappa}{1- \beta \rho_a}\,\Omega
+\end{cases}
+$$
+$$\Lambda_a = [ (\, 1 - \rho_a \,) (1 - \beta \rho_a) + \sigma \, \kappa \, (\phi_{\pi} - \rho_a) ]^{-1}$$&lt;/li>
+&lt;li>&lt;strong>Calibration&lt;/strong>. We assign numerical values to the model’s structural parameters
+$$ \{\beta,\kappa,\rho_a, \varphi, \sigma, \gamma, \phi_{\pi}\} $$
+based on external information or matching moments of the data.&lt;/li>
+&lt;li>&lt;strong>Impulse responses&lt;/strong>. Given the log-linear approximation around the steady state, we can express the responses of the endogenous variables as linear functions of the exogenous TFP shock $\varepsilon_0^a = 1$:
+$$
+\begin{bmatrix}
+\hat y_t \\
+\hat y^f_t \\
+\tilde y_t \\
+\hat \pi_t \\
+\hat i_t \\
+\hat r_t \\
+\hat r^n_t \\
+\hat n_t \\
+\hat a_t
+\end{bmatrix} =
+\begin{bmatrix}
+\psi_{ya} \\
+(1 + \varphi)(\varphi + \gamma)^{-1}\\
+\psi_{ya} - (1 + \varphi)(\varphi + \gamma)^{-1}\\
+\psi_{\pi a}\\
+\psi_{\pi a} \phi_{\pi} \\
+\psi_{\pi a} \phi_{\pi} - \psi_{\pi a} \rho_{a} \\
+\sigma (1 + \varphi)(\varphi + \gamma)^{-1} (\beta \rho_a - 1) \\
+\psi_{ya} - 1 \\
+1
+\end{bmatrix} \, \big(\, \rho_a^t \, \varepsilon_0^a \,\big)
+$$&lt;/li>
+&lt;/ol>
+&lt;p>The function &lt;strong>ECON210C&lt;/strong> &amp;gt; &lt;strong>HW4&lt;/strong> &amp;gt; &lt;strong>RANK_undetermined.jl&lt;/strong> solves the New-Keynesian model as a function of TFP and monetary policy shocks. The same procedure is applied in &lt;strong>ECON210C&lt;/strong> &amp;gt; &lt;strong>Exam&lt;/strong> &amp;gt; &lt;strong>RANK_finalexam.jl&lt;/strong> by the function &lt;strong>IID_shock&lt;/strong> with respect to an iid monetary policy shock.&lt;/p></description></item></channel></rss>

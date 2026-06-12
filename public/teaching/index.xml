@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Teaching | Lapo Bini</title><link>https://lapobini.github.io/teaching/</link><atom:link href="https://lapobini.github.io/teaching/index.xml" rel="self" type="application/rss+xml"/><description>Teaching</description><generator>Hugo Blox Builder (https://hugoblox.com)</generator><language>en-us</language><lastBuildDate>Tue, 01 Apr 2025 00:00:00 +0000</lastBuildDate><image><url>https://lapobini.github.io/media/icon_hu13255600560899297663.png</url><title>Teaching</title><link>https://lapobini.github.io/teaching/</link></image><item><title>Graduate Panel Data Econometrics</title><link>https://lapobini.github.io/teaching/econ220c_spring25/</link><pubDate>Tue, 01 Apr 2025 00:00:00 +0000</pubDate><guid>https://lapobini.github.io/teaching/econ220c_spring25/</guid><description>&lt;h3 id="general-info">General Info&lt;/h3>
+&lt;p>&lt;strong>Discussion section&lt;/strong>: Tuesday from 5:00 to 6:30 pm, SSB 107. &lt;strong>Office hour&lt;/strong>: Tuesday from 6:30 to 7:00 pm, SSB 107.&lt;/p>
+&lt;h3 id="material">Material&lt;/h3>
+&lt;ol>
+&lt;li>Review of &lt;span style="color: orange;"> causal inference &lt;/span>and average partial effects. (
+)&lt;/li>
+&lt;li>&lt;span style="color: orange;"> From Pooled OLS to FE model &lt;/span>: unbiasedness, consistency, efficiency, random effect vs fixed effect, IV and FE model. (
+)&lt;/li>
+&lt;li>Two exercises on &lt;span style="color: orange;">Two-way Fixed Effect &lt;/span>regression. (
+)&lt;/li>
+&lt;li>From the basic &lt;span style="color: orange;"> Difference-in-differences &lt;/span>estimator to Staggered DID in potential outcomes and Callaway and Sant&amp;rsquo;Anna (2021) approach. (
+)&lt;/li>
+&lt;li>&lt;span style="color: orange;"> Practice midterm &lt;/span>: static and dynamic panel data. (
+)&lt;/li>
+&lt;li>&lt;span style="color: orange;"> M-Estimation &lt;/span>: general consistency theorem, uniform law of large numbers, application to a binary probability model. (
+)&lt;/li>
+&lt;li>&lt;span style="color: orange;"> Probit model &lt;/span>: probit model vs. linear projection, MLE estimation and structural identification with external instrument. (
+)&lt;/li>
+&lt;li>&lt;span style="color: orange;"> Practice final &lt;/span>: binary outcomes, average partial effect, multinomial logir and independence from irrelavent alternatives. (
+)&lt;/li>
+&lt;/ol>
+&lt;h3 id="evaluation">Evaluation&lt;/h3>
+&lt;p>Instructional Assistant Student Evaluation of Teaching
+.&lt;/p></description></item><item><title>Graduate Cross Section Econometrics</title><link>https://lapobini.github.io/teaching/econ220b_winter25/</link><pubDate>Fri, 31 Jan 2025 00:00:00 +0000</pubDate><guid>https://lapobini.github.io/teaching/econ220b_winter25/</guid><description>&lt;h3 id="general-info">General Info&lt;/h3>
+&lt;p>&lt;strong>Discussion Section&lt;/strong>: Thursday from 5:00 to 6:30 pm, SSB 107. &lt;strong>Office hour&lt;/strong>: Thursday from 6:30 to 7:00 pm, SSB 107.&lt;/p>
+&lt;h3 id="material">Material&lt;/h3>
+&lt;ol>
+&lt;li>&lt;span style="color: orange;"> Basics of asymptotic theory&lt;/span>: convergence theorems, asymptotic linear representation and delta method. Exercises on asymptotic of ratio of two estimators and Hodge&amp;rsquo;s estimator. (
+)&lt;/li>
+&lt;li>Introduction to &lt;span style="color: orange;"> potential outcomes&lt;/span> and some linear regression arithmetic: orthogonal projection, coefficient of determination and Frisch–Waugh–Lovell Theorem. (
+)&lt;/li>
+&lt;li>&lt;span style="color: orange;"> Where is the OLS estimator converging to&lt;/span>? Exogeneity vs uncorrelatedness vs linear projection. Introduction to bayesian inference and exercise on ridge regression. (
+)&lt;/li>
+&lt;li>&lt;span style="color: orange;"> Midterm review&lt;/span>: Q1 algebraic properties of OLS; Q2 asymptotic properties of empirical CDF estimator. (
+)&lt;/li>
+&lt;li>&lt;span style="color: orange;"> Selection on observables&lt;/span>. Inverse probability weighting, regression adjustment estimator and an exercise on propensity score and fat-tailed distributions. (
+)&lt;/li>
+&lt;li>&lt;span style="color: orange;"> Practice final&lt;/span>: asymptotics of moving average of order one, CLT for dependent data. (
+)&lt;/li>
+&lt;li>&lt;span style="color: orange;"> IV estimators and LATE&lt;/span>: comparison MoM, Wald, TSLS and control function approach, LATE in Threshold Crossing Model. (
+)&lt;/li>
+&lt;li>&lt;span style="color: orange;"> M-Estimation&lt;/span>: general consistency theorem and uniform law of large numbers. Exercise on the estimation of a right-censored Poisson Survival model. (
+)&lt;/li>
+&lt;/ol>
+&lt;h3 id="evaluation">Evaluation&lt;/h3>
+&lt;p>Instructional Assistant Student Evaluation of Teaching
+.&lt;/p></description></item><item><title>Undergraduate Statistics</title><link>https://lapobini.github.io/teaching/econ120a_fall24/</link><pubDate>Mon, 16 Dec 2024 00:00:00 +0000</pubDate><guid>https://lapobini.github.io/teaching/econ120a_fall24/</guid><description>&lt;h3 id="general-info">General Info&lt;/h3>
+&lt;p>Office hour: Monday 12:30-1:30 pm SDSC E185. Prof Graham Elliott&amp;rsquo;s
+.&lt;/p>
+&lt;h3 id="material">Material&lt;/h3>
+&lt;p>Material from the &lt;strong>Fall-24&lt;/strong> class:&lt;/p>
+&lt;ol>
+&lt;li>
+&lt;/li>
+&lt;li>
+&lt;/li>
+&lt;li>
+&lt;/li>
+&lt;li>
+&lt;/li>
+&lt;li>
+&lt;/li>
+&lt;/ol>
+&lt;p>Material from the &lt;strong>Fall-25&lt;/strong> class:&lt;/p>
+&lt;ol>
+&lt;li>
+&lt;/li>
+&lt;li>
+&lt;/li>
+&lt;/ol>
+&lt;h3 id="evaluation">Evaluation&lt;/h3>
+&lt;p>Instructional Assistant Student Evaluation of Teaching:
+.&lt;/p></description></item></channel></rss>
