@@ -49,4 +49,11 @@
   /* ---- Homepage hero: tighten so Education fits above the fold ---- */
   #section-resume-biography-3 .avatar-wrapper { margin-top: 1rem; }   /* was mt-10 (2.5rem) */
   #section-resume-biography-3 .grid.grid-cols-2 { margin-top: 0.75rem; } /* was mt-6 (1.5rem) */
+
+  /* Align the top of "Bio" with the top of the avatar circle, and shift the whole
+     right column (bio, interests, education) up. The column was md:mt-12 (3rem),
+     and the "Bio" heading carried the prose h2 top-margin + a pt-2. */
+  #section-resume-biography-3 .flex-auto.max-w-prose { margin-top: 1rem; }  /* = avatar-wrapper margin-top */
+  #section-resume-biography-3 .flex-auto.max-w-prose .prose { padding-top: 0; }  /* drop pt-2 */
+  #section-resume-biography-3 #bio { margin-top: 0; }  /* sit "Bio" flush at the column top */
 </style>
