@@ -31,4 +31,30 @@ sections:
     design:
       view: citation
       columns: '1'
+
+  - block: markdown
+    id: presentations
+    content:
+      title: "Presentations"
+      text: |-
+        **2026**
+
+        - Spring Midwest Macroeconomics Meeting
+        - SED Annual Meeting, Athens
+        - BSE Summer Forum 2026
+        - IAAE 2026, Portugal
+        - Piraeus International Economic Conference, University of Piraeus
+        - Oslo Macro Conference 2026, Norges Bank
+        - Macroeconomic Seminar Series, UCSD
+
+        **2025**
+
+        - Southern California Applied Economics (SOCAE) Conference, UCLA
+        - Macroeconomic Seminar Series, UCSD
+
+        **2024**
+
+        - Macroeconomic Seminar Series, UCSD
+    design:
+      columns: '1'
 ---

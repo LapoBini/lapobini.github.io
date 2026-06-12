@@ -36,6 +36,7 @@
      (Oswald, 24px, weight 700, no uppercase), left-aligned ---- */
   #working-papers .text-3xl,
   #ongoing-projects .text-3xl,
+  #presentations .text-3xl,
   #teaching-material .text-3xl,
   #code .text-3xl {
     text-align: left;
@@ -51,6 +52,7 @@
   /* Title wrapper — left-align, same 48rem content box on both pages */
   #working-papers .max-w-prose,
   #ongoing-projects .max-w-prose,
+  #presentations .max-w-prose,
   #teaching-material .max-w-prose,
   #code .max-w-prose {
     align-items: flex-start;   /* left-align within the flex column */
@@ -58,6 +60,18 @@
     max-width: 48rem;          /* = max-w-3xl, identical left edge on Research & Teaching */
     text-align: left;
   }
+  /* Presentations content (markdown block): compact, readable, left-aligned */
+  #presentations .prose {
+    max-width: none;
+    width: 100%;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    color: #000;
+  }
+  #presentations .prose > p { font-weight: 700; margin: 0.9rem 0 0.2rem; }   /* year labels */
+  #presentations .prose > p:first-child { margin-top: 0; }
+  #presentations .prose ul { margin: 0; padding-left: 1.2rem; list-style: disc; }
+  #presentations .prose li { margin: 0.1rem 0; }
   /* Research: pull the citation list up to its title */
   #working-papers .container.max-w-3xl,
   #ongoing-projects .container.max-w-3xl {
@@ -166,6 +180,7 @@
     #latest-research .max-w-prose,
     #working-papers .max-w-prose,
     #ongoing-projects .max-w-prose,
+    #presentations .max-w-prose,
     #teaching-material .max-w-prose,
     #code .max-w-prose {
       align-items: flex-start;
