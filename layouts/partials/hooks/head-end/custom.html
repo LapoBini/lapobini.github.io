@@ -79,6 +79,17 @@
   #presentations .prose > p:first-child { margin-top: 0; }
   #presentations .prose ul { margin: 0; padding-left: 1.2rem; list-style: disc; }
   #presentations .prose li { margin: 0.1rem 0; }
+  /* Conference links: keep the name black, append a small gray external-link arrow.
+     Conferences with no link stay plain text (no icon). */
+  #presentations .prose a { color: #000; text-decoration: none; }
+  #presentations .prose a::after {
+    content: "\2197";                /* ↗ */
+    margin-left: 0.22em;
+    font-size: 0.8em;
+    color: #6b7280;                  /* subtle gray */
+  }
+  #presentations .prose a:hover { text-decoration: underline; text-decoration-color: #9ca3af; }
+  #presentations .prose a:hover::after { color: #111827; }
   /* Research: pull the citation list up to its title */
   #working-papers .container.max-w-3xl,
   #ongoing-projects .container.max-w-3xl {

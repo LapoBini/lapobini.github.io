@@ -40,11 +40,11 @@ sections:
         **2026**
 
         - Spring Midwest Macroeconomics Meeting
-        - SED Annual Meeting, Athens
-        - BSE Summer Forum 2026
-        - IAAE 2026, Portugal
+        - <a href="https://economicdynamics.org" target="_blank" rel="noopener">SED Annual Meeting, Athens</a>
+        - <a href="https://bse.eu" target="_blank" rel="noopener">BSE Summer Forum 2026</a>
+        - <a href="https://www.iaae.org" target="_blank" rel="noopener">IAAE 2026, Portugal</a>
         - Piraeus International Economic Conference, University of Piraeus
-        - Oslo Macro Conference 2026, Norges Bank
+        - <a href="https://www.norges-bank.no" target="_blank" rel="noopener">Oslo Macro Conference 2026, Norges Bank</a>
         - Macroeconomic Seminar Series, UCSD
 
         **2025**
