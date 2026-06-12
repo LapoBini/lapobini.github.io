@@ -18,16 +18,12 @@
   .navbar-brand, .nav-link,
   .blox-collection .text-3xl { font-family: var(--hb-font-head); }
 
-  /* ---- Research page: section titles UPPERCASE, left-aligned, tighter ---- */
-  #working-papers .max-w-prose,
-  #ongoing-projects .max-w-prose {
-    align-items: flex-start;   /* left-align within the flex column            */
-    max-width: 48rem;          /* = max-w-3xl, so title lines up with the list  */
-    width: 100%;
-    text-align: left;
-  }
+  /* ---- Research & Teaching: section titles UPPERCASE, left-aligned, tighter ---- */
+  /* Title text — same treatment on every collection section */
   #working-papers .text-3xl,
-  #ongoing-projects .text-3xl {
+  #ongoing-projects .text-3xl,
+  #teaching-material .text-3xl,
+  #code .text-3xl {
     text-transform: uppercase;
     text-align: left;
     width: 100%;
@@ -35,11 +31,27 @@
     letter-spacing: 0.05em;
     margin-bottom: 0.5rem;     /* was mb-6 (1.5rem) */
   }
-  /* Pull each publication list up close to its title */
+  /* Title wrapper — left-align within the section */
+  #working-papers .max-w-prose,
+  #ongoing-projects .max-w-prose,
+  #teaching-material .max-w-prose,
+  #code .max-w-prose {
+    align-items: flex-start;   /* left-align within the flex column */
+    width: 100%;
+    text-align: left;
+  }
+  /* Research: match the citation list width (max-w-3xl) and pull it up to the title */
+  #working-papers .max-w-prose,
+  #ongoing-projects .max-w-prose { max-width: 48rem; }
   #working-papers .container.max-w-3xl,
   #ongoing-projects .container.max-w-3xl {
     margin-top: 1rem !important;   /* overrides mt-16 / sm:mt-20 */
   }
+  /* Teaching: match the article-grid width (max-w-screen-lg) + its px-8, pull it up */
+  #teaching-material .max-w-prose,
+  #code .max-w-prose { max-width: 64rem; padding-left: 2rem; padding-right: 2rem; }
+  #teaching-material .container.max-w-screen-lg,
+  #code .container.max-w-screen-lg { padding-top: 0.5rem !important; }
 
   /* ---- Keep a publication's TITLE from breaking mid-line (desktop) ---- */
   @media (min-width: 768px) {

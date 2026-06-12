@@ -3,6 +3,10 @@ title: Teaching
 summary: Teaching material and code
 type: landing
 
+design:
+  # Tighten the gap between sections, matching the Research page
+  spacing: "2rem"
+
 cascade:
   - _target:
       kind: page
