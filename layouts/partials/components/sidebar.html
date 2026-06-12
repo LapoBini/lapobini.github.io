@@ -29,13 +29,12 @@
   </div>
   <div class="hb-scrollbar lg:h-[calc(100vh-var(--navbar-height))]">
     <ul class="flex flex-col gap-1 lg:hidden">
-      <!-- Navigation links -->
-      {{- if $unified -}}
-        {{ template "unified-docs-menu" (dict "pageURL" $page_url) }}
-      {{- else -}}
-        {{ template "menu-links" (dict "context" site.Home "pageURL" $page_url "page" $context "toc" true) -}}
+      <!-- Mobile menu: always show the site's main navigation (Home, Research, CV,
+           Teaching) — not the docs index. -->
+      {{- range site.Menus.main -}}
+        {{- $ext := strings.HasPrefix .URL "http" -}}
+        <li>{{ template "custom-menu-link" (dict "active" (eq $page_url (.URL | relLangURL)) "title" .Name "link" (cond $ext .URL (.URL | relLangURL))) }}</li>
       {{- end -}}
-      {{ template "custom-menu-links" }}
     </ul>
 
     <!-- Sidebar on large screen -->

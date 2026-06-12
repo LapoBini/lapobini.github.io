@@ -181,6 +181,13 @@
     #latest-research .container.max-w-3xl { margin-top: 0.5rem !important; }
   }
 
+  /* ---- Phones (hero stacked, < md): shift Bio + Latest Research up by tightening
+     the gap between the profile photo and the Bio. ---- */
+  @media (max-width: 767px) {
+    #section-resume-biography-3 .resume-biography { gap: 1rem; }     /* was gap-12 (3rem) */
+    #section-resume-biography-3 .flex-auto.max-w-prose { margin-top: 0; }  /* drop the 1rem */
+  }
+
   /* ---- Light theme: make all body copy solid black (incl. the Bio) ---- */
   .prose-slate {
     --tw-prose-body: #000;
