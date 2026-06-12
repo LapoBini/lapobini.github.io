@@ -15,7 +15,7 @@ featured: true
 title_url: Main_NowcastingInflation.pdf
 # No individual paper page — keep the bundle's PDF published
 _build:
-  render: never
+  render: link
   list: always
 links:
 - name: Early Draft

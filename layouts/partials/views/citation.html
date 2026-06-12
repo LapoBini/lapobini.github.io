@@ -6,7 +6,7 @@
 {{ $item := .item }}
 {{ $has_attachments := partial "functions/has_attachments" $item }}
 {{ $abstract := $item.Params.abstract }}
-{{ $absid := printf "abstract-%s" (anchorize $item.RelPermalink) }}
+{{ $absid := printf "abstract-%s" (anchorize $item.File.ContentBaseName) }}
 
 {{/* Where the title links: the external published page (or a PDF) if `title_url` is
      set in the page's front matter, otherwise the local paper page. */}}

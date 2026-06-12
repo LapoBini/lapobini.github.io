@@ -23,7 +23,7 @@ url_pdf: Bini2025.pdf
 title_url: "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5375776"
 # No individual paper page — keep the bundle's resources (PDF, cite, appendix) published
 _build:
-  render: never
+  render: link
   list: always
 links:
 - name: Appendix

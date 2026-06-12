@@ -142,6 +142,12 @@
       padding-left: 368px;
       margin-top: 0.25rem !important;   /* papers closer to the "Latest Research" title */
     }
+    /* The pulled-up section's box overlaps the profile column (social icons + CV
+       button). Let clicks pass through its empty area, keeping only the actual
+       content (which sits to the right of the profile) clickable. */
+    #latest-research { pointer-events: none; }
+    #latest-research .text-3xl,
+    #latest-research .container.max-w-3xl > * { pointer-events: auto; }
   }
 
   /* ---- Mobile / narrow screens (< lg): left-align every collection title and add
