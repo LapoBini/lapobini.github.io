@@ -139,4 +139,25 @@
     text-decoration-color: #1d4ed8;
   }
   .view-citation a.underline:hover { color: #1e40af; text-decoration-color: #1e40af; }
+
+  /* ---- Course material links (Slides, Test, …) styled like the paper titles ---- */
+  .prose.lg\:prose-xl a {
+    color: #1d4ed8;                    /* blue-700 */
+    text-decoration: underline;
+    text-decoration-color: #1d4ed8;
+  }
+  .prose.lg\:prose-xl a:hover { color: #1e40af; }
+
+  /* ---- Abstract toggle: green "ABSTRACT" button reveals/hides the abstract ---- */
+  .view-citation .abstract-btn { cursor: pointer; }
+  .view-citation .abstract-panel {
+    display: none;                     /* hidden until the toggle is checked */
+    margin-top: 0.5rem;
+    max-width: 48rem;
+    color: #000;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    text-align: justify;
+  }
+  .view-citation .abstract-toggle:checked ~ .abstract-panel { display: block; }
 </style>

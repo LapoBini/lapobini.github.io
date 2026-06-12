@@ -1,9 +1,12 @@
 {{/* Citation view — local override.
-     Change vs. theme default: render each publication on three lines —
-       1) authors + year   2) title   3) attachment buttons
-     by wrapping the author/title runs in block-level <div>s. */}}
+     Changes vs. theme default:
+       * Render each publication on three lines: authors+year / title / buttons
+       * Add a green "ABSTRACT" toggle button that shows/hides the abstract below
+         (CSS-only, via a hidden checkbox — no JavaScript). */}}
 {{ $item := .item }}
 {{ $has_attachments := partial "functions/has_attachments" $item }}
+{{ $abstract := $item.Params.abstract }}
+{{ $absid := printf "abstract-%s" (anchorize $item.RelPermalink) }}
 
 <div class="pub-list-item view-citation" style="margin-bottom: 1rem">
   <i class="far fa-file-alt pub-icon" aria-hidden="true"></i>
@@ -26,12 +29,6 @@
     {{ end }}
   </div>
 
-  {{ if $has_attachments }}
-  <div class="flex space-x-3">
-    {{ partial "page_links" (dict "page" $item "is_list" 1) }}
-  </div>
-  {{ end }}
-
   {{/* MLA Style */}}
   {{ else }}
 
@@ -50,11 +47,21 @@
     {{- $item.Date.Format "2006" -}}.
   </div>
 
-  {{ if $has_attachments }}
+  {{ end }}
+
+  {{/* Hidden checkbox drives the abstract show/hide (placed before the panel so the
+       `:checked ~ .abstract-panel` sibling selector can reach it). */}}
+  {{ if $abstract }}<input type="checkbox" id="{{ $absid }}" class="abstract-toggle" hidden>{{ end }}
+
+  {{ if or $has_attachments $abstract }}
   <div class="flex space-x-3">
-    {{ partial "page_links" (dict "page" $item "is_list" 1) }}
+    {{ if $has_attachments }}{{ partial "page_links" (dict "page" $item "is_list" 1) }}{{ end }}
+    {{ if $abstract }}
+    <label for="{{ $absid }}" class="hb-attachment-link hb-attachment-small abstract-btn">
+      <svg style="height:1em" class="inline-block" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M4 12h16M4 18h10"/></svg> Abstract</label>
+    {{ end }}
   </div>
   {{ end }}
 
-  {{ end }}
+  {{ if $abstract }}<div class="abstract-panel">{{ $abstract | markdownify }}</div>{{ end }}
 </div>
