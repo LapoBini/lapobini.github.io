@@ -26,17 +26,20 @@
   .navbar-brand, .nav-link,
   .blox-collection .text-3xl { font-family: var(--hb-font-head); }
 
-  /* ---- Research & Teaching: section titles UPPERCASE, left-aligned, tighter ---- */
-  /* Title text — same treatment on every collection section */
+  /* ---- Research & Teaching: section titles styled like "Bio" / "Latest Research"
+     (Oswald, 24px, weight 700, no uppercase), left-aligned ---- */
   #working-papers .text-3xl,
   #ongoing-projects .text-3xl,
   #teaching-material .text-3xl,
   #code .text-3xl {
-    text-transform: uppercase;
     text-align: left;
     width: 100%;
-    font-weight: 500;          /* lighter than the theme's bold (700) */
-    letter-spacing: 0.05em;
+    font-size: 24px;           /* match Bio's h2 (was text-3xl / 30px) */
+    line-height: 32px;
+    font-weight: 700;
+    text-transform: none;
+    letter-spacing: normal;
+    color: #000;
     margin-bottom: 0.5rem;     /* was mb-6 (1.5rem) */
   }
   /* Title wrapper — left-align, same 48rem content box on both pages */
@@ -69,11 +72,20 @@
   /* Match the Research title→buttons gap (~2px): tighten card title→subtitle */
   #teaching-material .group .grow p,
   #code .group .grow p { margin-top: 2px; }
-
-  /* ---- Keep a publication's TITLE from breaking mid-line (desktop) ---- */
-  @media (min-width: 768px) {
-    .view-citation a.underline { white-space: nowrap; }
+  /* Course / code titles styled like the bold author name "Lapo Bini" in citations
+     (Open Sans, 16px, weight 700, black) */
+  #teaching-material .group h2,
+  #code .group h2 {
+    font-family: 'Open Sans', ui-sans-serif, system-ui, sans-serif;
+    font-size: 16px;
+    line-height: 1.4;
+    font-weight: 700;
+    text-transform: none;
+    color: #000;
   }
+  /* Match the Research inter-paper gap (28px) between Teaching cards (was gap-10 / 40px) */
+  #teaching-material .grid,
+  #code .grid { gap: 1.75rem; }
 
   /* ---- Homepage hero ---- */
   #section-resume-biography-3 .avatar-wrapper { margin-top: 1rem; }   /* was mt-10 (2.5rem) */
@@ -93,6 +105,10 @@
     margin-bottom: 0.5rem;    /* was mb-6 */
   }
   @media (min-width: 1024px) {
+    /* Pull the whole section up into the empty space to the right of the (taller)
+       profile column, so it sits just below Bio and everything fits on one screen.
+       Bio is untouched (it stays aligned with the avatar). */
+    #latest-research { margin-top: -110px; }
     /* The hero centres an 854px group; Bio sits 259px in (avatar width + gap).
        Reproduce that offset so the heading and list line up under Bio. */
     #latest-research .max-w-prose {
