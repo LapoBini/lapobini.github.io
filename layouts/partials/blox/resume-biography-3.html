@@ -52,31 +52,10 @@
     </div>
     {{ end }}
 
-    <div class="portrait-title dark:text-white">
+    {{/* Name / role / organization intentionally removed — keep just the avatar,
+         social icons and the Download CV button. */}}
 
-      <div class="text-3xl font-bold mb-2 mt-6">
-        {{- if $person.name_pronunciation -}}
-          <ruby>
-            <rb>{{ $person_page.Title }}</rb>
-            <rt>{{ $person.name_pronunciation }}</rt>
-          </ruby>
-        {{- else -}}
-          {{- $person_page.Title -}}
-        {{- end -}}
-      </div>
-
-      {{ with $person.role }}<h3 class="font-semibold mb-1">{{ . | markdownify | emojify }}</h3>{{ end }}
-
-      {{ range $person.organizations }}
-      <div class="mb-2">
-        {{ with .url }}<a href="{{ . }}" target="_blank" rel="noopener">{{ end }}
-        <div>{{ .name }}</div>
-        {{ if .url }}</a>{{ end }}
-      </div>
-      {{ end }}
-    </div>
-
-    <ul class="network-icon dark:text-zinc-100">
+    <ul class="network-icon dark:text-zinc-100 mt-6">
       {{ range $person.profiles }}
       {{ $pack := or .icon_pack "fas" }}
       {{ $pack_prefix := $pack }}
