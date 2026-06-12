@@ -89,6 +89,9 @@
 
   /* ---- Homepage hero ---- */
   #section-resume-biography-3 .avatar-wrapper { margin-top: 1rem; }   /* was mt-10 (2.5rem) */
+  /* More breathing room between the avatar and the social icons (overrides the
+     theme's .network-icon margin-top:.5rem). */
+  #section-resume-biography-3 #profile .network-icon { margin-top: 2.25rem; }
 
   /* Align the top of "Bio" with the top of the avatar circle.
      (The column was md:mt-12 = 3rem; the "Bio" h2 carried a prose top-margin + pt-2.) */
@@ -114,7 +117,7 @@
     /* Pull the whole section up into the empty space to the right of the (taller)
        profile column, so it sits just below Bio and everything fits on one screen.
        Bio is untouched (it stays aligned with the avatar). */
-    #latest-research { margin-top: -55px; }   /* sits just below the Bio, filling the space beside the (now shorter) profile column */
+    #latest-research { margin-top: -68px; }   /* sits below the Bio, ~1.5x the previous gap */
     /* The hero centres an 854px group; Bio sits 259px in (avatar width + gap).
        Reproduce that offset so the heading and list line up under Bio. */
     #latest-research .max-w-prose {

@@ -55,7 +55,7 @@
     {{/* Name / role / organization intentionally removed — keep just the avatar,
          social icons and the Download CV button. */}}
 
-    <ul class="network-icon dark:text-zinc-100 mt-6">
+    <ul class="network-icon dark:text-zinc-100">
       {{ range $person.profiles }}
       {{ $pack := or .icon_pack "fas" }}
       {{ $pack_prefix := $pack }}
