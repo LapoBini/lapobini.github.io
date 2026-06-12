@@ -39,17 +39,17 @@ sections:
       text: |-
         **2026**
 
-        - Spring Midwest Macroeconomics Meeting
+        - <a href="https://www.marquette.edu/business/economics/macro-meeting.php" target="_blank" rel="noopener">Spring Midwest Macroeconomics Meeting</a>
         - <a href="https://economicdynamics.org" target="_blank" rel="noopener">SED Annual Meeting, Athens</a>
-        - <a href="https://bse.eu" target="_blank" rel="noopener">BSE Summer Forum 2026</a>
-        - <a href="https://www.iaae.org" target="_blank" rel="noopener">IAAE 2026, Portugal</a>
+        - <a href="https://bse.eu/summer-forum/workshops/structural-shocks" target="_blank" rel="noopener">BSE Summer Forum 2026 — Advances in Structural Shocks Identification</a>
+        - <a href="https://iaae2026.pages.dev" target="_blank" rel="noopener">IAAE 2026, Portugal</a>
         - Piraeus International Economic Conference, University of Piraeus
-        - <a href="https://www.norges-bank.no" target="_blank" rel="noopener">Oslo Macro Conference 2026, Norges Bank</a>
+        - <a href="https://sites.google.com/site/oslomacro/omc" target="_blank" rel="noopener">Oslo Macro Conference 2026, Norges Bank</a>
         - Macroeconomic Seminar Series, UCSD
 
         **2025**
 
-        - Southern California Applied Economics (SOCAE) Conference, UCLA
+        - <a href="https://sites.google.com/view/socae/past-editions" target="_blank" rel="noopener">Southern California Applied Economics (SOCAE) Conference, UCLA</a>
         - Macroeconomic Seminar Series, UCSD
 
         **2024**
