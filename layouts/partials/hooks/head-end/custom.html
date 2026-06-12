@@ -34,7 +34,7 @@
   #code .text-3xl {
     text-align: left;
     width: 100%;
-    font-size: 24px;           /* match Bio's h2 (was text-3xl / 30px) */
+    font-size: 20px;           /* match Bio's h2 (was text-3xl / 30px) */
     line-height: 32px;
     font-weight: 700;
     text-transform: none;
@@ -109,7 +109,7 @@
      (The column was md:mt-12 = 3rem; the "Bio" h2 carried a prose top-margin + pt-2.) */
   #section-resume-biography-3 .flex-auto.max-w-prose { margin-top: 1rem; }  /* = avatar-wrapper margin-top */
   #section-resume-biography-3 .flex-auto.max-w-prose .prose { padding-top: 0; }  /* drop pt-2 */
-  #section-resume-biography-3 #bio { margin-top: 0; }  /* sit "Bio" flush at the column top */
+  #section-resume-biography-3 #bio { margin-top: 0; font-size: 20px; line-height: 32px; }  /* sit "Bio" flush; match the "Lapo Bini" brand size (20px) */
   #section-resume-biography-3 #profile { padding-top: 0; }  /* remove the 30px that pushed the avatar below Bio */
   /* Move the bio text closer to the "Bio" heading */
   #section-resume-biography-3 .bio-text #bio { margin-bottom: 0; }
@@ -118,7 +118,7 @@
   /* ---- Homepage "Latest Research": style like the "Bio" heading, and align
      the title + list under the Bio column (large screens) ---- */
   #latest-research .text-3xl {
-    font-size: 24px;          /* match Bio's h2 (was text-3xl / 30px) */
+    font-size: 20px;          /* match Bio's h2 (was text-3xl / 30px) */
     line-height: 32px;
     margin-bottom: 0.5rem;    /* was mb-6 */
   }
