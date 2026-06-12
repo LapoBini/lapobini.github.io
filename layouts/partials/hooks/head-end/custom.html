@@ -1,5 +1,13 @@
 {{/* Custom fonts (Oswald headings + Open Sans body, à la sites.google.com/view/juanherreno)
      and research-page section-title tweaks. Injected at the end of <head>. */}}
+
+{{/* Light theme only: override any previously-saved dark preference. */}}
+<script>
+  try { localStorage.removeItem('wc-color-theme'); } catch (e) {}
+  document.documentElement.classList.remove('dark');
+  document.documentElement.style.colorScheme = 'light';
+</script>
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&family=Oswald:wght@300;400;500;600;700&display=swap">
@@ -98,4 +106,21 @@
       margin-top: 1rem !important;   /* pull list up to its title (was mt-16 / sm:mt-20) */
     }
   }
+
+  /* ---- Light theme: make all body copy solid black (incl. the Bio) ---- */
+  .prose-slate {
+    --tw-prose-body: #000;
+    --tw-prose-headings: #000;
+    --tw-prose-bold: #000;
+    --tw-prose-lead: #000;
+  }
+  .bio-text, .bio-text p, .bio-text li, #bio { color: #000; }
+
+  /* ---- Paper titles in blue, keeping the underline ---- */
+  .view-citation a.underline {
+    color: #1d4ed8;                    /* blue-700 */
+    text-decoration-line: underline;
+    text-decoration-color: #1d4ed8;
+  }
+  .view-citation a.underline:hover { color: #1e40af; text-decoration-color: #1e40af; }
 </style>
