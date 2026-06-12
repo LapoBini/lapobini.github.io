@@ -18,6 +18,3 @@ main:
   - name: Teaching
     url: teaching/
     weight: 40
-  - name: Code
-    url: projects/
-    weight: 50
