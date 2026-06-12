@@ -10,8 +10,10 @@ main:
   - name: Research
     url: publication/
     weight: 11
-  - name: Experience
-    url: experience/
+  - name: Vita
+    # Opens the same CV PDF as the homepage "Download CV" button (in a new tab).
+    # Full URL (not /resume.pdf) so the theme adds target="_blank".
+    url: https://lapobini.github.io/resume.pdf
     weight: 20
   - name: Teaching
     url: teaching/
