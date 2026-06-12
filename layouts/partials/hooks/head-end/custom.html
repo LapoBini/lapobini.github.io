@@ -90,10 +90,10 @@
   /* ---- Homepage hero ---- */
   /* Resize the wrapper (theme fixes it at 150x150) to the rectangle so the photo
      doesn't overflow onto the social icons. */
-  #section-resume-biography-3 .avatar-wrapper { margin-top: 1rem; width: 190px; height: 225px; }
-  /* Profile photo as a rectangle (override the theme's circular .avatar). */
+  #section-resume-biography-3 .avatar-wrapper { margin-top: 1rem; width: 270px; height: 340px; }
+  /* Profile photo as a sharp-cornered rectangle (override the theme's circular .avatar). */
   #section-resume-biography-3 .avatar-rect {
-    border-radius: 0.5rem;
+    border-radius: 0;
     width: 100%;
     height: 100%;
     max-width: none;
@@ -129,17 +129,17 @@
     /* Pull the whole section up into the empty space to the right of the (taller)
        profile column, so it sits just below Bio and everything fits on one screen.
        Bio is untouched (it stays aligned with the avatar). */
-    #latest-research { margin-top: -143px; }   /* sits below the Bio (recalibrated for the taller rectangular photo) */
+    #latest-research { margin-top: -258px; }   /* recalibrated for the larger photo */
     /* The hero centres an 854px group; Bio sits 259px in (avatar width + gap).
        Reproduce that offset so the heading and list line up under Bio. */
     #latest-research .max-w-prose {
       align-items: flex-start;
-      max-width: 854px;
-      padding-left: 259px;
+      max-width: 932px;
+      padding-left: 338px;
     }
     #latest-research .container.max-w-3xl {
-      max-width: 854px;
-      padding-left: 259px;
+      max-width: 932px;
+      padding-left: 338px;
       margin-top: 0.25rem !important;   /* papers closer to the "Latest Research" title */
     }
   }
