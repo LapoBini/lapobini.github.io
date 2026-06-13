@@ -254,6 +254,15 @@
   }
   .view-citation a.underline:hover { color: #1e40af; text-decoration-color: #1e40af; }
 
+  /* ---- Course (docs) pages: body text in the same font/size as the abstract
+     (Lato, 14.67px); the page title and section headings keep their own sizes. ---- */
+  .prose.lg\:prose-xl p,
+  .prose.lg\:prose-xl li {
+    font-family: 'Lato', ui-sans-serif, system-ui, sans-serif;
+    font-size: 14.6667px;
+    line-height: 1.667;
+  }
+
   /* ---- Course material: emphasise the topic of each session in bold (was orange) ---- */
   .hl-term { font-weight: 700; color: #000; }
 
