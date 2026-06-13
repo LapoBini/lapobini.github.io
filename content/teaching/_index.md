@@ -19,6 +19,8 @@ sections:
     id: teaching-material
     content:
       title: Teaching Material
+      sort_by: Weight
+      order: asc
       filters:
         folders:
           - teaching

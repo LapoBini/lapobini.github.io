@@ -8,6 +8,7 @@ summary: ECON220C
 #- ECON120A (TA Fall 24)
 title: Graduate Panel Data Econometrics
 type: docs
+weight: 2
 ---
 ### General Info 
 __Discussion section__: Tuesday from 5:00 to 6:30 pm, SSB 107. __Office hour__: Tuesday from 6:30 to 7:00 pm, SSB 107. 

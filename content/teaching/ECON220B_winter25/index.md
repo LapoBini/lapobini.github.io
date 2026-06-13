@@ -8,6 +8,7 @@ summary: ECON220B
 #- ECON120A (TA Fall 24)
 title: Graduate Cross Section Econometrics
 type: docs
+weight: 1
 ---
 ### General Info
 This course gives a rigorous introduction to linear and nonlinear econometric methods, in four parts. The first part discusses the potential outcomes framework and the treatment effect estimands that are central to empirical research. The second part introduces linear regression, which can be viewed as a natural extension of the difference-in-means estimator, and studies its large-sample properties such as consistency and asymptotic normality, along with topics like partitioned regression and heteroskedasticity-robust standard errors. Because its linear structure can still be too rigid, the third part covers two important extensions: regression adjustment and inverse probability weighting to estimate the average treatment effect, and two-stage least squares to estimate the local average treatment effect. These procedures build on linear regression but are no longer linear estimators. The final part develops the theory of the (generalized) method of moments, which provides a unified treatment of estimation and inference for a large class of nonlinear problems.

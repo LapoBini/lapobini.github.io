@@ -8,6 +8,7 @@ summary: ECON120A
 #- ECON120A (TA Fall 24)
 title: Undergraduate Statistics
 type: docs
+weight: 3
 ---
 ### General Info
 Office hour: Monday 12:30-1:30 pm SDSC E185. Prof Graham Elliott's [notes](https://econweb.ucsd.edu/~gelliott/StatNotes.html). 
