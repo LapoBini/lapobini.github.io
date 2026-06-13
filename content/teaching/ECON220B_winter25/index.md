@@ -10,6 +10,8 @@ title: Graduate Cross Section Econometrics
 type: docs
 ---
 ### General Info
+Econ 220B is a rigorous introduction to linear and nonlinear econometric methods, organized in four parts: the potential outcomes framework and treatment-effect estimands (ATE, ATT, ATU); linear regression and its large-sample properties (consistency, asymptotic normality, the delta method, partitioned regression, and heteroskedasticity-robust inference); extensions beyond linear estimators — regression adjustment and inverse-probability weighting for the average treatment effect, and two-stage least squares for the local average treatment effect; and the (generalized) method of moments as a unified framework for estimation and inference in nonlinear problems.
+
 __Discussion Section__: Thursday from 5:00 to 6:30 pm, SSB 107. __Office hour__: Thursday from 6:30 to 7:00 pm, SSB 107. 
 ### Material 
 1. <span class="hl-term"> Basics of asymptotic theory</span>: convergence theorems, asymptotic linear representation and delta method. Exercises on asymptotic of ratio of two estimators and Hodge's estimator. ([Slides](https://lapobini.github.io/discussion/ECON220B_winter25/ds1.pdf))
