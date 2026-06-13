@@ -10,7 +10,7 @@ title: Graduate Cross Section Econometrics
 type: docs
 ---
 ### General Info
-Econ 220B is a rigorous introduction to linear and nonlinear econometric methods, organized in four parts: the potential outcomes framework and treatment-effect estimands (ATE, ATT, ATU); linear regression and its large-sample properties (consistency, asymptotic normality, the delta method, partitioned regression, and heteroskedasticity-robust inference); extensions beyond linear estimators — regression adjustment and inverse-probability weighting for the average treatment effect, and two-stage least squares for the local average treatment effect; and the (generalized) method of moments as a unified framework for estimation and inference in nonlinear problems.
+Econ 220B is a graduate course on the econometric methods behind modern empirical research. It starts from the potential outcomes framework, which formalizes what a causal effect is and which treatment effects we want to recover. The course then develops linear regression and its large-sample theory, and asks when a regression coefficient can be read as a causal effect. When the linear model proves too rigid, it moves to more flexible estimators of the average and local average treatment effects. It closes with the generalized method of moments, which unifies these tools under a single theory of estimation and inference.
 
 __Discussion Section__: Thursday from 5:00 to 6:30 pm, SSB 107. __Office hour__: Thursday from 6:30 to 7:00 pm, SSB 107. 
 ### Material 
