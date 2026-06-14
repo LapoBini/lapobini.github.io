@@ -19,6 +19,7 @@ publication:
 featured: true
 
 url_pdf: Bini2025.pdf
+url_slides: "slidesBini2025.pdf"
 # Title links to the published page (SSRN)
 title_url: "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5375776"
 # No individual paper page — keep the bundle's resources (PDF, cite, appendix) published

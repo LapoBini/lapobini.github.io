@@ -33,7 +33,7 @@ _build:
   list: always
 url_poster: ""
 url_project: ""
-url_slides: ""
+url_slides: "slides-100years.pdf"
 # url_appendix: "OnlineAppendix-100years.pdf"
 # url_source: https://github.com/HugoBlox/
 # url_video: https://youtube.com 
