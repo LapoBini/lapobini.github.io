@@ -64,11 +64,6 @@
 
   {{ end }}
 
-  {{/* Awards / honors, shown below the title */}}
-  {{ range $item.Params.awards }}
-  <div class="cite-award"><span class="cite-award-label">Award:</span> {{ . }}</div>
-  {{ end }}
-
   {{/* Hidden checkbox drives the abstract show/hide (placed before the panel so the
        `:checked ~ .abstract-panel` sibling selector can reach it). */}}
   {{ if $abstract }}<input type="checkbox" id="{{ $absid }}" class="abstract-toggle" hidden>{{ end }}
@@ -106,4 +101,9 @@
   {{ end }}
 
   {{ if $abstract }}<div class="abstract-panel">{{ $abstract | markdownify }}</div>{{ end }}
+
+  {{/* Awards / honors, shown after the abstract */}}
+  {{ range $item.Params.awards }}
+  <div class="cite-award"><span class="cite-award-label">Award:</span> {{ . }}</div>
+  {{ end }}
 </div>
