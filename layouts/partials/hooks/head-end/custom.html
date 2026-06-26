@@ -296,14 +296,19 @@
   .view-citation .cite-status p { margin: 0; }
 
   /* ---- Award / honor (e.g. "Award: IAAE 2026 Best Student Paper ..."):
-     shown after the abstract, bold and in the same muted color as the
-     R&R status; top gap matches the abstract's gap above it (0.5rem). ---- */
+     only the "Award:" label is bold, both in the same muted color as the
+     R&R status. Position differs by context: on the homepage it sits below
+     the title (top variant); on the Research page it sits after the abstract
+     (bottom variant, 0.5rem gap matching the abstract's gap above it). ---- */
   .view-citation .cite-award {
     font-size: 0.9em;
     color: #6b7280;
-    font-weight: 700;
-    margin-top: 0.5rem;
   }
+  .view-citation .cite-award-label { font-weight: 700; }
+  .view-citation .cite-award--top { display: none; margin-top: 0.15rem; }
+  .view-citation .cite-award--bottom { margin-top: 0.5rem; }
+  #latest-research .view-citation .cite-award--top { display: block; }
+  #latest-research .view-citation .cite-award--bottom { display: none; }
 
   /* ---- Abstract toggle: the "ABSTRACT" button reveals/hides the abstract ---- */
   .view-citation .abstract-btn { cursor: pointer; }
