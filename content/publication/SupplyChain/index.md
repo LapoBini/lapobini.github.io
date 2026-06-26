@@ -16,6 +16,10 @@ doi: ""
 publication_types: ["working-paper"]
 publication:
 
+# Awards / honors, shown below the title in the citation view.
+awards:
+- "IAAE 2026 Best Student Paper, Honorable Mention"
+
 featured: true
 
 url_pdf: Bini2025.pdf

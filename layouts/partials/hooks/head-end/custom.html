@@ -295,6 +295,18 @@
   }
   .view-citation .cite-status p { margin: 0; }
 
+  /* ---- Award / honor (e.g. "Award: IAAE 2026 Best Student Paper ..."):
+     bold accent label below the title, rest in normal text ---- */
+  .view-citation .cite-award {
+    font-size: 0.9em;
+    color: #374151;
+    margin-top: 0.15rem;
+  }
+  .view-citation .cite-award-label {
+    font-weight: 700;
+    color: rgb(var(--color-primary-600) / 1);
+  }
+
   /* ---- Abstract toggle: the "ABSTRACT" button reveals/hides the abstract ---- */
   .view-citation .abstract-btn { cursor: pointer; }
   /* Abstract text (toggle panel + paper detail page) uses the same font as the Bio:
