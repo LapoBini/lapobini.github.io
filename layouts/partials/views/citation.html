@@ -33,7 +33,6 @@
     </span>
     ({{- $item.Date.Format "2006" -}}).
   </div>
-  {{ with $item.Params.status }}<div class="cite-status">{{ . | markdownify }}</div>{{ end }}
   <div class="cite-title">
     <a href="{{ $title_url }}" class="underline"{{ if $title_ext }} target="_blank" rel="noopener"{{ end }}>{{ $item.Title }}</a>.
     {{ if $item.Params.publication_short }}
@@ -51,7 +50,6 @@
       {{ partial "page_metadata_authors" $item }}.
     </span>
   </div>
-  {{ with $item.Params.status }}<div class="cite-status">{{ . | markdownify }}</div>{{ end }}
   <div class="cite-title">
     <a href="{{ $title_url }}"{{ if $title_ext }} target="_blank" rel="noopener"{{ end }}>{{ $item.Title }}</a>.
     {{ if $item.Params.publication_short }}
@@ -63,6 +61,9 @@
   </div>
 
   {{ end }}
+
+  {{/* Publication status (e.g. R&R) — shown below the title on every page */}}
+  {{ with $item.Params.status }}<div class="cite-status">{{ . | markdownify }}</div>{{ end }}
 
   {{/* Award below the title — shown on the homepage only (see CSS) */}}
   {{ range $item.Params.awards }}
