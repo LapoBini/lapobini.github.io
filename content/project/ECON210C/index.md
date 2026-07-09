@@ -4,6 +4,10 @@ date: "2024-06-24"
 #  caption: Embed rich media such as videos and LaTeX math
 math: false
 summary: ECON210C
+code: ECON210C
+repo: "https://github.com/LapoBini/210C"
+weight: 2
+abstract: "Solutions to the problem sets and final exam of ECON210C (Monetary Economics, Prof. Johannes Wieland, Spring 2024). The code implements modern solution methods for RBC and New Keynesian DSGE models, including the sequence-space approach of Auclert et al. (2021), together with identification strategies for structural VARs."
 title: Monetary Economics
 type: docs
 ---

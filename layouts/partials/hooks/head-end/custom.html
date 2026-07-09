@@ -338,6 +338,22 @@
     font-size: 0.83rem;   /* match the title's superscript dagger */
   }
 
+  /* ---- Teaching / Code list (teachcard view): code in black, title as a blue
+     underlined link to the page, one button, then an abstract-style blurb ---- */
+  .view-teachcard .teach-code { font-weight: 700; color: #000; }
+  .view-teachcard .teach-title a { color: #2563eb; text-decoration: underline; }
+  .view-teachcard .teach-title a:hover { color: #1d4ed8; }
+  .view-teachcard .teach-abstract {
+    font-family: 'Lato', ui-sans-serif, system-ui, sans-serif;
+    font-size: 14.6667px;
+    line-height: 1.667;
+    color: #000;
+    max-width: 48rem;
+    text-align: justify;
+    margin-top: 0.5rem;
+  }
+  .view-teachcard .teach-abstract p { margin: 0; }
+
   /* ---- Abstract toggle: the "ABSTRACT" button reveals/hides the abstract ---- */
   .view-citation .abstract-btn { cursor: pointer; }
   /* Abstract text (toggle panel + paper detail page) uses the same font as the Bio:

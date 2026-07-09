@@ -4,6 +4,10 @@ date: "2024-09-01"
 #  caption: Embed rich media such as videos and LaTeX math
 math: false
 summary: BVAR Estimation and Structural Analysis
+code: BayesianVAR.jl
+repo: "https://github.com/LapoBini/BayesianVAR.jl"
+weight: 1
+abstract: "A Julia package to estimate Bayesian Vector Autoregressions with Minnesota, sum-of-coefficients, and dummy-initial-observation priors. It performs structural analysis through sign restrictions or external instruments, and provides tools for prior selection, posterior sampling, and impulse-response and forecast-error-variance decomposition analysis."
 title: BayesianVAR.jl
 type: docs
 ---

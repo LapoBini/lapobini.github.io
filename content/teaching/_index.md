@@ -25,17 +25,18 @@ sections:
         folders:
           - teaching
     design:
-      view: article-grid
+      view: teachcard
       columns: 1
   - block: collection
     id: code
     content:
       title: Code
+      sort_by: Weight
+      order: asc
       filters:
         folders:
           - project
     design:
-      view: article-grid
-      fill_image: false
+      view: teachcard
       columns: 1
 ---
