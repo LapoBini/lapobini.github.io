@@ -310,6 +310,32 @@
   #latest-research .view-citation .cite-award--top { display: block; }
   #latest-research .view-citation .cite-award--bottom { display: none; }
 
+  /* ---- Footnote marker (†, ‡) linking a paper to its talks in the
+     Presentations list. Superscript after the title; accent-colored so the
+     same glyph is easy to match against the presentation bullets below.
+     Shown only on the Research page (hidden on the homepage, where there is
+     no presentations list to point to). ---- */
+  .view-citation .cite-marker {
+    display: none;
+    font-weight: 700;
+    color: rgb(var(--color-primary-600) / 1);
+  }
+  #working-papers .view-citation .cite-marker,
+  #ongoing-projects .view-citation .cite-marker { display: inline; }
+
+  /* Presentations list: drop the default bullet and lead each talk with its
+     paper's marker instead (hanging indent so wrapped lines align). */
+  #presentations ul { padding-left: 0; }
+  #presentations li {
+    list-style: none;
+    padding-left: 1.2em;
+    text-indent: -1.2em;
+  }
+  #presentations .pres-marker {
+    font-weight: 700;
+    color: rgb(var(--color-primary-600) / 1);
+  }
+
   /* ---- Abstract toggle: the "ABSTRACT" button reveals/hides the abstract ---- */
   .view-citation .abstract-btn { cursor: pointer; }
   /* Abstract text (toggle panel + paper detail page) uses the same font as the Bio:

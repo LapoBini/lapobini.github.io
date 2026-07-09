@@ -16,6 +16,9 @@ doi: ""
 publication_types: ["working-paper"]
 publication:
 
+# Footnote marker linking this paper to its talks in the Presentations list.
+marker: "†"
+
 # Awards / honors, shown below the title in the citation view.
 awards:
 - "IAAE 2026 Best Student Paper, Honorable Mention"
