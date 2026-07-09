@@ -90,9 +90,11 @@
   }
   #presentations .prose a:hover { text-decoration: underline; text-decoration-color: #9ca3af; }
   #presentations .prose a:hover::after { color: #111827; }
-  /* Research: pull the citation list up to its title */
+  /* Research & Teaching: pull the list up to its section title (same gap) */
   #working-papers .container.max-w-3xl,
-  #ongoing-projects .container.max-w-3xl {
+  #ongoing-projects .container.max-w-3xl,
+  #teaching-material .container.max-w-3xl,
+  #code .container.max-w-3xl {
     margin-top: 1rem !important;   /* overrides mt-16 / sm:mt-20 */
   }
   /* Teaching: narrow the article grid to the same 48rem box (was max-w-screen-lg + px-8)
@@ -353,6 +355,10 @@
     margin-top: 0.5rem;
   }
   .view-teachcard .teach-abstract p { margin: 0; }
+  /* Description toggle: the "Description" button reveals/hides the blurb (CSS-only) */
+  .view-teachcard .desc-btn { cursor: pointer; }
+  .view-teachcard .desc-panel { display: none; }
+  .view-teachcard .desc-toggle:checked ~ .desc-panel { display: block; }
 
   /* ---- Abstract toggle: the "ABSTRACT" button reveals/hides the abstract ---- */
   .view-citation .abstract-btn { cursor: pointer; }

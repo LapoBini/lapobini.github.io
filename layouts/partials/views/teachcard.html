@@ -1,7 +1,8 @@
 {{/* Teaching / code card: course code (black) · title (blue underlined link to
-     the page) · one button (.zip of slides for classes, Repository for code) ·
-     a short abstract-style description. */}}
+     the page) · buttons (.zip of slides for classes / Repository for code, plus
+     a Description toggle) · a collapsible abstract-style description. */}}
 {{ $item := .item }}
+{{ $descid := printf "desc-%s" (anchorize $item.File.ContentBaseName) }}
 <div class="pub-list-item view-teachcard" style="margin-bottom: 1rem">
 
   {{/* 1. Course / repository code, in black */}}
@@ -10,10 +11,14 @@
   {{/* 2. Title, blue underlined, links to the item's page */}}
   <div class="teach-title"><a href="{{ $item.RelPermalink }}">{{ $item.Title }}</a></div>
 
-  {{/* 3. Button: .zip (slides) for classes, Repository (GitHub) for code */}}
+  {{/* Hidden checkbox drives the description show/hide (before the panel so the
+       `:checked ~ .desc-panel` sibling selector can reach it). */}}
+  {{ if $item.Params.abstract }}<input type="checkbox" id="{{ $descid }}" class="desc-toggle" hidden>{{ end }}
+
+  {{/* 3. Buttons: .zip (slides) / Repository (GitHub) · Description toggle */}}
   {{ $zip := "" }}
   {{ with $item.Params.zip }}{{ $r := $item.Resources.GetMatch . }}{{ if $r }}{{ $zip = $r.RelPermalink }}{{ else }}{{ $zip = . | relURL }}{{ end }}{{ end }}
-  {{ if or $zip $item.Params.repo }}
+  {{ if or $zip $item.Params.repo $item.Params.abstract }}
   <div class="flex space-x-3 mt-1">
     {{ with $zip }}
     <a class="hb-attachment-link hb-attachment-small" href="{{ . }}" download><svg style="height:1em" class="inline-block" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5M16.5 12 12 16.5m0 0L7.5 12m4.5 4.5V3"/></svg> .zip</a>
@@ -21,9 +26,12 @@
     {{ with $item.Params.repo }}
     <a class="hb-attachment-link hb-attachment-small" href="{{ . }}" target="_blank" rel="noopener"><svg style="height:1em" class="inline-block" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg> Repository</a>
     {{ end }}
+    {{ if $item.Params.abstract }}
+    <label for="{{ $descid }}" class="hb-attachment-link hb-attachment-small desc-btn"><svg style="height:1em" class="inline-block" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M4 12h16M4 18h10"/></svg> Description</label>
+    {{ end }}
   </div>
   {{ end }}
 
-  {{/* 4. Abstract-style description */}}
-  {{ with $item.Params.abstract }}<div class="teach-abstract">{{ . | markdownify }}</div>{{ end }}
+  {{/* 4. Collapsible description */}}
+  {{ with $item.Params.abstract }}<div class="teach-abstract desc-panel">{{ . | markdownify }}</div>{{ end }}
 </div>
