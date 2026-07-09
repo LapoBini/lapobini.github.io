@@ -34,7 +34,7 @@
     ({{- $item.Date.Format "2006" -}}).
   </div>
   <div class="cite-title">
-    <a href="{{ $title_url }}" class="underline"{{ if $title_ext }} target="_blank" rel="noopener"{{ end }}>{{ $item.Title }}</a>{{ with $item.Params.marker }}<sup class="cite-marker">{{ . }}</sup>{{ end }}.
+    <a href="{{ $title_url }}" class="underline"{{ if $title_ext }} target="_blank" rel="noopener"{{ end }}>{{ $item.Title }}</a>.{{ with $item.Params.marker }}<sup class="cite-marker">{{ . }}</sup>{{ end }}
     {{ if $item.Params.publication_short }}
       {{- $item.Params.publication_short | markdownify -}}.
     {{ else if $item.Params.publication }}
@@ -51,7 +51,7 @@
     </span>
   </div>
   <div class="cite-title">
-    <a href="{{ $title_url }}"{{ if $title_ext }} target="_blank" rel="noopener"{{ end }}>{{ $item.Title }}</a>{{ with $item.Params.marker }}<sup class="cite-marker">{{ . }}</sup>{{ end }}.
+    <a href="{{ $title_url }}"{{ if $title_ext }} target="_blank" rel="noopener"{{ end }}>{{ $item.Title }}</a>.{{ with $item.Params.marker }}<sup class="cite-marker">{{ . }}</sup>{{ end }}
     {{ if $item.Params.publication_short }}
       {{- $item.Params.publication_short | markdownify -}},
     {{ else if $item.Params.publication }}
