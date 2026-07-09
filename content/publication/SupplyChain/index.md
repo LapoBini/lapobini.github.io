@@ -23,6 +23,25 @@ marker: "†"
 awards:
 - "IAAE 2026 Best Student Paper, Honorable Mention"
 
+# Where this paper has been presented (shown via the homepage "Presentations" toggle).
+presentations:
+  - year: "2026"
+    events:
+      - Spring Midwest Macroeconomics Meeting
+      - SED Annual Meeting, Athens
+      - BSE Summer Forum
+      - IAAE 2026, Portugal
+      - Piraeus International Economic Conference
+      - Oslo Macro Conference, Norges Bank
+      - Macroeconomic Seminar Series, UCSD
+  - year: "2025"
+    events:
+      - SOCAE Conference, UCLA
+      - Macroeconomic Seminar Series, UCSD
+  - year: "2024"
+    events:
+      - Macroeconomic Seminar Series, UCSD
+
 featured: true
 
 url_pdf: Bini2025.pdf

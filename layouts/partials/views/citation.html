@@ -7,6 +7,7 @@
 {{ $has_attachments := partial "functions/has_attachments" $item }}
 {{ $abstract := $item.Params.abstract }}
 {{ $absid := printf "abstract-%s" (anchorize $item.File.ContentBaseName) }}
+{{ $presid := printf "pres-%s" (anchorize $item.File.ContentBaseName) }}
 
 {{/* Where the title links: the external published page (or a PDF) if `title_url` is
      set in the page's front matter, otherwise the local paper page. */}}
@@ -73,6 +74,7 @@
   {{/* Hidden checkbox drives the abstract show/hide (placed before the panel so the
        `:checked ~ .abstract-panel` sibling selector can reach it). */}}
   {{ if $abstract }}<input type="checkbox" id="{{ $absid }}" class="abstract-toggle" hidden>{{ end }}
+  {{ if $item.Params.presentations }}<input type="checkbox" id="{{ $presid }}" class="pres-toggle" hidden>{{ end }}
 
   {{/* Attachment buttons, in a fixed order: PDF · APPENDIX (links) · SLIDES · ABSTRACT */}}
   {{ $pdf := "" }}
@@ -80,7 +82,7 @@
   {{ if not $pdf }}{{ with $item.Params.url_pdf }}{{ $r := $item.Resources.GetMatch . }}{{ if $r }}{{ $pdf = $r.RelPermalink }}{{ else }}{{ $pdf = . | relURL }}{{ end }}{{ end }}{{ end }}
   {{ $slides := "" }}
   {{ with $item.Params.url_slides }}{{ $r := $item.Resources.GetMatch . }}{{ if $r }}{{ $slides = $r.RelPermalink }}{{ else }}{{ $slides = . | relURL }}{{ end }}{{ end }}
-  {{ if or $pdf $item.Params.links $slides $abstract }}
+  {{ if or $pdf $item.Params.links $slides $abstract $item.Params.presentations }}
   <div class="flex space-x-3">
     {{/* 1. PDF */}}
     {{ with $pdf }}
@@ -98,7 +100,11 @@
     {{ with $slides }}
     <a class="hb-attachment-link hb-attachment-small" href="{{ . }}" target="_blank" rel="noopener">{{ partial "functions/get_icon" (dict "name" "presentation-chart-bar" "attributes" "style=\"height: 1em\" class='inline-block'") }} {{ i18n "btn_slides" }}</a>
     {{ end }}
-    {{/* 4. ABSTRACT toggle */}}
+    {{/* 4. PRESENTATIONS toggle (homepage only — hidden on the Research page via CSS) */}}
+    {{ if $item.Params.presentations }}
+    <label for="{{ $presid }}" class="hb-attachment-link hb-attachment-small pres-list-btn"><svg style="height:1em" class="inline-block" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/><path d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z"/></svg> Presentations</label>
+    {{ end }}
+    {{/* 5. ABSTRACT toggle */}}
     {{ if $abstract }}
     <label for="{{ $absid }}" class="hb-attachment-link hb-attachment-small abstract-btn">
       <svg style="height:1em" class="inline-block" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M4 12h16M4 18h10"/></svg> Abstract</label>
@@ -107,6 +113,15 @@
   {{ end }}
 
   {{ if $abstract }}<div class="abstract-panel">{{ $abstract | markdownify }}</div>{{ end }}
+
+  {{/* Presentations list — years in bold gray, venues on one line, no links */}}
+  {{ with $item.Params.presentations }}
+  <div class="pres-list-panel">
+    {{ range . }}
+    <div class="pres-year"><span class="pres-year-label">{{ .year }}:</span> {{ delimit .events " · " }}</div>
+    {{ end }}
+  </div>
+  {{ end }}
 
   {{/* Award after the abstract — shown on the Research page (see CSS) */}}
   {{ range $item.Params.awards }}

@@ -341,6 +341,25 @@
     margin-right: 0.5em;  /* more space between the dagger and the text */
   }
 
+  /* ---- Per-paper "Presentations" toggle (homepage): reveals a list of venues
+     grouped by year — year in bold gray (like the award), venues on one line,
+     no links, a little space between years. CSS-only, no JavaScript. Hidden on
+     the Research page, which already carries the full Presentations section. */
+  .view-citation .pres-list-btn { cursor: pointer; }
+  .view-citation .pres-list-panel { display: none; margin-top: 0.5rem; max-width: 48rem; }
+  .view-citation .pres-toggle:checked ~ .pres-list-panel { display: block; }
+  .view-citation .pres-year { font-size: 0.9em; line-height: 1.5; margin-bottom: 0.45rem; color: #000; }
+  .view-citation .pres-year:last-child { margin-bottom: 0; }
+  .view-citation .pres-year-label { font-weight: 700; color: #6b7280; }
+  #working-papers .view-citation .pres-list-btn,
+  #ongoing-projects .view-citation .pres-list-btn { display: none; }
+
+  /* iPhone-sized screens: keep all attachment buttons on one line on the homepage */
+  @media (max-width: 480px) {
+    #latest-research .view-citation .flex.space-x-3 > * + * { margin-left: 0.3rem; }
+    #latest-research .view-citation .hb-attachment-link { font-size: 0.68rem; margin-right: 0; }
+  }
+
   /* ---- Teaching / Code list (teachcard view): code in black, title as a blue
      underlined link to the page, one button, then an abstract-style blurb ---- */
   .view-teachcard .teach-code { font-weight: 700; color: #000; }

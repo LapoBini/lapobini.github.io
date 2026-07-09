@@ -17,6 +17,14 @@ status: "Revise & Resubmit, The Economic Journal"
 # Footnote marker linking this paper to its talks in the Presentations list.
 marker: "‡"
 
+# Where this paper has been presented (shown via the homepage "Presentations" toggle).
+presentations:
+  - year: "2023"
+    events:
+      - VII Annual Santiago Macro Workshop, PUC-Chile
+      - University of Porto
+      - Macroeconomic Seminar Series, UCSD
+
 # Schedule page publish date (NOT publication's date).
 # publishDate: "2017-01-01T00:00:00Z"
 
