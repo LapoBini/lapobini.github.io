@@ -6,7 +6,7 @@ math: false
 summary: ECON220C
 code: ECON220C
 zip: "ECON220C_slides.zip"
-abstract: "The econometric methods for panel data, where the same units are observed over several periods. The course covers the static linear panel model, from pooled OLS and random effects to the fixed-effects model, clustering, and time effects, then dynamic panels and modern difference-in-differences, the theory of extremum estimation, and nonlinear models for limited and qualitative dependent variables such as binary choice, censored and truncated regression, and sample selection."
+abstract: "Econ 220C develops the econometric methods used to analyze panel data, where the same units are observed over several periods, in four parts. The first part studies the static linear panel model, starting from pooled OLS and the random-effects estimator and then turning to the fixed-effects model, its identification and consistency, instrumental variables, and clustered inference with time effects. The second part moves to dynamic panel models, where past outcomes influence current ones, and to modern difference-in-differences designs with staggered adoption. The third part develops the theory of extremum estimation, covering the general consistency theorem and the uniform law of large numbers, which prepares the ground for the nonlinear models that follow. The last part applies this framework to limited and qualitative dependent variables, including binary choice and the probit model, censored and truncated regression, and sample selection. The asymptotic theory of extremum estimators, with the method of moments as a special case, provides the unifying thread throughout."
 #tags:
 #- ECON120A (TA Fall 24)
 title: Graduate Panel Data Econometrics
