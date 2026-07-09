@@ -356,6 +356,27 @@
   }
   .view-teachcard .teach-abstract p { margin: 0; }
 
+  /* ---- Teaching landing: two columns on wider screens — Teaching Material on
+     the left, Code on the right — so the page fits one view. Content stays
+     left-aligned and internal spacing is unchanged; stacks to one column on
+     narrow screens. Scoped to the teaching page via :has(#teaching-material). */
+  @media (min-width: 768px) {
+    .page-body:has(#teaching-material) {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2.5rem;
+      align-items: start;
+      max-width: 72rem;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+    /* fill each column (left-aligned) instead of the centered 48rem box */
+    #teaching-material .max-w-prose,
+    #code .max-w-prose { max-width: none; margin-left: 0; margin-right: 0; }
+    #teaching-material .container.max-w-3xl,
+    #code .container.max-w-3xl { max-width: none; }
+  }
+
   /* ---- Abstract toggle: the "ABSTRACT" button reveals/hides the abstract ---- */
   .view-citation .abstract-btn { cursor: pointer; }
   /* Abstract text (toggle panel + paper detail page) uses the same font as the Bio:
