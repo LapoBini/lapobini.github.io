@@ -7,7 +7,7 @@ summary: ECON210C
 code: ECON210C
 repo: "https://github.com/LapoBini/210C"
 weight: 2
-abstract: "Solutions to the problem sets and final exam of ECON210C (Monetary Economics, Prof. Johannes Wieland, Spring 2024). The code implements modern solution methods for RBC and New Keynesian DSGE models, including the sequence-space approach of Auclert et al. (2021), together with identification strategies for structural VARs."
+abstract: "Solutions to the problem sets and final exam of ECON210C (Monetary Economics, Prof. Johannes Wieland, Spring 2024). The code implements modern solution methods for RBC and New Keynesian DSGE models, including the sequence-space approach of Auclert et al. (2021), together with identification strategies for structural VARs and the analysis of impulse responses to monetary policy and technology shocks."
 title: Monetary Economics
 type: docs
 ---
