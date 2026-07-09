@@ -8,7 +8,7 @@ code: BayesianVAR.jl
 repo: "https://github.com/LapoBini/BayesianVAR.jl"
 weight: 1
 abstract: "A Julia package to estimate Bayesian Vector Autoregressions with Minnesota, sum-of-coefficients, and dummy-initial-observation priors. It performs structural analysis through sign restrictions or external instruments, and provides tools for hyperparameter selection, posterior sampling, impulse-response and forecast-error-variance decompositions, historical decompositions, and both unconditional and conditional forecasts."
-title: Bayesian VAR
+title: Bayesian Vector Autoregression
 type: docs
 ---
 ## Introduction
