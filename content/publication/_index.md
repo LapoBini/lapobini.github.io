@@ -55,6 +55,12 @@ sections:
         **2024**
 
         - <span class="pres-marker">†</span> Macroeconomic Seminar Series, UCSD
+
+        **2023**
+
+        - <span class="pres-marker">‡</span> <a href="https://www.bcentral.cl/en/content/-/details/vii-annual-santiago-macro-workshop" target="_blank" rel="noopener">VII Annual Santiago Macro Workshop, PUC-Chile</a>
+        - <span class="pres-marker">‡</span> University of Porto
+        - <span class="pres-marker">‡</span> Macroeconomic Seminar Series, UCSD
     design:
       columns: '1'
 ---
