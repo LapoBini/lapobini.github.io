@@ -320,7 +320,7 @@
   .view-citation .cite-marker {
     display: none;
     font-weight: 700;
-    color: #6b7280;
+    color: rgb(var(--color-primary-600) / 1);
     font-size: 0.83rem;   /* same size as the presentation dagger */
   }
   #working-papers .view-citation .cite-marker,
@@ -331,13 +331,14 @@
   #presentations ul { padding-left: 0; }
   #presentations li {
     list-style: none;
-    padding-left: 1.2em;
-    text-indent: -1.2em;
+    padding-left: 1.5em;
+    text-indent: -1.5em;
   }
   #presentations .pres-marker {
     font-weight: 700;
-    color: #6b7280;
+    color: rgb(var(--color-primary-600) / 1);
     font-size: 0.83rem;   /* match the title's superscript dagger */
+    margin-right: 0.5em;  /* more space between the dagger and the text */
   }
 
   /* ---- Teaching / Code list (teachcard view): code in black, title as a blue
