@@ -26,6 +26,9 @@
   </div>
   {{ end }}
 
+  {{/* Award (e.g. teaching prize), gray, below the button and before the description */}}
+  {{ with $item.Params.award }}<div class="teach-award"><span class="teach-award-label">Award:</span> {{ . }}</div>{{ end }}
+
   {{/* 4. Description, always visible */}}
   {{ with $item.Params.abstract }}<div class="teach-abstract">{{ . | markdownify }}</div>{{ end }}
 </div>

@@ -6,7 +6,8 @@ math: false
 summary: ECON220B
 code: ECON220B (PhD)
 zip: "ECON220B_slides.zip"
-abstract: "A rigorous introduction to linear and nonlinear econometric methods. The course builds the asymptotic toolkit, studies linear regression and what ordinary least squares identifies, and then turns to causal questions and treatment effects, from selection on observables and instrumental variables to the local average treatment effect. It closes with the theory of extremum estimation and the generalized method of moments."
+award: "TA Excellence Award, 2024-25"
+abstract: "A rigorous introduction to linear and nonlinear econometric methods. The course builds the asymptotic toolkit, studies linear regression and ordinary least squares, then turns to causal questions and treatment effects, from selection on observables and instrumental variables to the local average treatment effect. It closes with the theory of extremum estimation and the generalized method of moments."
 #tags:
 #- ECON120A (TA Fall 24)
 title: Cross-Sectional Econometrics
