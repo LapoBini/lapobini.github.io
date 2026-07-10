@@ -6,6 +6,7 @@ math: false
 summary: ECON220C
 code: ECON220C (PhD)
 zip: "ECON220C_slides.zip"
+award: "TA Excellence Award, 2024-25"
 abstract: "The course covers the static linear panel model, from pooled OLS and random effects to the fixed-effects model, clustering, and time effects, then dynamic panels and modern difference-in-differences, the theory of extremum estimation, and nonlinear models for limited and qualitative dependent variables such as binary choice, censored and truncated regression, and sample selection."
 #tags:
 #- ECON120A (TA Fall 24)
