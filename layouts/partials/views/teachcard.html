@@ -4,8 +4,10 @@
 {{ $item := .item }}
 <div class="pub-list-item view-teachcard" style="margin-bottom: 1rem">
 
-  {{/* 1. Course / repository code, in black */}}
-  <div class="teach-code">{{ $item.Params.code }}</div>
+  {{/* 1. Course / repository code, in black. A trailing "(level)" is rendered
+       in normal weight so only the code itself is bold. */}}
+  {{ $codeparts := split $item.Params.code " (" }}
+  <div class="teach-code">{{ index $codeparts 0 }}{{ if gt (len $codeparts) 1 }} <span class="teach-code-note">({{ index $codeparts 1 }}</span>{{ end }}</div>
 
   {{/* 2. Title, blue underlined, links to the item's page */}}
   <div class="teach-title"><a href="{{ $item.RelPermalink }}">{{ $item.Title }}</a></div>
