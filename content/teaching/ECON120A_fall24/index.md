@@ -4,12 +4,12 @@ image:
   caption: Embed rich media such as videos and LaTeX math
 math: false
 summary: ECON120A
-code: ECON120A
+code: ECON120A (BSc)
 zip: "ECON120A_slides.zip"
 abstract: "An introduction to probability and statistical inference for economists. The discussion sections review probability and random variables, expectation and common distributions, sampling and estimation, hypothesis testing, and an introduction to linear regression. Each session works through exercises and exam-style problems to build intuition and problem-solving skills."
 #tags:
 #- ECON120A (TA Fall 24)
-title: Undergraduate Statistics
+title: Introductory Econometrics
 type: docs
 weight: 3
 ---
