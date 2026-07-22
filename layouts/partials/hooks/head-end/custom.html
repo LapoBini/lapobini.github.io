@@ -286,6 +286,11 @@
      professional gray instead of green ---- */
   .hb-attachment-link { color: #6b7280; }
   .hb-attachment-link:hover { color: #4b5563; }
+  /* Space the attachment row with flex gap instead of sibling margins, so buttons
+     hidden via display:none (Abstract/Talks on the Research page, Shock Data on
+     phones) don't leave a leading indent before the first visible button. */
+  .view-citation .flex.space-x-3 { gap: 0.75rem; }
+  .view-citation .flex.space-x-3 > * + * { margin-left: 0 !important; }
 
   /* ---- Submission status (e.g. "Revise & Resubmit, The Economic Journal"):
      understated italic note between the authors and the title ---- */
@@ -360,7 +365,7 @@
 
   /* iPhone-sized screens: keep all attachment buttons on one line on the homepage */
   @media (max-width: 480px) {
-    #latest-research .view-citation .flex.space-x-3 > * + * { margin-left: 0.3rem; }
+    #latest-research .view-citation .flex.space-x-3 { gap: 0.3rem; }
     #latest-research .view-citation .hb-attachment-link { font-size: 0.95rem; margin-right: 0; }
     #latest-research .view-citation .shock-btn { display: none; }
   }
