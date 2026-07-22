@@ -46,6 +46,8 @@ featured: true
 
 url_pdf: Bini2025.pdf
 url_slides: "slidesBini2025.pdf"
+# Downloadable shock/instrument series (Excel) — button shown only on the Research page.
+shock_data: "IV_shock.xlsx"
 # Title links to the published page (SSRN)
 title_url: "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5375776"
 # No individual paper page — keep the bundle's resources (PDF, cite, appendix) published
