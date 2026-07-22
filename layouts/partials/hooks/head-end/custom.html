@@ -354,14 +354,15 @@
   #working-papers .view-citation .pres-list-btn,
   #ongoing-projects .view-citation .pres-list-btn { display: none; }
 
-  /* "Shock Data" download button: shown only on the Research page (hidden on the
-     homepage's Latest Research). */
-  #latest-research .view-citation .shock-btn { display: none; }
+  /* "Shock Data" download button: shown on the Research page and on the homepage's
+     Latest Research (desktop). On narrow phones it is hidden on the homepage so the
+     attachment row stays on a single line (see the phone media query below). */
 
   /* iPhone-sized screens: keep all attachment buttons on one line on the homepage */
   @media (max-width: 480px) {
     #latest-research .view-citation .flex.space-x-3 > * + * { margin-left: 0.3rem; }
     #latest-research .view-citation .hb-attachment-link { font-size: 0.95rem; margin-right: 0; }
+    #latest-research .view-citation .shock-btn { display: none; }
   }
 
   /* ---- Teaching / Code list (teachcard view): code in black, title as a blue
