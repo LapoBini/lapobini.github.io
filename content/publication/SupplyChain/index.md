@@ -58,6 +58,6 @@ links:
 - name: Appendix
   url: appendixBini2025.pdf
 
-abstract: This paper provides evidence that global supply chain shocks are key drivers of business cycle fluctuations, introducing a novel identification strategy based on a narrative analysis of price surcharges from the three largest container shipping companies. Negative shocks cause a persistent rise in consumer prices and a prolonged decline in economic activity. Sectoral impacts vary with exposure to global supply chains, proxied by the share of inputs sourced from abroad. Spillovers extend to non-tradable sectors. These shocks accounted for up to 45% of the post-pandemic inflation. In a counterfactual with only global supply chain shocks, recovery would have taken 18 months longer.
+abstract: This paper provides evidence that global supply chain shocks are key drivers of business cycle fluctuations, introducing a novel identification strategy based on a narrative analysis of price surcharges from the three largest container shipping companies. Negative shocks cause a persistent rise in consumer prices and a prolonged decline in economic activity. Sectoral impacts vary with exposure to global supply chains, proxied by the import share of inputs. Spillovers extend to non-tradable sectors. These shocks accounted for up to 45% of the post-pandemic inflation. In a counterfactual with only global supply chain shocks, recovery would have taken 18 months longer.
 
 ---
