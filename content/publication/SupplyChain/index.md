@@ -34,6 +34,7 @@ presentations:
       - IAAE 2026, Portugal
       - Piraeus International Economic Conference
       - Oslo Macro Conference, Norges Bank
+      - CEM-SNDE Conference, Reserve Bank of Australia
       - Macroeconomic Seminar Series, UCSD
   - year: "2025"
     events:
