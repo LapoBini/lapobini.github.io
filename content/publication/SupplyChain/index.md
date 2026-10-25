@@ -16,29 +16,34 @@ doi: ""
 publication_types: ["working-paper"]
 publication:
 
-# Footnote marker linking this paper to its talks in the Presentations list.
-marker: "†"
-
 # Awards / honors, shown below the title in the citation view.
 awards:
 - "IAAE 2026 Best Student Paper, Honorable Mention"
 - "Walter Heller Memorial Prize (Best 3rd Year Paper UCSD Econ)"
 
-# Where this paper has been presented (shown via the homepage "Presentations" toggle).
+# Where this paper has been presented: homepage "Talks" toggle and, with links,
+# the Research page. An event is a plain name or `{name, url}`.
 presentations:
   - year: "2026"
     events:
-      - Spring Midwest Macroeconomics Meeting
-      - SED Annual Meeting, Athens
-      - BSE Summer Forum
-      - IAAE 2026, Portugal
+      - name: Spring Midwest Macroeconomics Meeting
+        url: https://www.marquette.edu/business/economics/macro-meeting.php
+      - name: SED Annual Meeting, Athens
+        url: https://economicdynamics.org
+      - name: BSE Summer Forum
+        url: https://bse.eu/summer-forum/workshops/structural-shocks
+      - name: IAAE 2026, Portugal
+        url: https://iaae2026.pages.dev
       - Piraeus International Economic Conference
-      - Oslo Macro Conference, Norges Bank
-      - CEM-SNDE Conference, Reserve Bank of Australia
+      - name: Oslo Macro Conference, Norges Bank
+        url: https://sites.google.com/site/oslomacro/omc
+      - name: CEM-SNDE Conference, Reserve Bank of Australia
+        url: https://www.rba.gov.au/publications/workshops/continuing-education-macroeconometrics/2026/
       - Macroeconomic Seminar Series, UCSD
   - year: "2025"
     events:
-      - SOCAE Conference, UCLA
+      - name: SOCAE Conference, UCLA
+        url: https://sites.google.com/view/socae/past-editions
       - Macroeconomic Seminar Series, UCSD
   - year: "2024"
     events:

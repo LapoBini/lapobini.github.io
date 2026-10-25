@@ -14,14 +14,13 @@ doi: ""
 # Submission status, shown after the author/year line in the citation view.
 status: "Revise & Resubmit, The Economic Journal"
 
-# Footnote marker linking this paper to its talks in the Presentations list.
-marker: "‡"
-
-# Where this paper has been presented (shown via the homepage "Presentations" toggle).
+# Where this paper has been presented: homepage "Talks" toggle and, with links,
+# the Research page. An event is a plain name or `{name, url}`.
 presentations:
   - year: "2023"
     events:
-      - VII Annual Santiago Macro Workshop, PUC-Chile
+      - name: VII Annual Santiago Macro Workshop, PUC-Chile
+        url: https://www.bcentral.cl/en/content/-/details/vii-annual-santiago-macro-workshop
       - University of Porto
       - Macroeconomic Seminar Series, UCSD
 

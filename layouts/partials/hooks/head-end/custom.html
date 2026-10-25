@@ -317,39 +317,10 @@
   #latest-research .view-citation .cite-award--top { display: block; }
   #latest-research .view-citation .cite-award--bottom { display: none; }
 
-  /* ---- Footnote marker (†, ‡) linking a paper to its talks in the
-     Presentations list. Superscript after the title; accent-colored so the
-     same glyph is easy to match against the presentation bullets below.
-     Shown only on the Research page (hidden on the homepage, where there is
-     no presentations list to point to). ---- */
-  .view-citation .cite-marker {
-    display: none;
-    font-weight: 700;
-    color: rgb(var(--color-primary-600) / 1);
-    font-size: 0.83rem;   /* same size as the presentation dagger */
-  }
-  #working-papers .view-citation .cite-marker,
-  #ongoing-projects .view-citation .cite-marker { display: inline; }
-
-  /* Presentations list: drop the default bullet and lead each talk with its
-     paper's marker instead (hanging indent so wrapped lines align). */
-  #presentations ul { padding-left: 0; }
-  #presentations li {
-    list-style: none;
-    padding-left: 1.5em;
-    text-indent: -1.5em;
-  }
-  #presentations .pres-marker {
-    font-weight: 700;
-    color: rgb(var(--color-primary-600) / 1);
-    font-size: 0.83rem;   /* match the title's superscript dagger */
-    margin-right: 0.5em;  /* more space between the dagger and the text */
-  }
-
   /* ---- Per-paper "Presentations" toggle (homepage): reveals a list of venues
      grouped by year — year in bold gray (like the award), venues on one line,
      no links, a little space between years. CSS-only, no JavaScript. Hidden on
-     the Research page, which already carries the full Presentations section. */
+     the Research page, which shows the list (with links) after the awards. */
   .view-citation .pres-list-btn { cursor: pointer; }
   .view-citation .pres-list-panel { display: none; margin-top: 0.5rem; max-width: 48rem; }
   .view-citation .pres-toggle:checked ~ .pres-list-panel { display: block; }
@@ -358,6 +329,12 @@
   .view-citation .pres-year-label { font-weight: 700; color: #6b7280; }
   #working-papers .view-citation .pres-list-btn,
   #ongoing-projects .view-citation .pres-list-btn { display: none; }
+
+  /* Research page: "Presentations" block after the awards — label in the same
+     bold gray as "Awards:", then one line per year. Hidden on the homepage. */
+  .view-citation .pres-research { margin-top: 0.5rem; max-width: 48rem; }
+  .view-citation .pres-research > .cite-award-label { font-size: 0.9em; color: #6b7280; }
+  #latest-research .view-citation .pres-research { display: none; }
 
   /* "Shock Data" download button: shown on the Research page and on the homepage's
      Latest Research (desktop). On narrow phones it is hidden on the homepage so the

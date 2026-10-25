@@ -31,37 +31,4 @@ sections:
     design:
       view: citation
       columns: '1'
-
-  - block: markdown
-    id: presentations
-    content:
-      title: "Presentations"
-      text: |-
-        **2026**
-
-        - <span class="pres-marker">†</span> <a href="https://www.marquette.edu/business/economics/macro-meeting.php" target="_blank" rel="noopener">Spring Midwest Macroeconomics Meeting</a>
-        - <span class="pres-marker">†</span> <a href="https://economicdynamics.org" target="_blank" rel="noopener">SED Annual Meeting, Athens</a>
-        - <span class="pres-marker">†</span> <a href="https://bse.eu/summer-forum/workshops/structural-shocks" target="_blank" rel="noopener">BSE Summer Forum 2026 — Advances in Structural Shocks Identification</a>
-        - <span class="pres-marker">†</span> <a href="https://iaae2026.pages.dev" target="_blank" rel="noopener">IAAE 2026, Portugal</a>
-        - <span class="pres-marker">†</span> Piraeus International Economic Conference, University of Piraeus
-        - <span class="pres-marker">†</span> <a href="https://sites.google.com/site/oslomacro/omc" target="_blank" rel="noopener">Oslo Macro Conference 2026, Norges Bank</a>
-        - <span class="pres-marker">†</span> <a href="https://www.rba.gov.au/publications/workshops/continuing-education-macroeconometrics/2026/" target="_blank" rel="noopener">CEM-SNDE Conference, Reserve Bank of Australia</a>
-        - <span class="pres-marker">†</span> Macroeconomic Seminar Series, UCSD
-
-        **2025**
-
-        - <span class="pres-marker">†</span> <a href="https://sites.google.com/view/socae/past-editions" target="_blank" rel="noopener">Southern California Applied Economics (SOCAE) Conference, UCLA</a>
-        - <span class="pres-marker">†</span> Macroeconomic Seminar Series, UCSD
-
-        **2024**
-
-        - <span class="pres-marker">†</span> Macroeconomic Seminar Series, UCSD
-
-        **2023**
-
-        - <span class="pres-marker">‡</span> <a href="https://www.bcentral.cl/en/content/-/details/vii-annual-santiago-macro-workshop" target="_blank" rel="noopener">VII Annual Santiago Macro Workshop, PUC-Chile</a>
-        - <span class="pres-marker">‡</span> University of Porto
-        - <span class="pres-marker">‡</span> Macroeconomic Seminar Series, UCSD
-    design:
-      columns: '1'
 ---

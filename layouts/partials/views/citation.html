@@ -35,7 +35,7 @@
     ({{- $item.Date.Format "2006" -}}).
   </div>
   <div class="cite-title">
-    <a href="{{ $title_url }}" class="underline"{{ if $title_ext }} target="_blank" rel="noopener"{{ end }}>{{ $item.Title }}</a>.{{ with $item.Params.marker }}<sup class="cite-marker">{{ . }}</sup>{{ end }}
+    <a href="{{ $title_url }}" class="underline"{{ if $title_ext }} target="_blank" rel="noopener"{{ end }}>{{ $item.Title }}</a>.
     {{ if $item.Params.publication_short }}
       {{- $item.Params.publication_short | markdownify -}}.
     {{ else if $item.Params.publication }}
@@ -52,7 +52,7 @@
     </span>
   </div>
   <div class="cite-title">
-    <a href="{{ $title_url }}"{{ if $title_ext }} target="_blank" rel="noopener"{{ end }}>{{ $item.Title }}</a>.{{ with $item.Params.marker }}<sup class="cite-marker">{{ . }}</sup>{{ end }}
+    <a href="{{ $title_url }}"{{ if $title_ext }} target="_blank" rel="noopener"{{ end }}>{{ $item.Title }}</a>.
     {{ if $item.Params.publication_short }}
       {{- $item.Params.publication_short | markdownify -}},
     {{ else if $item.Params.publication }}
@@ -120,11 +120,14 @@
 
   {{ if $abstract }}<div class="abstract-panel">{{ $abstract | markdownify }}</div>{{ end }}
 
-  {{/* Presentations list — years in bold gray, venues on one line, no links */}}
+  {{/* Presentations toggle panel (homepage) — years in bold gray, venues on one
+       line, no links. An event is either a plain name or a {name, url} map. */}}
   {{ with $item.Params.presentations }}
   <div class="pres-list-panel">
     {{ range . }}
-    <div class="pres-year"><span class="pres-year-label">{{ .year }}:</span> {{ delimit .events " · " }}</div>
+    {{ $names := slice }}
+    {{ range .events }}{{ if reflect.IsMap . }}{{ $names = $names | append .name }}{{ else }}{{ $names = $names | append . }}{{ end }}{{ end }}
+    <div class="pres-year"><span class="pres-year-label">{{ .year }}:</span> {{ delimit $names " · " }}</div>
     {{ end }}
   </div>
   {{ end }}
@@ -132,5 +135,22 @@
   {{/* Awards (joined by "; ") after the abstract — shown on the Research page (see CSS) */}}
   {{ with $item.Params.awards }}
   <div class="cite-award cite-award--bottom"><span class="cite-award-label">Award{{ if gt (len .) 1 }}s{{ end }}:</span> {{ delimit . "; " }}</div>
+  {{ end }}
+
+  {{/* Presentations after the awards — shown on the Research page (see CSS).
+       Same years/venues as the homepage panel, but venues with a `url` link out. */}}
+  {{ with $item.Params.presentations }}
+  <div class="pres-research">
+    <div class="cite-award-label">Presentations</div>
+    {{ range . }}
+    {{ $items := slice }}
+    {{ range .events }}
+      {{ if reflect.IsMap . }}
+        {{ if .url }}{{ $items = $items | append (printf `<a href="%s" target="_blank" rel="noopener">%s</a>` .url (htmlEscape .name)) }}{{ else }}{{ $items = $items | append (htmlEscape .name) }}{{ end }}
+      {{ else }}{{ $items = $items | append (htmlEscape .) }}{{ end }}
+    {{ end }}
+    <div class="pres-year"><span class="pres-year-label">{{ .year }}:</span> {{ delimit $items " · " | safeHTML }}</div>
+    {{ end }}
+  </div>
   {{ end }}
 </div>
