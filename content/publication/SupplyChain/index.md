@@ -22,6 +22,7 @@ marker: "†"
 # Awards / honors, shown below the title in the citation view.
 awards:
 - "IAAE 2026 Best Student Paper, Honorable Mention"
+- "Walter Heller Memorial Prize (Best 3rd Year Paper UCSD Econ)"
 
 # Where this paper has been presented (shown via the homepage "Presentations" toggle).
 presentations:
