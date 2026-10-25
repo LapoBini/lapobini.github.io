@@ -29,6 +29,13 @@ Material from the __Fall-25__ class:
 1. [Confidence Intervals](https://lapobini.github.io/discussion/ECON120A_fall24/120A_25_1.pdf)
 2. [Hypothesis Testing](https://lapobini.github.io/discussion/ECON120A_fall24/120A_25_2.pdf)
 
+
+Material from the __Fall-26__ class:
+1. [Descriptive Statistics](https://lapobini.github.io/discussion/ECON120A_fall24/120A_26_1.pdf)
+2. [Discrete Random Variables](https://lapobini.github.io/discussion/ECON120A_fall24/120A_26_2.pdf)
+3. [Midterm Review](https://lapobini.github.io/discussion/ECON120A_fall24/120A_26_3.pdf)
+4. [Midterm Solutions](https://lapobini.github.io/discussion/ECON120A_fall24/120A_26_4.pdf)
+
 ### Evaluation
 Instructional Assistant Student Evaluation of Teaching: [2024](https://lapobini.github.io/discussion/ECON120A_fall24/120A_evaluation_2024.pdf).
 
