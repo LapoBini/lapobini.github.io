@@ -66,9 +66,9 @@
   {{/* Publication status (e.g. R&R) — shown below the title on every page */}}
   {{ with $item.Params.status }}<div class="cite-status">{{ . | markdownify }}</div>{{ end }}
 
-  {{/* Award below the title — shown on the homepage only (see CSS) */}}
-  {{ range $item.Params.awards }}
-  <div class="cite-award cite-award--top"><span class="cite-award-label">Award:</span> {{ . }}</div>
+  {{/* Awards (joined by "; ") below the title — shown on the homepage only (see CSS) */}}
+  {{ with $item.Params.awards }}
+  <div class="cite-award cite-award--top"><span class="cite-award-label">Award{{ if gt (len .) 1 }}s{{ end }}:</span> {{ delimit . "; " }}</div>
   {{ end }}
 
   {{/* Hidden checkbox drives the abstract show/hide (placed before the panel so the
@@ -129,8 +129,8 @@
   </div>
   {{ end }}
 
-  {{/* Award after the abstract — shown on the Research page (see CSS) */}}
-  {{ range $item.Params.awards }}
-  <div class="cite-award cite-award--bottom"><span class="cite-award-label">Award:</span> {{ . }}</div>
+  {{/* Awards (joined by "; ") after the abstract — shown on the Research page (see CSS) */}}
+  {{ with $item.Params.awards }}
+  <div class="cite-award cite-award--bottom"><span class="cite-award-label">Award{{ if gt (len .) 1 }}s{{ end }}:</span> {{ delimit . "; " }}</div>
   {{ end }}
 </div>
