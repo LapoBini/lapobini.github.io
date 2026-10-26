@@ -121,13 +121,18 @@
   {{ if $abstract }}<div class="abstract-panel">{{ $abstract | markdownify }}</div>{{ end }}
 
   {{/* Presentations toggle panel (homepage) — years in bold gray, venues on one
-       line, no links. An event is either a plain name or a {name, url} map. */}}
+       line. An event is either a plain name or a {name, url} map; venues with a
+       `url` link out in a new tab. */}}
   {{ with $item.Params.presentations }}
   <div class="pres-list-panel">
     {{ range . }}
-    {{ $names := slice }}
-    {{ range .events }}{{ if reflect.IsMap . }}{{ $names = $names | append .name }}{{ else }}{{ $names = $names | append . }}{{ end }}{{ end }}
-    <div class="pres-year"><span class="pres-year-label">{{ .year }}:</span> {{ delimit $names " · " }}</div>
+    {{ $items := slice }}
+    {{ range .events }}
+      {{ if reflect.IsMap . }}
+        {{ if .url }}{{ $items = $items | append (printf `<a href="%s" target="_blank" rel="noopener">%s</a>` .url (htmlEscape .name)) }}{{ else }}{{ $items = $items | append (htmlEscape .name) }}{{ end }}
+      {{ else }}{{ $items = $items | append (htmlEscape .) }}{{ end }}
+    {{ end }}
+    <div class="pres-year"><span class="pres-year-label">{{ .year }}:</span> {{ delimit $items " · " | safeHTML }}</div>
     {{ end }}
   </div>
   {{ end }}
@@ -138,7 +143,7 @@
   {{ end }}
 
   {{/* Presentations after the awards — shown on the Research page (see CSS).
-       Same years/venues as the homepage panel, but venues with a `url` link out. */}}
+       Same years/venues (and links) as the homepage panel. */}}
   {{ with $item.Params.presentations }}
   <div class="pres-research">
     <div class="cite-award-label">Presentations</div>
