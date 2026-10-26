@@ -14,7 +14,7 @@ type: docs
 weight: 3
 ---
 ### General Info
-Office hour: Monday 12:30-1:30 pm SDSC E185. Prof Graham Elliott's [notes](https://econweb.ucsd.edu/~gelliott/StatNotes.html). 
+Office hour: Thursday from 1:00 to 2:00 pm, Malk Hall 464. Prof Graham Elliott's [notes](https://econweb.ucsd.edu/~gelliott/StatNotes.html). 
 
 ### Material
 Material from the __Fall-26__ class:
