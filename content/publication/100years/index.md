@@ -55,6 +55,6 @@ links:
 - name: Appendix
   url: OnlineAppendix-100years.pdf
 
-abstract: This study investigates the business cycle dynamics of the U.S. economy since 1900 through a multivariate framework that imposes minimal economic restrictions. A key finding is the presence of a significant negative correlation between inflation and economic slack, at business cycle frequencies. This relationship remains robust across over a century of data, with stable coefficients in subsample periods.
+abstract: "US business cycles since 1900, examined through a multivariate trend-cycle model consistent with a New Keynesian economy, reveal robust reduced-form regularities between slack, prices and unemployment. Once long-term trends are accounted for, a single common cycle drives output, unemployment, prices, inflation expectations and the policy rate, and behaves as a demand cycle. The slope of inflation on unemployment is −1.08 over the century, against −0.40 in the raw data, and around −0.80 in postwar subsamples. Okun's law, connecting unemployment and output, is an equally robust relation in the data."
 
 ---
