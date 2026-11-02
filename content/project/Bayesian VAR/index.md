@@ -115,7 +115,28 @@ How should the hyperparameters be specified? What is the optimal number of lags?
 ### Informativeness of the Prior Distribution
 From a Bayesian perspective, choosing the informativeness of the prior distribution is conceptually identical to inference on any other unknown parameter of the model. Suppose, for instance, that a model is described by a likelihood function $p(y|\theta)$ and a prior distribution $p_\eta(\theta)$, where $\theta$ is the vector of the VAR(p) parameters and $\eta$ collects the hyperparameters, i.e. the coefficients that parameterize the prior distribution but do not directly affect the likelihood. It is then natural to choose these hyperparameters by interpreting the model as a hierarchical model, i.e. replacing $p_\eta(\theta)$ with $p(\theta|\eta)$ and evaluating their posterior ([Berger, 1985](#ref-berger1985); [Koop, 2003](#ref-koop2003)).
 
-Following [Giannone, Lenza and Primiceri](#ref-giannone2015) ([2015](#ref-giannone2015)), we pick the hyperparameters that maximize the marginal likelihood of the data, i.e. the values that make the data most likely after integrating out the uncertainty about the model parameters. The code performs a grid search over the lag order $p$ and the hyperparameters $(\lambda, \tau, \gamma)$. The procedure is implemented in __Code__ > __BVAR__ > __bvar_opt_hyperprior.jl__, and the marginal likelihood is computed in __Code__ > __BVAR__ > __bvar_marginal_likelihood.jl__.
+By Bayes' rule, the posterior of the hyperparameters is
+$$ p(\eta|y) \propto p(y|\eta)\, p(\eta)\,, $$
+where $p(\eta)$ is a prior on the hyperparameters (a hyperprior) and $p(y|\eta)$ is the marginal likelihood, obtained by integrating out the VAR parameters:
+$$ p(y|\eta) = \int p(y|\theta)\, p(\theta|\eta)\, d\theta\,. $$
+Following [Giannone, Lenza and Primiceri](#ref-giannone2015) ([2015](#ref-giannone2015)), with a flat hyperprior, maximizing the posterior of $\eta$ amounts to maximizing the marginal likelihood, i.e. picking the hyperparameters that make the data most likely after integrating out the uncertainty about the model parameters.
+
+Why is this a sensible criterion? By the chain rule of probability, the marginal likelihood can be written as
+$$ p(y|\eta) = \prod_{t=1}^{T} p(y_t \,|\, y_1,\dots,y_{t-1}, \eta)\,, $$
+the product of one-step-ahead predictive densities. It therefore rewards the hyperparameters that would have produced the best out-of-sample forecasts. A prior that is too loose fits the sample well but forecasts poorly (overfitting), while a prior that is too tight ignores the information in the data.
+
+Because the Normal-inverse-Wishart prior is conjugate, the integral has a closed form. Let $Y$ $(T\times n)$ and $X$ $(T\times k)$ collect the observed data, without the dummy observations, and let $\beta_0$, $\Omega_0$, $S_0$ and $\alpha_0$ be the prior parameters implied by the dummies, all of which depend on $\eta$. The log marginal likelihood is
+$$
+\begin{aligned}
+\log p(y|\eta) = {} & -\frac{Tn}{2}\log\pi + \log\Gamma_n\Big(\frac{T+\alpha_0}{2}\Big) - \log\Gamma_n\Big(\frac{\alpha_0}{2}\Big) - \frac{n}{2}\log\big|I_T + X\Omega_0X'\big| \\
+& + \frac{\alpha_0}{2}\log\big|S_0\big| - \frac{T+\alpha_0}{2}\log\big|S_0 + (Y - X\beta_0)'(I_T + X\Omega_0 X')^{-1}(Y - X\beta_0)\big|\,,
+\end{aligned}
+$$
+where $\Gamma_n(\cdot)$ is the multivariate gamma function. The last term rewards fit: it is large when the data are close to the prior mean $X\beta_0$, relative to the prior uncertainty. The term $-\frac{n}{2}\log|I_T + X\Omega_0X'|$ penalizes complexity: it falls as the prior becomes looser or as more lags are added. Equivalently, the marginal likelihood is the ratio between the marginal likelihood of the data augmented with the dummies and that of the dummies alone, $p(y|\eta) = p(Y_*|\eta)/p(Y_d|\eta)$.
+
+The lag order and the hyperparameters are then chosen as
+$$ (\hat p, \hat\lambda, \hat\tau, \hat\gamma) = \arg\max_{p,\,\lambda,\,\tau,\,\gamma}\; \log p(y\,|\,p, \lambda, \tau, \gamma)\,. $$
+The code performs this maximization by grid search: for each lag order $p$ and each set of values $(\lambda, \tau, \gamma)$ in the grid (by default $\tau = \gamma = 10\lambda$), it builds the dummy observations, computes the log marginal likelihood and keeps the combination with the highest value. To make different lag orders comparable, all of them are evaluated on the same sample, which starts after the largest lag in the grid. The procedure is implemented in __Code__ > __BVAR__ > __bvar_opt_hyperprior.jl__, and the marginal likelihood is computed in __Code__ > __BVAR__ > __bvar_marginal_likelihood.jl__.
 
 ## Posterior Distribution
 We now augment the data with the dummy observations:
