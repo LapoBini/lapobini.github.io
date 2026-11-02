@@ -17,7 +17,7 @@ type: docs
 The repository [ECON210C](https://github.com/LapoBini/210C) contains the solutions to the assignments and the final exam of ECON210C, taught by Prof. Johannes Wieland (Spring 2024). The course covered different solution methods for RBC and New Keynesian DSGE models, and identification strategies for structural VARs.
 
 ## Sequence Space
-The first assignment (__ECON210C__ > __HW1__) required solving an RBC DSGE model with the sequence-space methodology of Auclert et al. (2021). The code in __ECON210C__ > __HW1__ > __RBC.jl__ solves a specific RBC model with a composite basket of a consumption good and money. In this section we give a general overview of how the sequence-space procedure works. The basic idea is to organize the general equilibrium model into blocks, which represent the behavior of different (possibly heterogeneous) agents and interact in general equilibrium through a small set of aggregates.
+The first assignment (__ECON210C__ > __HW1__) required solving an RBC DSGE model with the sequence-space methodology of [Auclert et al.](#ref-auclert2021) ([2021](#ref-auclert2021)). The code in __ECON210C__ > __HW1__ > __RBC.jl__ solves a specific RBC model with a composite basket of a consumption good and money. In this section we give a general overview of how the sequence-space procedure works. The basic idea is to organize the general equilibrium model into blocks, which represent the behavior of different (possibly heterogeneous) agents and interact in general equilibrium through a small set of aggregates.
 
 Let's start from the definition of equilibrium for a basic RBC model. The equilibrium is defined as an allocation $\{C_{t+s},N_{t+s},Y_{t+s},B_{t+s}\}_{s=0}^{\infty}$, a set of prices $\{W_{t+s},P_{t+s},Q_{t+s}\}_{s=0}^{\infty}$, exogenous processes $\{A_{t+s},Tr_{t+s},M_{t+s}\}_{s=0}^{\infty}$ and initial conditions for bonds such that:
 1. Households maximize utility subject to their budget constraints.
@@ -74,7 +74,7 @@ where the indicator vector $e_1 = (1, 0, \dots, 0)'$ specifies a transitory shoc
 $$ \mathrm{X}_t=\sum_{h=0}^{\infty}\Theta_h\varepsilon_{t-h} \, . $$
 
 ## Structural VAR
-The second assignment (__ECON210C__ > __HW2__) required an empirical analysis of the assumption of money neutrality. Students were asked to use structural vector autoregressive (SVAR) models to study the response of real activity and inflation to an exogenous monetary policy shock. The identification strategies are the Cholesky decomposition of Sims (1980) and the approach of Romer and Romer (2004).
+The second assignment (__ECON210C__ > __HW2__) required an empirical analysis of the assumption of money neutrality. Students were asked to use structural vector autoregressive (SVAR) models to study the response of real activity and inflation to an exogenous monetary policy shock. The identification strategies are the Cholesky decomposition of [Sims](#ref-sims1980) ([1980](#ref-sims1980)) and the approach of [Romer and Romer](#ref-romer2004) ([2004](#ref-romer2004)).
 
 ### Cholesky Decomposition
 Let $Y_t = (y_{1t},\dots,y_{kt})'$ be a vector of macroeconomic variables. The structural VAR of order p is given by:
@@ -138,7 +138,7 @@ Thus, the sequence of structural IRFs is:
 $$
 \{ \; \Theta_0=\mathrm{I} B_0^{-1}, \Theta_1=\Phi_1 B_0^{-1},\, \dots, \, \Theta_h = \Phi_h B_0^{-1} \; \} \, .
 $$
-As mentioned above, $B_0^{-1}$ is estimated with the most commonly used identification method in macroeconomics, the Cholesky decomposition. Introduced by Sims (1980), it imposes a recursive set of zero restrictions on the contemporaneous coefficients. The recursive structure we impose follows the spirit of Christiano, Eichenbaum and Evans (1999): the slow-moving variables are ordered first and the policy instrument last. In particular, the VAR is estimated on quarterly data from 1960 to 2007 with four lags, and the variables in $Y_t$ are ordered as follows:
+As mentioned above, $B_0^{-1}$ is estimated with the most commonly used identification method in macroeconomics, the Cholesky decomposition. Introduced by [Sims](#ref-sims1980) ([1980](#ref-sims1980)), it imposes a recursive set of zero restrictions on the contemporaneous coefficients. The recursive structure we impose follows the spirit of [Christiano, Eichenbaum and Evans](#ref-christiano1999) ([1999](#ref-christiano1999)): the slow-moving variables are ordered first and the policy instrument last. In particular, the VAR is estimated on quarterly data from 1960 to 2007 with four lags, and the variables in $Y_t$ are ordered as follows:
 $$
 \mathrm{Y_t}=\begin{bmatrix}slow\;moving\\[0.5em]\hline\\[-0.8em]
 slow\;moving\\[0.5em]\hline\\[-0.8em]
@@ -166,9 +166,9 @@ The function __ECON210C__ > __HW2__ > __SVAR.jl__ > __IRF_CH__ performs the iden
 
 
 ### Romer and Romer Shock
-The function __ECON210C__ > __HW2__ > __SVAR.jl__ > __IRF_RR__ estimates the structural IRFs using the monetary policy shock and the procedure of Romer and Romer (2004).
+The function __ECON210C__ > __HW2__ > __SVAR.jl__ > __IRF_RR__ estimates the structural IRFs using the monetary policy shock and the procedure of [Romer and Romer](#ref-romer2004) ([2004](#ref-romer2004)).
 
-Romer and Romer (2004) use narrative records of FOMC meetings to derive a series of intended changes in the federal funds rate. They then regress the intended change on the Federal Reserve's Greenbook forecasts of real output growth, inflation and unemployment, and take the residual of this regression, which "shows changes in the intended funds rate not taken in response to information about future economic developments. The resulting series for monetary policy shocks should be relatively free of both endogenous and anticipatory actions" (Romer and Romer, 2004).
+[Romer and Romer](#ref-romer2004) ([2004](#ref-romer2004)) use narrative records of FOMC meetings to derive a series of intended changes in the federal funds rate. They then regress the intended change on the Federal Reserve's Greenbook forecasts of real output growth, inflation and unemployment, and take the residual of this regression, which "shows changes in the intended funds rate not taken in response to information about future economic developments. The resulting series for monetary policy shocks should be relatively free of both endogenous and anticipatory actions" ([Romer and Romer, 2004](#ref-romer2004)).
 
 The procedure for the estimation of the structural IRFs is the following:
 1. Given the external monetary policy instrument $Z_t$, we estimate the model in log differences ($\Delta Y_t$):
@@ -265,12 +265,12 @@ The function __ECON210C__ > __HW4__ > __RANK_undetermined.jl__ solves the New Ke
 
 <div class="references">
 
-**Auclert, Adrien, Bence Bardóczy, Matthew Rognlie, and Ludwig Straub.** 2021. “Using the sequence-space Jacobian to solve and estimate heterogeneous-agent models.” *Econometrica*, 89(5): 2375–2408.
+<span id="ref-auclert2021"></span>**Auclert, Adrien, Bence Bardóczy, Matthew Rognlie, and Ludwig Straub.** 2021. “Using the sequence-space Jacobian to solve and estimate heterogeneous-agent models.” *Econometrica*, 89(5): 2375–2408.
 
-**Christiano, Lawrence J, Martin Eichenbaum, and Charles L Evans.** 1999. “Monetary policy shocks: What have we learned and to what end?” In *Handbook of Macroeconomics*. Vol. 1A, ed. John B Taylor and Michael Woodford, 65–148. Amsterdam: Elsevier.
+<span id="ref-christiano1999"></span>**Christiano, Lawrence J, Martin Eichenbaum, and Charles L Evans.** 1999. “Monetary policy shocks: What have we learned and to what end?” In *Handbook of Macroeconomics*. Vol. 1A, ed. John B Taylor and Michael Woodford, 65–148. Amsterdam: Elsevier.
 
-**Romer, Christina D, and David H Romer.** 2004. “A new measure of monetary shocks: Derivation and implications.” *American Economic Review*, 94(4): 1055–1084.
+<span id="ref-romer2004"></span>**Romer, Christina D, and David H Romer.** 2004. “A new measure of monetary shocks: Derivation and implications.” *American Economic Review*, 94(4): 1055–1084.
 
-**Sims, Christopher A.** 1980. “Macroeconomics and reality.” *Econometrica*, 48(1): 1–48.
+<span id="ref-sims1980"></span>**Sims, Christopher A.** 1980. “Macroeconomics and reality.” *Econometrica*, 48(1): 1–48.
 
 </div>

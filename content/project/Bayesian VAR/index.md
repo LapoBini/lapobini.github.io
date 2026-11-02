@@ -27,12 +27,12 @@ Let $Y_t = (y_{1t},\dots,y_{nt})'$ be a potentially large vector of random varia
 {{< math >}}
 $$Y_t = c + A_1 Y_{t-1}+\dots+A_p Y_{t-p} + u_t$$
 {{< /math >}}
-using the Bayesian approach, which overcomes the curse of dimensionality by imposing prior beliefs on the parameters. In setting the prior distributions, we follow standard practice and use the procedure developed in Litterman (1986), with the modifications proposed by Kadiyala and Karlsson (1997) and Sims and Zha (1998). The priors are implemented using dummy observations, and the informativeness of the prior distribution is chosen by maximizing the marginal likelihood of the observed data. In this respect, we closely follow the exposition and the procedure of Bańbura, Giannone and Reichlin (2010) and Giannone, Lenza and Primiceri (2015).
+using the Bayesian approach, which overcomes the curse of dimensionality by imposing prior beliefs on the parameters. In setting the prior distributions, we follow standard practice and use the procedure developed in [Litterman](#ref-litterman1986) ([1986](#ref-litterman1986)), with the modifications proposed by [Kadiyala and Karlsson](#ref-kadiyala1997) ([1997](#ref-kadiyala1997)) and [Sims and Zha](#ref-sims1998) ([1998](#ref-sims1998)). The priors are implemented using dummy observations, and the informativeness of the prior distribution is chosen by maximizing the marginal likelihood of the observed data. In this respect, we closely follow the exposition and the procedure of [Bańbura, Giannone and Reichlin](#ref-banbura2010) ([2010](#ref-banbura2010)) and [Giannone, Lenza and Primiceri](#ref-giannone2015) ([2015](#ref-giannone2015)).
 
 
 
 ### Minnesota Prior
-Litterman (1986) introduced the well-known Minnesota prior. Its basic principle is that all the equations are centered around a random walk with drift:
+[Litterman](#ref-litterman1986) ([1986](#ref-litterman1986)) introduced the well-known Minnesota prior. Its basic principle is that all the equations are centered around a random walk with drift:
 $$ Y_t = c + Y_{t-1} + u_t\,.$$
 This amounts to shrinking the diagonal elements of $A_1$ toward one and the remaining coefficients in $A_1,\dots,A_p$ toward zero. In addition, the prior incorporates the beliefs that more recent lags carry more reliable information than more distant ones, and that own lags explain more of the variation of a given variable than the lags of other variables in the equation.
 
@@ -43,18 +43,18 @@ $$E[(A_k)_{ij}] = \begin{cases}
   0 \quad\; \text{otherwise}
 \end{cases}\;.$$
 {{< /math >}}
-Litterman (1986) originally sets $\delta_i = 1$ for all $i$, reflecting the belief that all the variables are highly persistent. However, this prior is not appropriate for variables displaying substantial mean reversion. For those, we impose the prior belief of white noise by setting $\delta_i = 0$. The variance of the coefficients is:
+[Litterman](#ref-litterman1986) ([1986](#ref-litterman1986)) originally sets $\delta_i = 1$ for all $i$, reflecting the belief that all the variables are highly persistent. However, this prior is not appropriate for variables displaying substantial mean reversion. For those, we impose the prior belief of white noise by setting $\delta_i = 0$. The variance of the coefficients is:
 {{< math >}}
 $$Var((A_k)_{ij}) =  \begin{cases}
 \frac{\lambda^2}{k^2} \quad\quad\quad \text{if}\; i=j \\ \vartheta\frac{\lambda^2}{k^2}\frac{\sigma_i^2}{\sigma_j^2} \quad\text{ otherwise}
 \end{cases}\;,$$
 {{< /math >}}
-where $k$ is the lag, so the prior tightens as the lag increases. In the original formulation of the Minnesota prior, the covariance matrix of the residuals is assumed to be diagonal and known: $\Psi = \Sigma$, where $\Sigma = diag(\sigma_1^2,\;\dots, \sigma_n^2)$. However, structural analysis requires taking into account the possible correlation among the residuals of different variables. To overcome this problem, we follow Kadiyala and Karlsson (1997) and impose a Normal-inverse-Wishart prior, which retains the principles of the Minnesota prior. This is possible under the condition that $\vartheta = 1$, which we assume in what follows. Finally, the prior on the intercept $c$ is diffuse.
+where $k$ is the lag, so the prior tightens as the lag increases. In the original formulation of the Minnesota prior, the covariance matrix of the residuals is assumed to be diagonal and known: $\Psi = \Sigma$, where $\Sigma = diag(\sigma_1^2,\;\dots, \sigma_n^2)$. However, structural analysis requires taking into account the possible correlation among the residuals of different variables. To overcome this problem, we follow [Kadiyala and Karlsson](#ref-kadiyala1997) ([1997](#ref-kadiyala1997)) and impose a Normal-inverse-Wishart prior, which retains the principles of the Minnesota prior. This is possible under the condition that $\vartheta = 1$, which we assume in what follows. Finally, the prior on the intercept $c$ is diffuse.
 
 The Minnesota prior is implemented in __Code__ > __BVAR__ > __bvar_minnesota_prior.jl__. First, the function shrinks each variable toward a random walk or white noise, as specified in __worksheet "Legend" - column F__; then, it calculates $\{\sigma^2_1,\dots,\sigma^2_n\}$.
 
 ### Sum-of-Coefficients Prior
-The literature has suggested that forecasting performance can be improved by imposing additional priors that constrain the sum of the coefficients (see, e.g., Sims, 1993; Sims and Zha, 1998; Robertson and Tallman, 1999). This is the same as imposing "inexact differencing", and it is a simple modification of the Minnesota prior involving linear combinations of the VAR coefficients.
+The literature has suggested that forecasting performance can be improved by imposing additional priors that constrain the sum of the coefficients (see, e.g., [Sims, 1993](#ref-sims1993); [Sims and Zha, 1998](#ref-sims1998); [Robertson and Tallman, 1999](#ref-robertson1999)). This is the same as imposing "inexact differencing", and it is a simple modification of the Minnesota prior involving linear combinations of the VAR coefficients.
 
 To see this, we rewrite the VAR in its error-correction form: $$Y_t = c + A_1 Y_{t-1}+\dots+A_p Y_{t-p} + u_t$$  $$\Delta Y_t = c - (I_n - A_1 - A_2- \dots- A_p) Y_{t-1} + C_1 \Delta Y_{t-1} + \dots + C_{p-1} \Delta Y_{t-p+1} + u_t$$ with $C_k = - \sum_{j=k+1}^p A_j$. The term $- (I_n - A_1 - A_2- \dots- A_p) Y_{t-1}$ is the error-correction term: it corrects the current-period change in $Y_t$ with part of the previous period's deviation from the long-run relation among the variables. The remaining terms, $C_1 \Delta Y_{t-1} + \dots + C_{p-1} \Delta Y_{t-p+1} + u_t$, involve only first differences.
 
@@ -62,13 +62,13 @@ A VAR in first differences implies $\Pi = I_n - A_1 - A_2- \dots- A_p = 0$. By i
 
 ### Dummy-Initial-Observation Prior
 As mentioned above, the sum-of-coefficients prior rules out cointegration in the limit, which may be undesirable. Starting from $$\Delta Y_t = c - (I_n - A_1 - A_2- \dots- A_p) Y_{t-1} +  C_1 \Delta Y_{t-1} + \dots + C_{p-1} \Delta Y_{t-p+1} + u_t\,,$$ the sum-of-coefficients prior implies, in the limit $\Pi \to 0$: $$\Delta Y_t= c +  C_1 \Delta Y_{t-1} + \dots + C_{p-1} \Delta Y_{t-p+1} + u_t\,,$$ which is equivalent to $$Y_t= c + Y_{t-1} + C_1 \Delta Y_{t-1} + \dots + C_{p-1} \Delta Y_{t-p+1} + u_t\;.$$
-Without an error-correction term, there can be no cointegration relations. For this reason, Sims (1993) proposed an additional prior, known as the "dummy-initial-observation" prior.
+Without an error-correction term, there can be no cointegration relations. For this reason, [Sims](#ref-sims1993) ([1993](#ref-sims1993)) proposed an additional prior, known as the "dummy-initial-observation" prior.
 
 This prior states that a no-change forecast for all variables is a good forecast at the beginning of the sample. Then, either all the variables are at their unconditional mean, which implies that the model is stationary despite the unit roots in the variables (implying cointegration), or the dynamics of the system are characterized by an unspecified number of unit roots, and the variables share a common stochastic trend.
 
 ## Implementation of the Priors
 ### Prior Distribution
-Following Kadiyala and Karlsson (1997) and Robertson and Tallman (1999), we impose a Normal-inverse-Wishart prior distribution of the form:
+Following [Kadiyala and Karlsson](#ref-kadiyala1997) ([1997](#ref-kadiyala1997)) and [Robertson and Tallman](#ref-robertson1999) ([1999](#ref-robertson1999)), we impose a Normal-inverse-Wishart prior distribution of the form:
 $$
 vec(\beta)|\Psi \sim N(vec(\beta_0), \Psi \otimes \Omega_0 ) \quad \text{and}\quad \Psi \sim iW(S_0, \alpha_0)\,,
 $$
@@ -81,7 +81,7 @@ where the prior parameters $\beta_0$, $\Omega_0$, $S_0$ and $\alpha_0$ are chose
 where $k = np+1$ is the number of regressors in each equation, $S_0$ is the $(n\times n)$ scale matrix and $\alpha_0$ the degrees of freedom of the inverse-Wishart distribution.
 
 ### Dummy Observations
-We follow Bańbura, Giannone and Reichlin (2010) and implement the prior distribution using dummy observations. The dummy observations $Y_d$ and $X_d$ are constructed as follows:
+We follow [Bańbura, Giannone and Reichlin](#ref-banbura2010) ([2010](#ref-banbura2010)) and implement the prior distribution using dummy observations. The dummy observations $Y_d$ and $X_d$ are constructed as follows:
 $$
 Y_d = \begin{bmatrix}
         diag(\delta_1\sigma_1,\dots,\delta_n\sigma_n)/\lambda\\
@@ -113,9 +113,9 @@ Notice that the priors are parametrized by additional parameters, known as hyper
 How should the hyperparameters be specified? What is the optimal number of lags? What are the best shrinkage values for the prior distribution? The goal is to ensure that the model's prior assumptions align well with the observed data, improving the model's overall performance without overfitting. The procedure to choose their values is illustrated in the next section.
 
 ### Informativeness of the Prior Distribution
-From a Bayesian perspective, choosing the informativeness of the prior distribution is conceptually identical to inference on any other unknown parameter of the model. Suppose, for instance, that a model is described by a likelihood function $p(y|\theta)$ and a prior distribution $p_\eta(\theta)$, where $\theta$ is the vector of the VAR(p) parameters and $\eta$ collects the hyperparameters, i.e. the coefficients that parameterize the prior distribution but do not directly affect the likelihood. It is then natural to choose these hyperparameters by interpreting the model as a hierarchical model, i.e. replacing $p_\eta(\theta)$ with $p(\theta|\eta)$ and evaluating their posterior (Berger, 1985; Koop, 2003).
+From a Bayesian perspective, choosing the informativeness of the prior distribution is conceptually identical to inference on any other unknown parameter of the model. Suppose, for instance, that a model is described by a likelihood function $p(y|\theta)$ and a prior distribution $p_\eta(\theta)$, where $\theta$ is the vector of the VAR(p) parameters and $\eta$ collects the hyperparameters, i.e. the coefficients that parameterize the prior distribution but do not directly affect the likelihood. It is then natural to choose these hyperparameters by interpreting the model as a hierarchical model, i.e. replacing $p_\eta(\theta)$ with $p(\theta|\eta)$ and evaluating their posterior ([Berger, 1985](#ref-berger1985); [Koop, 2003](#ref-koop2003)).
 
-Following Giannone, Lenza and Primiceri (2015), we pick the hyperparameters that maximize the marginal likelihood of the data, i.e. the values that make the data most likely after integrating out the uncertainty about the model parameters. The code performs a grid search over the lag order $p$ and the hyperparameters $(\lambda, \tau, \gamma)$. The procedure is implemented in __Code__ > __BVAR__ > __bvar_opt_hyperprior.jl__, and the marginal likelihood is computed in __Code__ > __BVAR__ > __bvar_marginal_likelihood.jl__.
+Following [Giannone, Lenza and Primiceri](#ref-giannone2015) ([2015](#ref-giannone2015)), we pick the hyperparameters that maximize the marginal likelihood of the data, i.e. the values that make the data most likely after integrating out the uncertainty about the model parameters. The code performs a grid search over the lag order $p$ and the hyperparameters $(\lambda, \tau, \gamma)$. The procedure is implemented in __Code__ > __BVAR__ > __bvar_opt_hyperprior.jl__, and the marginal likelihood is computed in __Code__ > __BVAR__ > __bvar_marginal_likelihood.jl__.
 
 ## Posterior Distribution
 We now augment the data with the dummy observations:
@@ -152,7 +152,7 @@ where $\Phi_h$ is computed from each posterior draw of the VAR coefficients. The
 
 
 ### Sign Restrictions
-The Gibbs sampler cycles through two steps, sampling successively from $p(\beta|\Psi,Y)$ and $p(\Psi|\beta,Y)$. After the burn-in stage, the following steps are used to compute the structural impact multiplier matrix $B_0^{-1}$ via sign restrictions, following Rubio-Ramírez, Waggoner and Zha (2010):
+The Gibbs sampler cycles through two steps, sampling successively from $p(\beta|\Psi,Y)$ and $p(\Psi|\beta,Y)$. After the burn-in stage, the following steps are used to compute the structural impact multiplier matrix $B_0^{-1}$ via sign restrictions, following [Rubio-Ramírez, Waggoner and Zha](#ref-rubio2010) ([2010](#ref-rubio2010)):
 1. Draw an $(n\times n)$ matrix $K$ from the standard normal distribution.
 2. Compute the matrix $Q$ from the $QR$ decomposition of $K$. Note that $Q$ is orthonormal, i.e. $Q'Q = I_n$.
 3. Compute the Cholesky decomposition of the current draw $\Psi = PP'$, where $P$ is lower triangular.
@@ -165,7 +165,7 @@ The procedure is implemented in __Code__ > __BVAR__ > __bvar_sign_gibbs.jl__.
 
 ### IV Identification
 
-This identification strategy uses external instruments that capture a fraction of the true structural shock. The methodology was introduced by Stock and Watson (2012), and it has become increasingly popular in the literature estimating the effects of monetary policy shocks. We apply the procedure outlined in Stock and Watson (2018).
+This identification strategy uses external instruments that capture a fraction of the true structural shock. The methodology was introduced by [Stock and Watson](#ref-stock2012) ([2012](#ref-stock2012)), and it has become increasingly popular in the literature estimating the effects of monetary policy shocks. We apply the procedure outlined in [Stock and Watson](#ref-stock2018) ([2018](#ref-stock2018)).
 
 Without loss of generality, assume that we are interested in the shock ordered first, $\varepsilon_{1t}$. The instrument $Z_t$ must satisfy the so-called "SVAR-IV" conditions:
 1. $E[Z_t\varepsilon_{1t}]=\alpha\neq 0 \quad\quad\quad\quad \text{(relevance)}$
@@ -223,28 +223,28 @@ As for sign restrictions, the Gibbs sampler cycles through two steps, sampling s
 
 <div class="references">
 
-**Bańbura, Marta, Domenico Giannone, and Lucrezia Reichlin.** 2010. “Large Bayesian vector auto regressions.” *Journal of Applied Econometrics*, 25(1): 71–92.
+<span id="ref-banbura2010"></span>**Bańbura, Marta, Domenico Giannone, and Lucrezia Reichlin.** 2010. “Large Bayesian vector auto regressions.” *Journal of Applied Econometrics*, 25(1): 71–92.
 
-**Berger, James O.** 1985. *Statistical Decision Theory and Bayesian Analysis*. 2nd ed. New York: Springer.
+<span id="ref-berger1985"></span>**Berger, James O.** 1985. *Statistical Decision Theory and Bayesian Analysis*. 2nd ed. New York: Springer.
 
-**Giannone, Domenico, Michele Lenza, and Giorgio E Primiceri.** 2015. “Prior selection for vector autoregressions.” *Review of Economics and Statistics*, 97(2): 436–451.
+<span id="ref-giannone2015"></span>**Giannone, Domenico, Michele Lenza, and Giorgio E Primiceri.** 2015. “Prior selection for vector autoregressions.” *Review of Economics and Statistics*, 97(2): 436–451.
 
-**Kadiyala, K Rao, and Sune Karlsson.** 1997. “Numerical methods for estimation and inference in Bayesian VAR-models.” *Journal of Applied Econometrics*, 12(2): 99–132.
+<span id="ref-kadiyala1997"></span>**Kadiyala, K Rao, and Sune Karlsson.** 1997. “Numerical methods for estimation and inference in Bayesian VAR-models.” *Journal of Applied Econometrics*, 12(2): 99–132.
 
-**Koop, Gary.** 2003. *Bayesian Econometrics*. Chichester: John Wiley & Sons.
+<span id="ref-koop2003"></span>**Koop, Gary.** 2003. *Bayesian Econometrics*. Chichester: John Wiley & Sons.
 
-**Litterman, Robert B.** 1986. “Forecasting with Bayesian vector autoregressions: Five years of experience.” *Journal of Business & Economic Statistics*, 4(1): 25–38.
+<span id="ref-litterman1986"></span>**Litterman, Robert B.** 1986. “Forecasting with Bayesian vector autoregressions: Five years of experience.” *Journal of Business & Economic Statistics*, 4(1): 25–38.
 
-**Robertson, John C, and Ellis W Tallman.** 1999. “Vector autoregressions: Forecasting and reality.” *Federal Reserve Bank of Atlanta Economic Review*, 84(1): 4–18.
+<span id="ref-robertson1999"></span>**Robertson, John C, and Ellis W Tallman.** 1999. “Vector autoregressions: Forecasting and reality.” *Federal Reserve Bank of Atlanta Economic Review*, 84(1): 4–18.
 
-**Rubio-Ramírez, Juan F, Daniel F Waggoner, and Tao Zha.** 2010. “Structural vector autoregressions: Theory of identification and algorithms for inference.” *Review of Economic Studies*, 77(2): 665–696.
+<span id="ref-rubio2010"></span>**Rubio-Ramírez, Juan F, Daniel F Waggoner, and Tao Zha.** 2010. “Structural vector autoregressions: Theory of identification and algorithms for inference.” *Review of Economic Studies*, 77(2): 665–696.
 
-**Sims, Christopher A.** 1993. “A nine-variable probabilistic macroeconomic forecasting model.” In *Business Cycles, Indicators, and Forecasting*, ed. James H Stock and Mark W Watson, 179–212. Chicago: University of Chicago Press.
+<span id="ref-sims1993"></span>**Sims, Christopher A.** 1993. “A nine-variable probabilistic macroeconomic forecasting model.” In *Business Cycles, Indicators, and Forecasting*, ed. James H Stock and Mark W Watson, 179–212. Chicago: University of Chicago Press.
 
-**Sims, Christopher A, and Tao Zha.** 1998. “Bayesian methods for dynamic multivariate models.” *International Economic Review*, 39(4): 949–968.
+<span id="ref-sims1998"></span>**Sims, Christopher A, and Tao Zha.** 1998. “Bayesian methods for dynamic multivariate models.” *International Economic Review*, 39(4): 949–968.
 
-**Stock, James H, and Mark W Watson.** 2012. “Disentangling the channels of the 2007–09 recession.” *Brookings Papers on Economic Activity*, 2012(1): 81–135.
+<span id="ref-stock2012"></span>**Stock, James H, and Mark W Watson.** 2012. “Disentangling the channels of the 2007–09 recession.” *Brookings Papers on Economic Activity*, 2012(1): 81–135.
 
-**Stock, James H, and Mark W Watson.** 2018. “Identification and estimation of dynamic causal effects in macroeconomics using external instruments.” *Economic Journal*, 128(610): 917–948.
+<span id="ref-stock2018"></span>**Stock, James H, and Mark W Watson.** 2018. “Identification and estimation of dynamic causal effects in macroeconomics using external instruments.” *Economic Journal*, 128(610): 917–948.
 
 </div>

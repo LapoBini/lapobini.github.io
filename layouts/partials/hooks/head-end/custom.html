@@ -272,6 +272,13 @@
     text-indent: -1.5em;
     margin: 0 0 0.6em;
   }
+  /* In-text citations link to their entry: blue, no underline (like the
+     papers' hyperref citations). Jumping leaves room for the sticky header,
+     and the entry jumped to is briefly highlighted. */
+  .prose.lg\:prose-xl a[href^="#ref-"] { text-decoration: none; }
+  .prose.lg\:prose-xl a[href^="#ref-"]:hover { text-decoration: underline; }
+  .references [id^="ref-"] { scroll-margin-top: 6rem; }
+  .references p:has(> [id^="ref-"]:target) { background: #eff6ff; border-radius: 4px; }
 
   /* ---- Course material: emphasise the topic of each session in bold (was orange) ---- */
   .hl-term { font-weight: 700; color: #000; }
