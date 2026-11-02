@@ -12,14 +12,14 @@ title: Bayesian Vector Autoregression
 type: docs
 ---
 ## Introduction
-The repository [BayesianVAR.jl](https://github.com/LapoBini/BayesianVAR.jl) contains the code to estimate a Bayesian VAR with minnesota, sum-of-coefficients and dummy-initial-observations priors, and to perform structural analysis using sign reristrictions or external instruments. 
+The repository [BayesianVAR.jl](https://github.com/LapoBini/BayesianVAR.jl) contains the code to estimate a Bayesian VAR with Minnesota, sum-of-coefficients and dummy-initial-observation priors, and to perform structural analysis using sign restrictions or external instruments.
 
-The repository has an excel file (__Data__ > __FinalData__ > __test.xlsx__) that can be used for testing and running the model using __main_executer.jl__. The settings for the VAR (sample dates, directory of the data file, name of the result folder, required packages etc.) can be changed in __Code__ > __SetUp__ > __SetupBVAR.jl__. Every function contains a brief description of the econometric framework with equations and references. 
+The repository includes an Excel file (__Data__ > __FinalData__ > __test.xlsx__) that can be used to test and run the model with __main_executer.jl__. The settings for the VAR (sample dates, location of the data file, name of the results folder, required packages, etc.) can be changed in __Code__ > __SetUp__ > __SetupBVAR.jl__. Every function contains a brief description of the econometric framework, with equations and references.
 
-### Brief Comment on the Excel File 
-The model can aggregate series at different frequencies by applying interpolation via splines (__Code__ > __DataSection__ > __readdata_haver.jl__). Every worksheet with data must be created following the "Haver Convention" (have a look at the excel file, first column and first 18 rows of __Data_m__). All the worksheets with data must be named following the convention "Data_" + frequency ("d", "w", "m", "q"). Moreover, the function __Code__ > __Toolbox__ > __transformation.jl__, called inside __readdata_haver.jl__, applies standard transformations to the data following the instructions provided in __worksheet "Legend" - columns C-E__ ("LOG"=1 takes log, "DIFF"=1 applies difference with respect to previous realization, "FILT" is used to transform data in YoY growth if the other two cells are set to one). The __worksheet "Legend" - column F__ specifies the minnesota prior, __worksheet "Legend" - column G__ specifies which series we want to include. 
+### Brief Comment on the Excel File
+The model can combine series at different frequencies by interpolating them with splines (__Code__ > __DataSection__ > __readdata_haver.jl__). Every worksheet with data must follow the "Haver convention" (see the first column and the first 18 rows of worksheet __Data_m__ in the Excel file), and must be named "Data_" + frequency ("d", "w", "m", "q"). The function __Code__ > __Toolbox__ > __transformation.jl__, called inside __readdata_haver.jl__, applies standard transformations to the data following the instructions in __worksheet "Legend" - columns C-E__: "LOG" = 1 takes logs, "DIFF" = 1 takes the first difference, and "FILT" transforms the series into year-on-year growth rates when the other two cells are also set to 1. __Worksheet "Legend" - column F__ specifies the Minnesota prior for each series, and __worksheet "Legend" - column G__ specifies which series to include.
 
-Other instructions about the structure of the excel file are provided in __Code__ > __DataSection__ > __readdata_haver.jl__, and below in the paragraph that explains how to perform structural analysis.
+Further instructions on the structure of the Excel file are provided in __Code__ > __DataSection__ > __readdata_haver.jl__ and, for structural analysis, at the end of this page.
 
 
 ## Setting the Priors
@@ -27,98 +27,95 @@ Let $Y_t = (y_{1t},\dots,y_{nt})'$ be a potentially large vector of random varia
 {{< math >}}
 $$Y_t = c + A_1 Y_{t-1}+\dots+A_p Y_{t-p} + u_t$$
 {{< /math >}}
-using the Bayesian approach to overcome the curse of dimensionality via the imposition of prior beliefs on the parameters. In setting the prior distributions, we follow standard practice and use the procedure developed in $\textcolor{orange}{Litterman \; (1986)}$ with modifications proposed by $\textcolor{orange}{Kadiyala\; and\; Karlsson\; (1997)}$ and $\textcolor{orange}{Sims\; and\; Zha\; (1998)}$. The priors are implemented using dummy observations, and the choice of the informativeness of the prior distribution is determined by the marginal likelihood of the observed data; in that sense, we follow strictly the exposition and the procedure of $\textcolor{orange}{Banbura,}$ $\textcolor{orange}{Giannone,}$ $\textcolor{orange}{and}$ $\textcolor{orange}{Reichlin}$ $\textcolor{orange}{(2007)}$ and $\textcolor{orange}{Giannone,}$ $\textcolor{orange}{Lenza,}$ $\textcolor{orange}{Primicieri\, (2012)}$.
+using the Bayesian approach, which overcomes the curse of dimensionality by imposing prior beliefs on the parameters. In setting the prior distributions, we follow standard practice and use the procedure developed in Litterman (1986), with the modifications proposed by Kadiyala and Karlsson (1997) and Sims and Zha (1998). The priors are implemented using dummy observations, and the informativeness of the prior distribution is chosen by maximizing the marginal likelihood of the observed data. In this respect, we closely follow the exposition and the procedure of Bańbura, Giannone and Reichlin (2010) and Giannone, Lenza and Primiceri (2015).
 
 
 
 ### Minnesota Prior
-$\textcolor{orange}{Litterman \; (1986)}$ introduced the well known Minnesota prior: the basic principle behind it is that all the equations are centered around the random walk with drift:
+Litterman (1986) introduced the well-known Minnesota prior. Its basic principle is that all the equations are centered around a random walk with drift:
 $$ Y_t = c + Y_{t-1} + u_t\,.$$
-This amounts to shrinking the diagonal elements of $A_1$ toward one and the remaining coefficients in $A_1,\dots,A_p$ toward zero. In addition, the prior specification incorporates the belief that the more recent lags should provide more reliable information than the more distant ones and that own lags should explain more of the variation of a given variable than the lags of other variables in the equation.
+This amounts to shrinking the diagonal elements of $A_1$ toward one and the remaining coefficients in $A_1,\dots,A_p$ toward zero. In addition, the prior incorporates the beliefs that more recent lags carry more reliable information than more distant ones, and that own lags explain more of the variation of a given variable than the lags of other variables in the equation.
 
-Assuming $\beta = [A_1 \;A_2 \;\dots A_p]$ to be a priori independent and normally distributed, the prior beliefs are imposed by setting the following moments for the prior distribution of the coefficients:
+Assuming the coefficients in $\beta = [A_1 \;A_2 \;\dots \;A_p]$ to be a priori independent and normally distributed, the prior beliefs are imposed by setting the following moments for the prior distribution of the coefficients:
 {{< math >}}
 $$E[(A_k)_{ij}] = \begin{cases}
-  \gamma_i \quad \text{if} \;\; j=i \;\; k=1 \\
+  \delta_i \quad \text{if} \;\; j=i,\; k=1 \\
   0 \quad\; \text{otherwise}
 \end{cases}\;.$$
 {{< /math >}}
-Originally, $\textcolor{orange}{Litterman \; (1986)}$ sets $\gamma_i = 1$ for all $i$, reflecting the belief that all the variables are characterized by high persistence. However, this prior is not appropriate for variables displaying substantial mean reversion. For those we impose the prior belief of white noise by setting $\gamma_i = 0$. The variance of the parameters is:
+Litterman (1986) originally sets $\delta_i = 1$ for all $i$, reflecting the belief that all the variables are highly persistent. However, this prior is not appropriate for variables displaying substantial mean reversion. For those, we impose the prior belief of white noise by setting $\delta_i = 0$. The variance of the coefficients is:
 {{< math >}}
-$$Var((A_k)_{ij}) =  \begin{cases} 
-\frac{\lambda^2}{\kappa^2} \quad\quad\quad \text{if}\; i=j \\ \vartheta\frac{\lambda^2}{\kappa^2}\frac{\sigma_i^2}{\sigma_j^2} \quad\text{ otherwise}
-\end{cases}\;.$$
+$$Var((A_k)_{ij}) =  \begin{cases}
+\frac{\lambda^2}{k^2} \quad\quad\quad \text{if}\; i=j \\ \vartheta\frac{\lambda^2}{k^2}\frac{\sigma_i^2}{\sigma_j^2} \quad\text{ otherwise}
+\end{cases}\;,$$
 {{< /math >}}
-As for the covariance matrix of the residuals, in the original formulation of the minnesota prior it was originally assumed to be diagonal and known: $\Psi = \Sigma$ where $\Sigma = diag(\sigma_1^2,\;\dots, \sigma_n^2)$. However, in the context of the structural analysis we need to take into account possible correlation among the residual of different variables. To overcome this problem we follow $\textcolor{orange}{Kadiyala}$ $\textcolor{orange}{and}$ $\textcolor{orange}{Karlsson\; (1997)}$ and impose a Normal inverted Wishart prior which retains the principles of the Minnesota prior. This is possible under the condition that $\vartheta = 1$, which will be assumed in what follows. Finally, the prior on the intercept $c$ is diffuse. 
+where $k$ is the lag, so the prior tightens as the lag increases. In the original formulation of the Minnesota prior, the covariance matrix of the residuals is assumed to be diagonal and known: $\Psi = \Sigma$, where $\Sigma = diag(\sigma_1^2,\;\dots, \sigma_n^2)$. However, structural analysis requires taking into account the possible correlation among the residuals of different variables. To overcome this problem, we follow Kadiyala and Karlsson (1997) and impose a Normal-inverse-Wishart prior, which retains the principles of the Minnesota prior. This is possible under the condition that $\vartheta = 1$, which we assume in what follows. Finally, the prior on the intercept $c$ is diffuse.
 
-The minnesota prior is implemented in __Code__ > __BVAR__ > __bvar_minnesota_prior.jl__. First, the function shrinks each variable toward the random walk or the white noise as specified in the __worksheet "Legend" - column F__; then, it calculates $\{\sigma^n_1,\dots,\sigma^2_n\}$.
+The Minnesota prior is implemented in __Code__ > __BVAR__ > __bvar_minnesota_prior.jl__. First, the function shrinks each variable toward a random walk or white noise, as specified in __worksheet "Legend" - column F__; then, it calculates $\{\sigma^2_1,\dots,\sigma^2_n\}$.
 
 ### Sum-of-Coefficients Prior
-The literature has suggested that improvement in forecasting performance can be obtained by imposing additional priors that constrain the sum of coefficients (see e.g. $\textcolor{orange}{Sims,\;1992}$; $\textcolor{orange}{Sims\; and\; Zha,\; 1998}$; $\textcolor{orange}{Robertson\; and\; Tallman,\; 1999}$). This is the same as imposing “inexact differencing” and it is a simple modification of the Minnesota prior involving linear combinations of the VAR coefficients.
- 
-We now manipulate the VAR to rewrite it in the error-correction form: $$Y_t = c + A_1 Y_{t-1}+\dots+A_p Y_{t-p} + u_t$$  $$\Delta Y_t = c - (I_n - A_1 - A_2- \dots- A_p) Y_{t-1} + C_1 \Delta Y_{t-1} + \dots + C_p \Delta Y_{t-p} + \Delta u_t$$ with $C_k = - \sum_{j=k+1}^p A_j$. The second term $- (I_n - A_1 - A_2- \dots- A_p) Y_{t-1} $ is the error correction term, which guarantees stationarity of the model by correcting the current-period change in $Y_t$ with part of the preceding period deviation from the long-run value of the model. The second part, $C_1 \Delta Y_{t-1} + \dots + C_p \Delta Y_{t-p} + \Delta u_t$, is made of stationary terms and hence does not impact the stationarity of the model. 
+The literature has suggested that forecasting performance can be improved by imposing additional priors that constrain the sum of the coefficients (see, e.g., Sims, 1993; Sims and Zha, 1998; Robertson and Tallman, 1999). This is the same as imposing "inexact differencing", and it is a simple modification of the Minnesota prior involving linear combinations of the VAR coefficients.
 
-We know that $\Pi = I_n - A_1 - A_2- \dots- A_p = 0$ is implied by a VAR in first difference. By inexact differencing, and thus imposing the sum-of-coefficients prior, we shrink $\Pi$ toward zero in order to guarantee that the draws obtained from the posterior are characterized by a unit root rather than by explosive behavior. In this case, $Y_t$ is equal to its previous value, plus the sum of stationary terms not affecting stationarity. It follows that in the limit ($\Pi \xrightarrow{} 0$), each variable in $Y_t$ contains a unit root and the model rules out cointegration.
+To see this, we rewrite the VAR in its error-correction form: $$Y_t = c + A_1 Y_{t-1}+\dots+A_p Y_{t-p} + u_t$$  $$\Delta Y_t = c - (I_n - A_1 - A_2- \dots- A_p) Y_{t-1} + C_1 \Delta Y_{t-1} + \dots + C_{p-1} \Delta Y_{t-p+1} + u_t$$ with $C_k = - \sum_{j=k+1}^p A_j$. The term $- (I_n - A_1 - A_2- \dots- A_p) Y_{t-1}$ is the error-correction term: it corrects the current-period change in $Y_t$ with part of the previous period's deviation from the long-run relation among the variables. The remaining terms, $C_1 \Delta Y_{t-1} + \dots + C_{p-1} \Delta Y_{t-p+1} + u_t$, involve only first differences.
+
+A VAR in first differences implies $\Pi = I_n - A_1 - A_2- \dots- A_p = 0$. By inexact differencing, that is, by imposing the sum-of-coefficients prior, we shrink $\Pi$ toward zero, so that the posterior draws are characterized by unit roots rather than by explosive behavior. In this case, $Y_t$ is equal to its previous value plus terms in first differences. It follows that, in the limit ($\Pi \to 0$), each variable in $Y_t$ contains a unit root and the model rules out cointegration.
 
 ### Dummy-Initial-Observation Prior
-As we mentioned before, the sum-of-coefficients prior rules out cointegration in the limit, which may be undesirable. Given $$\Delta Y_t = c - (I_n - A_1 - A_2- \dots- A_p) Y_{t-1} +  C_1 \Delta Y_{t-1} + \dots + C_p \Delta Y_{t-p} + \Delta u_t$$ by applying the sum-of-coefficients prior, in the limit $\Pi \xrightarrow{} 0$ and we get: $$\Delta Y_t= c +  C_1 \Delta Y_{t-1} + \dots + C_p \Delta Y_{t-p} + \Delta u_t$$ which is equivalent to $$Y_t= c + Y_{t-1} + C_1 \Delta Y_{t-1} + \dots + C_p \Delta Y_{t-p} + \Delta u_t\;.$$ 
-Note that the absence of error correction term rules out the possibility of cointegration relations. Thus $\textcolor{orange}{Sims\;(1993)}$ proposed the use of an additional prior known as "dummy-initial-observations". 
+As mentioned above, the sum-of-coefficients prior rules out cointegration in the limit, which may be undesirable. Starting from $$\Delta Y_t = c - (I_n - A_1 - A_2- \dots- A_p) Y_{t-1} +  C_1 \Delta Y_{t-1} + \dots + C_{p-1} \Delta Y_{t-p+1} + u_t\,,$$ the sum-of-coefficients prior implies, in the limit $\Pi \to 0$: $$\Delta Y_t= c +  C_1 \Delta Y_{t-1} + \dots + C_{p-1} \Delta Y_{t-p+1} + u_t\,,$$ which is equivalent to $$Y_t= c + Y_{t-1} + C_1 \Delta Y_{t-1} + \dots + C_{p-1} \Delta Y_{t-p+1} + u_t\;.$$
+Without an error-correction term, there can be no cointegration relations. For this reason, Sims (1993) proposed an additional prior, known as the "dummy-initial-observation" prior.
 
-The prior states that a no-change forecast for all variables is a good forecast at the beginning of the sample. Then, either all the variables are at their unconditional mean, which implies that the model is stationary despite the unit roots in the variables (implying cointegration), or the dynamic of the system is characterized by an unspecified number of unit roots, and the variables share a common stochastic trend.
+This prior states that a no-change forecast for all variables is a good forecast at the beginning of the sample. Then, either all the variables are at their unconditional mean, which implies that the model is stationary despite the unit roots in the variables (implying cointegration), or the dynamics of the system are characterized by an unspecified number of unit roots, and the variables share a common stochastic trend.
 
 ## Implementation of the Priors
-### Prior Distribution 
-Following $\textcolor{orange}{Kadiyala\; and\; Karlsson\; (1997)}$ and $\textcolor{orange}{Robertson\; and\; Tallman\; (1999)}$, we impose a Normal Inverted Wishart prior distribution in the form:
-$$ 
-vec(\beta)|\Psi \sim N(vec(\beta_0), \Psi \otimes \Omega_0 ) \quad \text{and}\quad \Psi \sim iW(S_0, \alpha_0)
+### Prior Distribution
+Following Kadiyala and Karlsson (1997) and Robertson and Tallman (1999), we impose a Normal-inverse-Wishart prior distribution of the form:
 $$
-where the prior parameters $\beta_0$, $\Omega_0$, $S_0$ and $\alpha_0$ are chosen so that prior expectations and
-variances of $\beta$ coincide with those implied by the minnesota prior, and the expectation of $\Psi$ is
-equal to the fixed residual covariance matrix $\Sigma$. We implement the prior by adding dummy observations: it can be shown that adding $T_d$ dummy observations $Y_d$ and $X_d$ to the VAR(p) is equivalent to imposing the Normal inverted Wishart prior with:
-* $\beta_0 = (X_d'X_d)^{−1}(X_d'Y_d)$;
+vec(\beta)|\Psi \sim N(vec(\beta_0), \Psi \otimes \Omega_0 ) \quad \text{and}\quad \Psi \sim iW(S_0, \alpha_0)\,,
+$$
+where the prior parameters $\beta_0$, $\Omega_0$, $S_0$ and $\alpha_0$ are chosen so that the prior expectations and variances of $\beta$ coincide with those implied by the Minnesota prior, and the expectation of $\Psi$ is equal to the fixed residual covariance matrix $\Sigma$. We implement the prior by adding dummy observations: it can be shown that adding $T_d$ dummy observations $Y_d$ and $X_d$ to the VAR(p) is equivalent to imposing the Normal-inverse-Wishart prior with:
+* $\beta_0 = (X_d'X_d)^{-1}(X_d'Y_d)$;
 * $\Omega_0 = (X_d'X_d)^{-1}$;
-* $S_0 = (Y_d − X_d \beta_0)'(Y_d − X_d\beta_0)$;
-* $α_0 = T_d − k$.
+* $S_0 = (Y_d - X_d \beta_0)'(Y_d - X_d\beta_0)$;
+* $\alpha_0 = T_d - k$,
 
-where $S_0$ is a $(k\text{x}k)$ scale matrix and $\alpha_0$ are the degrees of freedom of the Inverted Wishart distribution.
+where $k = np+1$ is the number of regressors in each equation, $S_0$ is the $(n\times n)$ scale matrix and $\alpha_0$ the degrees of freedom of the inverse-Wishart distribution.
 
 ### Dummy Observations
-We follow $\textcolor{orange}{Banbura,\; Giannone,\; and\; Reichlin\; (2007)}$ and implement the prior distribution using dummy observations. The dummy observations $Y_d$ and $X_d$ are constructed as follows:
+We follow Bańbura, Giannone and Reichlin (2010) and implement the prior distribution using dummy observations. The dummy observations $Y_d$ and $X_d$ are constructed as follows:
 $$
 Y_d = \begin{bmatrix}
         diag(\delta_1\sigma_1,\dots,\delta_n\sigma_n)/\lambda\\
-        0_{n(p-1)\,\text{x}\,n}\\[0.5em]\hline\\[-0.8em]
+        0_{n(p-1)\times n}\\[0.5em]\hline\\[-0.8em]
         diag(\sigma_1,\dots,\sigma_n)\\[0.5em]\hline\\[-0.8em]
-        0_{1\text{x}n}\\[0.5em]\hline\\[-0.8em]
+        0_{1\times n}\\[0.5em]\hline\\[-0.8em]
         diag(\mu_1\delta_1,\dots,\mu_n\delta_n)/\tau\\[0.5em]\hline\\[-0.8em]
-        diag(\mu_1,\dots,\mu_n)/\gamma
+        (\mu_1,\dots,\mu_n)/\gamma
 \end{bmatrix}
 \quad
 X_d = \begin{bmatrix}
-        J_p \otimes diag(\sigma_1,\dots,\sigma_n)/\lambda & 0_{np \text{x} 1}\\[0.5em]\hline\\[-0.8em]
-        0_{n \text{x} np} & 0_{n \text{x} 1} \\[0.5em]\hline\\[-0.8em]
-        0_{1 \text{x} np} & \varepsilon\\[0.5em]\hline\\[-0.8em]
-        \mathbf{1}_p\otimes diag(\mu_1\delta_1,\dots,\mu_n\delta_n)/\tau & 0_{n \text{x} 1} \\[0.5em]\hline\\[-0.8em]
-        \mathbf{1}_p\otimes diag(\mu_1,\dots,\mu_n)/\gamma & 1/\gamma
+        J_p \otimes diag(\sigma_1,\dots,\sigma_n)/\lambda & 0_{np \times 1}\\[0.5em]\hline\\[-0.8em]
+        0_{n \times np} & 0_{n \times 1} \\[0.5em]\hline\\[-0.8em]
+        0_{1 \times np} & \varepsilon\\[0.5em]\hline\\[-0.8em]
+        \mathbf{1}_p'\otimes diag(\mu_1\delta_1,\dots,\mu_n\delta_n)/\tau & 0_{n \times 1} \\[0.5em]\hline\\[-0.8em]
+        \mathbf{1}_p'\otimes (\mu_1,\dots,\mu_n)/\gamma & 1/\gamma
 \end{bmatrix}
 $$
-where the the first block of dummies imposes prior beliefs on the autoregressive coefficients, the second block implements the prior for the covariance matrix, the third block reflects the uninformative prior for the intercept ($\varepsilon$), the fourth block implements the sum-of-coefficients prior, the fifth one the dummy initial observation prior. The function that constructs the dummy observations could be found in __Code__ > __BVAR__ > __bvar_dummies.jl__.
+where $J_p = diag(1,2,\dots,p)$ and $\mathbf{1}_p$ is a $p$-dimensional vector of ones. The first block of dummies imposes the prior beliefs on the autoregressive coefficients, the second block implements the prior for the covariance matrix, the third block reflects the uninformative prior for the intercept ($\varepsilon$ is a very small number), the fourth block implements the sum-of-coefficients prior, and the fifth one the dummy-initial-observation prior. The function that constructs the dummy observations can be found in __Code__ > __BVAR__ > __bvar_dummies.jl__.
 
-Notice that the prior are parametrized using additional hyperparameters, also known as hyperpriors:
-1. $\delta_i$, which assumes value 1 or 0, reflecting the belief that the $i^{th}$ series is characterized by high persistence (random-walk) or substantial mean reversion (white noise).
-2. $\sigma_i$, which is the standard deviation of the residual of the random walk or the white noise. 
-3. $\lambda$ controls the overall tightness of the prior distribution around the random walk or white noise and governs the relative importance of the prior beliefs with respect to the information contained in the data. $\lambda = 0$ the posterior is equal to the prior, while $\lambda = \infty$ the posterior is the OLS.
-4. $\tau$ controls for the degree of shrinkage for the sum-of-coefficient prior: as $\tau$ goes to zero we approach
-the case of exact differences and, as $\tau$ goes to infinity, we approach the case of no shrinkage.
-5. $\mu_i$ aims at capturing the unconditional mean of variable $y_{it}$. 
-6. $\gamma$ controls the tightness of the dummy initial observation prior, when it approaches infinity we have no shrinkage.
+Notice that the priors are parametrized by additional parameters, known as hyperparameters:
+1. $\delta_i$, which takes the value 1 or 0, reflecting the belief that the $i^{th}$ series is highly persistent (random walk) or displays substantial mean reversion (white noise).
+2. $\sigma_i$, the standard deviation of the residuals of the random walk or the white noise.
+3. $\lambda$, which controls the overall tightness of the prior distribution around the random walk or white noise, and governs the relative importance of the prior beliefs with respect to the information contained in the data. When $\lambda = 0$ the posterior equals the prior, while as $\lambda \to \infty$ the posterior mean approaches the OLS estimate.
+4. $\tau$, which controls the degree of shrinkage of the sum-of-coefficients prior: as $\tau$ goes to zero we approach the case of exact differences and, as $\tau$ goes to infinity, we approach the case of no shrinkage.
+5. $\mu_i$, which aims at capturing the unconditional mean of variable $y_{it}$.
+6. $\gamma$, which controls the tightness of the dummy-initial-observation prior: as it approaches infinity, there is no shrinkage.
 
-How should the hyperpriors be specified? What is the optimal lag number? What are the best shrinkage values for the prior distribution? The goal is to ensure that the model's prior assumptions align well with the observed data, improving the model's overall performance without overfitting. However, the priors are influenced by the hyperpriors that control how strong or loose our prior beliefs are. The procedure to optimize their values is illustrated in the next paragraph.
+How should the hyperparameters be specified? What is the optimal number of lags? What are the best shrinkage values for the prior distribution? The goal is to ensure that the model's prior assumptions align well with the observed data, improving the model's overall performance without overfitting. The procedure to choose their values is illustrated in the next section.
 
 ### Informativeness of the Prior Distribution
-From a Bayesian perspective, the choice of the informativeness of the prior distribution is conceptually identical to the inference on any other unknown parameter of the model. Suppose, for instance, that a model is described by a likelihood function $p(y|\theta)$ and a prior distribution $p_\gamma(\theta)$ where $\theta$ is the vector of the VAR(p) parameters and $\gamma$ collects the hyperparameters (hyperpriors), i.e. those coefficients that parameterize the prior distribution, but do not directly affect the likelihood. It is then natural to choose these hyperparameters by interpreting the model as a hierarchical model, i.e. replacing $p_\gamma(\theta)$ with $p(\theta|\gamma)$ and evaluating their posterior ($\textcolor{orange}{Berger,\, 1985}$; $\textcolor{orange}{Koop,\, 2003}$). 
+From a Bayesian perspective, choosing the informativeness of the prior distribution is conceptually identical to inference on any other unknown parameter of the model. Suppose, for instance, that a model is described by a likelihood function $p(y|\theta)$ and a prior distribution $p_\eta(\theta)$, where $\theta$ is the vector of the VAR(p) parameters and $\eta$ collects the hyperparameters, i.e. the coefficients that parameterize the prior distribution but do not directly affect the likelihood. It is then natural to choose these hyperparameters by interpreting the model as a hierarchical model, i.e. replacing $p_\eta(\theta)$ with $p(\theta|\eta)$ and evaluating their posterior (Berger, 1985; Koop, 2003).
 
-Following $\textcolor{orange}{Giannone,\, Lenza,\, Primicieri\, (2012)}$, we pick the hyperpriors that maximize the marginal likelihood of the data, i.e. the optimal hyperpriors is the set of hyperparameters that makes the data most likely after integrating out the uncertainty in the model parameters. The procedure is implemented in __Code__ > __BVAR__ > __bvar_opt_prior.jl__ 
+Following Giannone, Lenza and Primiceri (2015), we pick the hyperparameters that maximize the marginal likelihood of the data, i.e. the values that make the data most likely after integrating out the uncertainty about the model parameters. The code performs a grid search over the lag order $p$ and the hyperparameters $(\lambda, \tau, \gamma)$. The procedure is implemented in __Code__ > __BVAR__ > __bvar_opt_hyperprior.jl__, and the marginal likelihood is computed in __Code__ > __BVAR__ > __bvar_marginal_likelihood.jl__.
 
 ## Posterior Distribution
 We now augment the data with the dummy observations:
@@ -126,56 +123,55 @@ We now augment the data with the dummy observations:
 * $X_* = (X', X_d')'$;
 * $U_* = (U', U_d')'$;
 
-and we rewrite the VAR(p) as a general regression model: 
+and we rewrite the VAR(p) as a general regression model:
 $$Y_* = X_* \,\beta + U_*\,.$$
-The posterior distribution has the form: 
-$$ 
-vec(\beta)|\Psi,Y \sim N(vec(\tilde \beta), \Psi \otimes (X_*' X_*)^{-1} ) \quad \text{and}\quad \Psi|Y \sim iW(\tilde \Sigma, T_d + T + 2 - n)\,.
+The posterior distribution has the form:
 $$
-It can be noticed that the posterior expectations of the coefficients corresponds to the OLS estimates of the regression model based on the appended data, with:
-* $\tilde \beta = (X_*'X_*)^{−1}(X_*'Y_*)$;
-* $\tilde \Sigma = (Y_* − X_* \tilde \beta)'(Y_* − X_* \tilde \beta)$;
+vec(\beta)|\Psi,Y \sim N(vec(\tilde \beta), \Psi \otimes (X_*' X_*)^{-1} ) \quad \text{and}\quad \Psi|Y \sim iW(\tilde \Sigma, T_d + T + 2 - k)\,.
+$$
+Notice that the posterior expectations of the coefficients correspond to the OLS estimates of the regression model based on the augmented data, with:
+* $\tilde \beta = (X_*'X_*)^{-1}(X_*'Y_*)$;
+* $\tilde \Sigma = (Y_* - X_* \tilde \beta)'(Y_* - X_* \tilde \beta)$.
 
-The functions that draw from the posterior distributions given the optimal informativeness of the prior distribution can be found in __Code__ > __BVAR__ > __bvar_gibbs_helper.jl__ > __bvar_IWRD__ (Inverted Wishart) and __bvar_MNRD__ (Multivariate Normal).
+For structural analysis, the code draws from the posterior with a Gibbs sampler that alternates between $p(\beta|\Psi,Y)$, the normal distribution above, and $p(\Psi|\beta,Y)$, an inverse-Wishart distribution with scale matrix $(Y_* - X_* \beta)'(Y_* - X_* \beta)$. Draws of $\beta$ for which the VAR is not stable are discarded. The functions that perform the draws can be found in __Code__ > __BVAR__ > __bvar_gibbs_helper.jl__ > __bvar_IWRD__ (inverse Wishart) and __bvar_MNRD__ (multivariate normal).
 
-## Structural Identification 
+## Structural Identification
 The structural VAR(p) is specified as
-$$ B_0Y_t=B_1Y_{t-1}+\dots+B_pY_{t-p}+\varepsilon_t$$
-If we multiply both sides of the structural form of the VAR by $B_0^{-1}$, the matrix governing the contemporaneous relations among endogenous variables, also known as structural impact multiplier matrix, we obtain the reduced form representation: 
+$$ B_0Y_t=B_1Y_{t-1}+\dots+B_pY_{t-p}+\varepsilon_t\,.$$
+If we multiply both sides of the structural form of the VAR by $B_0^{-1}$, the matrix governing the contemporaneous relations among the endogenous variables, also known as the structural impact multiplier matrix, we obtain the reduced-form representation:
 $$ Y_t=B_0^{-1}B_1Y_{t-1}+\dots+B_0^{-1}B_pY_{t-p}+B_0^{-1}\varepsilon_t $$
 $$ Y_t=A_1Y_{t-1}+\dots+A_pY_{t-p}+u_t \;.$$
-The key implication is that the vector of structural shocks $\varepsilon_t$ can be seen as the linear combination of the reduced form residuals $u_t$, i.e. $\varepsilon_t=B_0u_t$. Thus, given that our stochastic process $\{Y_t\}_{t\geq0}$ is weakly stationary by construction, the Wold Representation theorem allows us to express $Y_t$ as the infinite sum of the reduced form residuals $u_t$ with weights the dynamic multiplier $\Phi_h$:
+The key implication is that the vector of structural shocks $\varepsilon_t$ is a linear combination of the reduced-form residuals $u_t$, i.e. $\varepsilon_t=B_0u_t$. Since the sampler keeps only draws for which the VAR is stable, we can express $Y_t$ as an infinite sum of the reduced-form residuals $u_t$, weighted by the dynamic multipliers $\Phi_h$ (Wold representation):
 $$Y_t=\sum_{h=0}^{\infty}\Phi_hu_{t-h}\;.$$
-At this point we derive the structural moving average representation of our vector autoregressive process by multiplying and dividing each element of the summation by the matrix $B_0$: 
+We then derive the structural moving-average representation of the VAR by multiplying and dividing each element of the sum by the matrix $B_0$:
 $$ Y_t=\sum_{h=0}^{\infty}\Phi_hB_0^{-1}B_0u_{t-h}=\sum_{h=0}^{\infty}\Theta_h\varepsilon_{t-h}\;.$$
-Our goal is to estimate the structural impulse response functions of our endogenous variables to the desired exogenous shocks. We define the impulse responses at time $t$ as: 
-$$ \frac{\partial Y_{t+h}}{\partial \varepsilon_t}=\Theta_h= \Phi_h B_0^{-1}
+Our goal is to estimate the structural impulse response functions of the endogenous variables to the structural shocks of interest. We define the impulse responses at horizon $h$ as:
+$$ \frac{\partial Y_{t+h}}{\partial \varepsilon_t}=\Theta_h= \Phi_h B_0^{-1}\,,
 $$
-where $\Phi_h$ is estimated by OLS. The main goal is to estimate $B_0^{-1}$ or one of its column associated with the desired structural shock $\varepsilon_{jt}$. The repository implements two different identification strategies, using sign restrictions or via external instrument. 
+where $\Phi_h$ is computed from each posterior draw of the VAR coefficients. The main goal is to estimate $B_0^{-1}$, or the column of it associated with the structural shock of interest $\varepsilon_{jt}$. The repository implements two identification strategies: sign restrictions and external instruments.
 
 
 ### Sign Restrictions
-The Gibbs sampling algorithm to estimate the parameters of the VAR model cycles through two steps, sampling successively from $p(\beta|\Psi,Y)$ and $p(\Psi|\beta,Y)$. Once past the burn-in stage the following steps are used to calculate the structural impact multiplier matrix $B_0$ via sign restrictions à la $\textcolor{orange}{Ramirez}$ $\textcolor{orange}{et}$ $\textcolor{orange}{al.}$ $\textcolor{orange}{(2010)}$:
-1. Draw a $(n\text{x}n)$ matrix $K$ from the standard normal distribution. 
-2. Calculate the matrix $Q$ from the $QR$ decomposition of $K$, note that $Q$ is orthonormal i.e. $Q'Q = I_n$.
-3. Calculate the choleski decomposition of the current draw $\Psi = \tilde B_0' \tilde B_0$.
-4. Calculate the candidate $B_0$ matrix as $B_0 = Q \tilde B_0$. Note that because $Q'Q = I_n$ this implies that $B_0'B_0$
-will still equal $\Psi$. By calculating the product $B_0 = Q \tilde B_0$ we alter the elements of $\tilde B_0$ but not the property that $\Psi = \tilde B_0' \tilde B_0$.
-5. Check the sign restrictions related to the $j^{th}$ column of $B_0$. If they are not satisfied, go to step 1 and try with a new $K$ matrix.
-6. For a valid candidate $B_0$, compute the Structural IRFs recursively assuming that the system was at the steady state at time $t$ when the shock hitted the system; then, the structural IRFs for each retained Gibbs draw are saved.
+The Gibbs sampler cycles through two steps, sampling successively from $p(\beta|\Psi,Y)$ and $p(\Psi|\beta,Y)$. After the burn-in stage, the following steps are used to compute the structural impact multiplier matrix $B_0^{-1}$ via sign restrictions, following Rubio-Ramírez, Waggoner and Zha (2010):
+1. Draw an $(n\times n)$ matrix $K$ from the standard normal distribution.
+2. Compute the matrix $Q$ from the $QR$ decomposition of $K$. Note that $Q$ is orthonormal, i.e. $Q'Q = I_n$.
+3. Compute the Cholesky decomposition of the current draw $\Psi = PP'$, where $P$ is lower triangular.
+4. Compute the candidate impact matrix $B_0^{-1} = P Q'$. Because $Q'Q = I_n$, the candidate still satisfies $B_0^{-1}(B_0^{-1})' = P Q' Q P' = \Psi$: rotating $P$ changes its elements but not the covariance matrix it implies.
+5. Check the sign restrictions on the $j^{th}$ column of $B_0^{-1}$. If all the signs are reversed, flip the sign of the candidate; if the restrictions are not satisfied, go back to step 1 and try a new matrix $K$.
+6. For a valid candidate, compute the structural IRFs recursively, assuming that the system was at its steady state at time $t$ when the shock hit; then save the structural IRFs for each retained Gibbs draw.
 
 The procedure is implemented in __Code__ > __BVAR__ > __bvar_sign_gibbs.jl__.
 
 
-### IV Identification 
+### IV Identification
 
-The identification strategy consists of using external instruments which are able to capture a fraction of the true structural shock. This methodology was introduced by $\textcolor{orange}{Stock}$ $\textcolor{orange}{and}$ $\textcolor{orange}{Watson}$ $\textcolor{orange}{(2012)}$ and it has become increasingly popular in the literature seeking to estimate the effects of monetary policy shock. We apply the same procedure outlined in $\textcolor{orange}{Stock}$ $\textcolor{orange}{and}$ $\textcolor{orange}{Watson}$  $\textcolor{orange}{(2018)}$.
+This identification strategy uses external instruments that capture a fraction of the true structural shock. The methodology was introduced by Stock and Watson (2012), and it has become increasingly popular in the literature estimating the effects of monetary policy shocks. We apply the procedure outlined in Stock and Watson (2018).
 
-We assume that we are interested in the shock order first $\varepsilon_{1t}$, without lost of generality. The instrument must satisfy the so called "SVAR-IV" conditions:
-1. $E[Z_t\varepsilon_{1t}]=\alpha\neq 0 \quad\quad\quad\quad(relevance)$
-2. $E[Z_t\varepsilon_{jt}]=0\quad \forall j\neq 1 \quad\quad\,(exogeneity)$
+Without loss of generality, assume that we are interested in the shock ordered first, $\varepsilon_{1t}$. The instrument $Z_t$ must satisfy the so-called "SVAR-IV" conditions:
+1. $E[Z_t\varepsilon_{1t}]=\alpha\neq 0 \quad\quad\quad\quad \text{(relevance)}$
+2. $E[Z_t\varepsilon_{jt}]=0\quad \forall j\neq 1 \quad\quad\, \text{(exogeneity)}$
 
-Given the construction of $\Theta_h$, the goal is to identify only the first column of $B_0^{-1}$: 
+Given the construction of $\Theta_h$, the goal is to identify only the first column of $B_0^{-1}$:
 $$
 \begin{gather*}
 \begin{split}
@@ -194,7 +190,7 @@ $$
     \end{split}{}
 \end{gather*}
 $$
-Therefore, if we exploit the relation between structural shocks and reduced form residuals, $B_0^{-1}\varepsilon_t=u_t$, and the SVAR-IV conditions, we obtain: 
+Exploiting the relation between structural shocks and reduced-form residuals, $u_t = B_0^{-1}\varepsilon_t$, together with the SVAR-IV conditions, we obtain:
 $$
 \begin{gather*}
 \begin{split}
@@ -210,17 +206,45 @@ $$
     \end{split}
 \end{gather*}
 $$
-If we normalize the coefficient of the instrumented variable $b_{1,1}$ to be equal to one, the coefficients of the first column of $B_0^{-1}$ relative to the exogenous shock can be expressed as:
-$$  
-b_{j,1}=\big(\mathrm{E}[Z_tu_{1,t}])^{-1}(\mathrm{E}[Z_tu_{j,t}]\big)\quad\textit{with}\quad j=2,...,n\;.
+If we normalize the impact on the instrumented variable, $b_{1,1}$, to one, the remaining elements of the first column of $B_0^{-1}$ can be expressed as:
+$$
+b_{j,1}=\big(\mathrm{E}[Z_tu_{1,t}]\big)^{-1}\,\mathrm{E}[Z_tu_{j,t}]\quad\textit{with}\quad j=2,\dots,n\;.
 $$
 
-The Gibbs sampling algorithm to estimate the parameters of the VAR model cycles through two steps, sampling successively from $p(\beta|\Psi,Y)$ and $p(\Psi|B,Y)$. Once past the burn-in stage, For each draw of $\beta$ and $\Psi$, we compute the corresponding sequence of residual $u_t = Y_t - X_t \beta$ without using the appended data. Thus, we compute $\hat b_{j,1}$ for $j=2,\dots,n$ by GMM. The function performing these steps is __Code__ > __BVAR__ > __bvar_iv_gibbs.jl__.
+As for sign restrictions, the Gibbs sampler cycles through two steps, sampling successively from $p(\beta|\Psi,Y)$ and $p(\Psi|\beta,Y)$. After the burn-in stage, for each draw of $\beta$ and $\Psi$ we compute the corresponding sequence of residuals $u_t = Y_t - X_t \beta$ on the actual sample, without the dummy observations. We then estimate $\hat b_{j,1}$ for $j=2,\dots,n$ by replacing the population moments above with their sample counterparts. The function performing these steps is __Code__ > __BVAR__ > __bvar_iv_gibbs.jl__.
 
 
-### What to do in the Excel File
-- Create __worksheet "Sign"__ if you want to perform structural identification via sign restrictions. The first column, __"policy variable"__, assigns to each shock the corresponding column of $B_0^{-1}$. In the excel file, the first shock (1), column __"Global Supply Chain Shock"__, corresponds to the column of $B_0^{-1}$ relative to the variable *GSCPI*. The second shock (2), column __"Other Shock"__, corresponds to the column of $B_0^{-1}$ relative the variable *United States_GDP*. The signs of the response of each variable are created using $\textcolor{red}{(+1)}$ and $\textcolor{blue}{(-1)}$, leave the cell blank if you do not want to impose any restriction.
+### What to Do in the Excel File
+- Create __worksheet "Sign"__ if you want to perform structural identification via sign restrictions. The first column, __"policy variable"__, assigns each shock to the corresponding column of $B_0^{-1}$. In the Excel file, the first shock (1), column __"Global Supply Chain Shock"__, corresponds to the column of $B_0^{-1}$ associated with the variable *GSCPI*. The second shock (2), column __"Other Shock"__, corresponds to the column of $B_0^{-1}$ associated with the variable *United States_GDP*. The sign of the response of each variable is set with $\textcolor{red}{(+1)}$ or $\textcolor{blue}{(-1)}$; leave the cell blank if you do not want to impose any restriction.
 
-- Create __worksheet "IV"__ if you want to compute Structural IRFs using an external instrument. The first column of the worksheet must contain the dates, the second one the shock (only one shock for each run (sigh), going to implement different IVs and multiple IVs for a single shock soon). The column name for the shock MUST BE the ticker of the instrumented variable (we are going to identify only the column of $B_0^{-1}$ corresponding to the instrumented variable). 
+- Create __worksheet "IV"__ if you want to compute structural IRFs using an external instrument. The first column of the worksheet must contain the dates and the second one the instrument. Currently, only one instrument per run is supported. The column name of the instrument must be the ticker of the instrumented variable, since only the column of $B_0^{-1}$ corresponding to that variable is identified.
 
+## References
 
+<div class="references">
+
+**Bańbura, Marta, Domenico Giannone, and Lucrezia Reichlin.** 2010. “Large Bayesian vector auto regressions.” *Journal of Applied Econometrics*, 25(1): 71–92.
+
+**Berger, James O.** 1985. *Statistical Decision Theory and Bayesian Analysis*. 2nd ed. New York: Springer.
+
+**Giannone, Domenico, Michele Lenza, and Giorgio E Primiceri.** 2015. “Prior selection for vector autoregressions.” *Review of Economics and Statistics*, 97(2): 436–451.
+
+**Kadiyala, K Rao, and Sune Karlsson.** 1997. “Numerical methods for estimation and inference in Bayesian VAR-models.” *Journal of Applied Econometrics*, 12(2): 99–132.
+
+**Koop, Gary.** 2003. *Bayesian Econometrics*. Chichester: John Wiley & Sons.
+
+**Litterman, Robert B.** 1986. “Forecasting with Bayesian vector autoregressions: Five years of experience.” *Journal of Business & Economic Statistics*, 4(1): 25–38.
+
+**Robertson, John C, and Ellis W Tallman.** 1999. “Vector autoregressions: Forecasting and reality.” *Federal Reserve Bank of Atlanta Economic Review*, 84(1): 4–18.
+
+**Rubio-Ramírez, Juan F, Daniel F Waggoner, and Tao Zha.** 2010. “Structural vector autoregressions: Theory of identification and algorithms for inference.” *Review of Economic Studies*, 77(2): 665–696.
+
+**Sims, Christopher A.** 1993. “A nine-variable probabilistic macroeconomic forecasting model.” In *Business Cycles, Indicators, and Forecasting*, ed. James H Stock and Mark W Watson, 179–212. Chicago: University of Chicago Press.
+
+**Sims, Christopher A, and Tao Zha.** 1998. “Bayesian methods for dynamic multivariate models.” *International Economic Review*, 39(4): 949–968.
+
+**Stock, James H, and Mark W Watson.** 2012. “Disentangling the channels of the 2007–09 recession.” *Brookings Papers on Economic Activity*, 2012(1): 81–135.
+
+**Stock, James H, and Mark W Watson.** 2018. “Identification and estimation of dynamic causal effects in macroeconomics using external instruments.” *Economic Journal*, 128(610): 917–948.
+
+</div>
