@@ -227,6 +227,10 @@
   @media (max-width: 767px) {
     #section-resume-biography-3 .resume-biography { gap: 1rem; }     /* was gap-12 (3rem) */
     #section-resume-biography-3 .flex-auto.max-w-prose { margin-top: 0; }  /* drop the 1rem */
+    /* Display math: body-size equations, and anything still too wide scrolls on
+       its own instead of pushing the whole page sideways. */
+    .katex-display { overflow-x: auto; overflow-y: hidden; padding: 0.15em 0; }
+    .katex-display > .katex { font-size: 1em; }
   }
 
   /* ---- Light theme: make all body copy solid black (incl. the Bio) ---- */

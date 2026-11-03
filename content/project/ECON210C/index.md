@@ -35,8 +35,8 @@ $$
 	\frac{W_t}{P_t}&=\frac{\chi N_t^\varphi}{C_t^{-\gamma}} \\
 	Y_t&=C_t \\
 	C_{t}^{-\gamma}&=\beta E_t\big\{R_{t+1} C_{t+1}^{-\gamma} \big\}
-    \end{split}
-    \quad\quad \xrightarrow{} \quad\quad
+    \end{split} \\[0.5em]
+    \big\downarrow \\[0.5em]
     \begin{split}
     \hat{y}_t&=\hat{a}_t + \hat{n}_{t}  \\
 	\hat{w}_t - \hat{p}_t &= \hat{a}_t  \\
@@ -97,15 +97,8 @@ Y_{t-1} \\
 Y_{t-2} \\
 \vdots \\
 Y_{t-p+1}
-\end{bmatrix}\,
-\mathbb{A}=
-\begin{bmatrix}
-A_1 & A_2 & \dots & A_{p-1} & A_p\\
-I_k& 0_k &  \dots & 0 &0\\
-0 & I_k &  \dots & 0 & 0\\
-\vdots&  &  & & \vdots\\
-0 & 0 & \dots & I_k & 0
-\end{bmatrix}\,
+\end{bmatrix}\,,
+\quad
 U_t=
 \begin{bmatrix}
 u_t \\
@@ -113,6 +106,16 @@ u_t \\
 0 \\
 \vdots \\
 0
+\end{bmatrix}\,,
+$$
+$$
+\mathbb{A}=
+\begin{bmatrix}
+A_1 & A_2 & \dots & A_{p-1} & A_p\\
+I_k& 0_k &  \dots & 0 &0\\
+0 & I_k &  \dots & 0 & 0\\
+\vdots&  &  & & \vdots\\
+0 & 0 & \dots & I_k & 0
 \end{bmatrix}\,.
 $$
 The coefficients $A_1,\dots,A_p$ in the first block row of $\mathbb{A}$ are estimated by OLS, while the remaining blocks are fixed:
@@ -217,8 +220,10 @@ $$
 $$
 \begin{gather*}
 \begin{split}
-(AD) \quad \psi_{ya} \hat a_t &=  \psi_{ya} \, \rho_a \, \hat a_t - \sigma \big(\, \textcolor{orange}{\phi_{\pi} \psi_{\pi a} \hat a_t} - \psi_{\pi a} \, \rho_a \, \hat a_t \, \big) \\
-(AS) \quad \psi_{\pi a} \hat a_t &= \kappa \big(\, \psi_{ya} \hat a_t - \textcolor{red}{\Omega \hat a_t } \,\big) + \beta \psi_{\pi a} \, \rho_a \, \hat a_t
+(AD) \quad \psi_{ya} \hat a_t &=  \psi_{ya} \, \rho_a \, \hat a_t \\
+&\quad - \sigma \big(\, \textcolor{orange}{\phi_{\pi} \psi_{\pi a} \hat a_t} - \psi_{\pi a} \, \rho_a \, \hat a_t \, \big) \\
+(AS) \quad \psi_{\pi a} \hat a_t &= \kappa \big(\, \psi_{ya} \hat a_t - \textcolor{red}{\Omega \hat a_t } \,\big) \\
+&\quad + \beta \psi_{\pi a} \, \rho_a \, \hat a_t
 \end{split}
 \end{gather*}
 $$

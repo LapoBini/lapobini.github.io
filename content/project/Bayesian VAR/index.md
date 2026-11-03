@@ -56,12 +56,12 @@ The Minnesota prior is implemented in __Code__ > __BVAR__ > __bvar_minnesota_pri
 ### Sum-of-Coefficients Prior
 The literature has suggested that forecasting performance can be improved by imposing additional priors that constrain the sum of the coefficients (see, e.g., [Sims, 1993](#ref-sims1993); [Sims and Zha, 1998](#ref-sims1998); [Robertson and Tallman, 1999](#ref-robertson1999)). This is the same as imposing "inexact differencing", and it is a simple modification of the Minnesota prior involving linear combinations of the VAR coefficients.
 
-To see this, we rewrite the VAR in its error-correction form: $$Y_t = c + A_1 Y_{t-1}+\dots+A_p Y_{t-p} + u_t$$  $$\Delta Y_t = c - (I_n - A_1 - A_2- \dots- A_p) Y_{t-1} + C_1 \Delta Y_{t-1} + \dots + C_{p-1} \Delta Y_{t-p+1} + u_t$$ with $C_k = - \sum_{j=k+1}^p A_j$. The term $- (I_n - A_1 - A_2- \dots- A_p) Y_{t-1}$ is the error-correction term: it corrects the current-period change in $Y_t$ with part of the previous period's deviation from the long-run relation among the variables. The remaining terms, $C_1 \Delta Y_{t-1} + \dots + C_{p-1} \Delta Y_{t-p+1} + u_t$, involve only first differences.
+To see this, we rewrite the VAR in its error-correction form: $$Y_t = c + A_1 Y_{t-1}+\dots+A_p Y_{t-p} + u_t$$  $$\begin{aligned}\Delta Y_t = {} & c - (I_n - A_1 - A_2- \dots- A_p) Y_{t-1} \\ & + C_1 \Delta Y_{t-1} + \dots + C_{p-1} \Delta Y_{t-p+1} + u_t\end{aligned}$$ with $C_k = - \sum_{j=k+1}^p A_j$. The term $- (I_n - A_1 - A_2- \dots- A_p) Y_{t-1}$ is the error-correction term: it corrects the current-period change in $Y_t$ with part of the previous period's deviation from the long-run relation among the variables. The remaining terms, $C_1 \Delta Y_{t-1} + \dots + C_{p-1} \Delta Y_{t-p+1} + u_t$, involve only first differences.
 
 A VAR in first differences implies $\Pi = I_n - A_1 - A_2- \dots- A_p = 0$. By inexact differencing, that is, by imposing the sum-of-coefficients prior, we shrink $\Pi$ toward zero, so that the posterior draws are characterized by unit roots rather than by explosive behavior. In this case, $Y_t$ is equal to its previous value plus terms in first differences. It follows that, in the limit ($\Pi \to 0$), each variable in $Y_t$ contains a unit root and the model rules out cointegration.
 
 ### Dummy-Initial-Observation Prior
-As mentioned above, the sum-of-coefficients prior rules out cointegration in the limit, which may be undesirable. Starting from $$\Delta Y_t = c - (I_n - A_1 - A_2- \dots- A_p) Y_{t-1} +  C_1 \Delta Y_{t-1} + \dots + C_{p-1} \Delta Y_{t-p+1} + u_t\,,$$ the sum-of-coefficients prior implies, in the limit $\Pi \to 0$: $$\Delta Y_t= c +  C_1 \Delta Y_{t-1} + \dots + C_{p-1} \Delta Y_{t-p+1} + u_t\,,$$ which is equivalent to $$Y_t= c + Y_{t-1} + C_1 \Delta Y_{t-1} + \dots + C_{p-1} \Delta Y_{t-p+1} + u_t\;.$$
+As mentioned above, the sum-of-coefficients prior rules out cointegration in the limit, which may be undesirable. Starting from $$\begin{aligned}\Delta Y_t = {} & c - (I_n - A_1 - A_2- \dots- A_p) Y_{t-1} \\ & + C_1 \Delta Y_{t-1} + \dots + C_{p-1} \Delta Y_{t-p+1} + u_t\,,\end{aligned}$$ the sum-of-coefficients prior implies, in the limit $\Pi \to 0$: $$\Delta Y_t= c +  C_1 \Delta Y_{t-1} + \dots + C_{p-1} \Delta Y_{t-p+1} + u_t\,,$$ which is equivalent to $$\begin{aligned}Y_t = {} & c + Y_{t-1} \\ & + C_1 \Delta Y_{t-1} + \dots + C_{p-1} \Delta Y_{t-p+1} + u_t\;.\end{aligned}$$
 Without an error-correction term, there can be no cointegration relations. For this reason, [Sims](#ref-sims1993) ([1993](#ref-sims1993)) proposed an additional prior, known as the "dummy-initial-observation" prior.
 
 This prior states that a no-change forecast for all variables is a good forecast at the beginning of the sample. Then, either all the variables are at their unconditional mean, which implies that the model is stationary despite the unit roots in the variables (implying cointegration), or the dynamics of the system are characterized by an unspecified number of unit roots, and the variables share a common stochastic trend.
@@ -70,7 +70,10 @@ This prior states that a no-change forecast for all variables is a good forecast
 ### Prior Distribution
 Following [Kadiyala and Karlsson](#ref-kadiyala1997) ([1997](#ref-kadiyala1997)) and [Robertson and Tallman](#ref-robertson1999) ([1999](#ref-robertson1999)), we impose a Normal-inverse-Wishart prior distribution of the form:
 $$
-vec(\beta)|\Psi \sim N(vec(\beta_0), \Psi \otimes \Omega_0 ) \quad \text{and}\quad \Psi \sim iW(S_0, \alpha_0)\,,
+\begin{gathered}
+vec(\beta)|\Psi \sim N(vec(\beta_0), \Psi \otimes \Omega_0 ) \\
+\text{and}\quad \Psi \sim iW(S_0, \alpha_0)\,,
+\end{gathered}
 $$
 where the prior parameters $\beta_0$, $\Omega_0$, $S_0$ and $\alpha_0$ are chosen so that the prior expectations and variances of $\beta$ coincide with those implied by the Minnesota prior, and the expectation of $\Psi$ is equal to the fixed residual covariance matrix $\Sigma$. We implement the prior by adding dummy observations: it can be shown that adding $T_d$ dummy observations $Y_d$ and $X_d$ to the VAR(p) is equivalent to imposing the Normal-inverse-Wishart prior with:
 * $\beta_0 = (X_d'X_d)^{-1}(X_d'Y_d)$;
@@ -91,7 +94,8 @@ Y_d = \begin{bmatrix}
         diag(\mu_1\delta_1,\dots,\mu_n\delta_n)/\tau\\[0.5em]\hline\\[-0.8em]
         (\mu_1,\dots,\mu_n)/\gamma
 \end{bmatrix}
-\quad
+$$
+$$
 X_d = \begin{bmatrix}
         J_p \otimes diag(\sigma_1,\dots,\sigma_n)/\lambda & 0_{np \times 1}\\[0.5em]\hline\\[-0.8em]
         0_{n \times np} & 0_{n \times 1} \\[0.5em]\hline\\[-0.8em]
@@ -128,8 +132,10 @@ the product of one-step-ahead predictive densities. It therefore rewards the hyp
 Because the Normal-inverse-Wishart prior is conjugate, the integral has a closed form. Let $Y$ $(T\times n)$ and $X$ $(T\times k)$ collect the observed data, without the dummy observations, and let $\beta_0$, $\Omega_0$, $S_0$ and $\alpha_0$ be the prior parameters implied by the dummies, all of which depend on $\eta$. The log marginal likelihood is
 $$
 \begin{aligned}
-\log p(y|\eta) = {} & -\frac{Tn}{2}\log\pi + \log\Gamma_n\Big(\frac{T+\alpha_0}{2}\Big) - \log\Gamma_n\Big(\frac{\alpha_0}{2}\Big) - \frac{n}{2}\log\big|I_T + X\Omega_0X'\big| \\
-& + \frac{\alpha_0}{2}\log\big|S_0\big| - \frac{T+\alpha_0}{2}\log\big|S_0 + (Y - X\beta_0)'(I_T + X\Omega_0 X')^{-1}(Y - X\beta_0)\big|\,,
+& \log p(y|\eta) = -\frac{Tn}{2}\log\pi + \log\Gamma_n\Big(\frac{T+\alpha_0}{2}\Big) \\
+& \quad - \log\Gamma_n\Big(\frac{\alpha_0}{2}\Big) - \frac{n}{2}\log\big|I_T + X\Omega_0X'\big| \\
+& \quad + \frac{\alpha_0}{2}\log\big|S_0\big| - \frac{T+\alpha_0}{2}\log\big|S_0 \\
+& \quad + (Y - X\beta_0)'(I_T + X\Omega_0 X')^{-1}(Y - X\beta_0)\big|\,,
 \end{aligned}
 $$
 where $\Gamma_n(\cdot)$ is the multivariate gamma function. The last term rewards fit: it is large when the data are close to the prior mean $X\beta_0$, relative to the prior uncertainty. The term $-\frac{n}{2}\log|I_T + X\Omega_0X'|$ penalizes complexity: it falls as the prior becomes looser or as more lags are added. Equivalently, the marginal likelihood is the ratio between the marginal likelihood of the data augmented with the dummies and that of the dummies alone, $p(y|\eta) = p(Y_*|\eta)/p(Y_d|\eta)$.
@@ -148,7 +154,10 @@ and we rewrite the VAR(p) as a general regression model:
 $$Y_* = X_* \,\beta + U_*\,.$$
 The posterior distribution has the form:
 $$
-vec(\beta)|\Psi,Y \sim N(vec(\tilde \beta), \Psi \otimes (X_*' X_*)^{-1} ) \quad \text{and}\quad \Psi|Y \sim iW(\tilde \Sigma, T_d + T + 2 - k)\,.
+\begin{gathered}
+vec(\beta)|\Psi,Y \sim N(vec(\tilde \beta), \Psi \otimes (X_*' X_*)^{-1} ) \\
+\text{and}\quad \Psi|Y \sim iW(\tilde \Sigma, T_d + T + 2 - k)\,.
+\end{gathered}
 $$
 Notice that the posterior expectations of the coefficients correspond to the OLS estimates of the regression model based on the augmented data, with:
 * $\tilde \beta = (X_*'X_*)^{-1}(X_*'Y_*)$;
@@ -229,7 +238,10 @@ $$
 $$
 If we normalize the impact on the instrumented variable, $b_{1,1}$, to one, the remaining elements of the first column of $B_0^{-1}$ can be expressed as:
 $$
-b_{j,1}=\big(\mathrm{E}[Z_tu_{1,t}]\big)^{-1}\,\mathrm{E}[Z_tu_{j,t}]\quad\textit{with}\quad j=2,\dots,n\;.
+\begin{gathered}
+b_{j,1}=\big(\mathrm{E}[Z_tu_{1,t}]\big)^{-1}\,\mathrm{E}[Z_tu_{j,t}] \\
+\textit{with}\quad j=2,\dots,n\;.
+\end{gathered}
 $$
 
 As for sign restrictions, the Gibbs sampler cycles through two steps, sampling successively from $p(\beta|\Psi,Y)$ and $p(\Psi|\beta,Y)$. After the burn-in stage, for each draw of $\beta$ and $\Psi$ we compute the corresponding sequence of residuals $u_t = Y_t - X_t \beta$ on the actual sample, without the dummy observations. We then estimate $\hat b_{j,1}$ for $j=2,\dots,n$ by replacing the population moments above with their sample counterparts. The function performing these steps is __Code__ > __BVAR__ > __bvar_iv_gibbs.jl__.
