@@ -14,11 +14,9 @@
 {{- with $context.FirstSection -}}{{ $sec = .Section }}{{- end -}}
 {{- $unified := or (eq $sec "teaching") (eq $sec "project") -}}
 
-{{/* Only replace explicit mobile menu links with automated links for Docs pages */}}
-{{ if not $no_sidebar }}
-  {{/* Classes appended to `hb-sidebar-mobile-menu` are modified via sidebar JS, so do not @apply them to `hb-sidebar-mobile-menu` */}}
-  <div class="hb-sidebar-mobile-menu fixed inset-0 z-10 bg-white dark:bg-black/80 hidden"></div>
-{{ end }}
+{{/* Local override: no `hb-sidebar-mobile-menu` overlay. Without it the sidebar JS
+     leaves the hamburger alone, so docs pages open the same navbar menu as the
+     rest of the site. */}}
 
 <!-- Explicit `transform` class as we toggle it in JS -->
 <aside class="hb-sidebar-container max-lg:[transform:translate3d(0,-100%,0)] {{ $sidebar_dynamic_class }}">
@@ -28,15 +26,6 @@
     {{/* partial "search.html" */}}
   </div>
   <div class="hb-scrollbar lg:h-[calc(100vh-var(--navbar-height))]">
-    <ul class="flex flex-col gap-1 lg:hidden">
-      <!-- Mobile menu: always show the site's main navigation (Home, Research, CV,
-           Teaching) — not the docs index. -->
-      {{- range site.Menus.main -}}
-        {{- $ext := strings.HasPrefix .URL "http" -}}
-        <li>{{ template "custom-menu-link" (dict "active" (eq $page_url (.URL | relLangURL)) "title" .Name "link" (cond $ext .URL (.URL | relLangURL))) }}</li>
-      {{- end -}}
-    </ul>
-
     <!-- Sidebar on large screen -->
     {{- if $no_sidebar -}}
       <div class="max-xl:hidden h-0 w-64 shrink-0"></div>
