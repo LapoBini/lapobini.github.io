@@ -22,6 +22,15 @@
   {{ $title_ext = true }}
 {{ end }}
 
+{{ $pdf := "" }}
+{{ with $item.Resources.GetMatch (printf "%s.pdf" $item.File.ContentBaseName) }}{{ $pdf = .RelPermalink }}{{ end }}
+{{ if not $pdf }}{{ with $item.Params.url_pdf }}{{ $r := $item.Resources.GetMatch . }}{{ if $r }}{{ $pdf = $r.RelPermalink }}{{ else }}{{ $pdf = . | relURL }}{{ end }}{{ end }}{{ end }}
+
+{{/* Update note (e.g. "New draft") — badge next to the title linking to the paper,
+     on the homepage and the Research page. Remove `update` to take it down. */}}
+{{ $update := "" }}
+{{ with $item.Params.update }}{{ $update = printf `<span class="cite-update"><a href="%s" target="_blank" rel="noopener">%s</a></span>` $pdf (htmlEscape .) }}{{ end }}
+
 <div class="pub-list-item view-citation" style="margin-bottom: 1rem">
   <i class="far fa-file-alt pub-icon" aria-hidden="true"></i>
 
@@ -35,7 +44,7 @@
     ({{- $item.Date.Format "2006" -}}).
   </div>
   <div class="cite-title">
-    <a href="{{ $title_url }}" class="underline"{{ if $title_ext }} target="_blank" rel="noopener"{{ end }}>{{ $item.Title }}</a>.
+    <a href="{{ $title_url }}" class="underline"{{ if $title_ext }} target="_blank" rel="noopener"{{ end }}>{{ $item.Title }}</a>. {{ $update | safeHTML }}
     {{ if $item.Params.publication_short }}
       {{- $item.Params.publication_short | markdownify -}}.
     {{ else if $item.Params.publication }}
@@ -52,7 +61,7 @@
     </span>
   </div>
   <div class="cite-title">
-    <a href="{{ $title_url }}"{{ if $title_ext }} target="_blank" rel="noopener"{{ end }}>{{ $item.Title }}</a>.
+    <a href="{{ $title_url }}"{{ if $title_ext }} target="_blank" rel="noopener"{{ end }}>{{ $item.Title }}</a>. {{ $update | safeHTML }}
     {{ if $item.Params.publication_short }}
       {{- $item.Params.publication_short | markdownify -}},
     {{ else if $item.Params.publication }}
@@ -63,16 +72,8 @@
 
   {{ end }}
 
-  {{ $pdf := "" }}
-  {{ with $item.Resources.GetMatch (printf "%s.pdf" $item.File.ContentBaseName) }}{{ $pdf = .RelPermalink }}{{ end }}
-  {{ if not $pdf }}{{ with $item.Params.url_pdf }}{{ $r := $item.Resources.GetMatch . }}{{ if $r }}{{ $pdf = $r.RelPermalink }}{{ else }}{{ $pdf = . | relURL }}{{ end }}{{ end }}{{ end }}
-
   {{/* Publication status (e.g. R&R) — shown below the title on every page */}}
   {{ with $item.Params.status }}<div class="cite-status">{{ . | markdownify }}</div>{{ end }}
-
-  {{/* Update note (e.g. "New draft, November 2026") — badge linking to the paper,
-       on the homepage and the Research page. Remove `update` to take it down. */}}
-  {{ with $item.Params.update }}<div class="cite-update"><a href="{{ $pdf }}" target="_blank" rel="noopener">{{ . }}</a></div>{{ end }}
 
   {{/* Awards (joined by "; ") below the title — shown on the homepage only (see CSS) */}}
   {{ with $item.Params.awards }}
