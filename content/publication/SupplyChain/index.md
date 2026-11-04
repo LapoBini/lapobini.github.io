@@ -18,8 +18,8 @@ publication:
 
 # Awards / honors, shown below the title in the citation view.
 awards:
-- "International Association for Applied Econometrics (IAAE) 2026 Best Student Paper Award"
-- "Walter Heller Memorial Prize 2026 (Best 3rd Year Paper UCSD Econ)"
+- "International Association for Applied Econometrics (IAAE) Best Student Paper Award, 2026"
+- "Walter Heller Memorial Prize (Best 3rd Year Paper UCSD Econ), 2026"
 
 # Where this paper has been presented: homepage "Talks" toggle and, with links,
 # the Research page. An event is a plain name or `{name, url}`.
