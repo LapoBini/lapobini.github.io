@@ -14,6 +14,9 @@ doi: ""
 # Submission status, shown after the author/year line in the citation view.
 status: "Revise & Resubmit, The Economic Journal"
 
+# Update note, shown as a badge below the status. Delete the line to remove it.
+update: "New draft, November 2026"
+
 # Where this paper has been presented: homepage "Talks" toggle and, with links,
 # the Research page. An event is a plain name or `{name, url}`.
 presentations:

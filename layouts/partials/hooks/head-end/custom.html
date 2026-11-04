@@ -321,6 +321,21 @@
   }
   .view-citation .cite-status p { margin: 0; }
 
+  /* ---- Update note (e.g. "New draft, November 2026"): small blue badge ---- */
+  .view-citation .cite-update { margin-top: 0.3rem; line-height: 1.4; }
+  .view-citation .cite-update a {
+    display: inline-block;
+    padding: 0.05rem 0.5rem;
+    border-radius: 9999px;
+    background: #eff6ff;
+    color: #1e40af;
+    font-size: 0.8em;
+    font-weight: 600;
+    text-decoration: none;
+  }
+  .view-citation .cite-update a:hover { background: #dbeafe; }
+  .dark .view-citation .cite-update a { background: #1e3a8a; color: #dbeafe; }
+
   /* ---- Award / honor (e.g. "Award: IAAE 2026 Best Student Paper ..."):
      only the "Award:" label is bold, both in the same muted color as the
      R&R status. Position differs by context: on the homepage it sits below
