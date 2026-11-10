@@ -20,8 +20,8 @@ Office hour: Thursday from 1:00 to 2:00 pm, Malk Hall 464. Prof Graham Elliott's
 Material from the __Fall-26__ class:
 1. [Descriptive Statistics](https://lapobini.github.io/discussion/ECON120A_fall24/120A_26_1.pdf)
 2. [Discrete Random Variables](https://lapobini.github.io/discussion/ECON120A_fall24/120A_26_2.pdf)
-3. [Midterm Review](https://lapobini.github.io/discussion/ECON120A_fall24/120A_26_3.pdf)
-4. [Midterm Solutions](https://lapobini.github.io/discussion/ECON120A_fall24/120A_26_4.pdf)
+3. [Midterm 1 Review](https://lapobini.github.io/discussion/ECON120A_fall24/120A_26_3.pdf)
+4. [Midterm 1 Solutions](https://lapobini.github.io/discussion/ECON120A_fall24/120A_26_4.pdf)
 5. [Midterm 2 Review](https://lapobini.github.io/discussion/ECON120A_fall24/120A_26_5.pdf)
 
 
