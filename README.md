@@ -142,12 +142,3 @@ Files in `layouts/` replace the default page templates:
 | `partials/site_footer.html` | Footer without the template credit line |
 | `_default/single.html` | Individual paper pages: no date, type row or "Last updated" |
 | `partials/hooks/head-end/custom.html` | **All custom CSS**: colors, spacing, phone layout |
-
-## Backup
-
-The state of the repository before the November 2026 cleanup is saved in the git tag
-`backup-before-cleanup-2026-11-10`. Any file removed then can be recovered with:
-
-```bash
-git checkout backup-before-cleanup-2026-11-10 -- path/to/file
-```
