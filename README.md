@@ -1,15 +1,14 @@
 # lapobini.github.io
 
-Source of my personal website, [lapobini.github.io](https://lapobini.github.io). It is built with
-[Hugo](https://gohugo.io) and the [Hugo Blox](https://hugoblox.com) academic theme (`blox-tailwind`),
-with a few local changes to the layout and style (see [Customizations](#customizations)).
+Source of my personal website, [lapobini.github.io](https://lapobini.github.io). The layout and style
+changes are listed in [Customizations](#customizations).
 
 ## How the site is published
 
 Every push to `main` triggers the GitHub Action in `.github/workflows/publish.yaml`. It builds the site
-with Hugo and deploys it to GitHub Pages, usually within 1–2 minutes. Check progress in the **Actions**
-tab of the repository. Nothing else needs to be built or uploaded by hand: the `public/` folder and
-Hugo's caches are generated on the fly and are not tracked by git (see `.gitignore`).
+and deploys it to GitHub Pages, usually within 1–2 minutes. Check progress in the **Actions** tab of
+the repository. Nothing else needs to be built or uploaded by hand: the `public/` folder and the build
+caches are generated on the fly and are not tracked by git (see `.gitignore`).
 
 After a deploy, browsers may show the old version for up to 10 minutes. Reload the page to see the
 update.
@@ -36,7 +35,7 @@ content/
   project/           "Code" pages (Bayesian VAR, Monetary Economics)
   resume.pdf         the CV opened by the CV menu link
 data/coauthors.yaml  personal websites of coauthors (their names become links)
-layouts/             local overrides of the theme templates
+layouts/             customized page templates
 static/              files copied as is (favicons)
 assets/media/        site icon
 ```
@@ -86,7 +85,7 @@ presentations:
 ### Add a new paper
 
 Copy an existing folder in `content/publication/` (or `content/ongoing/` for an ongoing project), rename
-it, replace the PDFs and edit `index.md`. Keep the `_build` lines, which stop Hugo from generating a
+it, replace the PDFs and edit `index.md`. Keep the `_build` lines, which stop the build from generating a
 separate page for the paper.
 
 ### Update the CV
@@ -136,7 +135,7 @@ to the reference list at the bottom of the page:
 
 ## Customizations
 
-Local files in `layouts/` override the theme's templates:
+Files in `layouts/` replace the default page templates:
 
 | File | Change |
 |---|---|
@@ -148,7 +147,7 @@ Local files in `layouts/` override the theme's templates:
 | `partials/components/next-in-series.html` | Previous/next links without dates |
 | `partials/docs_layout.html` | Teaching/code pages without the breadcrumb bar |
 | `partials/blox/resume-biography-3.html` | Homepage bio: Download CV button under the social icons, no Interests/Education grid |
-| `partials/site_footer.html` | Footer without the "Published with Hugo Blox" line |
+| `partials/site_footer.html` | Footer without the template credit line |
 | `_default/single.html` | Individual paper pages: no date, type row or "Last updated" |
 | `partials/hooks/head-end/custom.html` | **All custom CSS**: colors, spacing, phone layout |
 
