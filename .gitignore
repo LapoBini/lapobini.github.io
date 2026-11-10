@@ -1,0 +1,9 @@
+# Built site and Hugo caches: GitHub Actions rebuilds them on every push
+/public/
+/resources/
+hugo_stats.json
+.hugo_build.lock
+
+# macOS and editor files
+.DS_Store
+.claude/
