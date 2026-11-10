@@ -13,14 +13,6 @@ caches are generated on the fly and are not tracked by git (see `.gitignore`).
 After a deploy, browsers may show the old version for up to 10 minutes. Reload the page to see the
 update.
 
-## Preview locally
-
-```bash
-hugo server        # then open http://localhost:1313
-```
-
-The page reloads automatically when a file changes. Stop the server with `Ctrl+C`.
-
 ## Folder structure
 
 ```
