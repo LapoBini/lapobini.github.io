@@ -22,6 +22,7 @@ Material from the __Fall-26__ class:
 2. [Discrete Random Variables](https://lapobini.github.io/discussion/ECON120A_fall24/120A_26_2.pdf)
 3. [Midterm Review](https://lapobini.github.io/discussion/ECON120A_fall24/120A_26_3.pdf)
 4. [Midterm Solutions](https://lapobini.github.io/discussion/ECON120A_fall24/120A_26_4.pdf)
+5. [Midterm 2 Review](https://lapobini.github.io/discussion/ECON120A_fall24/120A_26_5.pdf)
 
 
 Material from the __Fall-25__ class:
