@@ -34,6 +34,6 @@ publication_types: ["ongoing-project"]
 #url_source: '#'
 #url_video: '#'
 
-abstract: This paper proposes a model for now-casting inflation for a selection of advanced economies and emerging markets which exploits weekly energy prices and, where available, other high-frequency indicators.
+abstract: "We introduce a new dynamic factor model to nowcast inflation. The model departs from the temporal aggregation scheme of Mariano and Murasawa (2003) and replaces it with a power law, and its latent common component evolves at weekly frequency, so that weekly, monthly and quarterly indicators can be combined as they are released. We apply the model to eleven advanced and emerging economies, and document that it outperforms both statistical benchmarks and standard dynamic factor models."
  
 ---
