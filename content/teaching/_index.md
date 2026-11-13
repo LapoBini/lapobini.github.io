@@ -1,6 +1,6 @@
 ---
 title: Teaching
-linkTitle: Teaching Material
+linkTitle: Teaching
 summary: Teaching material and code
 type: landing
 
@@ -18,7 +18,7 @@ sections:
   - block: collection
     id: teaching-material
     content:
-      title: Teaching Material
+      title: Teaching
       sort_by: Weight
       order: asc
       filters:
@@ -30,7 +30,7 @@ sections:
   - block: collection
     id: code
     content:
-      title: Code
+      title: Extra Material
       sort_by: Weight
       order: asc
       filters:

@@ -24,7 +24,7 @@ content/
   ongoing/           ongoing projects, one folder per project
   teaching/          one folder per course page (index.md + downloadable .zip)
   discussion/        PDFs of the discussion sections, one folder per course
-  project/           "Code" pages (Bayesian VAR, Monetary Economics)
+  project/           "Extra Material" pages (Bayesian VAR, Monetary Economics)
   resume.pdf         the CV opened by the CV menu link
 data/coauthors.yaml  personal websites of coauthors (their names become links)
 layouts/             customized page templates
@@ -113,7 +113,7 @@ Add a line to `data/coauthors.yaml`, with the name written exactly as in the pap
 Office hours and general info are at the top of each course page. The order of the courses is set by
 `weight` in each page's front matter.
 
-### Edit the Code pages
+### Edit the Extra Material pages
 
 `content/project/Bayesian VAR/index.md` and `content/project/ECON210C/index.md` are Markdown with LaTeX
 math (`$...$` inline, `$$...$$` for displayed equations). Keep long equations split over several lines

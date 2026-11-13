@@ -8,7 +8,7 @@
 {{- $page_url := $context.RelPermalink -}}
 
 {{/* Local override: for Teaching / Code (project) docs pages, show a single unified
-     menu — "Teaching Material" + courses, then "Code" + repositories — instead of the
+     menu — "Teaching" + courses, then "Extra Material" + repositories — instead of the
      per-section auto menu. */}}
 {{- $sec := "" -}}
 {{- with $context.FirstSection -}}{{ $sec = .Section }}{{- end -}}
@@ -45,7 +45,7 @@
 
 {{- define "unified-docs-menu" -}}
   {{- $pageURL := .pageURL -}}
-  {{- $groups := slice (dict "title" "Teaching Material" "page" (site.GetPage "/teaching")) (dict "title" "Code" "page" (site.GetPage "/project")) -}}
+  {{- $groups := slice (dict "title" "Teaching" "page" (site.GetPage "/teaching")) (dict "title" "Extra Material" "page" (site.GetPage "/project")) -}}
   {{- range $groups -}}
     {{- $grp := . -}}
     <li class="[word-break:break-word] mt-5 mb-2 px-2 py-1.5 text-sm font-semibold text-gray-900 first:mt-0 dark:text-gray-100 cursor-default">

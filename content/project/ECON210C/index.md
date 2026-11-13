@@ -7,14 +7,14 @@ summary: ECON210C
 code: ECON210C
 repo: "https://github.com/LapoBini/210C"
 weight: 2
-abstract: "Solutions to the problem sets and final exam of ECON210C (Monetary Economics, Prof. Johannes Wieland, Spring 2024). The code implements modern solution methods for RBC and New Keynesian DSGE models, including the method of undetermined coefficients and the sequence-space approach of Auclert et al. (2021), together with identification strategies for structural VARs based on recursive ordering and the external instrument approach."
+abstract: "This page explains the tools used in ECON210C (Monetary Economics, Prof. Johannes Wieland, UC San Diego, Spring 2024), and the GitHub repository contains the code with the solutions to each assignment and to the final exam. The code implements modern solution methods for RBC and New Keynesian DSGE models, including the method of undetermined coefficients and the sequence-space approach of Auclert et al. (2021), together with identification strategies for structural VARs based on recursive ordering and the external instrument approach."
 title: Monetary Economics
 type: docs
 ---
 
 ## Introduction
 
-The repository [ECON210C](https://github.com/LapoBini/210C) contains the solutions to the assignments and the final exam of ECON210C, taught by Prof. Johannes Wieland (Spring 2024). The course covered different solution methods for RBC and New Keynesian DSGE models, and identification strategies for structural VARs.
+This page explains the tools used in ECON210C, taught by Prof. Johannes Wieland at UC San Diego (Spring 2024), and the repository [ECON210C](https://github.com/LapoBini/210C) contains the code with the solutions to each assignment and to the final exam. The course covered different solution methods for RBC and New Keynesian DSGE models, and identification strategies for structural VARs.
 
 ## Sequence Space
 The first assignment (__ECON210C__ > __HW1__) required solving an RBC DSGE model with the sequence-space methodology of [Auclert et al.](#ref-auclert2021) ([2021](#ref-auclert2021)). The code in __ECON210C__ > __HW1__ > __RBC.jl__ solves a specific RBC model with a composite basket of a consumption good and money. In this section we give a general overview of how the sequence-space procedure works. The basic idea is to organize the general equilibrium model into blocks, which represent the behavior of different (possibly heterogeneous) agents and interact in general equilibrium through a small set of aggregates.

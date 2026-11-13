@@ -4,15 +4,15 @@ date: "2024-09-01"
 #  caption: Embed rich media such as videos and LaTeX math
 math: false
 summary: BVAR Estimation and Structural Analysis
-code: BayesianVAR.jl
+code: ECON220D
 repo: "https://github.com/LapoBini/BayesianVAR.jl"
 weight: 1
-abstract: "A Julia package to estimate Bayesian Vector Autoregressions with Minnesota, sum-of-coefficients, and dummy-initial-observation priors. It performs structural analysis through sign restrictions or external instruments, and provides tools for hyperparameter selection, posterior sampling, impulse-response and forecast-error-variance decompositions, historical decompositions, and both unconditional and conditional forecasts."
+abstract: "Teaching material for ECON220D (Time Series Econometrics and Applied Macroeconomics, Prof. James D. Hamilton), the mandatory second-year PhD course at UC San Diego. The Julia code estimates Bayesian VARs with Minnesota, sum-of-coefficients and dummy-initial-observation priors, selects the lag length and the tightness of the priors by maximizing the marginal likelihood, draws from the posterior with a Gibbs sampler, and identifies the structural shocks through sign restrictions or external instruments, producing impulse responses, historical decompositions and the deterministic trend of each series."
 title: Bayesian Vector Autoregression
 type: docs
 ---
 ## Introduction
-The repository [BayesianVAR.jl](https://github.com/LapoBini/BayesianVAR.jl) contains the code to estimate a Bayesian VAR with Minnesota, sum-of-coefficients and dummy-initial-observation priors, and to perform structural analysis using sign restrictions or external instruments.
+The repository [BayesianVAR.jl](https://github.com/LapoBini/BayesianVAR.jl) contains the code to estimate a Bayesian VAR with Minnesota, sum-of-coefficients and dummy-initial-observation priors, and to perform structural analysis using sign restrictions or external instruments. It was created as teaching material for ECON220D, Time Series Econometrics and Applied Macroeconomics, the mandatory second-year PhD course taught by Prof. James D. Hamilton at UC San Diego.
 
 The repository includes an Excel file (__Data__ > __FinalData__ > __test.xlsx__) that can be used to test and run the model with __main_executer.jl__. The settings for the VAR (sample dates, location of the data file, name of the results folder, required packages, etc.) can be changed in __Code__ > __SetUp__ > __SetupBVAR.jl__. Every function contains a brief description of the econometric framework, with equations and references.
 
