@@ -7,12 +7,12 @@ summary: BVAR Estimation and Structural Analysis
 code: ECON220D
 repo: "https://github.com/LapoBini/BayesianVAR.jl"
 weight: 1
-abstract: "Teaching material for ECON220D (Time Series Econometrics and Applied Macroeconomics, Prof. James D. Hamilton), the mandatory second-year PhD course at UC San Diego. The Julia code estimates Bayesian VARs with Minnesota, sum-of-coefficients and dummy-initial-observation priors, selects the lag length and the tightness of the priors by maximizing the marginal likelihood, draws from the posterior with a Gibbs sampler, and identifies the structural shocks through sign restrictions or external instruments, producing impulse responses, historical decompositions and the deterministic trend of each series."
+abstract: "Part of the teaching material for ECON220D (Time Series Econometrics and Applied Macroeconomics, Prof. James D. Hamilton), the mandatory second-year PhD course at UC San Diego. The Julia code estimates Bayesian VARs with Minnesota, sum-of-coefficients and dummy-initial-observation priors, selects the lag length and the prior tightness by maximizing the marginal likelihood, and identifies structural shocks through sign restrictions or external instruments."
 title: Bayesian Vector Autoregression
 type: docs
 ---
 ## Introduction
-The repository [BayesianVAR.jl](https://github.com/LapoBini/BayesianVAR.jl) contains the code to estimate a Bayesian VAR with Minnesota, sum-of-coefficients and dummy-initial-observation priors, and to perform structural analysis using sign restrictions or external instruments. It was created as teaching material for ECON220D, Time Series Econometrics and Applied Macroeconomics, the mandatory second-year PhD course taught by Prof. James D. Hamilton at UC San Diego.
+The repository [BayesianVAR.jl](https://github.com/LapoBini/BayesianVAR.jl) contains the code to estimate a Bayesian VAR with Minnesota, sum-of-coefficients and dummy-initial-observation priors, and to perform structural analysis using sign restrictions or external instruments. It is part of the teaching material for ECON220D, Time Series Econometrics and Applied Macroeconomics, the mandatory second-year PhD course taught by Prof. James D. Hamilton at UC San Diego.
 
 The repository includes an Excel file (__Data__ > __FinalData__ > __test.xlsx__) that can be used to test and run the model with __main_executer.jl__. The settings for the VAR (sample dates, location of the data file, name of the results folder, required packages, etc.) can be changed in __Code__ > __SetUp__ > __SetupBVAR.jl__. Every function contains a brief description of the econometric framework, with equations and references.
 
