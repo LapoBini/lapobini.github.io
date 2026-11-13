@@ -14,13 +14,7 @@ type: docs
 ## Introduction
 The repository [BayesianVAR.jl](https://github.com/LapoBini/BayesianVAR.jl) contains the code to estimate a Bayesian VAR with Minnesota, sum-of-coefficients and dummy-initial-observation priors, and to perform structural analysis using sign restrictions or external instruments. It is part of the teaching material for ECON220D, Time Series Econometrics and Applied Macroeconomics, the mandatory second-year PhD course taught by Prof. James D. Hamilton at UC San Diego.
 
-The repository includes an Excel file (__Data__ > __FinalData__ > __test.xlsx__) that can be used to test and run the model with __main_executer.jl__. The settings for the VAR (sample dates, location of the data file, name of the results folder, required packages, etc.) can be changed in __Code__ > __SetUp__ > __SetupBVAR.jl__. Every function contains a brief description of the econometric framework, with equations and references.
-
-### Brief Comment on the Excel File
-The model can combine series at different frequencies by interpolating them with splines (__Code__ > __DataSection__ > __readdata_haver.jl__). Every worksheet with data must follow the "Haver convention" (see the first column and the first 18 rows of worksheet __Data_m__ in the Excel file), and must be named "Data_" + frequency ("d", "w", "m", "q"). The function __Code__ > __Toolbox__ > __transformation.jl__, called inside __readdata_haver.jl__, applies standard transformations to the data following the instructions in __worksheet "Legend" - columns C-E__: "LOG" = 1 takes logs, "DIFF" = 1 takes the first difference, and "FILT" transforms the series into year-on-year growth rates when the other two cells are also set to 1. __Worksheet "Legend" - column F__ specifies the Minnesota prior for each series, and __worksheet "Legend" - column G__ specifies which series to include.
-
-Further instructions on the structure of the Excel file are provided in __Code__ > __DataSection__ > __readdata_haver.jl__ and, for structural analysis, at the end of this page.
-
+The repository includes an Excel file (__Data__ > __FinalData__ > __Data.xlsx__) with the data of the baseline model in [Bini](#ref-bini2025) ([2025](#ref-bini2025)), which can be used to test and run the model with __main_executer.jl__. The settings for the VAR (sample dates, location of the data file, name of the results folder, required packages, etc.) can be changed in __Code__ > __SetUp__ > __SetupBVAR.jl__. The structure of the Excel file is explained in [The Excel File](#the-excel-file), at the end of this page. Every function contains a brief description of the econometric framework, with equations and references.
 
 ## Setting the Priors
 Let $Y_t = (y_{1t},\dots,y_{nt})'$ be a potentially large vector of random variables. We estimate the following VAR(p) model:
@@ -51,7 +45,7 @@ $$Var((A_k)_{ij}) =  \begin{cases}
 {{< /math >}}
 where $k$ is the lag, so the prior tightens as the lag increases. In the original formulation of the Minnesota prior, the covariance matrix of the residuals is assumed to be diagonal and known: $\Psi = \Sigma$, where $\Sigma = diag(\sigma_1^2,\;\dots, \sigma_n^2)$. However, structural analysis requires taking into account the possible correlation among the residuals of different variables. To overcome this problem, we follow [Kadiyala and Karlsson](#ref-kadiyala1997) ([1997](#ref-kadiyala1997)) and impose a Normal-inverse-Wishart prior, which retains the principles of the Minnesota prior. This is possible under the condition that $\vartheta = 1$, which we assume in what follows. Finally, the prior on the intercept $c$ is diffuse.
 
-The Minnesota prior is implemented in __Code__ > __BVAR__ > __bvar_minnesota_prior.jl__. First, the function shrinks each variable toward a random walk or white noise, as specified in __worksheet "Legend" - column F__; then, it calculates $\{\sigma^2_1,\dots,\sigma^2_n\}$.
+The Minnesota prior is implemented in __Code__ > __BVAR__ > __bvar_minnesota_prior.jl__. First, the function shrinks each variable toward a random walk or white noise, as specified in the column "PRIOR AR(1)" of the [worksheet "Legend"](#legend); then, it calculates $\{\sigma^2_1,\dots,\sigma^2_n\}$.
 
 ### Sum-of-Coefficients Prior
 The literature has suggested that forecasting performance can be improved by imposing additional priors that constrain the sum of the coefficients (see, e.g., [Sims, 1993](#ref-sims1993); [Sims and Zha, 1998](#ref-sims1998); [Robertson and Tallman, 1999](#ref-robertson1999)). This is the same as imposing "inexact differencing", and it is a simple modification of the Minnesota prior involving linear combinations of the VAR coefficients.
@@ -247,10 +241,95 @@ $$
 As for sign restrictions, the Gibbs sampler cycles through two steps, sampling successively from $p(\beta|\Psi,Y)$ and $p(\Psi|\beta,Y)$. After the burn-in stage, for each draw of $\beta$ and $\Psi$ we compute the corresponding sequence of residuals $u_t = Y_t - X_t \beta$ on the actual sample, without the dummy observations. We then estimate $\hat b_{j,1}$ for $j=2,\dots,n$ by replacing the population moments above with their sample counterparts. The function performing these steps is __Code__ > __BVAR__ > __bvar_iv_gibbs.jl__.
 
 
-### What to Do in the Excel File
-- Create __worksheet "Sign"__ if you want to perform structural identification via sign restrictions. The first column, __"policy variable"__, assigns each shock to the corresponding column of $B_0^{-1}$. In the Excel file, the first shock (1), column __"Global Supply Chain Shock"__, corresponds to the column of $B_0^{-1}$ associated with the variable *GSCPI*. The second shock (2), column __"Other Shock"__, corresponds to the column of $B_0^{-1}$ associated with the variable *United States_GDP*. The sign of the response of each variable is set with $\textcolor{red}{(+1)}$ or $\textcolor{blue}{(-1)}$; leave the cell blank if you do not want to impose any restriction.
+## The Excel File
 
-- Create __worksheet "IV"__ if you want to compute structural IRFs using an external instrument. The first column of the worksheet must contain the dates and the second one the instrument. Currently, only one instrument per run is supported. The column name of the instrument must be the ticker of the instrumented variable, since only the column of $B_0^{-1}$ corresponding to that variable is identified.
+The data are read from an Excel file in __Data__ > __FinalData__, whose name is set in __Code__ > __SetUp__ > __SetupBVAR.jl__. The repository includes __Data.xlsx__, with the data of the baseline model in [Bini](#ref-bini2025) ([2025](#ref-bini2025)): five monthly US series from January 1998 to December 2024 (CPI, the WTI oil price, industrial production, the unemployment rate and the Global Supply Chain Pressure Index of the New York Fed), and the instrument for global supply chain shocks constructed in the paper from the surcharges of the three largest container shipping companies. In the paper, these data are used in a structural VAR identified with an external instrument and estimated with frequentist methods, not in a Bayesian VAR; here they illustrate how to use the code. The file is read by __Code__ > __DataSection__ > __readdata.jl__ and has four worksheets, described below.
+
+### Data Worksheets
+The data are stored in one worksheet for each frequency, named "Data_" + frequency: "Data_d" (daily), "Data_w" (weekly), "Data_m" (monthly) and "Data_q" (quarterly). Column A, "Dates", contains the dates, and every other column contains a raw series, with its name in the first row; the data start in the second row. The dates should be stored as Excel dates (for instance in the format DD-MM-YYYY), and for monthly and quarterly data any day of the period can be used: 01-01-1998 and 31-01-1998 both refer to January 1998. __Data.xlsx__ contains only the worksheet "Data_m":
+
+<div class="xl"><div class="xl-scroll"><table>
+<thead><tr><th></th><th>A</th><th>B</th><th>C</th><th>D</th><th>E</th><th>F</th></tr></thead><tbody>
+<tr><th>1</th><td class="h">Dates</td><td class="h">CPI</td><td class="h">WTI Oil Price</td><td class="h">Industrial Production</td><td class="h">Unemployment Rate</td><td class="h">GSCPI</td></tr>
+<tr><th>2</th><td>31-01-1998</td><td>162</td><td>16.71</td><td>84.1564</td><td>4.6</td><td>−1.0791</td></tr>
+<tr><th>3</th><td>28-02-1998</td><td>162</td><td>16.06</td><td>84.3066</td><td>4.6</td><td>−0.4501</td></tr>
+<tr><th>4</th><td>31-03-1998</td><td>162</td><td>15.02</td><td>84.3420</td><td>4.7</td><td>−0.0743</td></tr>
+<tr><th>⋮</th><td class="dots">⋮</td><td class="dots">⋮</td><td class="dots">⋮</td><td class="dots">⋮</td><td class="dots">⋮</td><td class="dots">⋮</td></tr>
+<tr><th>325</th><td>31-12-2024</td><td>317.685</td><td>69.7</td><td>103.1654</td><td>4.1</td><td>−0.2224</td></tr>
+</tbody></table></div><div class="xl-tabs"><span class="on">Data_m</span><span>Legend</span><span>Sign</span><span>IV</span></div></div>
+
+The model can combine series at different frequencies. To add quarterly series, create a worksheet "Data_q" with the same structure, and add a row for each new series to the [worksheet "Legend"](#legend) (and to the [worksheet "Sign"](#sign), if used). For instance, to add real GDP:
+
+<div class="xl"><div class="xl-scroll"><table>
+<thead><tr><th></th><th>A</th><th>B</th></tr></thead><tbody>
+<tr><th>1</th><td class="h">Dates</td><td class="h">Real GDP</td></tr>
+<tr><th>2</th><td>31-03-1998</td><td>3175.9</td></tr>
+<tr><th>3</th><td>30-06-1998</td><td>3205.3</td></tr>
+<tr><th>4</th><td>30-09-1998</td><td>3245.7</td></tr>
+<tr><th>⋮</th><td class="dots">⋮</td><td class="dots">⋮</td></tr>
+</tbody></table></div><div class="xl-tabs"><span>Data_m</span><span class="on">Data_q</span><span>Legend</span><span>Sign</span><span>IV</span></div></div>
+
+The frequency of the VAR is the highest frequency among the included series. Each series is first transformed at its own frequency, as specified in the worksheet "Legend" (for instance, "DIFF" = 1 gives quarter-on-quarter changes for a quarterly series); each observation of a lower-frequency series is then placed on the last month of its period, and the months in between are filled by interpolation with splines.
+
+### Legend
+The worksheet "Legend" has one row for each series, with its name as in the data worksheets. The series included in the model enter the VAR in the order of this worksheet. The columns are:
+- __"LOG", "DIFF" and "FILT"__: the transformation of the series, applied by __Code__ > __Toolbox__ > __transformation.jl__ (see the table below).
+- __"PRIOR AR(1)"__: the prior for the [Minnesota prior](#minnesota-prior), 1 for a random walk ($\delta_i = 1$) and 0 for white noise ($\delta_i = 0$).
+- __"INCL"__: 1 to include the series in the VAR, 0 to leave it out, so that a series can remain in the file without being used.
+- __"INSTRUMENTED"__: 1 for the variable whose shock is identified with the external instrument in the [worksheet "IV"](#iv). Only one variable can be instrumented in each run.
+
+| LOG | DIFF | FILT | Transformation |
+|:---:|:---:|:---:|---|
+| 0 | 0 | 0 | Level |
+| 1 | 0 | 0 | 100 × log level |
+| 0 | 1 | 0 | First difference |
+| 1 | 1 | 0 | 100 × log difference (period-on-period growth rate) |
+| 0 | 1 | 1 | Year-on-year difference |
+| 1 | 1 | 1 | Year-on-year growth rate, in percent |
+
+In __Data.xlsx__, CPI, the oil price and industrial production enter in 100 × log levels with a random walk prior, the unemployment rate and the GSCPI enter in levels with a white noise prior, and the GSCPI is the instrumented variable:
+
+<div class="xl"><div class="xl-scroll"><table>
+<thead><tr><th></th><th>A</th><th>B</th><th>C</th><th>D</th><th>E</th><th>F</th><th>G</th></tr></thead><tbody>
+<tr><th>1</th><td class="h">Series</td><td class="h">LOG</td><td class="h">DIFF</td><td class="h">FILT</td><td class="h">PRIOR AR(1)</td><td class="h">INCL</td><td class="h">INSTRUMENTED</td></tr>
+<tr><th>2</th><td>CPI</td><td>1</td><td>0</td><td>0</td><td>1</td><td>1</td><td>0</td></tr>
+<tr><th>3</th><td>WTI Oil Price</td><td>1</td><td>0</td><td>0</td><td>1</td><td>1</td><td>0</td></tr>
+<tr><th>4</th><td>Industrial Production</td><td>1</td><td>0</td><td>0</td><td>1</td><td>1</td><td>0</td></tr>
+<tr><th>5</th><td>Unemployment Rate</td><td>0</td><td>0</td><td>0</td><td>0</td><td>1</td><td>0</td></tr>
+<tr><th>6</th><td>GSCPI</td><td>0</td><td>0</td><td>0</td><td>0</td><td>1</td><td>1</td></tr>
+</tbody></table></div><div class="xl-tabs"><span>Data_m</span><span class="on">Legend</span><span>Sign</span><span>IV</span></div></div>
+
+### Sign
+The worksheet "Sign" is needed only for [identification via sign restrictions](#sign-restrictions). It has one row for each series included in the model, with its name in column B. Columns C onward contain one shock each, with the name of the shock in the first row: the response of each variable is set to $\textcolor{red}{+1}$ (positive) or $\textcolor{blue}{-1}$ (negative), and the cell is left blank for no restriction. Column A, "policy variable", assigns each shock to a column of $B_0^{-1}$: write 1 on the row of the variable associated with the first shock, 2 on the row of the variable associated with the second shock, and so on.
+
+__Data.xlsx__ identifies two shocks. A global supply chain shock, associated with the GSCPI, raises the GSCPI, CPI and the unemployment rate and lowers industrial production, leaving the oil price unrestricted. A demand shock, associated with industrial production, raises CPI and industrial production and lowers the unemployment rate, leaving the GSCPI and the oil price unrestricted:
+
+<div class="xl"><div class="xl-scroll"><table>
+<thead><tr><th></th><th>A</th><th>B</th><th>C</th><th>D</th></tr></thead><tbody>
+<tr><th>1</th><td class="h">policy variable</td><td class="h">Series</td><td class="h">Global Supply Chain Shock</td><td class="h">Demand Shock</td></tr>
+<tr><th>2</th><td></td><td>CPI</td><td class="pos">+1</td><td class="pos">+1</td></tr>
+<tr><th>3</th><td></td><td>WTI Oil Price</td><td></td><td></td></tr>
+<tr><th>4</th><td>2</td><td>Industrial Production</td><td class="neg">−1</td><td class="pos">+1</td></tr>
+<tr><th>5</th><td></td><td>Unemployment Rate</td><td class="pos">+1</td><td class="neg">−1</td></tr>
+<tr><th>6</th><td>1</td><td>GSCPI</td><td class="pos">+1</td><td></td></tr>
+</tbody></table></div><div class="xl-tabs"><span>Data_m</span><span>Legend</span><span class="on">Sign</span><span>IV</span></div></div>
+
+### IV
+The worksheet "IV" is needed only for [identification with an external instrument](#iv-identification). Column A contains the dates and column B the instrument, with the name of the shock in the first row, which is used in the titles of the plots. The variable whose shock is instrumented is set in the column "INSTRUMENTED" of the [worksheet "Legend"](#legend). In __Data.xlsx__, the instrument is the one constructed in [Bini](#ref-bini2025) ([2025](#ref-bini2025)): it is zero in the months without surcharges and is first different from zero in August 2014:
+
+<div class="xl"><div class="xl-scroll"><table>
+<thead><tr><th></th><th>A</th><th>B</th></tr></thead><tbody>
+<tr><th>1</th><td class="h">Dates</td><td class="h">Global Supply Chain Shock</td></tr>
+<tr><th>2</th><td>31-01-1998</td><td>0</td></tr>
+<tr><th>3</th><td>28-02-1998</td><td>0</td></tr>
+<tr><th>⋮</th><td class="dots">⋮</td><td class="dots">⋮</td></tr>
+<tr><th>201</th><td>31-07-2014</td><td>0</td></tr>
+<tr><th>202</th><td>31-08-2014</td><td>200</td></tr>
+<tr><th>⋮</th><td class="dots">⋮</td><td class="dots">⋮</td></tr>
+<tr><th>325</th><td>31-12-2024</td><td>300</td></tr>
+</tbody></table></div><div class="xl-tabs"><span>Data_m</span><span>Legend</span><span>Sign</span><span class="on">IV</span></div></div>
+
+When the file contains both the worksheet "Sign" and the worksheet "IV", the code runs both identification schemes, and saves the results in __Results__ > *results folder* > __IRF_sign__ and __IRF_iv__.
 
 ## References
 
@@ -259,6 +338,8 @@ As for sign restrictions, the Gibbs sampler cycles through two steps, sampling s
 <span id="ref-banbura2010"></span>**Bańbura, Marta, Domenico Giannone, and Lucrezia Reichlin.** 2010. “Large Bayesian vector auto regressions.” *Journal of Applied Econometrics*, 25(1): 71–92.
 
 <span id="ref-berger1985"></span>**Berger, James O.** 1985. *Statistical Decision Theory and Bayesian Analysis*. 2nd ed. New York: Springer.
+
+<span id="ref-bini2025"></span>**Bini, Lapo.** 2025. “[The Macroeconomic Effects of Global Supply Chain Shocks](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5375776).” Working paper.
 
 <span id="ref-giannone2015"></span>**Giannone, Domenico, Michele Lenza, and Giorgio E Primiceri.** 2015. “Prior selection for vector autoregressions.” *Review of Economics and Statistics*, 97(2): 436–451.
 

@@ -284,6 +284,56 @@
   .references [id^="ref-"] { scroll-margin-top: 6rem; }
   .references p:has(> [id^="ref-"]:target) { background: #eff6ff; border-radius: 4px; }
 
+  /* ---- Excel-style tables on the Code pages (worksheets of the data file):
+     column letters, row numbers, gridlines and sheet tabs. Scroll sideways
+     on their own on narrow screens. ---- */
+  .prose .xl {
+    width: fit-content; max-width: 100%;
+    margin: 1.25rem 0 1.5rem;
+    border: 1px solid #d1d5db; border-radius: 4px; overflow: hidden;
+    font-size: 0.72em; background: #fff;
+  }
+  .prose .xl-scroll { overflow-x: auto; }
+  .prose .xl table {
+    width: auto; margin: 0; border-collapse: collapse;
+    font-size: 1em; line-height: 1.5; font-variant-numeric: tabular-nums;
+  }
+  .prose .xl th, .prose .xl td {
+    border: 1px solid #e5e7eb; padding: 0.15rem 0.7rem !important;
+    white-space: nowrap; text-align: center; vertical-align: middle;
+  }
+  .prose .xl thead th, .prose .xl tbody th {
+    background: #f3f4f6; color: #6b7280; font-weight: 400;
+  }
+  .prose .xl tbody th { min-width: 2.4rem; }
+  .prose .xl td { color: #111827; }
+  .prose .xl td.h { font-weight: 700; }
+  .prose .xl td.pos { color: #dc2626; font-weight: 600; }
+  .prose .xl td.neg { color: #2563eb; font-weight: 600; }
+  .prose .xl td.dots { color: #9ca3af; }
+  .prose .xl-tabs {
+    display: flex; background: #f3f4f6; border-top: 1px solid #d1d5db;
+    overflow-x: auto;
+    width: 0; min-width: 100%;  /* the box takes the width of the table, not of the tabs */
+  }
+  .prose .xl-tabs span {
+    padding: 0.15rem 0.9rem; color: #6b7280; border-right: 1px solid #d1d5db;
+    white-space: nowrap;
+  }
+  .prose .xl-tabs span.on {
+    background: #fff; color: #107c41; font-weight: 600;
+    box-shadow: inset 0 -2px 0 #107c41;
+  }
+  .dark .prose .xl { background: #111827; border-color: #4b5563; }
+  .dark .prose .xl th, .dark .prose .xl td { border-color: #374151; }
+  .dark .prose .xl thead th, .dark .prose .xl tbody th,
+  .dark .prose .xl-tabs { background: #1f2937; color: #9ca3af; }
+  .dark .prose .xl td { color: #e5e7eb; }
+  .dark .prose .xl td.pos { color: #f87171; }
+  .dark .prose .xl td.neg { color: #60a5fa; }
+  .dark .prose .xl-tabs span { border-color: #4b5563; color: #9ca3af; }
+  .dark .prose .xl-tabs span.on { background: #111827; color: #4ade80; box-shadow: inset 0 -2px 0 #4ade80; }
+
   /* ---- Course material: emphasise the topic of each session in bold (was orange) ---- */
   .hl-term { font-weight: 700; color: #000; }
 
