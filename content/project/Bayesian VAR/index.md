@@ -246,7 +246,7 @@ As for sign restrictions, the Gibbs sampler cycles through two steps, sampling s
 The data are read from an Excel file in __Data__ > __FinalData__, whose name is set in __Code__ > __SetUp__ > __SetupBVAR.jl__. The repository includes __Data.xlsx__, with the data of the baseline model in [Bini](#ref-bini2025) ([2025](#ref-bini2025)): five monthly US series from January 1998 to December 2024 (CPI, the WTI oil price, industrial production, the unemployment rate and the Global Supply Chain Pressure Index of the New York Fed), and the instrument for global supply chain shocks constructed in the paper from the surcharges of the three largest container shipping companies. In the paper, these data are used in a structural VAR identified with an external instrument and estimated with frequentist methods, not in a Bayesian VAR; here they illustrate how to use the code. The file is read by __Code__ > __DataSection__ > __readdata.jl__ and has four worksheets, described below.
 
 ### Data Worksheets
-The data are stored in one worksheet for each frequency, named "Data_" + frequency: "Data_d" (daily), "Data_w" (weekly), "Data_m" (monthly) and "Data_q" (quarterly). Column A, "Dates", contains the dates, and every other column contains a raw series, with its name in the first row; the data start in the second row. The dates should be stored as Excel dates (for instance in the format DD-MM-YYYY), and for monthly and quarterly data any day of the period can be used: 01-01-1998 and 31-01-1998 both refer to January 1998. __Data.xlsx__ contains only the worksheet "Data_m":
+The data are stored in one worksheet for each frequency: "Data_m" for monthly series and "Data_q" for quarterly series. Column A, "Dates", contains the dates, and every other column contains a raw series, with its name in the first row; the data start in the second row. The dates should be stored as Excel dates (for instance in the format DD-MM-YYYY), and for monthly and quarterly data any day of the period can be used: 01-01-1998 and 31-01-1998 both refer to January 1998. __Data.xlsx__ contains only the worksheet "Data_m":
 
 <div class="xl"><div class="xl-scroll"><table>
 <thead><tr><th></th><th>A</th><th>B</th><th>C</th><th>D</th><th>E</th><th>F</th></tr></thead><tbody>
@@ -269,9 +269,19 @@ The model can combine series at different frequencies. To add quarterly series, 
 <tr><th>⋮</th><td class="dots">⋮</td><td class="dots">⋮</td></tr>
 </tbody></table></div><div class="xl-tabs"><span>Data_m</span><span class="on">Data_q</span><span>Legend</span><span>Sign</span><span>IV</span></div></div>
 
-The frequency of the VAR is the highest frequency among the included series. Each series is first transformed at its own frequency, as specified in the worksheet "Legend" (for instance, "DIFF" = 1 gives quarter-on-quarter changes for a quarterly series); each observation of a lower-frequency series is then placed on the last month of its period, and the months in between are filled by interpolation with splines.
+The VAR is monthly if at least one of the included series is monthly, and quarterly otherwise. Each series is first transformed at its own frequency, as specified in the worksheet "Legend" (for instance, "DIFF" = 1 gives quarter-on-quarter changes for a quarterly series); each observation of a lower-frequency series is then placed on the last month of its period, and the months in between are filled by interpolation with splines.
 
 ### Legend
+<div class="xl"><div class="xl-scroll"><table>
+<thead><tr><th></th><th>A</th><th>B</th><th>C</th><th>D</th><th>E</th><th>F</th><th>G</th></tr></thead><tbody>
+<tr><th>1</th><td class="h">Series</td><td class="h">LOG</td><td class="h">DIFF</td><td class="h">FILT</td><td class="h">PRIOR AR(1)</td><td class="h">INCL</td><td class="h">INSTRUMENTED</td></tr>
+<tr><th>2</th><td>CPI</td><td>1</td><td>0</td><td>0</td><td>1</td><td>1</td><td>0</td></tr>
+<tr><th>3</th><td>WTI Oil Price</td><td>1</td><td>0</td><td>0</td><td>1</td><td>1</td><td>0</td></tr>
+<tr><th>4</th><td>Industrial Production</td><td>1</td><td>0</td><td>0</td><td>1</td><td>1</td><td>0</td></tr>
+<tr><th>5</th><td>Unemployment Rate</td><td>0</td><td>0</td><td>0</td><td>0</td><td>1</td><td>0</td></tr>
+<tr><th>6</th><td>GSCPI</td><td>0</td><td>0</td><td>0</td><td>0</td><td>1</td><td>1</td></tr>
+</tbody></table></div><div class="xl-tabs"><span>Data_m</span><span class="on">Legend</span><span>Sign</span><span>IV</span></div></div>
+
 The worksheet "Legend" has one row for each series, with its name as in the data worksheets. The series included in the model enter the VAR in the order of this worksheet. The columns are:
 - __"LOG", "DIFF" and "FILT"__: the transformation of the series, applied by __Code__ > __Toolbox__ > __transformation.jl__ (see the table below).
 - __"PRIOR AR(1)"__: the prior for the [Minnesota prior](#minnesota-prior), 1 for a random walk ($\delta_i = 1$) and 0 for white noise ($\delta_i = 0$).
@@ -287,17 +297,7 @@ The worksheet "Legend" has one row for each series, with its name as in the data
 | 0 | 1 | 1 | Year-on-year difference |
 | 1 | 1 | 1 | Year-on-year growth rate, in percent |
 
-In __Data.xlsx__, CPI, the oil price and industrial production enter in 100 × log levels with a random walk prior, the unemployment rate and the GSCPI enter in levels with a white noise prior, and the GSCPI is the instrumented variable:
-
-<div class="xl"><div class="xl-scroll"><table>
-<thead><tr><th></th><th>A</th><th>B</th><th>C</th><th>D</th><th>E</th><th>F</th><th>G</th></tr></thead><tbody>
-<tr><th>1</th><td class="h">Series</td><td class="h">LOG</td><td class="h">DIFF</td><td class="h">FILT</td><td class="h">PRIOR AR(1)</td><td class="h">INCL</td><td class="h">INSTRUMENTED</td></tr>
-<tr><th>2</th><td>CPI</td><td>1</td><td>0</td><td>0</td><td>1</td><td>1</td><td>0</td></tr>
-<tr><th>3</th><td>WTI Oil Price</td><td>1</td><td>0</td><td>0</td><td>1</td><td>1</td><td>0</td></tr>
-<tr><th>4</th><td>Industrial Production</td><td>1</td><td>0</td><td>0</td><td>1</td><td>1</td><td>0</td></tr>
-<tr><th>5</th><td>Unemployment Rate</td><td>0</td><td>0</td><td>0</td><td>0</td><td>1</td><td>0</td></tr>
-<tr><th>6</th><td>GSCPI</td><td>0</td><td>0</td><td>0</td><td>0</td><td>1</td><td>1</td></tr>
-</tbody></table></div><div class="xl-tabs"><span>Data_m</span><span class="on">Legend</span><span>Sign</span><span>IV</span></div></div>
+In __Data.xlsx__ (above), CPI, the oil price and industrial production enter in 100 × log levels with a random walk prior, the unemployment rate and the GSCPI enter in levels with a white noise prior, and the GSCPI is the instrumented variable.
 
 ### Sign
 The worksheet "Sign" is needed only for [identification via sign restrictions](#sign-restrictions). It has one row for each series included in the model, with its name in column B. Columns C onward contain one shock each, with the name of the shock in the first row: the response of each variable is set to $\textcolor{red}{+1}$ (positive) or $\textcolor{blue}{-1}$ (negative), and the cell is left blank for no restriction. Column A, "policy variable", assigns each shock to a column of $B_0^{-1}$: write 1 on the row of the variable associated with the first shock, 2 on the row of the variable associated with the second shock, and so on.
@@ -339,7 +339,7 @@ When the file contains both the worksheet "Sign" and the worksheet "IV", the cod
 
 <span id="ref-berger1985"></span>**Berger, James O.** 1985. *Statistical Decision Theory and Bayesian Analysis*. 2nd ed. New York: Springer.
 
-<span id="ref-bini2025"></span>**Bini, Lapo.** 2025. “[The Macroeconomic Effects of Global Supply Chain Shocks](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5375776).” Working paper.
+<span id="ref-bini2025"></span>**Bini, Lapo.** 2025. “The Macroeconomic Effects of Global Supply Chain Shocks.” Working paper.
 
 <span id="ref-giannone2015"></span>**Giannone, Domenico, Michele Lenza, and Giorgio E Primiceri.** 2015. “Prior selection for vector autoregressions.” *Review of Economics and Statistics*, 97(2): 436–451.
 
