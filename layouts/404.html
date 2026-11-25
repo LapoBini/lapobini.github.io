@@ -27,13 +27,12 @@
           {{ if eq .Name "Research" }}
           <ul>
             {{ range $papers }}
-              {{/* Same target as the title on the Research page: title_url (a web
-                   page or a file in the paper's folder), else the PDF */}}
+              {{/* The paper's PDF on this site: url_pdf, or else title_url when it
+                   is a file in the paper's folder (e.g. an early draft) */}}
               {{ $p := . }}
               {{ $url := $p.RelPermalink }}
-              {{ with or $p.Params.title_url $p.Params.url_pdf }}
-                {{ if in (slice "http" "https") (urls.Parse .).Scheme }}{{ $url = . }}
-                {{ else }}{{ with $p.Resources.GetMatch . }}{{ $url = .RelPermalink }}{{ end }}{{ end }}
+              {{ range slice $p.Params.title_url $p.Params.url_pdf }}
+                {{ with . }}{{ with $p.Resources.GetMatch . }}{{ $url = .RelPermalink }}{{ end }}{{ end }}
               {{ end }}
             <li><a href="{{ $url }}" target="_blank" rel="noopener">{{ $p.Title }}</a></li>
             {{ end }}
