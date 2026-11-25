@@ -131,6 +131,7 @@ Files in `layouts/` replace the default page templates:
 
 | File | Change |
 |---|---|
+| `404.html` | "Page not found" page: links to Research (papers), CV and Teaching (classes and extra material) |
 | `partials/views/citation.html` | Paper entries: title, status, update badge, awards, buttons, abstract and talks |
 | `partials/page_metadata_authors.html` | Coauthor names link to `data/coauthors.yaml` |
 | `partials/views/teachcard*.html` | Course and code cards on the Teaching page |

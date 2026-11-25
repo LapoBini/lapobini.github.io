@@ -284,6 +284,10 @@
   .references [id^="ref-"] { scroll-margin-top: 6rem; }
   .references p:has(> [id^="ref-"]:target) { background: #eff6ff; border-radius: 4px; }
 
+  /* ---- 404 page: side margins on phones, and long titles wrap ---- */
+  .not-found { padding-left: 1.5rem; padding-right: 1.5rem; }
+  .not-found li, .not-found a { overflow-wrap: anywhere; }
+
   /* ---- Excel-style tables on the Code pages (worksheets of the data file):
      column letters, row numbers, gridlines and sheet tabs. Scroll sideways
      on their own on narrow screens. ---- */

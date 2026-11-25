@@ -1,0 +1,52 @@
+{{/* 404 page — local override: "Page not found" in the same style as the line
+     below it, then the site's main sections with their pages (papers, CV,
+     classes and extra material), all clickable. */}}
+{{- define "main" -}}
+<div class="flex flex-col justify-center">
+  <article class="container mx-auto prose prose-slate lg:prose-xl dark:prose-invert not-found">
+    <p>{{ i18n "page_not_found" }}.</p>
+    <p>{{ i18n "404_recommendations" }}</p>
+
+    {{/* Papers, in the order of the Research page */}}
+    {{ $papers := slice }}
+    {{ range slice "/publication" "/ongoing" }}
+      {{ with site.GetPage . }}{{ range .RegularPages.ByDate.Reverse }}{{ $papers = $papers | append . }}{{ end }}{{ end }}
+    {{ end }}
+
+    {{/* Teaching pages: the classes, then the extra material, by weight */}}
+    {{ $teaching := slice }}
+    {{ range slice "/teaching" "/project" }}
+      {{ with site.GetPage . }}{{ range .RegularPages.ByWeight }}{{ $teaching = $teaching | append . }}{{ end }}{{ end }}
+    {{ end }}
+
+    <ul>
+      {{ range site.Menus.main }}
+        {{ if ne .URL "/" }}
+        {{ $is_ext := strings.HasPrefix .URL "http" }}
+        <li><a href="{{ cond $is_ext .URL (.URL | relLangURL) }}"{{ if $is_ext }} target="_blank" rel="noopener"{{ end }}>{{ .Name }}</a>
+          {{ if eq .Name "Research" }}
+          <ul>
+            {{ range $papers }}
+              {{/* Same target as the title on the Research page: title_url (a web
+                   page or a file in the paper's folder), else the PDF */}}
+              {{ $p := . }}
+              {{ $url := $p.RelPermalink }}
+              {{ with or $p.Params.title_url $p.Params.url_pdf }}
+                {{ if in (slice "http" "https") (urls.Parse .).Scheme }}{{ $url = . }}
+                {{ else }}{{ with $p.Resources.GetMatch . }}{{ $url = .RelPermalink }}{{ end }}{{ end }}
+              {{ end }}
+            <li><a href="{{ $url }}" target="_blank" rel="noopener">{{ $p.Title }}</a></li>
+            {{ end }}
+          </ul>
+          {{ else if eq .Name "Teaching" }}
+          <ul>
+            {{ range $teaching }}<li><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>{{ end }}
+          </ul>
+          {{ end }}
+        </li>
+        {{ end }}
+      {{ end }}
+    </ul>
+  </article>
+</div>
+{{- end -}}

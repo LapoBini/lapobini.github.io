@@ -19,4 +19,7 @@ sections:
 title: Github Repositories
 linkTitle: Teaching
 type: landing
+# No "GitHub Repositories" page: the two pages are reached from the Teaching page
+_build:
+  render: never
 ---

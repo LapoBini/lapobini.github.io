@@ -41,10 +41,10 @@ imaging:
   quality: 80
   anchor: smart
 timeout: 600000
+# Only the authors taxonomy (used to link coauthor names); no tag or
+# publication-type pages
 taxonomies:
   author: authors
-  tag: tags
-  publication_type: publication_types
 markup:
   _merge: deep
   highlight:
