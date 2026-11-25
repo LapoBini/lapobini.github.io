@@ -111,31 +111,31 @@ Notice that the priors are parametrized by additional parameters, known as hyper
 How should the hyperparameters be specified? What is the optimal number of lags? What are the best shrinkage values for the prior distribution? The goal is to ensure that the model's prior assumptions align well with the observed data, improving the model's overall performance without overfitting. The procedure to choose their values is illustrated in the next section.
 
 ### Informativeness of the Prior Distribution
-From a Bayesian perspective, choosing the informativeness of the prior distribution is conceptually identical to inference on any other unknown parameter of the model. Suppose, for instance, that a model is described by a likelihood function $p(y|\theta)$ and a prior distribution $p_\eta(\theta)$, where $\theta$ is the vector of the VAR(p) parameters and $\eta$ collects the hyperparameters, i.e. the coefficients that parameterize the prior distribution but do not directly affect the likelihood. It is then natural to choose these hyperparameters by interpreting the model as a hierarchical model, i.e. replacing $p_\eta(\theta)$ with $p(\theta|\eta)$ and evaluating their posterior ([Berger, 1985](#ref-berger1985); [Koop, 2003](#ref-koop2003)).
+From a Bayesian perspective, choosing the informativeness of the prior distribution is conceptually identical to inference on any other unknown parameter of the model. Suppose, for instance, that a model is described by a likelihood function $f(y|\theta)$ and a prior distribution $f_\eta(\theta)$ (we denote densities by $f(\cdot)$, keeping $p$ for the number of lags), where $\theta$ is the vector of the VAR(p) parameters and $\eta$ collects the hyperparameters, i.e. the coefficients that parameterize the prior distribution but do not directly affect the likelihood. It is then natural to choose these hyperparameters by interpreting the model as a hierarchical model, i.e. replacing $f_\eta(\theta)$ with $f(\theta|\eta)$ and evaluating their posterior ([Berger, 1985](#ref-berger1985); [Koop, 2003](#ref-koop2003)).
 
 By Bayes' rule, the posterior of the hyperparameters is
-$$ p(\eta|y) \propto p(y|\eta)\, p(\eta)\,, $$
-where $p(\eta)$ is a prior on the hyperparameters (a hyperprior) and $p(y|\eta)$ is the marginal likelihood, obtained by integrating out the VAR parameters:
-$$ p(y|\eta) = \int p(y|\theta)\, p(\theta|\eta)\, d\theta\,. $$
+$$ f(\eta|y) \propto f(y|\eta)\, f(\eta)\,, $$
+where $f(\eta)$ is a prior on the hyperparameters (a hyperprior) and $f(y|\eta)$ is the marginal likelihood, obtained by integrating out the VAR parameters:
+$$ f(y|\eta) = \int f(y|\theta)\, f(\theta|\eta)\, d\theta\,. $$
 Following [Giannone, Lenza and Primiceri](#ref-giannone2015) ([2015](#ref-giannone2015)), with a flat hyperprior, maximizing the posterior of $\eta$ amounts to maximizing the marginal likelihood, i.e. picking the hyperparameters that make the data most likely after integrating out the uncertainty about the model parameters.
 
 Why is this a sensible criterion? By the chain rule of probability, the marginal likelihood can be written as
-$$ p(y|\eta) = \prod_{t=1}^{T} p(y_t \,|\, y_1,\dots,y_{t-1}, \eta)\,, $$
+$$ f(y|\eta) = \prod_{t=1}^{T} f(y_t \,|\, y_1,\dots,y_{t-1}, \eta)\,, $$
 the product of one-step-ahead predictive densities. It therefore rewards the hyperparameters that would have produced the best out-of-sample forecasts. A prior that is too loose fits the sample well but forecasts poorly (overfitting), while a prior that is too tight ignores the information in the data.
 
 Because the Normal-inverse-Wishart prior is conjugate, the integral has a closed form. Let $Y$ $(T\times n)$ and $X$ $(T\times k)$ collect the observed data, without the dummy observations, and let $\beta_0$, $\Omega_0$, $S_0$ and $\alpha_0$ be the prior parameters implied by the dummies, all of which depend on $\eta$. The log marginal likelihood is
 $$
 \begin{aligned}
-& \log p(y|\eta) = -\frac{Tn}{2}\log\pi + \log\Gamma_n\Big(\frac{T+\alpha_0}{2}\Big) \\
+& \log f(y|\eta) = -\frac{Tn}{2}\log\pi + \log\Gamma_n\Big(\frac{T+\alpha_0}{2}\Big) \\
 & \quad - \log\Gamma_n\Big(\frac{\alpha_0}{2}\Big) - \frac{n}{2}\log\big|I_T + X\Omega_0X'\big| \\
 & \quad + \frac{\alpha_0}{2}\log\big|S_0\big| - \frac{T+\alpha_0}{2}\log\big|S_0 \\
 & \quad + (Y - X\beta_0)'(I_T + X\Omega_0 X')^{-1}(Y - X\beta_0)\big|\,,
 \end{aligned}
 $$
-where $\Gamma_n(\cdot)$ is the multivariate gamma function. The last term rewards fit: it is large when the data are close to the prior mean $X\beta_0$, relative to the prior uncertainty. The term $-\frac{n}{2}\log|I_T + X\Omega_0X'|$ penalizes complexity: it falls as the prior becomes looser or as more lags are added. Equivalently, the marginal likelihood is the ratio between the marginal likelihood of the data augmented with the dummies and that of the dummies alone, $p(y|\eta) = p(Y_*|\eta)/p(Y_d|\eta)$.
+where $\Gamma_n(\cdot)$ is the multivariate gamma function. The last term rewards fit: it is large when the data are close to the prior mean $X\beta_0$, relative to the prior uncertainty. The term $-\frac{n}{2}\log|I_T + X\Omega_0X'|$ penalizes complexity: it falls as the prior becomes looser or as more lags are added. Equivalently, the marginal likelihood is the ratio between the marginal likelihood of the data augmented with the dummies and that of the dummies alone, $f(y|\eta) = f(Y_*|\eta)/f(Y_d|\eta)$.
 
 The lag order and the hyperparameters are then chosen as
-$$ (\hat p, \hat\lambda, \hat\tau, \hat\gamma) = \arg\max_{p,\,\lambda,\,\tau,\,\gamma}\; \log p(y\,|\,p, \lambda, \tau, \gamma)\,. $$
+$$ (\hat p, \hat\lambda, \hat\tau, \hat\gamma) = \arg\max_{p,\,\lambda,\,\tau,\,\gamma}\; \log f(y\,|\,p, \lambda, \tau, \gamma)\,. $$
 The code performs this maximization by grid search: for each lag order $p$ and each set of values $(\lambda, \tau, \gamma)$ in the grid (by default $\tau = \gamma = 10\lambda$), it builds the dummy observations, computes the log marginal likelihood and keeps the combination with the highest value. To make different lag orders comparable, all of them are evaluated on the same sample, which starts after the largest lag in the grid. The procedure is implemented in __Code__ > __BVAR__ > __bvar_opt_hyperprior.jl__, and the marginal likelihood is computed in __Code__ > __BVAR__ > __bvar_marginal_likelihood.jl__.
 
 ## Posterior Distribution
@@ -157,7 +157,7 @@ Notice that the posterior expectations of the coefficients correspond to the OLS
 * $\tilde \beta = (X_*'X_*)^{-1}(X_*'Y_*)$;
 * $\tilde \Sigma = (Y_* - X_* \tilde \beta)'(Y_* - X_* \tilde \beta)$.
 
-For structural analysis, the code draws from the posterior with a Gibbs sampler that alternates between $p(\beta|\Psi,Y)$, the normal distribution above, and $p(\Psi|\beta,Y)$, an inverse-Wishart distribution with scale matrix $(Y_* - X_* \beta)'(Y_* - X_* \beta)$. Draws of $\beta$ for which the VAR is not stable are discarded. The functions that perform the draws can be found in __Code__ > __BVAR__ > __bvar_gibbs_helper.jl__ > __bvar_IWRD__ (inverse Wishart) and __bvar_MNRD__ (multivariate normal).
+For structural analysis, the code draws from the posterior with a Gibbs sampler that alternates between $f(\beta|\Psi,Y)$, the normal distribution above, and $f(\Psi|\beta,Y)$, an inverse-Wishart distribution with scale matrix $(Y_* - X_* \beta)'(Y_* - X_* \beta)$. Draws of $\beta$ for which the VAR is not stable are discarded. The functions that perform the draws can be found in __Code__ > __BVAR__ > __bvar_gibbs_helper.jl__ > __bvar_IWRD__ (inverse Wishart) and __bvar_MNRD__ (multivariate normal).
 
 ## Structural Identification
 The structural VAR(p) is specified as
@@ -176,7 +176,7 @@ where $\Phi_h$ is computed from each posterior draw of the VAR coefficients. The
 
 
 ### Sign Restrictions
-The Gibbs sampler cycles through two steps, sampling successively from $p(\beta|\Psi,Y)$ and $p(\Psi|\beta,Y)$. After the burn-in stage, the following steps are used to compute the structural impact multiplier matrix $B_0^{-1}$ via sign restrictions, following [Rubio-Ramírez, Waggoner and Zha](#ref-rubio2010) ([2010](#ref-rubio2010)):
+The Gibbs sampler cycles through two steps, sampling successively from $f(\beta|\Psi,Y)$ and $f(\Psi|\beta,Y)$. After the burn-in stage, the following steps are used to compute the structural impact multiplier matrix $B_0^{-1}$ via sign restrictions, following [Rubio-Ramírez, Waggoner and Zha](#ref-rubio2010) ([2010](#ref-rubio2010)):
 1. Draw an $(n\times n)$ matrix $K$ from the standard normal distribution.
 2. Compute the matrix $Q$ from the $QR$ decomposition of $K$. Note that $Q$ is orthonormal, i.e. $Q'Q = I_n$.
 3. Compute the Cholesky decomposition of the current draw $\Psi = PP'$, where $P$ is lower triangular.
@@ -238,7 +238,7 @@ b_{j,1}=\big(\mathrm{E}[Z_tu_{1,t}]\big)^{-1}\,\mathrm{E}[Z_tu_{j,t}] \\
 \end{gathered}
 $$
 
-As for sign restrictions, the Gibbs sampler cycles through two steps, sampling successively from $p(\beta|\Psi,Y)$ and $p(\Psi|\beta,Y)$. After the burn-in stage, for each draw of $\beta$ and $\Psi$ we compute the corresponding sequence of residuals $u_t = Y_t - X_t \beta$ on the actual sample, without the dummy observations. We then estimate $\hat b_{j,1}$ for $j=2,\dots,n$ by replacing the population moments above with their sample counterparts. The function performing these steps is __Code__ > __BVAR__ > __bvar_iv_gibbs.jl__.
+As for sign restrictions, the Gibbs sampler cycles through two steps, sampling successively from $f(\beta|\Psi,Y)$ and $f(\Psi|\beta,Y)$. After the burn-in stage, for each draw of $\beta$ and $\Psi$ we compute the corresponding sequence of residuals $u_t = Y_t - X_t \beta$ on the actual sample, without the dummy observations. We then estimate $\hat b_{j,1}$ for $j=2,\dots,n$ by replacing the population moments above with their sample counterparts. The function performing these steps is __Code__ > __BVAR__ > __bvar_iv_gibbs.jl__.
 
 
 ## The Excel File
