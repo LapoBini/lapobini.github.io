@@ -284,9 +284,20 @@
   .references [id^="ref-"] { scroll-margin-top: 6rem; }
   .references p:has(> [id^="ref-"]:target) { background: #eff6ff; border-radius: 4px; }
 
-  /* ---- 404 page: side margins on phones, and long titles wrap ---- */
+  /* ---- 404 page: side margins on phones, and long titles wrap. Sections
+     (Research, CV, Teaching) in bold; their pages indented below; all links
+     blue and underlined like the paper titles; no bullets. ---- */
   .not-found { padding-left: 1.5rem; padding-right: 1.5rem; }
   .not-found li, .not-found a { overflow-wrap: anywhere; }
+  .not-found .nf-list, .not-found .nf-sub { list-style: none; padding-left: 0; margin: 0; }
+  .not-found .nf-list li { padding-left: 0; }
+  .not-found .nf-list > li { margin: 1.1rem 0 0; }
+  .not-found .nf-sub { margin-top: 0.35rem; padding-left: 1.25rem; }
+  .not-found .nf-sub li { margin: 0.3rem 0; }
+  .not-found a.nf-top { font-weight: 700; }
+  .not-found a { color: #1d4ed8; text-decoration: underline; text-decoration-color: #1d4ed8; }
+  .not-found a:hover { color: #1e40af; text-decoration-color: #1e40af; }
+  .dark .not-found a.nf-top, .dark .not-found .nf-sub a { color: #93c5fd; text-decoration-color: #93c5fd; }
 
   /* ---- Excel-style tables on the Code pages (worksheets of the data file):
      column letters, row numbers, gridlines and sheet tabs. Scroll sideways

@@ -19,13 +19,13 @@
       {{ with site.GetPage . }}{{ range .RegularPages.ByWeight }}{{ $teaching = $teaching | append . }}{{ end }}{{ end }}
     {{ end }}
 
-    <ul>
+    <ul class="nf-list">
       {{ range site.Menus.main }}
         {{ if ne .URL "/" }}
         {{ $is_ext := strings.HasPrefix .URL "http" }}
-        <li><a href="{{ cond $is_ext .URL (.URL | relLangURL) }}"{{ if $is_ext }} target="_blank" rel="noopener"{{ end }}>{{ .Name }}</a>
+        <li><a class="nf-top" href="{{ cond $is_ext .URL (.URL | relLangURL) }}"{{ if $is_ext }} target="_blank" rel="noopener"{{ end }}>{{ .Name }}</a>
           {{ if eq .Name "Research" }}
-          <ul>
+          <ul class="nf-sub">
             {{ range $papers }}
               {{/* The paper's PDF on this site: url_pdf, or else title_url when it
                    is a file in the paper's folder (e.g. an early draft) */}}
@@ -38,7 +38,7 @@
             {{ end }}
           </ul>
           {{ else if eq .Name "Teaching" }}
-          <ul>
+          <ul class="nf-sub">
             {{ range $teaching }}<li><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>{{ end }}
           </ul>
           {{ end }}
