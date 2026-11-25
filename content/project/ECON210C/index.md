@@ -64,9 +64,13 @@ $$ \text{d}\mathrm{U} = - H_u^{-1} H_z \, \text{d}\mathrm{Z} \, .$$
 Thus, we derive the solution of the model as follows:
 $$ \text{d}\mathrm{X} = M_u \, \text{d}\mathrm{U} + M_z \, \text{d}\mathrm{Z} $$
 $$ \text{d}\mathrm{X} = M_u \big( - H_u^{-1} H_z \, \text{d}\mathrm{Z} \, \big) + M_z \, \text{d}\mathrm{Z} \, .$$
-Recall that $H_u$ and $H_z$ are sequence-space Jacobians, computed as:
-1. $ H_u = \frac{\partial H}{\partial \mathrm{U}} = \frac{\partial H}{\partial X} \frac{\partial X}{\partial \mathrm{U}}$
-2. $ H_z = \frac{\partial H}{\partial \mathrm{Z}} = \frac{\partial H}{\partial X} \frac{\partial X}{\partial \mathrm{Z}}$
+Recall that $H_u$ and $H_z$ are sequence-space Jacobians, computed as
+$$
+\begin{aligned}
+H_u &= \frac{\partial H}{\partial \mathrm{U}} = \frac{\partial H}{\partial \mathrm{X}} \frac{\partial \mathrm{X}}{\partial \mathrm{U}} \,, \\[1em]
+H_z &= \frac{\partial H}{\partial \mathrm{Z}} = \frac{\partial H}{\partial \mathrm{X}} \frac{\partial \mathrm{X}}{\partial \mathrm{Z}} \,.
+\end{aligned}
+$$
 
 The solution of the model immediately gives us the structural IRFs to the $j^{th}$ shock of interest:
 $$ \Theta_{\cdot,j,\cdot} = M_u \big( - H_u^{-1} H_{z_j} e_1 \, \big) + M_{z_j} \, e_1 \, ,$$
