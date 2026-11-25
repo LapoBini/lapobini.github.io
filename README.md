@@ -77,7 +77,7 @@ presentations:
 ### Add a new paper
 
 Copy an existing folder in `content/publication/` (or `content/ongoing/` for an ongoing project), rename
-it, replace the PDFs and edit `index.md`. Keep the `_build` lines, which stop the build from generating a
+it, replace the PDFs and edit `index.md`. Keep the `_build` and `sitemap` lines, which stop the build from generating a
 separate page for the paper.
 
 ### Update the CV

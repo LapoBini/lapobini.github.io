@@ -17,6 +17,9 @@ title_url: Main_NowcastingInflation.pdf
 _build:
   render: link
   list: always
+# The page itself does not exist, so keep it out of the sitemap
+sitemap:
+  disable: true
 links:
 - name: Early Draft
   url: Main_NowcastingInflation.pdf

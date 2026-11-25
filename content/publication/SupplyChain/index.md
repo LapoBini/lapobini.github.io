@@ -61,6 +61,9 @@ title_url: "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5375776"
 _build:
   render: link
   list: always
+# The page itself does not exist, so keep it out of the sitemap
+sitemap:
+  disable: true
 links:
 - name: Appendix
   url: appendixBini2025.pdf

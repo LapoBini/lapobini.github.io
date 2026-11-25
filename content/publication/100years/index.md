@@ -47,6 +47,9 @@ title_url: "100years.pdf"
 _build:
   render: link
   list: always
+# The page itself does not exist, so keep it out of the sitemap
+sitemap:
+  disable: true
 url_poster: ""
 url_project: ""
 url_slides: "slides-100years.pdf"
